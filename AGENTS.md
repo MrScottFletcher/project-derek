@@ -24,9 +24,7 @@ The following are also configurable - the Number of Derrick clusters, number of 
 Using the QLC+ programming and the signals from the PIR sensors, this system will allow the eyes to track and look at movement as detected by the PIR sensors, or a more precise locating detection system that specifies the degrees on a 360 degree circle around the system.
 
 ==========
-The Master Control Unit - to be called the MCU - will orchestrate the performances of each cluster, and each cluster will manage the performances of the Dereks in each cluster.  Performances will be pre-programmed and named.  The actions in each performances will span across some or all of the clusters (and Dereks in each cluster).
-
-The MCU will also provide a web user interface to configure and control the system.  The settings will persist and be saved.  The MCU will communicate with the clusters wirelessly, and it will be bi-directional.  Clusters can report their status and PIR censor information to the MCU.  Performances will be initiated by a combination of random timing, PIR sensor inputs, and manual triggers via the MCU user interface.  
+The Master Control Unit - to be called the MCU - will run the ESP-NOW gateway code, handle OSC protocol conversions, registration and polling of cluster ESP-NOW modules, facilitate the mapping of the different control channels to each cluster's Derek unit's servos and LEDs, and facilitate the sending and eceiving of messages between the clusters and the QLC+ software.  The MCU will have an OLED display to display the status, counts, and details of the MCU and the clusters, and buttons to cycle through the various helpful status pages on the OLED screen.  The exact size and capabilities of the OLED screen will be provided later.
 
 ## Conventions
 - Prefer existing patterns over new abstractions.
