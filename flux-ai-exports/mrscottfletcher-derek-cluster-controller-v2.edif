@@ -1,0 +1,2777 @@
+(edif "Derek Cluster Controller v2"
+    (edifVersion 2 0 0)
+    (edifLevel 0)
+    (keywordMap (keywordLevel 0))
+    (status
+        (written
+            (timestamp 2026 07 01 18 55 14.410)
+            (program "Flux" (version "1.0"))
+            (author "Flux")
+        )
+    )
+    (library FluxLibrary
+        (edifLevel 0)
+        (technology (numberDefinition))
+        (cell "Net Portal"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port P1 (direction inout))
+                )
+            )
+        )
+        (cell "No Connect"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port "9201aa3c-1b67-467a-b9c3-91b2ad883cd9" (direction inout))
+                )
+            )
+        )
+        (cell Ground
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port GND (direction inout))
+                )
+            )
+        )
+        (cell "Generic Testpoint"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port P1 (direction inout))
+                )
+            )
+        )
+        (cell "Generic Resistor"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port P2 (direction inout))
+                (port P1 (direction inout))
+                )
+            )
+        )
+        (cell 5019
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port 1 (direction inout))
+                )
+            )
+        )
+        (cell "DFR0299 - 8673144"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port "USB+" (direction inout))
+                (port VCC (direction inout))
+                (port DAC_R (direction inout))
+                (port RX (direction inout))
+                (port IO2 (direction inout))
+                (port ADKEY2 (direction inout))
+                (port TX (direction inout))
+                (port "USB-" (direction inout))
+                (port ADKEY1 (direction inout))
+                (port GND (direction inout))
+                (port DAC_L (direction inout))
+                (port IO1 (direction inout))
+                (port SPK2 (direction inout))
+                (port GND (direction inout))
+                (port BUSY (direction inout))
+                (port SPK1 (direction inout))
+                )
+            )
+        )
+        (cell "PPTC041LFBN-RC"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port Pin_3 (direction inout))
+                (port Pin_1 (direction inout))
+                (port Pin_4 (direction inout))
+                (port Pin_2 (direction inout))
+                )
+            )
+        )
+        (cell "Pin Header 01x04 2.54mm Vertical i2c"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port SCL (direction inout))
+                (port SDA (direction inout))
+                (port GND (direction inout))
+                (port 5V (direction inout))
+                )
+            )
+        )
+        (cell "54602-908LF"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port 5 (direction inout))
+                (port 7 (direction inout))
+                (port 8 (direction inout))
+                (port 2 (direction inout))
+                (port 3 (direction inout))
+                (port 6 (direction inout))
+                (port 4 (direction inout))
+                (port 1 (direction inout))
+                )
+            )
+        )
+        (cell "16-Channel PWM-Servo Shield SUBLAYOUT"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port PWM8 (direction inout))
+                (port GND (direction inout))
+                (port A1 (direction inout))
+                (port PWM1 (direction inout))
+                (port A2 (direction inout))
+                (port A4 (direction inout))
+                (port PWM15 (direction inout))
+                (port A5 (direction inout))
+                (port PWM13 (direction inout))
+                (port PWM10 (direction inout))
+                (port 5V (direction inout))
+                (port PWM7 (direction inout))
+                (port PWM6 (direction inout))
+                (port PWM14 (direction inout))
+                (port PWM3 (direction inout))
+                (port PWM4 (direction inout))
+                (port A0 (direction inout))
+                (port PWM5 (direction inout))
+                (port PWM0 (direction inout))
+                (port PWM11 (direction inout))
+                (port PWM9 (direction inout))
+                (port PWM12 (direction inout))
+                (port PWM2 (direction inout))
+                (port A3 (direction inout))
+                )
+            )
+        )
+        (cell "Generic Capacitor"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port P1 (direction inout))
+                (port P2 (direction inout))
+                )
+            )
+        )
+        (cell "ESP32-S3-DEVKITC-1-N8R2"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port GPIO37 (direction inout))
+                (port GPIO47 (direction inout))
+                (port GPIO8 (direction inout))
+                (port GPIO5 (direction inout))
+                (port GPIO38 (direction inout))
+                (port "MTDO/GPIO40" (direction inout))
+                (port GPIO9 (direction inout))
+                (port GPIO10 (direction inout))
+                (port GPIO4 (direction inout))
+                (port "USB_D-/GPIO19" (direction inout))
+                (port GND (direction inout))
+                (port GPIO16 (direction inout))
+                (port GPIO0 (direction inout))
+                (port GPIO45 (direction inout))
+                (port GPIO48 (direction inout))
+                (port GND (direction inout))
+                (port GPIO13 (direction inout))
+                (port GPIO36 (direction inout))
+                (port RST (direction inout))
+                (port "MTDI/GPIO41" (direction inout))
+                (port GND (direction inout))
+                (port GPIO17 (direction inout))
+                (port 3V3 (direction inout))
+                (port "USB_D+/GPIO20" (direction inout))
+                (port GPIO3 (direction inout))
+                (port GND (direction inout))
+                (port GPIO12 (direction inout))
+                (port GPIO18 (direction inout))
+                (port GPIO11 (direction inout))
+                (port GPIO46 (direction inout))
+                (port GPIO15 (direction inout))
+                (port GPIO2 (direction inout))
+                (port GPIO1 (direction inout))
+                (port GPIO35 (direction inout))
+                (port 3V3 (direction inout))
+                (port GPIO14 (direction inout))
+                (port "MTCK/GPIO39" (direction inout))
+                (port "U0RXD/GPIO44" (direction inout))
+                (port 5V0 (direction inout))
+                (port GPIO21 (direction inout))
+                (port "U0TXD/GPIO43" (direction inout))
+                (port GPIO7 (direction inout))
+                (port "MTMS/GPIO42" (direction inout))
+                (port GPIO6 (direction inout))
+                )
+            )
+        )
+        (cell "KF128-5.08-2P-AA"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port 2 (direction inout))
+                (port 1 (direction inout))
+                )
+            )
+        )
+        (cell SN74AHCT125DR
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port GND (direction inout))
+                (port 4A (direction inout))
+                (port "1~OE" (direction inout))
+                (port 1A (direction inout))
+                (port 2Y (direction inout))
+                (port 3A (direction inout))
+                (port VCC (direction inout))
+                (port 4Y (direction inout))
+                (port "3~OE" (direction inout))
+                (port "2~OE" (direction inout))
+                (port 2A (direction inout))
+                (port 3Y (direction inout))
+                (port "4~OE" (direction inout))
+                (port 1Y (direction inout))
+                )
+            )
+        )
+        (cell 691137710002
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port 2 (direction inout))
+                (port 1 (direction inout))
+                )
+            )
+        )
+        (cell "Pin Header 01x20 2.54mm Vertical"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port Pin_4 (direction inout))
+                (port Pin_20 (direction inout))
+                (port Pin_11 (direction inout))
+                (port Pin_10 (direction inout))
+                (port Pin_14 (direction inout))
+                (port Pin_9 (direction inout))
+                (port Pin_7 (direction inout))
+                (port Pin_8 (direction inout))
+                (port Pin_6 (direction inout))
+                (port Pin_18 (direction inout))
+                (port Pin_1 (direction inout))
+                (port Pin_13 (direction inout))
+                (port Pin_2 (direction inout))
+                (port Pin_16 (direction inout))
+                (port Pin_19 (direction inout))
+                (port Pin_3 (direction inout))
+                (port Pin_17 (direction inout))
+                (port Pin_12 (direction inout))
+                (port Pin_15 (direction inout))
+                (port Pin_5 (direction inout))
+                )
+            )
+        )
+        (cell "DA-04RS"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port 4 (direction inout))
+                (port 8 (direction inout))
+                (port 6 (direction inout))
+                (port 5 (direction inout))
+                (port 1 (direction inout))
+                (port 7 (direction inout))
+                (port 3 (direction inout))
+                (port 2 (direction inout))
+                )
+            )
+        )
+        (cell SS54B
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port A (direction inout))
+                (port C (direction inout))
+                )
+            )
+        )
+        (cell "SML-LX0805GC-TR"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port K (direction inout))
+                (port A (direction inout))
+                )
+            )
+        )
+        (cell "OLED 128 x 64 0.96inch"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port GND (direction inout))
+                (port SDA (direction inout))
+                (port SCL (direction inout))
+                (port 5V (direction inout))
+                )
+            )
+        )
+        (cell "178.6164.0001"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port P2 (direction inout))
+                (port P1 (direction inout))
+                )
+            )
+        )
+        (cell "SGM2212-3.3XKC3G/TR"
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port VOUT_2 (direction inout))
+                (port GND (direction inout))
+                (port VOUT_1 (direction inout))
+                (port VIN (direction inout))
+                )
+            )
+        )
+        (cell 61302211121
+            (cellType generic)
+            (view schematic
+                (viewType schematic)
+                (interface
+                    (port 7 (direction inout))
+                (port 16 (direction inout))
+                (port 4 (direction inout))
+                (port 19 (direction inout))
+                (port 9 (direction inout))
+                (port 6 (direction inout))
+                (port 15 (direction inout))
+                (port 21 (direction inout))
+                (port 13 (direction inout))
+                (port 17 (direction inout))
+                (port 18 (direction inout))
+                (port 11 (direction inout))
+                (port 5 (direction inout))
+                (port 3 (direction inout))
+                (port 22 (direction inout))
+                (port 2 (direction inout))
+                (port 1 (direction inout))
+                (port 8 (direction inout))
+                (port 14 (direction inout))
+                (port 12 (direction inout))
+                (port 10 (direction inout))
+                (port 20 (direction inout))
+                )
+            )
+        )
+    )
+    
+    (library Main
+            (edifLevel 0)
+            (technology (numberDefinition))
+            (cell "Derek Cluster Controller v2_top"
+                (cellType generic)
+                (view schematic
+                    (viewType schematic)
+                    (interface)
+                    (contents
+                        (instance "U4 SPK1 - J11 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J6 8 - J19 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "00dde095-26e9-492c-a7ca-c1da6b74b8ef"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J9 8 - J22 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J4 4 - J5 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J3 2 - J4 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R14 P2 - R17 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP2
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "J8 2 - J9 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "05442511-0acd-4501-af1c-9ff1278f3330"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "056dfd7e-9839-45f2-a9c0-0485ebdc984a"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J13 Pin_2 - R13 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP15
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance R8
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO3 - R22 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP20
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "R11 P2 - SW1 4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J3 2 - J4 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R18 P2 - J2 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO10 - U5 1A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM8 - J6 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO15 - U4 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "0cc2ac68-9b5f-4a7d-9ae0-8c25e15c9680"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J4 4 - J5 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM7 - J5 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance U4
+                (viewRef schematic (cellRef "DFR0299 - 8673144" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 VCC - U5 2~OE"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM4 - J4 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "SW1 8 - D2 K"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO8 - U2 A4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "0ff6db56-1146-4483-a81d-ab0ca9562ac8"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance TP28
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "12cb08a4-440b-4a44-9a9b-a0a46c426a2e"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 VCC - U5 2~OE"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J13
+                (viewRef schematic (cellRef "PPTC041LFBN-RC" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM14 - J9 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM11 - J7 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J17 SDA - J5 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP19
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 DAC_L - TP13 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R13 P2 - R16 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D3 K - D4 K"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM11 - J7 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO1 - R20 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "1bbc031f-364c-4ec6-88a7-06c18c07e6dd"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "R21 P2 - D4 A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R8 P2 - SW1 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "1da3b929-0931-4eaf-9135-4304313f0023"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance TP18
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO16 - U3 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "1f9ced8f-eeda-4fae-86f6-7e9c00459c18"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J12 Pin_3 - J13 Pin_3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J17 SDA - J5 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM6 - J5 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R10 P2 - SW1 3"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP16
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J15
+                (viewRef schematic (cellRef "Pin Header 01x04 2.54mm Vertical i2c" (libraryRef FluxLibrary)))
+            )
+                        (instance "2471c981-052e-4447-81d9-7fcd9e87f45c"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J12 Pin_3 - J13 Pin_3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J18 SDA - J6 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM8 - J6 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 2A - U5 3A"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J7 2 - J8 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J16 SDA - J4 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 4A - U5 2Y"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J8 8 - J21 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 SPK2 - J11 2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO8 - U2 A4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "2ab96e89-5c8d-4507-b42d-fcf7bf8a5c7b"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J3 4 - J4 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "2bd268ed-56fb-4c19-ac4c-2f9765783721"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J14 Pin_2 - R14 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R14 P2 - R17 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J6
+                (viewRef schematic (cellRef "54602-908LF" (libraryRef FluxLibrary)))
+            )
+                        (instance TP13
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "R14 P2 - R17 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 1Y - R18 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R12 P2 - R15 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO9 - U2 A5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J19
+                (viewRef schematic (cellRef "Pin Header 01x04 2.54mm Vertical i2c" (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 SPK2 - J10 2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP23
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance J26
+                (viewRef schematic (cellRef "16-Channel PWM-Servo Shield SUBLAYOUT" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP22
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance C6
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance TP11
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "36c99e8f-33f5-4986-8aee-c29c2a3ca51e"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO9 - U2 A5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "3a22fba2-b76d-4eb6-bca6-0b42eb00eff7"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM14 - J9 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "3afc8324-7ebd-405d-980e-3044a5e3a2c9"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM6 - J5 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J21 SDA - J9 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "3c23aaec-3cb8-4405-84de-283c76af9bce"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance R7
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM2 - J3 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R8 P2 - SW1 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP6
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 4A - U5 2Y"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM13 - J8 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO2 - R21 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP3
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "4217ec0a-1cc5-462b-b42f-101a5a33d6ae"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO9 - U2 A5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J7 8 - J20 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO10 - U5 1A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J13 Pin_2 - R13 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM13 - J8 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J14
+                (viewRef schematic (cellRef "PPTC041LFBN-RC" (libraryRef FluxLibrary)))
+            )
+                        (instance J21
+                (viewRef schematic (cellRef "Pin Header 01x04 2.54mm Vertical i2c" (libraryRef FluxLibrary)))
+            )
+                        (instance "R12 P2 - R15 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP8
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "J7 8 - J20 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R11 P2 - SW1 4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP32
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO1 - R20 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance U1
+                (viewRef schematic (cellRef "ESP32-S3-DEVKITC-1-N8R2" (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 GND - U4 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J12 Pin_3 - J13 Pin_3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "R9 P2 - SW1 2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R22 P2 - D5 A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance C5
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance J12
+                (viewRef schematic (cellRef "PPTC041LFBN-RC" (libraryRef FluxLibrary)))
+            )
+                        (instance "J19 SDA - J7 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "52a4aa12-dde8-4ff5-a350-6b095e6465ad"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO17 - U3 RX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM9 - J6 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J5 4 - J6 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance J18
+                (viewRef schematic (cellRef "Pin Header 01x04 2.54mm Vertical i2c" (libraryRef FluxLibrary)))
+            )
+                        (instance "J5 8 - J18 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J2 8 - J15 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO2 - R21 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "57f6e72a-e429-4763-863b-cf847af9e09f"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "R13 P2 - R16 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 DAC_R - TP14 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 SPK2 - J10 2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 DAC_R - TP12 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP17
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO3 - R22 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J8 4 - J9 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO15 - U4 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM10 - J7 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J8 4 - J9 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J5 8 - J18 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "5eaa4d0b-b560-4ba2-81c1-88f44093fab2"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "5ff00218-0b7a-4988-b28e-8f771a442530"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM8 - J6 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "6283fb03-07d7-40f0-992a-ef5282d80fda"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance J4
+                (viewRef schematic (cellRef "54602-908LF" (libraryRef FluxLibrary)))
+            )
+                        (instance C11
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance J1
+                (viewRef schematic (cellRef "KF128-5.08-2P-AA" (libraryRef FluxLibrary)))
+            )
+                        (instance "J4 8 - J17 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "64baf0dc-edc7-4ceb-ad20-60145d3362d4"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "64dffcf8-7500-4d14-b9d5-44d71fdd8019"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "651930a0-6460-445f-a49d-5adb20bc3e6b"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J15 SDA - J3 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM5 - J4 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO16 - U3 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "661bae20-e34f-4ae3-a1a0-ccc13eaed5d0"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM9 - J6 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "66609c44-5fb3-4026-a60a-805339f28e09"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J8 8 - J21 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance R9
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "J12 Pin_3 - J13 Pin_3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J21 SDA - J9 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 GND - U4 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 DAC_L - TP11 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 4A - U5 2Y"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance TP4
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance TP9
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM5 - J4 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 DAC_R - TP14 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "6b2f2136-2de8-468d-bd1b-cb2dc74cd0c9"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "6b3c5f64-d393-412f-9a6e-9ff9f8f2eabb"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM12 - J8 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance R18
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "6e55e07b-4a5e-43cc-86d5-aea25dbe4afc"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "R13 P2 - R16 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R11 P2 - SW1 4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO16 - U3 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP27
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance R13
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "J4 8 - J17 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 SPK2 - J11 2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R14 P2 - R17 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J4 2 - J5 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J2 4 - J3 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM3 - J3 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance R15
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "75f5ebb4-daed-40e1-a2c4-53680f5749d3"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance TP12
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance J2
+                (viewRef schematic (cellRef "54602-908LF" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM10 - J7 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J14 Pin_2 - R14 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J15 SDA - J3 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO8 - U2 A4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance U5
+                (viewRef schematic (cellRef SN74AHCT125DR (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "7d982475-cf58-4cbe-9250-e3a2b1b4f57a"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO47 - U4 RX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "7ee700e7-2a04-4a47-85ff-75916b5b60ba"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM1 - J2 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "8026608f-26db-4c28-942f-1f71dda62ac7"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 DAC_R - TP12 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance R16
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO48 - U4 TX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J5 2 - J6 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J8
+                (viewRef schematic (cellRef "54602-908LF" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO8 - U2 A4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 SPK1 - J11 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "83fb2af6-b963-4ff6-bc6d-ecbaaea420c9"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J9 8 - J22 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J7 4 - J8 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "R12 P2 - R15 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM3 - J3 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP1
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "8725d245-4215-4c09-bf5a-ab9685e8849c"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance J11
+                (viewRef schematic (cellRef 691137710002 (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance C13
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 DAC_L - TP11 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM7 - J5 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "8a4c58a6-ac5c-4eda-a230-f7a30dbbc0a0"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "D3 K - D4 K"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO9 - U2 A5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "F1 P2 - D1 A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R12 P2 - R15 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance J27
+                (viewRef schematic (cellRef "Pin Header 01x20 2.54mm Vertical" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM0 - J2 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO15 - U4 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R20 P2 - D3 A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D3 K - D4 K"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 DAC_R - TP12 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO15 - U4 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J10
+                (viewRef schematic (cellRef 691137710002 (libraryRef FluxLibrary)))
+            )
+                        (instance J22
+                (viewRef schematic (cellRef "Pin Header 01x04 2.54mm Vertical i2c" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP7
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "J7 2 - J8 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance R19
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "R8 P2 - SW1 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance C2
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance "J4 2 - J5 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 DAC_L - TP13 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance R11
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "95a65cd4-371d-46c0-b7d2-69dcb42a5de7"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO8 - U2 A4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance U3
+                (viewRef schematic (cellRef "DFR0299 - 8673144" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 VCC - U5 2~OE"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO47 - U4 RX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP25
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "J6 4 - J7 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "R14 P2 - R17 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J2 2 - J3 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM14 - J9 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R9 P2 - SW1 2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J3 8 - J16 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO17 - U3 RX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "a17cb2be-0cce-48d8-a987-b7ebf0d13c7d"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J12 Pin_2 - R12 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance SW1
+                (viewRef schematic (cellRef "DA-04RS" (libraryRef FluxLibrary)))
+            )
+                        (instance "a28e31ca-64b0-41e6-8f68-432b5d431a55"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO48 - U4 TX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "a32fae4c-9c52-40f8-b305-2f22199a9e48"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "R12 P2 - R15 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J6 2 - J7 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J2 2 - J3 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance TP26
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "a4c0c9a4-59e1-4216-89e8-adad03a01aae"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 2A - U5 3A"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance C9
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance J20
+                (viewRef schematic (cellRef "Pin Header 01x04 2.54mm Vertical i2c" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM5 - J4 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP21
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance C7
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance "a8625158-27e7-446c-a86a-c807ba093039"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J16 SDA - J4 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP29
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 DAC_L - TP13 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance TP30
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "aae72baa-8212-4ef4-8326-54e004a66b3d"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO8 - U2 A4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance D1
+                (viewRef schematic (cellRef SS54B (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "aca25707-5d36-4233-91d5-0caca97be86e"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "acb5be38-9654-4abf-ac22-83c7f7332548"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J5 2 - J6 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J23
+                (viewRef schematic (cellRef "Pin Header 01x04 2.54mm Vertical i2c" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "aead2a68-d45f-49f2-a6a6-9db6a8f9ff7b"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance TP10
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance "R10 P2 - SW1 3"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance D5
+                (viewRef schematic (cellRef "SML-LX0805GC-TR" (libraryRef FluxLibrary)))
+            )
+                        (instance "b05909b3-63b6-42fe-829d-261295560361"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J8 2 - J9 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R22 P2 - D5 A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance DS1
+                (viewRef schematic (cellRef "OLED 128 x 64 0.96inch" (libraryRef FluxLibrary)))
+            )
+                        (instance C3
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance TP14
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance D4
+                (viewRef schematic (cellRef "SML-LX0805GC-TR" (libraryRef FluxLibrary)))
+            )
+                        (instance TP5
+                (viewRef schematic (cellRef "Generic Testpoint" (libraryRef FluxLibrary)))
+            )
+                        (instance TP31
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance TP24
+                (viewRef schematic (cellRef 5019 (libraryRef FluxLibrary)))
+            )
+                        (instance "R10 P2 - SW1 3"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM1 - J2 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM1 - J2 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "b61f877b-b804-48c0-8484-99b495cf388a"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J18 SDA - J6 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J7 4 - J8 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 1Y - R18 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J1 1 - F1 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "F1 P2 - D1 A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance R14
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance R6
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "R9 P2 - SW1 2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM11 - J7 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM3 - J3 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J3 8 - J16 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J3 2 - J4 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "bc90ccb5-6be8-491b-a8ef-a6a71a2c25a0"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "bd7cb7c5-165f-492c-9df7-1ad5c9a1d04e"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "bdfe9588-42ce-4913-843a-8c17f79b9885"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J2 4 - J3 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance R10
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM7 - J5 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "bee0f25b-72aa-4798-adcc-769df2074f72"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance J9
+                (viewRef schematic (cellRef "54602-908LF" (libraryRef FluxLibrary)))
+            )
+                        (instance J7
+                (viewRef schematic (cellRef "54602-908LF" (libraryRef FluxLibrary)))
+            )
+                        (instance R22
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "J1 1 - F1 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "c4bf0599-c634-4b63-8d82-254008b88580"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance R12
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO16 - U3 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM2 - J3 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "c61a20a0-cb8f-4904-815b-a730a2e25ad0"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO18 - U3 TX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "ca307e37-6c86-4c77-8565-1ef4da0a74a1"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J9 8 - J22 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO9 - U2 A5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance R17
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance J16
+                (viewRef schematic (cellRef "Pin Header 01x04 2.54mm Vertical i2c" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM15 - J9 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "d2849800-36f9-46e5-9da1-0c7ee07b7fa7"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO9 - U2 A5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R21 P2 - D4 A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J20 SDA - J8 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance C8
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance C10
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance "J6 8 - J19 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance F1
+                (viewRef schematic (cellRef "178.6164.0001" (libraryRef FluxLibrary)))
+            )
+                        (instance R20
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J17
+                (viewRef schematic (cellRef "Pin Header 01x04 2.54mm Vertical i2c" (libraryRef FluxLibrary)))
+            )
+                        (instance "J5 4 - J6 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance D3
+                (viewRef schematic (cellRef "SML-LX0805GC-TR" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM4 - J4 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "dbb6ab41-52e7-42ff-b0f8-e716f50a383b"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 SPK1 - J10 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J6 4 - J7 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance J3
+                (viewRef schematic (cellRef "54602-908LF" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM0 - J2 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance U6
+                (viewRef schematic (cellRef "SGM2212-3.3XKC3G/TR" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J2 8 - J15 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM12 - J8 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J12 Pin_2 - R12 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "e1d83413-c2c0-4a6f-a1fa-672badb8f4b9"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM15 - J9 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 1Y - R18 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO9 - U2 A5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "e2d6f53b-4190-4161-872c-dc413a319601"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "e33afb7f-fc3d-45b7-b2ee-3ea4573b9fe0"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM12 - J8 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "e461e69b-7dc7-4f56-9731-83783a601ab2"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM9 - J6 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM0 - J2 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "e74a5014-0340-4800-a937-1d85daa787b5"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 DAC_R - TP14 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "e81bdf16-dee5-4819-a1e4-a61451db80fd"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "e8774dbe-c1ea-4e94-8473-f10e4b7c3b37"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "J19 SDA - J7 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J9 8 - J22 SCL"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM6 - J5 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R13 P2 - R16 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "eb734b1a-a23d-4e12-b407-d7db2ccd5452"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance J5
+                (viewRef schematic (cellRef "54602-908LF" (libraryRef FluxLibrary)))
+            )
+                        (instance "J12 Pin_3 - J13 Pin_3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance R21
+                (viewRef schematic (cellRef "Generic Resistor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U4 GND - U5 GND"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance C4
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance "f47522df-dc53-45dd-9456-f8dc3a64d721"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM15 - J9 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R13 P2 - R16 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J3 4 - J4 3"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 DAC_L - TP11 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "f6ca6657-3b0b-4655-ad41-ee372fc6dc1d"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "f6eabaaf-ba14-4ec7-9300-4da19fd58c88"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM4 - J4 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J6 2 - J7 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO18 - U3 TX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R18 P2 - J2 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance C12
+                (viewRef schematic (cellRef "Generic Capacitor" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO8 - U2 A4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U3 SPK1 - J10 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM2 - J3 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R20 P2 - D3 A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM13 - J8 6"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "J20 SDA - J8 7"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U2 PWM10 - J7 5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "ffb20c46-a4a5-4c42-ac8a-13f8a0bd5b26"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U5 1Y - R18 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance J25
+                (viewRef schematic (cellRef 61302211121 (libraryRef FluxLibrary)))
+            )
+                        (instance "J25 1 - J25 21"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "J25 1 - J25 21"
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO1 - R20 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO2 - R21 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "d133e50f-b007-494d-968c-852c38edef0b"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "350a3801-f074-4315-8cf8-fd61101242f5"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "81a9ade6-03f8-4ba4-b5fc-3c1cac8c95c9"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "64ed6e51-d551-4ebc-9fec-2b032db8d1c1"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "ef92e64e-da4a-4804-b42d-005775c14486"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "a6f48acb-7b87-4d9a-be33-1cb563a664e7"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "fc6ab927-686f-40ed-b427-3801fc4d939d"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "773ea0b3-a8c4-4503-b7bf-d44be503f533"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "41cfcc1c-4a1e-4302-9e3b-eb4d954b9549"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "75ce9144-27c9-43f2-8be7-ef1ee640b36c"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "7d25df9a-2163-4493-9b39-e27bfb74e79f"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "3b27b8f2-7857-40f9-bcf2-6e68dd77e576"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "5fb03226-a94a-4acc-b929-d5615867c5bb"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "ff228d10-6351-40d5-bb11-62798e82f4db"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "bc10616f-256c-4ef4-9355-bd4f6e0af345"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "841b5ea5-5f16-4332-a044-b702548d7adb"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "e6752da1-ae08-40d7-abda-858a3b0be917"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "252ed957-a795-4bed-87d6-97f9767c63a4"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO48 - U4 TX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO47 - U4 RX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance J24
+                (viewRef schematic (cellRef 61302211121 (libraryRef FluxLibrary)))
+            )
+                        (instance "U6 VOUT_1 - U6 VOUT_2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R12 P2 - R15 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R13 P2 - R16 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R14 P2 - R17 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO15 - U4 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO16 - U3 BUSY"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO17 - U3 RX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO18 - U3 TX"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO8 - U2 A4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO3 - R22 P1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO9 - U2 A5"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "U1 GPIO10 - U5 1A"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R8 P2 - SW1 1"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R9 P2 - SW1 2"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R10 P2 - SW1 3"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "R11 P2 - SW1 4"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance "D1 C - U6 VIN"
+                (viewRef schematic (cellRef "Net Portal" (libraryRef FluxLibrary)))
+            )
+                        (instance GND
+                (viewRef schematic (cellRef Ground (libraryRef FluxLibrary)))
+            )
+                        (instance "8a2c3ba3-c4b3-401c-a2e9-3c864b13e839"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "5b9289f3-bbe9-4729-904b-c719b2ef4485"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (instance "10934829-7a32-4855-9027-1b9b03ffdc52"
+                (viewRef schematic (cellRef "No Connect" (libraryRef FluxLibrary)))
+            )
+                        (Net DEREK4_LED_DOUT
+                            (joined (portRef SCL (instanceRef J18))
+                            (portRef P1 (instanceRef "J5 8 - J18 SCL"))
+                            (portRef P1 (instanceRef "J5 8 - J18 SCL"))
+                            (portRef 8 (instanceRef J5)))
+                        )
+                        (Net DEREK8_LIFT_PWM
+                            (joined (portRef PWM15 (instanceRef J26))
+                            (portRef Pin_20 (instanceRef J27))
+                            (portRef 6 (instanceRef J9))
+                            (portRef P1 (instanceRef "U2 PWM15 - J9 6"))
+                            (portRef P1 (instanceRef "U2 PWM15 - J9 6"))
+                            (portRef P1 (instanceRef "U2 PWM15 - J9 6")))
+                        )
+                        (Net DEREK2_LED_DOUT
+                            (joined (portRef P1 (instanceRef "J3 8 - J16 SCL"))
+                            (portRef P1 (instanceRef "J3 8 - J16 SCL"))
+                            (portRef SCL (instanceRef J16))
+                            (portRef 8 (instanceRef J3)))
+                        )
+                        (Net PIR_LEFT_RAW
+                            (joined (portRef Pin_2 (instanceRef J12))
+                            (portRef P1 (instanceRef "J12 Pin_2 - R12 P1"))
+                            (portRef P1 (instanceRef R12))
+                            (portRef P1 (instanceRef "J12 Pin_2 - R12 P1")))
+                        )
+                        (Net DEREK8_PAN_PWM
+                            (joined (portRef P1 (instanceRef "U2 PWM14 - J9 5"))
+                            (portRef PWM14 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM14 - J9 5"))
+                            (portRef Pin_19 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM14 - J9 5"))
+                            (portRef 5 (instanceRef J9)))
+                        )
+                        (Net DF2_UART_RX
+                            (joined (portRef 16 (instanceRef J25))
+                            (portRef TX (instanceRef U4))
+                            (portRef P1 (instanceRef "U1 GPIO48 - U4 TX"))
+                            (portRef P1 (instanceRef "U1 GPIO48 - U4 TX"))
+                            (portRef P1 (instanceRef "U1 GPIO48 - U4 TX"))
+                            (portRef GPIO48 (instanceRef U1)))
+                        )
+                        (Net DF2_SPK1
+                            (joined (portRef P1 (instanceRef "U4 SPK1 - J11 1"))
+                            (portRef SPK1 (instanceRef U4))
+                            (portRef P1 (instanceRef "U4 SPK1 - J11 1"))
+                            (portRef 1 (instanceRef J11)))
+                        )
+                        (Net DEREK6_PAN_PWM
+                            (joined (portRef PWM10 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM10 - J7 5"))
+                            (portRef P1 (instanceRef "U2 PWM10 - J7 5"))
+                            (portRef Pin_15 (instanceRef J27))
+                            (portRef 5 (instanceRef J7))
+                            (portRef P1 (instanceRef "U2 PWM10 - J7 5")))
+                        )
+                        (Net DEREK2_LED_DIN
+                            (joined (portRef SDA (instanceRef J15))
+                            (portRef P1 (instanceRef "J15 SDA - J3 7"))
+                            (portRef P1 (instanceRef "J15 SDA - J3 7"))
+                            (portRef 7 (instanceRef J3)))
+                        )
+                        (Net DEREK3_LED_DOUT
+                            (joined (portRef 8 (instanceRef J4))
+                            (portRef P1 (instanceRef "J4 8 - J17 SCL"))
+                            (portRef P1 (instanceRef "J4 8 - J17 SCL"))
+                            (portRef SCL (instanceRef J17)))
+                        )
+                        (Net DEREK4_PAN_PWM
+                            (joined (portRef P1 (instanceRef "U2 PWM6 - J5 5"))
+                            (portRef PWM6 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM6 - J5 5"))
+                            (portRef Pin_11 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM6 - J5 5"))
+                            (portRef 5 (instanceRef J5)))
+                        )
+                        (Net DEREK1_LIFT_PWM
+                            (joined (portRef PWM1 (instanceRef J26))
+                            (portRef 6 (instanceRef J2))
+                            (portRef P1 (instanceRef "U2 PWM1 - J2 6"))
+                            (portRef Pin_6 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM1 - J2 6"))
+                            (portRef P1 (instanceRef "U2 PWM1 - J2 6")))
+                        )
+                        (Net PIR_CENTER_RAW
+                            (joined (portRef P1 (instanceRef "J13 Pin_2 - R13 P1"))
+                            (portRef Pin_2 (instanceRef J13))
+                            (portRef P1 (instanceRef "J13 Pin_2 - R13 P1"))
+                            (portRef P1 (instanceRef R13)))
+                        )
+                        (Net DEREK7_LED_DIN
+                            (joined (portRef 7 (instanceRef J8))
+                            (portRef SDA (instanceRef J20))
+                            (portRef P1 (instanceRef "J20 SDA - J8 7"))
+                            (portRef P1 (instanceRef "J20 SDA - J8 7")))
+                        )
+                        (Net DF2_BUSY
+                            (joined (portRef P1 (instanceRef "U1 GPIO15 - U4 BUSY"))
+                            (portRef BUSY (instanceRef U4))
+                            (portRef P1 (instanceRef TP16))
+                            (portRef 1 (instanceRef TP32))
+                            (portRef GPIO15 (instanceRef U1))
+                            (portRef P1 (instanceRef "U1 GPIO15 - U4 BUSY"))
+                            (portRef P1 (instanceRef "U1 GPIO15 - U4 BUSY"))
+                            (portRef P1 (instanceRef "U1 GPIO15 - U4 BUSY"))
+                            (portRef P1 (instanceRef "U1 GPIO15 - U4 BUSY"))
+                            (portRef 8 (instanceRef J24)))
+                        )
+                        (Net DEREK4_LED_DIN
+                            (joined (portRef P1 (instanceRef "J17 SDA - J5 7"))
+                            (portRef P1 (instanceRef "J17 SDA - J5 7"))
+                            (portRef SDA (instanceRef J17))
+                            (portRef 7 (instanceRef J5)))
+                        )
+                        (Net DF2_UART_TX
+                            (joined (portRef GPIO47 (instanceRef U1))
+                            (portRef P1 (instanceRef "U1 GPIO47 - U4 RX"))
+                            (portRef P1 (instanceRef "U1 GPIO47 - U4 RX"))
+                            (portRef 17 (instanceRef J25))
+                            (portRef P1 (instanceRef "U1 GPIO47 - U4 RX"))
+                            (portRef RX (instanceRef U4)))
+                        )
+                        (Net DF1_SPK1
+                            (joined (portRef 1 (instanceRef J10))
+                            (portRef SPK1 (instanceRef U3))
+                            (portRef P1 (instanceRef "U3 SPK1 - J10 1"))
+                            (portRef P1 (instanceRef "U3 SPK1 - J10 1")))
+                        )
+                        (Net DEREK4_LIFT_PWM
+                            (joined (portRef P1 (instanceRef "U2 PWM7 - J5 6"))
+                            (portRef PWM7 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM7 - J5 6"))
+                            (portRef Pin_12 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM7 - J5 6"))
+                            (portRef 6 (instanceRef J5)))
+                        )
+                        (Net LED_PERF_ANODE
+                            (joined (portRef P1 (instanceRef "R22 P2 - D5 A"))
+                            (portRef A (instanceRef D5))
+                            (portRef P1 (instanceRef "R22 P2 - D5 A"))
+                            (portRef P2 (instanceRef R22)))
+                        )
+                        (Net DEREK5_LED_DOUT
+                            (joined (portRef P1 (instanceRef "J6 8 - J19 SCL"))
+                            (portRef 8 (instanceRef J6))
+                            (portRef SCL (instanceRef J19))
+                            (portRef P1 (instanceRef "J6 8 - J19 SCL")))
+                        )
+                        (Net CLUSTER_ID3
+                            (joined (portRef P1 (instanceRef "R11 P2 - SW1 4"))
+                            (portRef P1 (instanceRef "R11 P2 - SW1 4"))
+                            (portRef GPIO14 (instanceRef U1))
+                            (portRef P1 (instanceRef "R11 P2 - SW1 4"))
+                            (portRef P2 (instanceRef R11))
+                            (portRef 4 (instanceRef SW1))
+                            (portRef P1 (instanceRef "R11 P2 - SW1 4"))
+                            (portRef 20 (instanceRef J24)))
+                        )
+                        (Net 5V_FUSED
+                            (joined (portRef P1 (instanceRef "F1 P2 - D1 A"))
+                            (portRef A (instanceRef D1))
+                            (portRef P1 (instanceRef "F1 P2 - D1 A"))
+                            (portRef P2 (instanceRef F1)))
+                        )
+                        (Net DEREK6_LED_DOUT
+                            (joined (portRef P1 (instanceRef "J7 8 - J20 SCL"))
+                            (portRef P1 (instanceRef "J7 8 - J20 SCL"))
+                            (portRef SCL (instanceRef J20))
+                            (portRef 8 (instanceRef J7)))
+                        )
+                        (Net DEREK3_LED_DIN
+                            (joined (portRef P1 (instanceRef "J16 SDA - J4 7"))
+                            (portRef 7 (instanceRef J4))
+                            (portRef P1 (instanceRef "J16 SDA - J4 7"))
+                            (portRef SDA (instanceRef J16)))
+                        )
+                        (Net DF1_BUSY
+                            (joined (portRef P1 (instanceRef TP15))
+                            (portRef P1 (instanceRef "U1 GPIO16 - U3 BUSY"))
+                            (portRef GPIO16 (instanceRef U1))
+                            (portRef P1 (instanceRef "U1 GPIO16 - U3 BUSY"))
+                            (portRef P1 (instanceRef "U1 GPIO16 - U3 BUSY"))
+                            (portRef BUSY (instanceRef U3))
+                            (portRef 1 (instanceRef TP31))
+                            (portRef P1 (instanceRef "U1 GPIO16 - U3 BUSY"))
+                            (portRef P1 (instanceRef "U1 GPIO16 - U3 BUSY"))
+                            (portRef 9 (instanceRef J24)))
+                        )
+                        (Net DEREK2_PAN_PWM
+                            (joined (portRef PWM2 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM2 - J3 5"))
+                            (portRef Pin_7 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM2 - J3 5"))
+                            (portRef 5 (instanceRef J3))
+                            (portRef P1 (instanceRef "U2 PWM2 - J3 5")))
+                        )
+                        (Net CLUSTER_ID1
+                            (joined (portRef GPIO12 (instanceRef U1))
+                            (portRef P1 (instanceRef "R9 P2 - SW1 2"))
+                            (portRef P2 (instanceRef R9))
+                            (portRef P1 (instanceRef "R9 P2 - SW1 2"))
+                            (portRef 2 (instanceRef SW1))
+                            (portRef P1 (instanceRef "R9 P2 - SW1 2"))
+                            (portRef P1 (instanceRef "R9 P2 - SW1 2"))
+                            (portRef 18 (instanceRef J24)))
+                        )
+                        (Net DEREK3_PAN_PWM
+                            (joined (portRef P1 (instanceRef "U2 PWM4 - J4 5"))
+                            (portRef PWM4 (instanceRef J26))
+                            (portRef 5 (instanceRef J4))
+                            (portRef Pin_9 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM4 - J4 5"))
+                            (portRef P1 (instanceRef "U2 PWM4 - J4 5")))
+                        )
+                        (Net DEREK3_LIFT_PWM
+                            (joined (portRef PWM5 (instanceRef J26))
+                            (portRef 6 (instanceRef J4))
+                            (portRef P1 (instanceRef "U2 PWM5 - J4 6"))
+                            (portRef P1 (instanceRef "U2 PWM5 - J4 6"))
+                            (portRef Pin_10 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM5 - J4 6")))
+                        )
+                        (Net I2C_SDA
+                            (joined (portRef P1 (instanceRef "U1 GPIO8 - U2 A4"))
+                            (portRef P1 (instanceRef "U1 GPIO8 - U2 A4"))
+                            (portRef P2 (instanceRef R6))
+                            (portRef P1 (instanceRef "U1 GPIO8 - U2 A4"))
+                            (portRef GPIO8 (instanceRef U1))
+                            (portRef P1 (instanceRef "U1 GPIO8 - U2 A4"))
+                            (portRef P1 (instanceRef TP4))
+                            (portRef P1 (instanceRef "U1 GPIO8 - U2 A4"))
+                            (portRef 1 (instanceRef TP20))
+                            (portRef P1 (instanceRef "U1 GPIO8 - U2 A4"))
+                            (portRef SDA (instanceRef DS1))
+                            (portRef P1 (instanceRef "U1 GPIO8 - U2 A4"))
+                            (portRef A4 (instanceRef J26))
+                            (portRef Pin_3 (instanceRef J27))
+                            (portRef P1 (instanceRef "U1 GPIO8 - U2 A4"))
+                            (portRef 12 (instanceRef J24)))
+                        )
+                        (Net LED_NETWORK_ANODE
+                            (joined (portRef P1 (instanceRef "R21 P2 - D4 A"))
+                            (portRef A (instanceRef D4))
+                            (portRef P1 (instanceRef "R21 P2 - D4 A"))
+                            (portRef P2 (instanceRef R21)))
+                        )
+                        (Net DEREK1_PAN_PWM
+                            (joined (portRef PWM0 (instanceRef J26))
+                            (portRef 5 (instanceRef J2))
+                            (portRef Pin_5 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM0 - J2 5"))
+                            (portRef P1 (instanceRef "U2 PWM0 - J2 5"))
+                            (portRef P1 (instanceRef "U2 PWM0 - J2 5")))
+                        )
+                        (Net DF2_DAC_R
+                            (joined (portRef DAC_R (instanceRef U4))
+                            (portRef P1 (instanceRef "U4 DAC_R - TP14 P1"))
+                            (portRef P1 (instanceRef "U4 DAC_R - TP14 P1"))
+                            (portRef 1 (instanceRef TP30))
+                            (portRef P1 (instanceRef TP14))
+                            (portRef P1 (instanceRef "U4 DAC_R - TP14 P1")))
+                        )
+                        (Net DEREK7_PAN_PWM
+                            (joined (portRef PWM12 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM12 - J8 5"))
+                            (portRef 5 (instanceRef J8))
+                            (portRef Pin_17 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM12 - J8 5"))
+                            (portRef P1 (instanceRef "U2 PWM12 - J8 5")))
+                        )
+                        (Net LED_PERF_GPIO
+                            (joined (portRef P1 (instanceRef "U1 GPIO3 - R22 P1"))
+                            (portRef GPIO3 (instanceRef U1))
+                            (portRef P1 (instanceRef "U1 GPIO3 - R22 P1"))
+                            (portRef P1 (instanceRef R22))
+                            (portRef P1 (instanceRef "U1 GPIO3 - R22 P1"))
+                            (portRef 13 (instanceRef J24)))
+                        )
+                        (Net PIR_RIGHT_GPIO
+                            (joined (portRef P1 (instanceRef "R14 P2 - R17 P1"))
+                            (portRef P1 (instanceRef "R14 P2 - R17 P1"))
+                            (portRef P1 (instanceRef "R14 P2 - R17 P1"))
+                            (portRef GPIO6 (instanceRef U1))
+                            (portRef P1 (instanceRef "R14 P2 - R17 P1"))
+                            (portRef P1 (instanceRef "R14 P2 - R17 P1"))
+                            (portRef 1 (instanceRef TP26))
+                            (portRef P1 (instanceRef TP10))
+                            (portRef P2 (instanceRef R14))
+                            (portRef P1 (instanceRef R17))
+                            (portRef P1 (instanceRef "R14 P2 - R17 P1"))
+                            (portRef 6 (instanceRef J24)))
+                        )
+                        (Net DF1_DAC_R
+                            (joined (portRef 1 (instanceRef TP28))
+                            (portRef P1 (instanceRef "U3 DAC_R - TP12 P1"))
+                            (portRef P1 (instanceRef TP12))
+                            (portRef P1 (instanceRef "U3 DAC_R - TP12 P1"))
+                            (portRef P1 (instanceRef "U3 DAC_R - TP12 P1"))
+                            (portRef DAC_R (instanceRef U3)))
+                        )
+                        (Net 5V_IN
+                            (joined (portRef 1 (instanceRef J1))
+                            (portRef P1 (instanceRef "J1 1 - F1 P1"))
+                            (portRef P1 (instanceRef "J1 1 - F1 P1"))
+                            (portRef P1 (instanceRef F1)))
+                        )
+                        (Net DEREK8_LED_DOUT_FINAL
+                            (joined (portRef P1 (instanceRef "J9 8 - J22 SCL"))
+                            (portRef 1 (instanceRef TP23))
+                            (portRef P1 (instanceRef "J9 8 - J22 SCL"))
+                            (portRef SCL (instanceRef J22))
+                            (portRef P1 (instanceRef TP7))
+                            (portRef 8 (instanceRef J9))
+                            (portRef P1 (instanceRef "J9 8 - J22 SCL"))
+                            (portRef P1 (instanceRef "J9 8 - J22 SCL")))
+                        )
+                        (Net DEREK8_LED_DIN
+                            (joined (portRef P1 (instanceRef "J21 SDA - J9 7"))
+                            (portRef SDA (instanceRef J21))
+                            (portRef P1 (instanceRef "J21 SDA - J9 7"))
+                            (portRef 7 (instanceRef J9)))
+                        )
+                        (Net DEREK1_LED_DIN
+                            (joined (portRef P1 (instanceRef "R18 P2 - J2 7"))
+                            (portRef P2 (instanceRef R18))
+                            (portRef 7 (instanceRef J2))
+                            (portRef P1 (instanceRef "R18 P2 - J2 7")))
+                        )
+                        (Net DEREK1_LED_DOUT
+                            (joined (portRef SCL (instanceRef J15))
+                            (portRef P1 (instanceRef "J2 8 - J15 SCL"))
+                            (portRef 8 (instanceRef J2))
+                            (portRef P1 (instanceRef "J2 8 - J15 SCL")))
+                        )
+                        (Net DF2_SPK2
+                            (joined (portRef SPK2 (instanceRef U4))
+                            (portRef P1 (instanceRef "U4 SPK2 - J11 2"))
+                            (portRef P1 (instanceRef "U4 SPK2 - J11 2"))
+                            (portRef 2 (instanceRef J11)))
+                        )
+                        (Net CLUSTER_ID2
+                            (joined (portRef P1 (instanceRef "R10 P2 - SW1 3"))
+                            (portRef GPIO13 (instanceRef U1))
+                            (portRef 3 (instanceRef SW1))
+                            (portRef P1 (instanceRef "R10 P2 - SW1 3"))
+                            (portRef P1 (instanceRef "R10 P2 - SW1 3"))
+                            (portRef P2 (instanceRef R10))
+                            (portRef P1 (instanceRef "R10 P2 - SW1 3"))
+                            (portRef 19 (instanceRef J24)))
+                        )
+                        (Net PIR_RIGHT_RAW
+                            (joined (portRef P1 (instanceRef "J14 Pin_2 - R14 P1"))
+                            (portRef Pin_2 (instanceRef J14))
+                            (portRef P1 (instanceRef "J14 Pin_2 - R14 P1"))
+                            (portRef P1 (instanceRef R14)))
+                        )
+                        (Net GND
+                            (joined (portRef GND (instanceRef "J4 4 - J5 3"))
+                            (portRef GND (instanceRef "J4 4 - J5 3"))
+                            (portRef GND (instanceRef U4))
+                            (portRef GND (instanceRef U4))
+                            (portRef GND (instanceRef "SW1 8 - D2 K"))
+                            (portRef GND (instanceRef GND))
+                            (portRef Pin_3 (instanceRef J13))
+                            (portRef 1 (instanceRef TP19))
+                            (portRef GND (instanceRef "D3 K - D4 K"))
+                            (portRef GND (instanceRef GND))
+                            (portRef GND (instanceRef "J12 Pin_3 - J13 Pin_3"))
+                            (portRef GND (instanceRef "J12 Pin_3 - J13 Pin_3"))
+                            (portRef GND (instanceRef "U5 2A - U5 3A"))
+                            (portRef GND (instanceRef "U5 4A - U5 2Y"))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef GND (instanceRef "J3 4 - J4 3"))
+                            (portRef 3 (instanceRef J6))
+                            (portRef 4 (instanceRef J6))
+                            (portRef GND (instanceRef GND))
+                            (portRef GND (instanceRef J26))
+                            (portRef A1 (instanceRef J26))
+                            (portRef A2 (instanceRef J26))
+                            (portRef A0 (instanceRef J26))
+                            (portRef A3 (instanceRef J26))
+                            (portRef P2 (instanceRef C6))
+                            (portRef GND (instanceRef "U5 4A - U5 2Y"))
+                            (portRef P1 (instanceRef TP3))
+                            (portRef Pin_3 (instanceRef J14))
+                            (portRef GND (instanceRef U1))
+                            (portRef GND (instanceRef U1))
+                            (portRef GND (instanceRef U1))
+                            (portRef GND (instanceRef U1))
+                            (portRef GND (instanceRef "U3 GND - U4 GND"))
+                            (portRef GND (instanceRef "J12 Pin_3 - J13 Pin_3"))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef P2 (instanceRef C5))
+                            (portRef Pin_3 (instanceRef J12))
+                            (portRef GND (instanceRef "J5 4 - J6 3"))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef GND (instanceRef "J8 4 - J9 3"))
+                            (portRef GND (instanceRef "J8 4 - J9 3"))
+                            (portRef 3 (instanceRef J4))
+                            (portRef 4 (instanceRef J4))
+                            (portRef P2 (instanceRef C11))
+                            (portRef 2 (instanceRef J1))
+                            (portRef GND (instanceRef "J12 Pin_3 - J13 Pin_3"))
+                            (portRef GND (instanceRef "U3 GND - U4 GND"))
+                            (portRef GND (instanceRef "U5 4A - U5 2Y"))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef GND (instanceRef "J2 4 - J3 3"))
+                            (portRef P2 (instanceRef R15))
+                            (portRef GND (instanceRef GND))
+                            (portRef 3 (instanceRef J2))
+                            (portRef 4 (instanceRef J2))
+                            (portRef GND (instanceRef U5))
+                            (portRef 4A (instanceRef U5))
+                            (portRef "1~OE" (instanceRef U5))
+                            (portRef 2Y (instanceRef U5))
+                            (portRef 3A (instanceRef U5))
+                            (portRef 4Y (instanceRef U5))
+                            (portRef 2A (instanceRef U5))
+                            (portRef 3Y (instanceRef U5))
+                            (portRef GND (instanceRef GND))
+                            (portRef P2 (instanceRef R16))
+                            (portRef 3 (instanceRef J8))
+                            (portRef 4 (instanceRef J8))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef GND (instanceRef "J7 4 - J8 3"))
+                            (portRef P2 (instanceRef C13))
+                            (portRef GND (instanceRef GND))
+                            (portRef GND (instanceRef "D3 K - D4 K"))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef Pin_2 (instanceRef J27))
+                            (portRef GND (instanceRef GND))
+                            (portRef GND (instanceRef "D3 K - D4 K"))
+                            (portRef P2 (instanceRef C2))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef GND (instanceRef U3))
+                            (portRef GND (instanceRef U3))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef GND (instanceRef "J6 4 - J7 3"))
+                            (portRef 8 (instanceRef SW1))
+                            (portRef 6 (instanceRef SW1))
+                            (portRef 5 (instanceRef SW1))
+                            (portRef 7 (instanceRef SW1))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef GND (instanceRef GND))
+                            (portRef GND (instanceRef "U5 2A - U5 3A"))
+                            (portRef P2 (instanceRef C9))
+                            (portRef P2 (instanceRef C7))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef K (instanceRef D5))
+                            (portRef GND (instanceRef DS1))
+                            (portRef P2 (instanceRef C3))
+                            (portRef K (instanceRef D4))
+                            (portRef GND (instanceRef "J7 4 - J8 3"))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef GND (instanceRef "J2 4 - J3 3"))
+                            (portRef 3 (instanceRef J9))
+                            (portRef 4 (instanceRef J9))
+                            (portRef 3 (instanceRef J7))
+                            (portRef 4 (instanceRef J7))
+                            (portRef GND (instanceRef GND))
+                            (portRef P2 (instanceRef R17))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef P2 (instanceRef C8))
+                            (portRef P2 (instanceRef C10))
+                            (portRef GND (instanceRef "J5 4 - J6 3"))
+                            (portRef K (instanceRef D3))
+                            (portRef GND (instanceRef "J6 4 - J7 3"))
+                            (portRef 3 (instanceRef J3))
+                            (portRef 4 (instanceRef J3))
+                            (portRef GND (instanceRef U6))
+                            (portRef GND (instanceRef GND))
+                            (portRef GND (instanceRef GND))
+                            (portRef 3 (instanceRef J5))
+                            (portRef 4 (instanceRef J5))
+                            (portRef GND (instanceRef "J12 Pin_3 - J13 Pin_3"))
+                            (portRef GND (instanceRef "U4 GND - U5 GND"))
+                            (portRef P2 (instanceRef C4))
+                            (portRef GND (instanceRef "J3 4 - J4 3"))
+                            (portRef P2 (instanceRef C12))
+                            (portRef GND (instanceRef GND))
+                            (portRef GND (instanceRef GND))
+                            (portRef 22 (instanceRef J25))
+                            (portRef 21 (instanceRef J25))
+                            (portRef GND (instanceRef "J25 1 - J25 21"))
+                            (portRef GND (instanceRef "J25 1 - J25 21"))
+                            (portRef 1 (instanceRef J25))
+                            (portRef GND (instanceRef GND))
+                            (portRef 22 (instanceRef J24)))
+                        )
+                        (Net DF2_DAC_L
+                            (joined (portRef DAC_L (instanceRef U4))
+                            (portRef P1 (instanceRef "U4 DAC_L - TP13 P1"))
+                            (portRef P1 (instanceRef TP13))
+                            (portRef P1 (instanceRef "U4 DAC_L - TP13 P1"))
+                            (portRef 1 (instanceRef TP29))
+                            (portRef P1 (instanceRef "U4 DAC_L - TP13 P1")))
+                        )
+                        (Net DEREK6_LIFT_PWM
+                            (joined (portRef P1 (instanceRef "U2 PWM11 - J7 6"))
+                            (portRef P1 (instanceRef "U2 PWM11 - J7 6"))
+                            (portRef PWM11 (instanceRef J26))
+                            (portRef Pin_16 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM11 - J7 6"))
+                            (portRef 6 (instanceRef J7)))
+                        )
+                        (Net DEREK5_PAN_PWM
+                            (joined (portRef P1 (instanceRef "U2 PWM8 - J6 5"))
+                            (portRef P1 (instanceRef "U2 PWM8 - J6 5"))
+                            (portRef 5 (instanceRef J6))
+                            (portRef PWM8 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM8 - J6 5"))
+                            (portRef Pin_13 (instanceRef J27)))
+                        )
+                        (Net DEREK7_LIFT_PWM
+                            (joined (portRef PWM13 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM13 - J8 6"))
+                            (portRef P1 (instanceRef "U2 PWM13 - J8 6"))
+                            (portRef 6 (instanceRef J8))
+                            (portRef Pin_18 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM13 - J8 6")))
+                        )
+                        (Net LED_RUN_ANODE
+                            (joined (portRef P1 (instanceRef "R20 P2 - D3 A"))
+                            (portRef P2 (instanceRef R20))
+                            (portRef A (instanceRef D3))
+                            (portRef P1 (instanceRef "R20 P2 - D3 A")))
+                        )
+                        (Net DF1_SPK2
+                            (joined (portRef P1 (instanceRef "U3 SPK2 - J10 2"))
+                            (portRef P1 (instanceRef "U3 SPK2 - J10 2"))
+                            (portRef 2 (instanceRef J10))
+                            (portRef SPK2 (instanceRef U3)))
+                        )
+                        (Net DEREK2_LIFT_PWM
+                            (joined (portRef PWM3 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM3 - J3 6"))
+                            (portRef P1 (instanceRef "U2 PWM3 - J3 6"))
+                            (portRef Pin_8 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM3 - J3 6"))
+                            (portRef 6 (instanceRef J3)))
+                        )
+                        (Net LED_NETWORK_GPIO
+                            (joined (portRef P1 (instanceRef "U1 GPIO2 - R21 P1"))
+                            (portRef GPIO2 (instanceRef U1))
+                            (portRef P1 (instanceRef "U1 GPIO2 - R21 P1"))
+                            (portRef P1 (instanceRef R21))
+                            (portRef P1 (instanceRef "U1 GPIO2 - R21 P1"))
+                            (portRef 5 (instanceRef J25)))
+                        )
+                        (Net GND
+                            (joined (portRef P2 (instanceRef R19))
+                            (portRef P1 (instanceRef GND)))
+                        )
+                        (Net DF1_DAC_L
+                            (joined (portRef P1 (instanceRef TP11))
+                            (portRef P1 (instanceRef "U3 DAC_L - TP11 P1"))
+                            (portRef 1 (instanceRef TP27))
+                            (portRef P1 (instanceRef "U3 DAC_L - TP11 P1"))
+                            (portRef DAC_L (instanceRef U3))
+                            (portRef P1 (instanceRef "U3 DAC_L - TP11 P1")))
+                        )
+                        (Net LED_DATA_5V
+                            (joined (portRef P1 (instanceRef "U5 1Y - R18 P1"))
+                            (portRef 1 (instanceRef TP22))
+                            (portRef P1 (instanceRef TP6))
+                            (portRef P1 (instanceRef R18))
+                            (portRef 1Y (instanceRef U5))
+                            (portRef P1 (instanceRef "U5 1Y - R18 P1"))
+                            (portRef P1 (instanceRef "U5 1Y - R18 P1"))
+                            (portRef P1 (instanceRef "U5 1Y - R18 P1")))
+                        )
+                        (Net CLUSTER_ID0
+                            (joined (portRef P2 (instanceRef R8))
+                            (portRef P1 (instanceRef "R8 P2 - SW1 1"))
+                            (portRef P1 (instanceRef "R8 P2 - SW1 1"))
+                            (portRef GPIO11 (instanceRef U1))
+                            (portRef P1 (instanceRef "R8 P2 - SW1 1"))
+                            (portRef 1 (instanceRef SW1))
+                            (portRef P1 (instanceRef "R8 P2 - SW1 1"))
+                            (portRef 17 (instanceRef J24)))
+                        )
+                        (Net DEREK5_LIFT_PWM
+                            (joined (portRef 6 (instanceRef J6))
+                            (portRef PWM9 (instanceRef J26))
+                            (portRef P1 (instanceRef "U2 PWM9 - J6 6"))
+                            (portRef P1 (instanceRef "U2 PWM9 - J6 6"))
+                            (portRef Pin_14 (instanceRef J27))
+                            (portRef P1 (instanceRef "U2 PWM9 - J6 6")))
+                        )
+                        (Net DEREK5_LED_DIN
+                            (joined (portRef P1 (instanceRef "J18 SDA - J6 7"))
+                            (portRef 7 (instanceRef J6))
+                            (portRef SDA (instanceRef J18))
+                            (portRef P1 (instanceRef "J18 SDA - J6 7")))
+                        )
+                        (Net DEREK6_LED_DIN
+                            (joined (portRef SDA (instanceRef J19))
+                            (portRef P1 (instanceRef "J19 SDA - J7 7"))
+                            (portRef 7 (instanceRef J7))
+                            (portRef P1 (instanceRef "J19 SDA - J7 7")))
+                        )
+                        (Net DEREK7_LED_DOUT
+                            (joined (portRef P1 (instanceRef "J8 8 - J21 SCL"))
+                            (portRef SCL (instanceRef J21))
+                            (portRef P1 (instanceRef "J8 8 - J21 SCL"))
+                            (portRef 8 (instanceRef J8)))
+                        )
+                        (Net LED_RUN_GPIO
+                            (joined (portRef P1 (instanceRef "U1 GPIO1 - R20 P1"))
+                            (portRef P1 (instanceRef "U1 GPIO1 - R20 P1"))
+                            (portRef GPIO1 (instanceRef U1))
+                            (portRef P1 (instanceRef R20))
+                            (portRef P1 (instanceRef "U1 GPIO1 - R20 P1"))
+                            (portRef 4 (instanceRef J25)))
+                        )
+                        (Net PIR_CENTER_GPIO
+                            (joined (portRef 1 (instanceRef TP25))
+                            (portRef P1 (instanceRef "R13 P2 - R16 P1"))
+                            (portRef P1 (instanceRef "R13 P2 - R16 P1"))
+                            (portRef GPIO5 (instanceRef U1))
+                            (portRef P1 (instanceRef "R13 P2 - R16 P1"))
+                            (portRef P1 (instanceRef TP9))
+                            (portRef P1 (instanceRef "R13 P2 - R16 P1"))
+                            (portRef P2 (instanceRef R13))
+                            (portRef P1 (instanceRef "R13 P2 - R16 P1"))
+                            (portRef P1 (instanceRef R16))
+                            (portRef P1 (instanceRef "R13 P2 - R16 P1"))
+                            (portRef 5 (instanceRef J24)))
+                        )
+                        (Net LED_DATA_3V3
+                            (joined (portRef GPIO10 (instanceRef U1))
+                            (portRef P1 (instanceRef "U1 GPIO10 - U5 1A"))
+                            (portRef P1 (instanceRef "U1 GPIO10 - U5 1A"))
+                            (portRef 1A (instanceRef U5))
+                            (portRef P1 (instanceRef "U1 GPIO10 - U5 1A"))
+                            (portRef 16 (instanceRef J24)))
+                        )
+                        (Net 5V_PROT
+                            (joined (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef 1 (instanceRef TP17))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef 5V (instanceRef J26))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C8))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C12))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef TP1))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C9))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C5))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C10))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C7))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef Pin_1 (instanceRef J13))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef 2 (instanceRef J9))
+                            (portRef 1 (instanceRef J9))
+                            (portRef P1 (instanceRef "J8 2 - J9 1"))
+                            (portRef P1 (instanceRef "J8 2 - J9 1"))
+                            (portRef 2 (instanceRef J8))
+                            (portRef 1 (instanceRef J8))
+                            (portRef P1 (instanceRef "J7 2 - J8 1"))
+                            (portRef P1 (instanceRef "J7 2 - J8 1"))
+                            (portRef 2 (instanceRef J7))
+                            (portRef 1 (instanceRef J7))
+                            (portRef P1 (instanceRef "J6 2 - J7 1"))
+                            (portRef P1 (instanceRef "J6 2 - J7 1"))
+                            (portRef 2 (instanceRef J6))
+                            (portRef 1 (instanceRef J6))
+                            (portRef P1 (instanceRef "J5 2 - J6 1"))
+                            (portRef P1 (instanceRef "J5 2 - J6 1"))
+                            (portRef 2 (instanceRef J5))
+                            (portRef 1 (instanceRef J5))
+                            (portRef P1 (instanceRef "J4 2 - J5 1"))
+                            (portRef P1 (instanceRef "J4 2 - J5 1"))
+                            (portRef 2 (instanceRef J4))
+                            (portRef 1 (instanceRef J4))
+                            (portRef P1 (instanceRef "J3 2 - J4 1"))
+                            (portRef P1 (instanceRef "J3 2 - J4 1"))
+                            (portRef "4~OE" (instanceRef U5))
+                            (portRef "3~OE" (instanceRef U5))
+                            (portRef P1 (instanceRef "U5 VCC - U5 2~OE"))
+                            (portRef P1 (instanceRef "U5 VCC - U5 2~OE"))
+                            (portRef VCC (instanceRef U5))
+                            (portRef P1 (instanceRef "U5 VCC - U5 2~OE"))
+                            (portRef "2~OE" (instanceRef U5))
+                            (portRef P1 (instanceRef "J3 2 - J4 1"))
+                            (portRef 2 (instanceRef J3))
+                            (portRef 1 (instanceRef J3))
+                            (portRef P1 (instanceRef "J2 2 - J3 1"))
+                            (portRef P1 (instanceRef "J2 2 - J3 1"))
+                            (portRef 2 (instanceRef J2))
+                            (portRef 1 (instanceRef J2))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef C (instanceRef D1))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C13))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C4))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef VIN (instanceRef U6))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C2))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef VCC (instanceRef U3))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef Pin_1 (instanceRef J14))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef 5V0 (instanceRef U1))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef P1 (instanceRef C11))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef Pin_1 (instanceRef J12))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef Pin_1 (instanceRef J27))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef VCC (instanceRef U4))
+                            (portRef P1 (instanceRef C6))
+                            (portRef P1 (instanceRef "D1 C - U6 VIN"))
+                            (portRef 21 (instanceRef J24)))
+                        )
+                        (Net I2C_SCL
+                            (joined (portRef P1 (instanceRef TP5))
+                            (portRef P1 (instanceRef "U1 GPIO9 - U2 A5"))
+                            (portRef P1 (instanceRef "U1 GPIO9 - U2 A5"))
+                            (portRef SCL (instanceRef DS1))
+                            (portRef P1 (instanceRef "U1 GPIO9 - U2 A5"))
+                            (portRef Pin_4 (instanceRef J27))
+                            (portRef P1 (instanceRef "U1 GPIO9 - U2 A5"))
+                            (portRef 1 (instanceRef TP21))
+                            (portRef P1 (instanceRef "U1 GPIO9 - U2 A5"))
+                            (portRef GPIO9 (instanceRef U1))
+                            (portRef P1 (instanceRef "U1 GPIO9 - U2 A5"))
+                            (portRef P2 (instanceRef R7))
+                            (portRef P1 (instanceRef "U1 GPIO9 - U2 A5"))
+                            (portRef A5 (instanceRef J26))
+                            (portRef P1 (instanceRef "U1 GPIO9 - U2 A5"))
+                            (portRef 15 (instanceRef J24)))
+                        )
+                        (Net 3V3
+                            (joined (portRef VOUT_1 (instanceRef U6))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef R10))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef R6))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef TP2))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef 3V3 (instanceRef U1))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef VOUT_2 (instanceRef U6))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef R8))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef 5V (instanceRef DS1))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef R19))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef 1 (instanceRef TP18))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef 3V3 (instanceRef U1))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef C3))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef R7))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef R11))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef P1 (instanceRef R9))
+                            (portRef P1 (instanceRef "U6 VOUT_1 - U6 VOUT_2"))
+                            (portRef 2 (instanceRef J24))
+                            (portRef 1 (instanceRef J24)))
+                        )
+                        (Net PIR_LEFT_GPIO
+                            (joined (portRef P1 (instanceRef "R12 P2 - R15 P1"))
+                            (portRef P1 (instanceRef "R12 P2 - R15 P1"))
+                            (portRef P1 (instanceRef R15))
+                            (portRef P1 (instanceRef "R12 P2 - R15 P1"))
+                            (portRef P2 (instanceRef R12))
+                            (portRef P1 (instanceRef "R12 P2 - R15 P1"))
+                            (portRef GPIO4 (instanceRef U1))
+                            (portRef P1 (instanceRef "R12 P2 - R15 P1"))
+                            (portRef 1 (instanceRef TP24))
+                            (portRef P1 (instanceRef TP8))
+                            (portRef P1 (instanceRef "R12 P2 - R15 P1"))
+                            (portRef 4 (instanceRef J24)))
+                        )
+                        (Net DF1_UART_RX
+                            (joined (portRef P1 (instanceRef "U1 GPIO18 - U3 TX"))
+                            (portRef P1 (instanceRef "U1 GPIO18 - U3 TX"))
+                            (portRef GPIO18 (instanceRef U1))
+                            (portRef TX (instanceRef U3))
+                            (portRef P1 (instanceRef "U1 GPIO18 - U3 TX"))
+                            (portRef 11 (instanceRef J24)))
+                        )
+                        (Net DF1_UART_TX
+                            (joined (portRef P1 (instanceRef "U1 GPIO17 - U3 RX"))
+                            (portRef GPIO17 (instanceRef U1))
+                            (portRef P1 (instanceRef "U1 GPIO17 - U3 RX"))
+                            (portRef RX (instanceRef U3))
+                            (portRef P1 (instanceRef "U1 GPIO17 - U3 RX"))
+                            (portRef 10 (instanceRef J24)))
+                        )
+                    )
+                )
+            )
+        )
+        (design "Derek Cluster Controller v2"
+            (cellRef "Derek Cluster Controller v2_top" (libraryRef Main))
+        )
+)

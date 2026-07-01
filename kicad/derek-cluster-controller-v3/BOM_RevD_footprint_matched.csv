@@ -1,0 +1,24 @@
+Ref,Qty,Footprint/component assumption,Suggested part / buy description,Notes
+PCB,1,220x220mm 6-layer FR-4,"PCBWay 6-layer, 1.6mm, 1oz outer/inner or heavier if budget allows","L2/L5 GND, L3 5V."
+J1,1,2-pin 5.08mm high-current screw terminal,XY301V/ KF301-5.08-2P or equivalent rated >=15A,Verify current rating; many cheap 5.08 terminals are not 15A.
+F1,1,ATO/ATC blade fuse holder,Keystone 3568 or equivalent PCB blade fuse holder,Use 15A fuse.
+Q1,1,D2PAK/TO-263 P-channel MOSFET reverse protection,"P-channel MOSFET >=30V, low Rds(on), >=30A; verify pinout",Footprint must match chosen MOSFET.
+C1,1,"Radial electrolytic 18mm dia, 7.5mm pitch",4700uF 10V or 16V low-ESR electrolytic,Input bulk.
+C2,1,"Radial electrolytic 10mm dia, 5mm pitch",1000uF 10V or 16V electrolytic,RJ45 bank bulk.
+C11-C14,4,"Radial electrolytic 6mm dia, 2.5mm pitch",100uF 10V or 16V electrolytic,One per two RJ45 ports.
+U1,1,ESP32-S3 DevKitC-1 style 2x19 2.54mm socket,ESP32-S3-DevKitC-1 or matching module,MUST verify exact pin count/header spacing against your module.
+J26,1,Adafruit 815 PCA9685 carrier footprint approximation,Adafruit 16-Channel 12-bit PWM/Servo Driver Product 815,Footprint is carrier-style; print 1:1 and verify.
+"U3,U4",2,DFPlayer Mini standard 20x20mm 16-pin module,DFRobot DFR0299 / common DFPlayer Mini module,SD card faces right edge. Pinouts vary by clone; verify labels.
+DS1,1,0.96in SSD1306 27x27mm 4-pin GND/VCC/SCL/SDA,0.96 Inch OLED I2C 128x64 SSD1306 module,Powered from 3.3V. Verify pin order.
+J2-J9,8,FMHXG RJ45NMCCFC-90D approximate right-angle RJ45,FMHXG RJ45NMCCFC-90D 90 degree PCB RJ45 jack,MUST print 1:1 and test-fit actual jack.
+U5,1,74AHCT125 level shifter,SN74AHCT125N or SMD equivalent,VCC=5V for WS2812 data.
+SW1,1,4-position DIP switch 2.54mm,Generic 4P SPST DIP switch,Cluster ID.
+R30-R33,4,0805 resistor,10k 0805,DIP pullups.
+R3,1,0805 resistor,330 ohm 0805,WS2812 series resistor.
+D2-D4,3,0805 LED,0805 indicator LED,Status indicators.
+R20-R22,3,0805 resistor,1k 0805,LED series resistors.
+J31-J33,3,JST-XH 3-pin,JST-XH 2.54mm 3-pin headers,PIR connectors.
+JP1-JP7,7,2-pin 2.54mm jumper,2-pin header + shunt,LED chain continuation jumpers.
+"J51,J52",2,2-pin header/screw terminal,Speaker output connector,For DFPlayer speaker outputs.
+"J61,J62",2,3-pin header,DAC L/R/GND output connector,For optional external amp.
+H1-H6,6,M3 plated mounting hole,M3 screw + standoff,Grounded mounting holes.

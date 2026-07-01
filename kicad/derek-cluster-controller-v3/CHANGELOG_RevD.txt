@@ -1,0 +1,1 @@
+Rev D: fresh 220x220 clean-placement starter; component-specific footprints; RJ45 single edge row; 5V plane and bus; no deliberate overlaps; initial routed signal/power structure.

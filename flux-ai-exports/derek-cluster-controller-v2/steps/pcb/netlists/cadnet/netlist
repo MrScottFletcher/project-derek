@@ -1,0 +1,712 @@
+H optimize n staggered n
+$0 $NONE$
+$20 GND
+$66 DF2_BUSY
+$72 DEREK5_LED_DOUT
+$73 CLUSTER_ID3
+$77 DF1_BUSY
+$79 CLUSTER_ID1
+$82 I2C_SDA
+$87 LED_PERF_GPIO
+$88 PIR_RIGHT_GPIO
+$91 DEREK8_LED_DOUT_FINAL
+$92 LED_DATA_3V3
+$95 5V_PROT
+$96 DEREK1_LED_DOUT
+$98 CLUSTER_ID2
+$99 PIR_RIGHT_RAW
+$100 DF2_DAC_L
+$105 DF1_SPK2
+$107 LED_NETWORK_GPIO
+$110 CLUSTER_ID0
+$116 LED_RUN_GPIO
+$117 PIR_CENTER_GPIO
+$118 3V3
+$119 PIR_LEFT_GPIO
+$120 DF1_UART_RX
+#
+#Netlist points
+#
+0 0 14.34 -24.13 T 0.0 0.0 e c
+0 0 -19.46 -17.13 T 0.0 0.0 e c
+0 0 -3.66 -6.13 T 0.0 0.0 e c
+0 0 -12.66 -24.13 T 0.0 0.0 e c
+0 0 -6.66 -6.13 T 0.0 0.0 e c
+0 0 11.34 -6.13 T 0.0 0.0 e c
+0 0 17.34 -24.13 T 0.0 0.0 e c
+0 0 14.34 -6.13 T 0.0 0.0 e c
+0 0 23.34 -24.13 T 0.0 0.0 e c
+0 0 8.34 -24.13 T 0.0 0.0 e c
+0 0 -19.46 -9.03 T 0.0 0.0 e c
+0 0 -6.66 -24.13 T 0.0 0.0 e c
+0 0 -3.66 -24.13 T 0.0 0.0 e c
+0 0 20.34 -24.13 T 0.0 0.0 e c
+0 0 -18.66 -24.13 T 0.0 0.0 e c
+0 0 2.34 -24.13 T 0.0 0.0 e c
+0 0 -0.66 -6.13 T 0.0 0.0 e c
+0 0 -0.66 -24.13 T 0.0 0.0 e c
+0 0 -9.66 -24.13 T 0.0 0.0 e c
+0 0 5.34 -24.13 T 0.0 0.0 e c
+0 0 11.34 -24.13 T 0.0 0.0 e c
+0 0 26.34 -24.13 T 0.0 0.0 e c
+0 0 -15.66 -24.13 T 0.0 0.0 e c
+0 0 8.34 -6.13 T 0.0 0.0 e c
+0 0 9.44 -20.98 T 0.0 0.0 e c
+0 0 9.44 -19.28 T 0.0 0.0 e c
+0 0 8.64 -20.98 T 0.0 0.0 e c
+0 0 10.24 -19.28 T 0.0 0.0 e c
+0 0 11.04 -20.98 T 0.0 0.0 e c
+0 0 11.04 -19.28 T 0.0 0.0 e c
+0 0 8.64 -19.28 T 0.0 0.0 e c
+0 0 10.24 -20.98 T 0.0 0.0 e c
+0 0 22.74 -14.39 T 0.0 0.0 e c
+0 0 22.74 -16.09 T 0.0 0.0 e c
+0 0 23.54 -14.39 T 0.0 0.0 e c
+0 0 21.94 -16.09 T 0.0 0.0 e c
+0 0 21.14 -14.39 T 0.0 0.0 e c
+0 0 21.14 -16.09 T 0.0 0.0 e c
+0 0 23.54 -16.09 T 0.0 0.0 e c
+0 0 21.94 -14.39 T 0.0 0.0 e c
+0 0 15.34 -10.18 T 0.0 0.0 e c
+0 0 15.34 -8.88 T 0.0 0.0 e c
+0 0 14.54 -14.39 T 0.0 0.0 e c
+0 0 14.54 -16.09 T 0.0 0.0 e c
+0 0 15.34 -14.39 T 0.0 0.0 e c
+0 0 13.74 -16.09 T 0.0 0.0 e c
+0 0 12.94 -14.39 T 0.0 0.0 e c
+0 0 12.94 -16.09 T 0.0 0.0 e c
+0 0 15.34 -16.09 T 0.0 0.0 e c
+0 0 13.74 -14.39 T 0.0 0.0 e c
+0 0 10.34 -10.18 T 0.0 0.0 e c
+0 0 10.34 -8.88 T 0.0 0.0 e c
+0 0 22.84 -10.18 T 0.0 0.0 e c
+0 0 22.84 -8.88 T 0.0 0.0 e c
+0 0 -2.56 -20.98 T 0.0 0.0 e c
+0 0 -2.56 -19.28 T 0.0 0.0 e c
+0 0 -3.36 -20.98 T 0.0 0.0 e c
+0 0 -1.76 -19.28 T 0.0 0.0 e c
+0 0 -0.96 -20.98 T 0.0 0.0 e c
+0 0 -0.96 -19.28 T 0.0 0.0 e c
+0 0 -3.36 -19.28 T 0.0 0.0 e c
+0 0 -1.76 -20.98 T 0.0 0.0 e c
+0 0 21.44 -20.98 T 0.0 0.0 e c
+0 0 21.44 -19.28 T 0.0 0.0 e c
+0 0 20.64 -20.98 T 0.0 0.0 e c
+0 0 22.24 -19.28 T 0.0 0.0 e c
+0 0 23.04 -20.98 T 0.0 0.0 e c
+0 0 23.04 -19.28 T 0.0 0.0 e c
+0 0 20.64 -19.28 T 0.0 0.0 e c
+0 0 22.24 -20.98 T 0.0 0.0 e c
+0 0 17.84 -10.18 T 0.0 0.0 e c
+0 0 17.84 -8.88 T 0.0 0.0 e c
+0 0 12.84 -10.18 T 0.0 0.0 e c
+0 0 12.84 -8.88 T 0.0 0.0 e c
+0 0 6.70 -14.75 T 0.0 0.0 e c
+0 0 6.70 -16.05 T 0.0 0.0 e c
+0 0 6.70 -9.55 T 0.0 0.0 e c
+0 0 0.98 -12.80 T 0.0 0.0 e c
+0 0 0.98 -13.45 T 0.0 0.0 e c
+0 0 6.70 -12.15 T 0.0 0.0 e c
+0 0 0.98 -10.20 T 0.0 0.0 e c
+0 0 6.70 -11.50 T 0.0 0.0 e c
+0 0 6.70 -15.40 T 0.0 0.0 e c
+0 0 6.70 -13.45 T 0.0 0.0 e c
+0 0 0.98 -8.90 T 0.0 0.0 e c
+0 0 6.70 -8.90 T 0.0 0.0 e c
+0 0 0.98 -11.50 T 0.0 0.0 e c
+0 0 0.98 -15.40 T 0.0 0.0 e c
+0 0 0.98 -16.05 T 0.0 0.0 e c
+0 0 0.98 -10.85 T 0.0 0.0 e c
+0 0 0.98 -12.15 T 0.0 0.0 e c
+0 0 0.98 -17.35 T 0.0 0.0 e c
+0 0 6.70 -10.20 T 0.0 0.0 e c
+0 0 0.98 -14.75 T 0.0 0.0 e c
+0 0 0.98 -9.55 T 0.0 0.0 e c
+0 0 6.70 -12.80 T 0.0 0.0 e c
+0 0 6.70 -14.10 T 0.0 0.0 e c
+0 0 6.70 -10.85 T 0.0 0.0 e c
+0 0 6.70 -17.35 T 0.0 0.0 e c
+0 0 0.98 -14.10 T 0.0 0.0 e c
+0 0 0.98 -16.70 T 0.0 0.0 e c
+0 0 6.70 -16.70 T 0.0 0.0 e c
+0 0 20.34 -10.18 T 0.0 0.0 e c
+0 0 20.34 -8.88 T 0.0 0.0 e c
+0 0 -14.56 -20.98 T 0.0 0.0 e c
+0 0 -14.56 -19.28 T 0.0 0.0 e c
+0 0 -15.36 -20.98 T 0.0 0.0 e c
+0 0 -13.76 -19.28 T 0.0 0.0 e c
+0 0 -12.96 -20.98 T 0.0 0.0 e c
+0 0 -12.96 -19.28 T 0.0 0.0 e c
+0 0 -15.36 -19.28 T 0.0 0.0 e c
+0 0 -13.76 -20.98 T 0.0 0.0 e c
+0 1.0 62.0 56.24 B e c staggered 0 0 0
+0 1.0 54.38 56.24 B e c staggered 0 0 0
+0 1.0 56.92 56.24 B e c staggered 0 0 0
+0 1.0 59.46 56.24 B e c staggered 0 0 0
+0 0 -3.09 50.64 T 1.02 1.40 e s
+0 0 -4.91 50.64 T 1.02 1.40 e s
+0 0 41.08 17.18 T 2.03 3.80 e s
+0 0.80 85.81 -45.88 B e e staggered 0 0 0
+0 0.80 90.89 -27.84 B e e staggered 0 0 0
+0 0.80 83.27 -27.84 B e e staggered 0 0 0
+0 0.80 88.35 -27.84 B e e staggered 0 0 0
+0 0.80 78.19 -45.88 B e e staggered 0 0 0
+0 0.80 83.27 -45.88 B e e staggered 0 0 0
+0 0.80 85.81 -27.84 B e e staggered 0 0 0
+0 0.80 88.35 -45.88 B e e staggered 0 0 0
+0 0.80 80.73 -45.88 B e e staggered 0 0 0
+0 0.80 75.65 -45.88 B e e staggered 0 0 0
+0 0.80 80.73 -27.84 B e e staggered 0 0 0
+0 0.80 73.11 -45.88 B e e staggered 0 0 0
+0 0.80 73.11 -27.84 B e e staggered 0 0 0
+0 0.80 75.65 -27.84 B e e staggered 0 0 0
+0 0.80 90.89 -45.88 B e e staggered 0 0 0
+0 0.80 78.19 -27.84 B e e staggered 0 0 0
+0 0 58.0 -9.36 T 2.03 3.80 e s
+0 1.0 38.0 50.77 B e e staggered 0 0 0
+0 1.0 38.0 45.69 B e e staggered 0 0 0
+0 1.0 38.0 53.31 B e e staggered 0 0 0
+0 1.0 38.0 48.23 B e e staggered 0 0 0
+0 0 -75.50 -20.86 T 2.03 3.80 e s
+0 0 -92.0 3.64 T 2.03 3.80 e s
+0 1.0 -67.38 -42.36 B e e staggered 0 0 0
+0 1.0 -69.92 -42.36 B e e staggered 0 0 0
+0 1.0 -72.46 -42.36 B e e staggered 0 0 0
+0 1.0 -75.0 -42.36 B e e staggered 0 0 0
+0 0.76 12.63 -75.41 B e e staggered 0 0 0
+0 0.76 15.17 -75.41 B e e staggered 0 0 0
+0 0.76 16.45 -72.87 B e e staggered 0 0 0
+0 0.76 8.82 -72.87 B e e staggered 0 0 0
+0 0.76 10.09 -75.41 B e e staggered 0 0 0
+0 0.76 13.90 -72.87 B e e staggered 0 0 0
+0 0.76 11.37 -72.87 B e e staggered 0 0 0
+0 0.76 7.55 -75.41 B e e staggered 0 0 0
+0 3.20 17.71 -81.76 B e e staggered 0 0 0
+0 3.20 6.29 -81.76 B e e staggered 0 0 0
+0 1.0 19.62 -52.36 B e e staggered 0 0 0
+0 1.0 17.08 -52.36 B e e staggered 0 0 0
+0 1.0 14.54 -52.36 B e e staggered 0 0 0
+0 1.0 12.0 -52.36 B e e staggered 0 0 0
+0 0 -40.67 -37.36 T 2.03 3.80 e s
+0 0 -41.10 -45.16 T 2.03 3.80 e s
+0 0 94.05 -27.86 T 1.0 1.45 e s
+0 0 95.95 -27.86 T 1.0 1.45 e s
+0 0 -49.09 11.64 T 1.02 1.40 e s
+0 0 -50.91 11.64 T 1.02 1.40 e s
+0 1.0 82.0 50.72 B e e staggered 0 0 0
+0 1.0 82.0 45.64 B e e staggered 0 0 0
+0 1.0 82.0 53.26 B e e staggered 0 0 0
+0 1.0 82.0 48.18 B e e staggered 0 0 0
+0 1.0 61.62 -52.36 B e e staggered 0 0 0
+0 1.0 59.08 -52.36 B e e staggered 0 0 0
+0 1.0 56.54 -52.36 B e e staggered 0 0 0
+0 1.0 54.0 -52.36 B e e staggered 0 0 0
+0 0 48.0 -40.36 T 2.03 3.80 e s
+0 0 94.05 -5.36 T 1.0 1.45 e s
+0 0 95.95 -5.36 T 1.0 1.45 e s
+0 1.0 20.0 50.77 B e e staggered 0 0 0
+0 1.0 20.0 45.69 B e e staggered 0 0 0
+0 1.0 20.0 53.31 B e e staggered 0 0 0
+0 1.0 20.0 48.23 B e e staggered 0 0 0
+0 1.0 -4.38 -52.36 B e e staggered 0 0 0
+0 1.0 -6.92 -52.36 B e e staggered 0 0 0
+0 1.0 -9.46 -52.36 B e e staggered 0 0 0
+0 1.0 -12.0 -52.36 B e e staggered 0 0 0
+0 0 -92.0 -4.36 T 2.03 3.80 e s
+0 0.76 -35.36 -75.41 B e e staggered 0 0 0
+0 0.76 -32.82 -75.41 B e e staggered 0 0 0
+0 0.76 -31.55 -72.87 B e e staggered 0 0 0
+0 0.76 -39.17 -72.87 B e e staggered 0 0 0
+0 0.76 -37.91 -75.41 B e e staggered 0 0 0
+0 0.76 -34.09 -72.87 B e e staggered 0 0 0
+0 0.76 -36.63 -72.87 B e e staggered 0 0 0
+0 0.76 -40.45 -75.41 B e e staggered 0 0 0
+0 3.20 -30.29 -81.76 B e e staggered 0 0 0
+0 3.20 -41.71 -81.76 B e e staggered 0 0 0
+0 0 -7.47 -68.36 T 1.15 1.80 e s
+0 0 -4.52 -68.36 T 1.15 1.80 e s
+0 1.60 -90.0 -46.90 B e e staggered 0 0 0
+0 1.60 -90.0 -41.82 B e e staggered 0 0 0
+0 0 -3.09 46.64 T 1.02 1.40 e s
+0 0 -4.91 46.64 T 1.02 1.40 e s
+0 0 -89.09 -64.36 T 1.02 1.40 e s
+0 0 -90.91 -64.36 T 1.02 1.40 e s
+0 0 58.0 -3.36 T 2.03 3.80 e s
+0 0 36.91 37.64 T 1.02 1.40 e s
+0 0 35.09 37.64 T 1.02 1.40 e s
+0 0 22.91 37.64 T 1.02 1.40 e s
+0 0 21.09 37.64 T 1.02 1.40 e s
+0 0.76 -83.36 -75.41 B e e staggered 0 0 0
+0 0.76 -80.83 -75.41 B e e staggered 0 0 0
+0 0.76 -79.55 -72.87 B e e staggered 0 0 0
+0 0.76 -87.17 -72.87 B e e staggered 0 0 0
+0 0.76 -85.91 -75.41 B e e staggered 0 0 0
+0 0.76 -82.09 -72.87 B e e staggered 0 0 0
+0 0.76 -84.63 -72.87 B e e staggered 0 0 0
+0 0.76 -88.44 -75.41 B e e staggered 0 0 0
+0 3.20 -78.28 -81.76 B e e staggered 0 0 0
+0 3.20 -89.71 -81.76 B e e staggered 0 0 0
+0 0 -86.71 -68.67 T 0.65 1.52 e s
+0 0 -81.29 -63.59 T 0.65 1.52 e s
+0 0 -86.71 -61.05 T 0.65 1.52 e s
+0 0 -86.71 -62.32 T 0.65 1.52 e s
+0 0 -86.71 -67.40 T 0.65 1.52 e s
+0 0 -81.29 -67.40 T 0.65 1.52 e s
+0 0 -81.29 -61.05 T 0.65 1.52 e s
+0 0 -81.29 -64.86 T 0.65 1.52 e s
+0 0 -81.29 -66.13 T 0.65 1.52 e s
+0 0 -86.71 -64.86 T 0.65 1.52 e s
+0 0 -86.71 -66.13 T 0.65 1.52 e s
+0 0 -81.29 -68.67 T 0.65 1.52 e s
+0 0 -81.29 -62.32 T 0.65 1.52 e s
+0 0 -86.71 -63.59 T 0.65 1.52 e s
+0 0 40.91 37.64 T 1.02 1.40 e s
+0 0 39.09 37.64 T 1.02 1.40 e s
+0 0.76 60.63 -75.41 B e e staggered 0 0 0
+0 0.76 63.17 -75.41 B e e staggered 0 0 0
+0 0.76 64.44 -72.87 B e e staggered 0 0 0
+0 0.76 56.82 -72.87 B e e staggered 0 0 0
+0 0.76 58.09 -75.41 B e e staggered 0 0 0
+0 0.76 61.90 -72.87 B e e staggered 0 0 0
+0 0.76 59.36 -72.87 B e e staggered 0 0 0
+0 0.76 55.55 -75.41 B e e staggered 0 0 0
+0 3.20 65.72 -81.76 B e e staggered 0 0 0
+0 3.20 54.28 -81.76 B e e staggered 0 0 0
+0 1.20 88.50 -52.86 B e e staggered 0 0 0
+0 1.20 88.50 -57.86 B e e staggered 0 0 0
+0 0 6.52 -68.36 T 1.15 1.80 e s
+0 0 9.47 -68.36 T 1.15 1.80 e s
+0 1.20 88.50 21.64 B e e staggered 0 0 0
+0 1.20 88.50 16.64 B e e staggered 0 0 0
+0 1.0 73.62 -56.36 B e e staggered 0 0 0
+0 1.0 71.08 -56.36 B e e staggered 0 0 0
+0 1.0 68.54 -56.36 B e e staggered 0 0 0
+0 1.0 66.0 -56.36 B e e staggered 0 0 0
+0 0 0.91 28.64 T 1.02 1.40 e s
+0 0 -0.91 28.64 T 1.02 1.40 e s
+0 0 -95.47 -53.36 T 1.15 1.80 e s
+0 0 -92.52 -53.36 T 1.15 1.80 e s
+0 0 -3.09 38.64 T 1.02 1.40 e s
+0 0 -4.91 38.64 T 1.02 1.40 e s
+0 0.80 85.81 -23.38 B e e staggered 0 0 0
+0 0.80 90.89 -5.34 B e e staggered 0 0 0
+0 0.80 83.27 -5.34 B e e staggered 0 0 0
+0 0.80 88.35 -5.34 B e e staggered 0 0 0
+0 0.80 78.19 -23.38 B e e staggered 0 0 0
+0 0.80 83.27 -23.38 B e e staggered 0 0 0
+0 0.80 85.81 -5.34 B e e staggered 0 0 0
+0 0.80 88.35 -23.38 B e e staggered 0 0 0
+0 0.80 80.73 -23.38 B e e staggered 0 0 0
+0 0.80 75.65 -23.38 B e e staggered 0 0 0
+0 0.80 80.73 -5.34 B e e staggered 0 0 0
+0 0.80 73.11 -23.38 B e e staggered 0 0 0
+0 0.80 73.11 -5.34 B e e staggered 0 0 0
+0 0.80 75.65 -5.34 B e e staggered 0 0 0
+0 0.80 90.89 -23.38 B e e staggered 0 0 0
+0 0.80 78.19 -5.34 B e e staggered 0 0 0
+0 0 31.0 52.62 T 2.03 3.80 e s
+0 1.10 -15.27 43.83 B e e staggered 0 0 0
+0 1.10 -12.73 43.83 B e e staggered 0 0 0
+0 1.10 -12.73 48.91 B e e staggered 0 0 0
+0 1.10 -12.73 51.45 B e e staggered 0 0 0
+0 1.10 -15.27 51.45 B e e staggered 0 0 0
+0 1.10 -12.73 46.37 B e e staggered 0 0 0
+0 1.10 -15.27 46.37 B e e staggered 0 0 0
+0 1.10 -15.27 48.91 B e e staggered 0 0 0
+0 0 76.50 52.62 T 2.03 3.80 e s
+0 0 68.05 12.64 T 1.0 1.45 e s
+0 0 69.95 12.64 T 1.0 1.45 e s
+0 1.0 40.62 -52.36 B e e staggered 0 0 0
+0 1.0 38.08 -52.36 B e e staggered 0 0 0
+0 1.0 35.54 -52.36 B e e staggered 0 0 0
+0 1.0 33.0 -52.36 B e e staggered 0 0 0
+0 0 48.0 17.14 T 2.03 3.80 e s
+0 0 -78.95 -61.06 T 1.0 1.45 e s
+0 0 -77.05 -61.06 T 1.0 1.45 e s
+0 0 48.0 -28.36 T 2.03 3.80 e s
+0 0 58.0 -34.36 T 2.03 3.80 e s
+0 0 -60.0 -56.36 T 1.52 1.68 e s
+0 0 -64.0 -56.36 T 1.52 1.68 e s
+0 1.0 55.62 -46.36 B e e staggered 0 0 0
+0 1.0 53.08 -46.36 B e e staggered 0 0 0
+0 1.0 50.54 -46.36 B e e staggered 0 0 0
+0 1.0 48.0 -46.36 B e e staggered 0 0 0
+0 0 29.06 33.64 T 0.97 1.40 e s
+0 0 30.94 33.64 T 0.97 1.40 e s
+0 0 -58.95 -53.36 T 1.0 1.45 e s
+0 0 -57.05 -53.36 T 1.0 1.45 e s
+0 0 19.06 33.64 T 0.97 1.40 e s
+0 0 20.94 33.64 T 0.97 1.40 e s
+0 0 58.0 -15.36 T 2.03 3.80 e s
+0 0 13.0 52.62 T 2.03 3.80 e s
+0 0 78.91 37.64 T 1.02 1.40 e s
+0 0 77.09 37.64 T 1.02 1.40 e s
+0 0 -55.09 11.64 T 1.02 1.40 e s
+0 0 -56.91 11.64 T 1.02 1.40 e s
+0 0 -3.09 42.64 T 1.02 1.40 e s
+0 0 -4.91 42.64 T 1.02 1.40 e s
+0 0.76 84.63 -75.41 B e e staggered 0 0 0
+0 0.76 87.17 -75.41 B e e staggered 0 0 0
+0 0.76 88.44 -72.87 B e e staggered 0 0 0
+0 0.76 80.83 -72.87 B e e staggered 0 0 0
+0 0.76 82.09 -75.41 B e e staggered 0 0 0
+0 0.76 85.91 -72.87 B e e staggered 0 0 0
+0 0.76 83.36 -72.87 B e e staggered 0 0 0
+0 0.76 79.55 -75.41 B e e staggered 0 0 0
+0 3.20 89.71 -81.76 B e e staggered 0 0 0
+0 3.20 78.28 -81.76 B e e staggered 0 0 0
+0 0.76 36.63 -75.41 B e e staggered 0 0 0
+0 0.76 39.17 -75.41 B e e staggered 0 0 0
+0 0.76 40.45 -72.87 B e e staggered 0 0 0
+0 0.76 32.82 -72.87 B e e staggered 0 0 0
+0 0.76 34.09 -75.41 B e e staggered 0 0 0
+0 0.76 37.91 -72.87 B e e staggered 0 0 0
+0 0.76 35.36 -72.87 B e e staggered 0 0 0
+0 0.76 31.55 -75.41 B e e staggered 0 0 0
+0 3.20 41.71 -81.76 B e e staggered 0 0 0
+0 3.20 30.29 -81.76 B e e staggered 0 0 0
+0 0 30.91 28.64 T 1.02 1.40 e s
+0 0 29.09 28.64 T 1.02 1.40 e s
+0 0 18.91 37.64 T 1.02 1.40 e s
+0 0 17.09 37.64 T 1.02 1.40 e s
+0 0 78.91 32.64 T 1.02 1.40 e s
+0 0 77.09 32.64 T 1.02 1.40 e s
+0 1.0 -46.38 -42.36 B e e staggered 0 0 0
+0 1.0 -48.92 -42.36 B e e staggered 0 0 0
+0 1.0 -51.46 -42.36 B e e staggered 0 0 0
+0 1.0 -54.0 -42.36 B e e staggered 0 0 0
+0 0 54.05 -28.36 T 1.0 1.45 e s
+0 0 55.95 -28.36 T 1.0 1.45 e s
+0 0 54.05 -39.36 T 1.0 1.45 e s
+0 0 55.95 -39.36 T 1.0 1.45 e s
+0 2.10 -73.40 -55.16 B e e staggered 0 0 0
+0 2.10 -82.60 -55.16 B e e staggered 0 0 0
+0 0 10.91 28.64 T 1.02 1.40 e s
+0 0 9.09 28.64 T 1.02 1.40 e s
+0 1.0 -25.38 -52.36 B e e staggered 0 0 0
+0 1.0 -27.92 -52.36 B e e staggered 0 0 0
+0 1.0 -30.46 -52.36 B e e staggered 0 0 0
+0 1.0 -33.0 -52.36 B e e staggered 0 0 0
+0 0 9.06 33.64 T 0.97 1.40 e s
+0 0 10.94 33.64 T 0.97 1.40 e s
+0 0.76 -59.36 -75.41 B e e staggered 0 0 0
+0 0.76 -56.82 -75.41 B e e staggered 0 0 0
+0 0.76 -55.55 -72.87 B e e staggered 0 0 0
+0 0.76 -63.17 -72.87 B e e staggered 0 0 0
+0 0.76 -61.90 -75.41 B e e staggered 0 0 0
+0 0.76 -58.09 -72.87 B e e staggered 0 0 0
+0 0.76 -60.63 -72.87 B e e staggered 0 0 0
+0 3.20 -54.28 -81.76 B e e staggered 0 0 0
+0 3.20 -65.72 -81.76 B e e staggered 0 0 0
+0 0 -46.85 -56.36 T 1.75 3.20 e s
+0 0 -53.15 -54.06 T 0.95 1.75 e s
+0 0 -53.15 -56.36 T 0.95 1.75 e s
+0 0 -53.15 -58.66 T 0.95 1.75 e s
+0 0.76 -11.37 -75.41 B e e staggered 0 0 0
+0 0.76 -8.82 -75.41 B e e staggered 0 0 0
+0 0.76 -7.55 -72.87 B e e staggered 0 0 0
+0 0.76 -15.17 -72.87 B e e staggered 0 0 0
+0 0.76 -13.90 -75.41 B e e staggered 0 0 0
+0 0.76 -10.09 -72.87 B e e staggered 0 0 0
+0 0.76 -12.63 -72.87 B e e staggered 0 0 0
+0 0.76 -16.45 -75.41 B e e staggered 0 0 0
+0 3.20 -6.29 -81.76 B e e staggered 0 0 0
+0 3.20 -17.71 -81.76 B e e staggered 0 0 0
+0 0 20.91 28.64 T 1.02 1.40 e s
+0 0 19.09 28.64 T 1.02 1.40 e s
+0 0 -56.50 -62.31 T 1.0 1.45 e s
+0 0 -56.50 -60.41 T 1.0 1.45 e s
+0 0 -29.47 -68.36 T 1.15 1.80 e s
+0 0 -26.52 -68.36 T 1.15 1.80 e s
+0 1.10 -76.18 -8.62 B e e staggered 0 0 0
+0 1.10 -76.18 16.78 B e e staggered 0 0 0
+0 1.10 -76.18 11.70 B e e staggered 0 0 0
+0 1.10 -76.18 6.62 B e e staggered 0 0 0
+0 1.10 -76.18 21.86 B e e staggered 0 0 0
+0 1.10 -76.18 39.64 B e e staggered 0 0 0
+0 1.10 -76.18 37.10 B e e staggered 0 0 0
+0 1.10 -76.18 -13.70 B e e staggered 0 0 0
+0 1.10 -76.18 34.56 B e e staggered 0 0 0
+0 1.10 -76.18 29.48 B e e staggered 0 0 0
+0 1.10 -76.18 14.24 B e e staggered 0 0 0
+0 1.10 -76.18 -3.54 B e e staggered 0 0 0
+0 1.10 -76.18 -1.0 B e e staggered 0 0 0
+0 1.10 -76.18 9.16 B e e staggered 0 0 0
+0 1.10 -76.18 -11.16 B e e staggered 0 0 0
+0 1.10 -76.18 4.08 B e e staggered 0 0 0
+0 1.10 -76.18 26.94 B e e staggered 0 0 0
+0 1.10 -76.18 19.32 B e e staggered 0 0 0
+0 1.10 -76.18 -6.08 B e e staggered 0 0 0
+0 1.10 -76.18 32.02 B e e staggered 0 0 0
+0 1.10 -76.18 1.54 B e e staggered 0 0 0
+0 1.10 -76.18 24.40 B e e staggered 0 0 0
+0 0 26.43 -12.13 T 1.02 1.40 e s
+0 0 28.25 -12.13 T 1.02 1.40 e s
+0 0 26.84 -7.01 T 1.02 1.40 e s
+0 0 26.84 -8.84 T 1.02 1.40 e s
+0 0 -4.68 -9.13 T 1.15 1.80 e s
+0 0 -7.63 -9.13 T 1.15 1.80 e s
+0 0 -9.75 -9.13 T 1.02 1.40 e s
+0 0 -11.57 -9.13 T 1.02 1.40 e s
+0 0 -15.15 -14.21 T 1.02 1.40 e s
+0 0 -15.15 -16.04 T 1.02 1.40 e s
+0 0 4.65 -20.15 T 1.02 1.40 e s
+0 0 2.83 -20.15 T 1.02 1.40 e s
+20 0.30 -4.47 -73.90 B e c staggered 0 0 0 v
+20 0.30 -11.41 -71.35 B e c staggered 0 0 0 v
+20 0.30 -7.56 -70.41 B e c staggered 0 0 0 v
+20 0.30 -88.48 -72.80 B e c staggered 0 0 0 v
+20 0.30 -85.0 55.64 B e c staggered 0 0 0 v
+20 0.30 -85.0 40.64 B e c staggered 0 0 0 v
+20 0.30 -10.0 55.64 B e c staggered 0 0 0 v
+20 0.30 95.0 25.64 B e c staggered 0 0 0 v
+20 0.30 95.0 10.64 B e c staggered 0 0 0 v
+20 0.30 95.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 65.0 55.64 B e c staggered 0 0 0 v
+20 0.30 95.0 55.64 B e c staggered 0 0 0 v
+20 0.30 80.0 55.64 B e c staggered 0 0 0 v
+20 0.30 95.0 40.64 B e c staggered 0 0 0 v
+20 0.30 -55.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 -70.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 -85.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 -10.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 -25.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 -40.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 5.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 50.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 35.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 20.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 95.0 -64.36 B e c staggered 0 0 0 v
+20 0.30 80.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 95.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 65.0 -79.36 B e c staggered 0 0 0 v
+20 0.30 95.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 95.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 95.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 -25.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 -10.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 -40.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 -10.0 -64.36 B e c staggered 0 0 0 v
+20 0.30 20.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 5.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 -40.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 -70.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 -25.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 -55.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 -10.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 -55.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 -40.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 -70.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 -40.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 -55.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 50.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 80.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 65.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 50.0 40.64 B e c staggered 0 0 0 v
+20 0.30 -40.0 55.64 B e c staggered 0 0 0 v
+20 0.30 -25.0 55.64 B e c staggered 0 0 0 v
+20 0.30 -70.0 40.64 B e c staggered 0 0 0 v
+20 0.30 35.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 5.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 20.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 80.0 40.64 B e c staggered 0 0 0 v
+20 0.30 80.0 25.64 B e c staggered 0 0 0 v
+20 0.30 -10.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 -25.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 20.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 35.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 5.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 35.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 35.0 -64.36 B e c staggered 0 0 0 v
+20 0.30 65.0 -4.36 B e c staggered 0 0 0 v
+20 0.30 20.0 40.64 B e c staggered 0 0 0 v
+20 0.30 20.0 55.64 B e c staggered 0 0 0 v
+20 0.30 35.0 55.64 B e c staggered 0 0 0 v
+20 0.30 5.0 55.64 B e c staggered 0 0 0 v
+20 0.30 50.0 55.64 B e c staggered 0 0 0 v
+20 0.30 20.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 35.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 -10.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 -85.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 -70.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 -85.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 -91.62 -59.59 B e c staggered 0 0 0 v
+20 0.30 -40.0 10.64 B e c staggered 0 0 0 v
+20 0.30 -25.0 10.64 B e c staggered 0 0 0 v
+20 0.30 5.0 10.64 B e c staggered 0 0 0 v
+20 0.30 -10.0 10.64 B e c staggered 0 0 0 v
+20 0.30 50.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 65.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 80.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 65.0 40.64 B e c staggered 0 0 0 v
+20 0.30 26.85 -68.29 B e c staggered 0 0 0 v
+20 0.30 -25.0 -64.36 B e c staggered 0 0 0 v
+20 0.30 50.0 10.64 B e c staggered 0 0 0 v
+20 0.30 5.0 40.64 B e c staggered 0 0 0 v
+20 0.30 46.96 -70.23 B e c staggered 0 0 0 v
+20 0.30 -40.0 -64.36 B e c staggered 0 0 0 v
+20 0.30 -55.0 -49.36 B e c staggered 0 0 0 v
+20 0.30 16.17 22.82 B e c staggered 0 0 0 v
+20 0.30 -58.28 29.47 B e c staggered 0 0 0 v
+20 0.30 12.91 -27.06 B e c staggered 0 0 0 v
+20 0.30 66.26 -31.63 B e c staggered 0 0 0 v
+20 0.30 5.0 -64.36 B e c staggered 0 0 0 v
+20 0.30 -25.0 -19.36 B e c staggered 0 0 0 v
+20 0.30 -66.62 -67.09 B e c staggered 0 0 0 v
+20 0.30 -85.0 25.64 B e c staggered 0 0 0 v
+20 0.30 -74.90 -48.30 B e c staggered 0 0 0 v
+20 0.30 81.64 -39.64 B e c staggered 0 0 0 v
+20 0.30 -29.79 4.04 B e c staggered 0 0 0 v
+20 0.30 -42.55 38.38 B e c staggered 0 0 0 v
+20 0.30 -10.96 18.50 B e c staggered 0 0 0 v
+20 0.30 33.64 22.82 B e c staggered 0 0 0 v
+20 0.30 -46.32 -68.81 B e c staggered 0 0 0 v
+20 0.30 35.0 10.64 B e c staggered 0 0 0 v
+20 0.30 20.0 10.64 B e c staggered 0 0 0 v
+20 0.30 -50.21 -46.26 B e c staggered 0 0 0 v
+20 0.30 -9.82 24.42 B e c staggered 0 0 0 v
+20 0.30 -60.18 -61.87 B e c staggered 0 0 0 v
+20 0.30 65.0 10.64 B e c staggered 0 0 0 v
+20 0.30 15.25 12.27 B e c staggered 0 0 0 v
+20 0.30 -55.06 8.02 B e c staggered 0 0 0 v
+20 0.30 -13.16 16.30 B e c staggered 0 0 0 v
+20 0.30 73.22 -60.93 B e c staggered 0 0 0 v
+20 0.30 -66.18 17.98 B e c staggered 0 0 0 v
+20 0.30 -9.68 42.59 B e c staggered 0 0 0 v
+20 0.30 -21.26 6.33 B e c staggered 0 0 0 v
+20 0.30 83.88 -30.74 B e c staggered 0 0 0 v
+20 0.30 78.25 6.80 B e c staggered 0 0 0 v
+20 0.30 34.26 48.89 B e c staggered 0 0 0 v
+20 0.30 54.38 28.36 B e c staggered 0 0 0 v
+20 0.30 -46.43 34.49 B e c staggered 0 0 0 v
+20 0.30 -87.54 4.87 B e c staggered 0 0 0 v
+20 0.30 29.32 18.50 B e c staggered 0 0 0 v
+20 0.30 -18.26 45.97 B e c staggered 0 0 0 v
+20 0.30 -83.02 -58.85 B e c staggered 0 0 0 v
+20 0.30 -56.40 21.77 B e c staggered 0 0 0 v
+20 0.30 50.0 -34.36 B e c staggered 0 0 0 v
+20 0.30 -81.84 0.49 B e c staggered 0 0 0 v
+20 0.30 76.94 -1.57 B e c staggered 0 0 0 v
+20 0.30 -9.04 50.08 B e c staggered 0 0 0 v
+20 0.30 46.53 20.45 B e c staggered 0 0 0 v
+20 0.30 -79.91 11.09 B e c staggered 0 0 0 v
+20 0.30 -58.04 24.40 B e c staggered 0 0 0 v
+20 0.30 84.19 -36.42 B e c staggered 0 0 0 v
+20 0.30 68.55 7.90 B e c staggered 0 0 0 v
+20 0.30 -63.0 10.37 B e c staggered 0 0 0 v
+20 0.30 -72.17 18.03 B e c staggered 0 0 0 v
+20 0.30 -53.01 13.29 B e c staggered 0 0 0 v
+20 0.30 -51.52 -63.67 B e c staggered 0 0 0 v
+20 0.30 43.75 16.79 B e c staggered 0 0 0 v
+20 0.30 -14.64 34.49 B e c staggered 0 0 0 v
+20 0.30 -79.16 5.42 B e c staggered 0 0 0 v
+20 0.30 -13.40 37.14 B e c staggered 0 0 0 v
+20 0.30 -54.82 16.71 B e c staggered 0 0 0 v
+20 0.30 -83.99 -69.45 B e c staggered 0 0 0 v
+20 0.30 73.65 10.64 B e c staggered 0 0 0 v
+20 0.30 16.90 -68.67 B e c staggered 0 0 0 v
+20 0.30 -77.19 -64.30 B e c staggered 0 0 0 v
+20 0.30 66.07 3.41 B e c staggered 0 0 0 v
+20 0.30 -31.98 28.87 B e c staggered 0 0 0 v
+20 0.30 61.61 -27.71 B e c staggered 0 0 0 v
+20 0.30 50.95 -4.03 B e c staggered 0 0 0 v
+20 0.30 -14.94 40.40 B e c staggered 0 0 0 v
+20 0.30 12.58 -71.56 B e c staggered 0 0 0 v
+20 0.30 21.90 -56.42 B e c staggered 0 0 0 v
+20 0.30 -71.93 -60.71 B e c staggered 0 0 0 v
+20 0.30 55.65 51.56 B e c staggered 0 0 0 v
+20 0.30 -72.81 10.24 B e c staggered 0 0 0 v
+20 0.30 -51.11 -71.66 B e c staggered 0 0 0 v
+20 0.30 -57.98 -57.20 B e c staggered 0 0 0 v
+20 0.30 -32.65 -20.31 B e c staggered 0 0 0 v
+20 0.30 -48.49 -59.47 B e c staggered 0 0 0 v
+20 0.30 -30.05 -64.29 B e c staggered 0 0 0 v
+20 0.30 -36.34 28.87 B e c staggered 0 0 0 v
+20 0.30 81.02 -33.21 B e c staggered 0 0 0 v
+20 0.30 -72.37 21.77 B e c staggered 0 0 0 v
+20 0.30 -41.89 19.33 B e c staggered 0 0 0 v
+20 0.30 46.82 -35.43 B e c staggered 0 0 0 v
+20 0.30 78.08 -30.50 B e c staggered 0 0 0 v
+20 0.30 -51.25 -55.23 B e c staggered 0 0 0 v
+20 0.30 -38.84 21.73 B e c staggered 0 0 0 v
+20 0.30 -45.28 24.42 B e c staggered 0 0 0 v
+20 0.30 -23.71 37.14 B e c staggered 0 0 0 v
+20 0.30 -22.54 -27.03 B e c staggered 0 0 0 v
+20 0.30 -65.46 4.09 B e c staggered 0 0 0 v
+20 0.30 -36.28 24.42 B e c staggered 0 0 0 v
+20 0.30 -44.55 -49.13 B e c staggered 0 0 0 v
+20 0.30 -71.69 6.67 B e c staggered 0 0 0 v
+20 0.30 -26.36 34.49 B e c staggered 0 0 0 v
+20 0.30 -44.70 16.71 B e c staggered 0 0 0 v
+20 0.30 9.21 6.33 B e c staggered 0 0 0 v
+20 0.30 -81.77 -47.59 B e c staggered 0 0 0 v
+20 0.30 74.51 3.42 B e c staggered 0 0 0 v
+20 0.30 -67.64 -56.71 B e c staggered 0 0 0 v
+20 0.30 -71.30 13.99 B e c staggered 0 0 0 v
+20 0.30 -49.40 6.84 B e c staggered 0 0 0 v
+20 0.30 -51.34 -57.33 B e c staggered 0 0 0 v
+20 0.30 -80.93 -10.04 B e c staggered 0 0 0 v
+20 0.30 18.0 40.54 B e c staggered 0 0 0 v
+20 0.30 -67.51 13.99 B e c staggered 0 0 0 v
+20 0.30 56.94 -74.32 B e c staggered 0 0 0 v
+20 0.30 77.14 44.59 B e c staggered 0 0 0 v
+20 0.30 -42.30 -75.19 B e c staggered 0 0 0 v
+20 0.30 10.0 -70.08 B e c staggered 0 0 0 v
+20 0.30 -40.80 24.42 B e c staggered 0 0 0 v
+20 0.30 -30.72 34.49 B e c staggered 0 0 0 v
+20 0.30 81.23 0.37 B e c staggered 0 0 0 v
+20 0.30 58.57 3.42 B e c staggered 0 0 0 v
+20 0.30 -67.56 6.53 B e c staggered 0 0 0 v
+20 0.30 -70.04 4.35 B e c staggered 0 0 0 v
+20 0.30 44.71 14.36 B e c staggered 0 0 0 v
+20 0.30 74.38 -27.54 B e c staggered 0 0 0 v
+20 0.30 -69.64 11.81 B e c staggered 0 0 0 v
+20 0.30 -74.53 13.74 B e c staggered 0 0 0 v
+20 0.30 -66.52 -58.92 B e c staggered 0 0 0 v
+20 0.30 -57.02 -55.01 B e c staggered 0 0 0 v
+20 0.30 79.46 -27.87 B e c staggered 0 0 0 v
+20 0.30 -74.12 6.09 B e c staggered 0 0 0 v
+20 0.30 61.83 -75.57 B e c staggered 0 0 0 v
+20 0.30 73.79 5.73 B e c staggered 0 0 0 v
+66 0.30 56.13 2.59 B e c staggered 0 0 0 v
+66 0.30 49.63 -41.99 B e c staggered 0 0 0 v
+72 0.30 19.62 -54.19 B e c staggered 0 0 0 v
+73 0.30 -63.62 3.62 B e c staggered 0 0 0 v
+73 0.30 -4.31 40.0 B e c staggered 0 0 0 v
+77 0.30 55.31 -15.36 B e c staggered 0 0 0 v
+77 0.30 -35.46 -15.36 B e c staggered 0 0 0 v
+79 0.30 -3.94 47.49 B e c staggered 0 0 0 v
+82 0.30 -66.16 13.23 B e c staggered 0 0 0 v
+82 0.30 -42.12 17.18 B e c staggered 0 0 0 v
+87 0.30 27.79 28.64 B e c staggered 0 0 0 v
+88 0.30 75.96 31.52 B e c staggered 0 0 0 v
+91 0.30 62.95 -57.59 B e c staggered 0 0 0 v
+92 0.30 -87.87 -45.67 B e c staggered 0 0 0 v
+95 0.30 -54.80 -62.31 B e c staggered 0 0 0 v
+95 0.30 -80.15 -11.05 B e c staggered 0 0 0 v
+95 0.30 -95.47 -55.24 B e c staggered 0 0 0 v
+95 0.30 -77.68 -59.79 B e c staggered 0 0 0 v
+95 0.30 67.0 12.85 B e c staggered 0 0 0 v
+95 0.30 90.25 -0.44 B e c staggered 0 0 0 v
+95 0.30 -67.88 -54.01 B e c staggered 0 0 0 v
+95 0.30 -89.43 -74.21 B e c staggered 0 0 0 v
+96 0.30 -69.92 -44.19 B e c staggered 0 0 0 v
+96 0.30 -42.73 -43.53 B e c staggered 0 0 0 v
+96 0.30 -85.29 -49.75 B e c staggered 0 0 0 v
+98 0.30 -16.43 45.21 B e c staggered 0 0 0 v
+98 0.30 -68.72 7.16 B e c staggered 0 0 0 v
+98 0.30 -3.23 43.88 B e c staggered 0 0 0 v
+99 0.30 80.99 47.03 B e c staggered 0 0 0 v
+100 0.30 60.69 -34.36 B e c staggered 0 0 0 v
+100 0.30 -19.41 -28.72 B e c staggered 0 0 0 v
+105 0.30 73.11 1.11 B e c staggered 0 0 0 v
+107 0.30 -39.66 23.24 B e c staggered 0 0 0 v
+110 0.30 -3.28 51.93 B e c staggered 0 0 0 v
+110 0.30 -84.13 10.31 B e c staggered 0 0 0 v
+116 0.30 7.96 29.76 B e c staggered 0 0 0 v
+117 0.30 31.0 50.82 B e c staggered 0 0 0 v
+118 0.30 -3.46 53.17 B e c staggered 0 0 0 v
+119 0.30 11.45 49.79 B e c staggered 0 0 0 v
+119 0.30 18.91 39.13 B e c staggered 0 0 0 v
+120 0.30 48.77 12.20 B e c staggered 0 0 0 v
+120 0.30 -73.71 15.32 B e c staggered 0 0 0 v

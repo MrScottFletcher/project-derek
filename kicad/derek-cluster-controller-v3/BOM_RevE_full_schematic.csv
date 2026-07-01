@@ -1,0 +1,25 @@
+Reference,Qty,Description,Footprint,Part / assumption,Notes
+U1,1,ESP32-S3 development board socket,ClusterCustom:Hosyond_ESP32-S3_N16R8_DualUSB_DevKit_Socket,"Hosyond ESP32-S3 Development Board N16R8 dual USB-C, ESP32-S3-WROOM-1",VERIFY exact pin order/header spacing; antenna edge keepout
+J26,1,PCA9685 16-channel servo driver module socket,ClusterCustom:Teyleten_PCA9685_16ch_Module_60x25mm_VERIFY,Teyleten Robot PCA9685 16ch 12-bit PWM Servo Motor Driver I2C module,Assumes 60 x 25 mm module; VERIFY header/pin access for all PWM channels
+"U3,U4",2,DFPlayer Mini socket,ClusterCustom:DFPlayer_Mini_20x20_16pin,"WWZMDiB DFPlayer Mini MP3 module, standard 16-pin 20 x 20 mm layout",Orient microSD card toward board edge
+DS1,1,OLED I2C module socket,ClusterCustom:OLED_096_SSD1306_4pin_27x27_GND_VCC_SCL_SDA,"0.96 inch SSD1306 128x64 I2C OLED, pin order GND,VCC,SCL,SDA",Powered from 3.3V to avoid 5V I2C pullups
+J2-J9,8,RJ45 8P8C shielded right-angle jack,ClusterCustom:RJ45_8P8C_90Degree_FMHXG_VERIFY,RJ45 PCB Jack 8P8C shielded 90 degree angle modular connector for PCB,VERIFY drill/pin/mechanical footprint; not Ethernet
+U5,1,Quad buffer level shifter,SOIC-14,74AHCT125 or 74HCT125,"VCC=5V, used for WS2812 3.3V-to-5V data"
+J1,1,5V DC input terminal,TerminalBlock 1x02 5.08mm,"5.08mm screw terminal, suitable current rating",15A design target; connector current rating must match use
+F1,1,Automotive fuse holder,ATO/ATC blade fuse holder,15A ATO/ATC fuse + holder,Verify footprint/current rating
+Q1,1,Reverse polarity PMOS,TO-252/DPAK or suitable,P-channel MOSFET >=20A low Rds(on),Footprint depends on chosen MOSFET
+C1,1,4700uF bulk capacitor,Radial electrolytic,4700uF >=10V low ESR,Near power input
+C2,1,1000uF bulk capacitor,Radial electrolytic,1000uF >=10V low ESR,Near RJ45 bank
+"C3,C4",2,100uF zone capacitors,Radial or SMD,100uF >=10V,Near RJ45 power zones
+C5,1,0.1uF decoupling,0805,0.1uF ceramic,Near logic ICs; add more as needed
+"R3,R4",2,I2C pullups,0805,4.7k resistor,To 3.3V
+"R5,R6",2,DFPlayer RX series resistors,0805,1k resistor,ESP TX to DF RX
+R11,1,WS2812 data series resistor,0805,330R resistor,Near 74AHCT125 output
+R12,1,LED data pulldown,0805,100k resistor,D1_LED_IN to GND
+R_ID0-R_ID3,4,Cluster ID pullups,0805,10k resistor,To 3.3V
+SW1,1,4-position DIP switch,DIP SPSTx04,4-position DIP switch,One side to GND
+"J_PIR_LEFT,J_PIR_CENTER,J_PIR_RIGHT",3,PIR connector,JST-XH 1x03 2.5mm,3-pin connector +5V/SIG/GND,Protect ESP32 GPIO; verify PIR signal voltage
+JP1-JP8,8,LED daisy chain jumpers,PinHeader 1x02 2.54mm,2-pin header + shunt,Installed=continue chain; removed=terminate
+"J_AUDIO1,J_AUDIO2",2,Audio line output headers,PinHeader 1x04 2.54mm,4-pin header,L/R/GND/5V
+"J_SPK1,J_SPK2",2,Speaker headers,PinHeader 1x02 2.54mm,2-pin header,DFPlayer SPK1/SPK2
+"TP1,J13,J_LEDTEST",3,Test/expansion headers,Pin headers,Test points for power/I2C/LED,Useful during bring-up
