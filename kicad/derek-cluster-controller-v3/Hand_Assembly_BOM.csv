@@ -1,0 +1,17 @@
+Reference,Qty,Part,Footprint/Connector assumption,Assembly,Notes
+U1,1,"Hosyond ESP32-S3 Development Board N16R8, USB-C",2-row through-hole socket/header footprint,Hand,Install female headers or direct solder. Verify pin spacing and USB access before order.
+J26,1,Adafruit Product 815 PCA9685 16 Channel 12-bit PWM Servo Driver module,Through-hole carrier socket/header footprint,Hand,"Verify header pin order/access; VCC=3.3V, V+=5V protected."
+"U3,U4",2,WWZMDiB DFPlayer Mini MP3 module,"Standard DFPlayer Mini 20x20mm, 16-pin through-hole footprint",Hand,Orient microSD slots toward edge; test-fit.
+DS1,1,"0.96 inch SSD1306 I2C OLED, GND/VCC/SCL/SDA",4-pin 2.54mm header plus module outline,Hand,VCC tied to 3.3V.
+J2-J9,8,Shielded RJ45 8P8C 90-degree PCB jack,Right-angle through-hole RJ45 footprint,Hand,All aligned along edge; NOT ETHERNET; verify drilling/pinout with actual jack.
+J1,1,5V high-current input terminal,5.08mm terminal block or selected high-current connector,Hand,Must support intended current; consider >15A rated connector.
+F1,1,ATO/ATC automotive blade fuse holder + 15A fuse,Through-hole fuse holder footprint,Hand,Place close to input.
+C1,1,4700uF >=10V low-ESR electrolytic,Radial through-hole,Hand,Near power input after protection.
+C2,1,1000uF >=10V low-ESR electrolytic,Radial through-hole,Hand,Near RJ45 row.
+"C3,C4,C5,C6",4,100uF >=10V electrolytic/polymer,Radial or through-hole,Hand,One near every two RJ45 Derek ports.
+SW1,1,4-position DIP switch,Through-hole DIP switch,Hand,"Cluster ID, one side to GND."
+"J_PIR_LEFT,J_PIR_CENTER,J_PIR_RIGHT",3,3-pin PIR connector,JST-XH or 2.54mm pin header,Hand,Pinout +5V/SIG/GND; verify PIR output voltage.
+JP1-JP8,8,2-pin jumper header + shunt,2.54mm through-hole header,Hand,LED chain continue/terminate.
+"J_AUDIO1,J_AUDIO2",2,4-pin audio line header,2.54mm through-hole header,Hand,DAC_L/DAC_R/GND/5V or as routed.
+"J_SPK1,J_SPK2",2,2-pin speaker header,2.54mm or screw terminal,Hand,DFPlayer SPK outputs.
+TP/J_TEST headers,as needed,test headers/test pads,2.54mm or test pads,Hand/PCB,"Power, I2C, UART, LED data, BOOT/EN if exposed."

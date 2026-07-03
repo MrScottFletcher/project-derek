@@ -1,6 +1,6 @@
 Reference,Qty,Description,Footprint,Part / assumption,Notes
 U1,1,ESP32-S3 development board socket,ClusterCustom:Hosyond_ESP32-S3_N16R8_DualUSB_DevKit_Socket,"Hosyond ESP32-S3 Development Board N16R8 dual USB-C, ESP32-S3-WROOM-1",VERIFY exact pin order/header spacing; antenna edge keepout
-J26,1,PCA9685 16-channel servo driver module socket,ClusterCustom:Teyleten_PCA9685_16ch_Module_60x25mm_VERIFY,Teyleten Robot PCA9685 16ch 12-bit PWM Servo Motor Driver I2C module,Assumes 60 x 25 mm module; VERIFY header/pin access for all PWM channels
+J26,1,PCA9685 16-channel servo driver module socket,ClusterCustom:Teyleten_PCA9685_16ch_Module_60x25mm_VERIFY,Adafruit Product 815 PCA9685 16ch 12-bit PWM Servo Motor Driver I2C module,Assumes 60 x 25 mm module; VERIFY header/pin access for all PWM channels
 "U3,U4",2,DFPlayer Mini socket,ClusterCustom:DFPlayer_Mini_20x20_16pin,"WWZMDiB DFPlayer Mini MP3 module, standard 16-pin 20 x 20 mm layout",Orient microSD card toward board edge
 DS1,1,OLED I2C module socket,ClusterCustom:OLED_096_SSD1306_4pin_27x27_GND_VCC_SCL_SDA,"0.96 inch SSD1306 128x64 I2C OLED, pin order GND,VCC,SCL,SDA",Powered from 3.3V to avoid 5V I2C pullups
 J2-J9,8,RJ45 8P8C shielded right-angle jack,ClusterCustom:RJ45_8P8C_90Degree_FMHXG_VERIFY,RJ45 PCB Jack 8P8C shielded 90 degree angle modular connector for PCB,VERIFY drill/pin/mechanical footprint; not Ethernet
