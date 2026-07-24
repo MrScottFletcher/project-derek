@@ -1,0 +1,20 @@
+{
+  "board": {
+    "design_settings": {
+      "defaults": {},
+      "rules": {}
+    },
+    "layer_presets": []
+  },
+  "boards": [],
+  "cvpcb": {},
+  "erc": {},
+  "libraries": {},
+  "meta": {
+    "filename": "derek_cluster_controller_revE_full_schematic.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {},
+  "pcbnew": {},
+  "schematic": {}
+}

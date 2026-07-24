@@ -2,7 +2,7 @@
   (uuid "4221bd8a-c8b2-4f32-bd78-79d032af593b")
   (paper "A0")
   (title_block
-    (title "Derek Cluster Controller Rev E - Full Schematic")
+    (title "Derek Cluster Controller Rev G - Through-Hole First")
     (date "2026-07-01")
     (rev "Rev E full schematic")
     (company "Halloween Eye Clusters")
@@ -806,7 +806,7 @@
   (global_label "DF2_SPK2" (shape input) (at 340.92 237.54 0) (effects (font (size 1.0 1.0) (thickness 0.12))) (uuid "be147859-1353-4e34-a772-c0e3993dad68"))
   (symbol (lib_id "Cluster:74AHCT125") (at 325.00 285.00 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "9c1add1a-8b2a-4b6b-b832-76c9a73bebe1")
     (property "Reference" "U5" (at 325.00 277.00 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "74AHCT125 WS2812 level shifter" (at 325.00 293.00 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "SN74AHCT125N DIP-14 WS2812 level shifter" (at 325.00 293.00 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm" (at 325.00 285.00 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1OE" (uuid "8337f7b4-3981-4f4f-96e3-17ff7a1b170d"))
     (pin "1A" (uuid "1443ed3f-b078-47e9-b0db-d99f105e1317"))
