@@ -1,0 +1,8 @@
+(version 1)
+(rule "Logic minimum clearance"
+  (constraint clearance (min 0.20mm)))
+(rule "Logic minimum track width"
+  (constraint track_width (min 0.25mm)))
+(rule "Logic minimum via"
+  (constraint via_diameter (min 0.60mm))
+  (constraint hole_size (min 0.30mm)))

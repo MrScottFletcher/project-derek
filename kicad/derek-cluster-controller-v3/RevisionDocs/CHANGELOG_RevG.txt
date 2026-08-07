@@ -1,1 +1,0 @@
-Rev G: through-hole-first redesign; direct ESP32 DIP ID; THT LED/resistor parts; corrected standard DIP-14 footprint for SN74AHCT125N; simplified PCBWay SMT BOM.

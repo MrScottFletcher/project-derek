@@ -1,0 +1,8 @@
+(version 1)
+(rule "Servo minimum clearance"
+  (constraint clearance (min 0.25mm)))
+(rule "Servo signal minimum track width"
+  (constraint track_width (min 0.25mm)))
+(rule "Servo minimum via"
+  (constraint via_diameter (min 0.80mm))
+  (constraint hole_size (min 0.40mm)))

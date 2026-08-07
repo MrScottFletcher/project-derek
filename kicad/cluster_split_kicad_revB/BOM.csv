@@ -1,0 +1,22 @@
+Board,Reference,Qty,Description,Suggested type/value,Mounting
+Logic,J1,1,5V power input,2-pin 5.08mm screw terminal,THT
+Logic,U1,1,Main controller,Hosyond ESP32-S3 N16R8 H076-A wide 2x22 dev board,Socket/THT headers; Rev B 44-pin footprint
+Logic,U2 U3,2,Audio module,DFPlayer Mini / MP3-TF-16P 16-pin,Socket/THT headers; Rev B full 2x8 footprint
+Logic,J2,1,OLED connector,1x4 2.54mm header,THT
+Logic,J3 J4 J5,3,PIR connectors,1x3 2.54mm locking/header,THT
+Logic,SW1,1,Cluster ID switch,4-position DIP,THT
+Logic,R1-R4,4,DIP pull-ups,10k 1/4W,THT
+Logic,J10,1,Inter-board connector,JST-XH 8-pin vertical,THT
+Logic,C1,1,Bulk capacitor,1000uF 10V electrolytic,THT
+Logic,C2,1,Local bulk,10uF 10V,THT
+Logic,C3,1,Bypass,100nF ceramic,THT
+Servo,J1,1,Inter-board connector,JST-XH 8-pin vertical,THT
+Servo,U1,1,Servo controller module,Adafruit PCA9685 16-channel Product 815 breakout,Socket/THT headers; Rev B carrier footprint
+Servo,U2,1,LED level shifter,74AHCT125N DIP-14,THT
+Servo,J2-J9,8,Derek field connector,FMHXG RJ45NMCCFC-90D 8P8C shielded 90-degree,THT
+Servo,JP1-JP7,7,LED-chain bypass,1x3 2.54mm header + jumper,THT
+Servo,J10 J11,2,High-current 5V/GND input,2-pin 7.62mm high-current terminal,THT
+Servo,C1-C4,4,Servo/LED bulk,1000uF 10V low-ESR electrolytic,THT
+Servo,C5-C12,8,Branch bypass,100nF ceramic,THT
+Servo,C13,1,74AHCT125 bypass,100nF ceramic,THT
+Servo,C14,1,Logic local bulk,10uF 10V,THT

@@ -1,0 +1,4 @@
+Board,Reference,Component,Rev B footprint,Key dimensions
+Logic,U1,Hosyond ESP32-S3 N16R8 H076-A,ESP32_S3_HOSYOND_N16R8_2x22_WIDE,57.15x27.94mm body; 2x22; 2.54mm pitch; 25.4mm row spacing
+Logic,U2 U3,DFPlayer Mini / MP3-TF-16P,DFPlayer_Mini_16P_20x20mm,20x20mm body; 2x8; 2.54mm pitch; 15.24mm row spacing
+Servo,U1,Adafruit PCA9685 Product 815,Adafruit_PCA9685_16CH_Product815_Carrier,62.5x25.4mm body; mounting holes 55.88x19.05mm; 2.5mm holes

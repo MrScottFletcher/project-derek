@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "Cluster_Custom")(type "KiCad")(uri "${KIPRJMOD}/Cluster_Custom.pretty")(options "")(descr "Cluster Controller custom module footprints"))
+)

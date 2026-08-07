@@ -1,0 +1,17 @@
+Connector,Pin,Signal,Notes
+JST Logic-to-Servo,1,GND,Signal reference
+JST Logic-to-Servo,2,GND,Second ground
+JST Logic-to-Servo,3,+3V3_LOGIC,PCA9685 logic VCC only
+JST Logic-to-Servo,4,I2C_SDA,PCA9685 SDA
+JST Logic-to-Servo,5,I2C_SCL,PCA9685 SCL
+JST Logic-to-Servo,6,LED_DATA_3V3,To 74AHCT125 input
+JST Logic-to-Servo,7,PCA_OE_N,Active-low output enable
+JST Logic-to-Servo,8,SPARE,No connect Rev A
+RJ45 Derek,1,+5V_DEREK,Power conductor A
+RJ45 Derek,2,+5V_DEREK,Power conductor B
+RJ45 Derek,3,GND,Ground conductor A
+RJ45 Derek,4,GND,Ground conductor B
+RJ45 Derek,5,SERVO_PAN_PWM,PCA channel even number
+RJ45 Derek,6,SERVO_LIFT_PWM,PCA channel odd number
+RJ45 Derek,7,LED_DATA_IN,Addressable LED data into Derek
+RJ45 Derek,8,LED_DATA_OUT,Returned addressable LED data from Derek
