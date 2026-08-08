@@ -8,13 +8,13 @@ $Descr A3 16535 11693
 Sheet 1 1
 Title "Cluster Servo Board"
 Date "2026-08-07"
-Rev "B"
+Rev "C"
 Comp "Derek Eyes-in-Cans Cluster Controller"
 Comment1 "PCA9685 module, eight Derek RJ45s, 5V high-current plane, LED level shifter"
 Comment2 "RJ45 CONNECTORS ARE NOT ETHERNET"
 $EndDescr
 Text Notes 700 550 0 140 ~ 28
-CLUSTER SERVO BOARD - REV B
+CLUSTER SERVO BOARD - REV C
 Text Notes 700 800 0 80 ~ 16
 High-current board. 8 Derek ports = 16 servos. Separate 5V input. 4-layer recommended.
 Text Notes 750 1200 0 80 ~ 16
@@ -108,6 +108,7 @@ U 1 1 21
 P 1200 5000
 F 0 "J2" H 1280 4992 50 0000 L CNN
 F 1 "RJ45 DEREK 1" H 1280 4901 50 0000 L CNN
+F 2 "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal" H 0 0 50 0001 C CNN
 	1    1200 5000
 	1 0 0 -1
 $EndComp
@@ -119,6 +120,7 @@ U 1 1 22
 P 2950 5000
 F 0 "J3" H 3030 4992 50 0000 L CNN
 F 1 "RJ45 DEREK 2" H 3030 4901 50 0000 L CNN
+F 2 "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal" H 0 0 50 0001 C CNN
 	1    2950 5000
 	1 0 0 -1
 $EndComp
@@ -130,6 +132,7 @@ U 1 1 23
 P 4700 5000
 F 0 "J4" H 4780 4992 50 0000 L CNN
 F 1 "RJ45 DEREK 3" H 4780 4901 50 0000 L CNN
+F 2 "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal" H 0 0 50 0001 C CNN
 	1    4700 5000
 	1 0 0 -1
 $EndComp
@@ -141,6 +144,7 @@ U 1 1 24
 P 6450 5000
 F 0 "J5" H 6530 4992 50 0000 L CNN
 F 1 "RJ45 DEREK 4" H 6530 4901 50 0000 L CNN
+F 2 "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal" H 0 0 50 0001 C CNN
 	1    6450 5000
 	1 0 0 -1
 $EndComp
@@ -152,6 +156,7 @@ U 1 1 25
 P 8200 5000
 F 0 "J6" H 8280 4992 50 0000 L CNN
 F 1 "RJ45 DEREK 5" H 8280 4901 50 0000 L CNN
+F 2 "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal" H 0 0 50 0001 C CNN
 	1    8200 5000
 	1 0 0 -1
 $EndComp
@@ -163,6 +168,7 @@ U 1 1 26
 P 9950 5000
 F 0 "J7" H 10030 4992 50 0000 L CNN
 F 1 "RJ45 DEREK 6" H 10030 4901 50 0000 L CNN
+F 2 "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal" H 0 0 50 0001 C CNN
 	1    9950 5000
 	1 0 0 -1
 $EndComp
@@ -174,6 +180,7 @@ U 1 1 27
 P 11700 5000
 F 0 "J8" H 11780 4992 50 0000 L CNN
 F 1 "RJ45 DEREK 7" H 11780 4901 50 0000 L CNN
+F 2 "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal" H 0 0 50 0001 C CNN
 	1    11700 5000
 	1 0 0 -1
 $EndComp
@@ -185,6 +192,7 @@ U 1 1 28
 P 13450 5000
 F 0 "J9" H 13530 4992 50 0000 L CNN
 F 1 "RJ45 DEREK 8" H 13530 4901 50 0000 L CNN
+F 2 "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal" H 0 0 50 0001 C CNN
 	1    13450 5000
 	1 0 0 -1
 $EndComp

@@ -2,12 +2,12 @@
 	(version 20260306)
 	(generator "eeschema")
 	(generator_version "10.0")
-	(uuid "8d2f48d2-5e7c-4ec1-ac13-670b1efc6924")
+	(uuid "388a9e91-0f0e-433a-bd5f-a378c5ea05cf")
 	(paper "A3")
 	(title_block
 		(title "Cluster Servo Board")
 		(date "2026-08-07")
-		(rev "B")
+		(rev "C")
 		(company "Derek Eyes-in-Cans Cluster Controller")
 		(comment 1 "PCA9685 module, eight Derek RJ45s, 5V high-current plane, LED level shifter")
 		(comment 2 "RJ45 CONNECTORS ARE NOT ETHERNET")
@@ -1487,22 +1487,9 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "C1-C4: 1000uF/10V low-ESR, one per two Derek ports. C5-C12: 100nF branch bypass. C13: 100nF at U2. C14: 10uF local logic bulk."
+	(text "DEREK 4 / J5\nPAN=PWM6 LIFT=PWM7"
 		(exclude_from_sim no)
-		(at 17.78 208.28 0)
-		(effects
-			(font
-				(size 1.524 1.524)
-				(thickness 0.3048)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "2ae813eb-71f2-4e06-9a68-e2df997e2979")
-	)
-	(text "DEREK 8 / J9\nPAN=PWM14 LIFT=PWM15"
-		(exclude_from_sim no)
-		(at 341.63 104.14 0)
+		(at 163.83 104.14 0)
 		(effects
 			(font
 				(size 1.397 1.397)
@@ -1511,124 +1498,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "3411d17f-fe67-49f3-bd02-9368994aedc1")
-	)
-	(text "J10/J11 are parallel. Use high-current terminals and heavy conductors. Board ceiling ~{15A.}"
-		(exclude_from_sim no)
-		(at 287.02 69.85 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(thickness 0.254)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "3c48a497-0fbb-4af4-937b-d51b776da5b5")
-	)
-	(text "WARNING: THESE RJ45 CONNECTORS CARRY 5V SERVO/LED POWER. THEY ARE NOT ETHERNET PORTS."
-		(exclude_from_sim no)
-		(at 17.78 246.38 0)
-		(effects
-			(font
-				(size 2.286 2.286)
-				(thickness 0.4572)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "466f85f8-8c68-4055-8fff-c81613a710d8")
-	)
-	(text "JP1: J2 OUT / J3 IN / J2 IN     JP2: J3 OUT / J4 IN / J3 IN     JP3: J4 OUT / J5 IN / J4 IN"
-		(exclude_from_sim no)
-		(at 17.78 175.26 0)
-		(effects
-			(font
-				(size 1.524 1.524)
-				(thickness 0.3048)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "57a3850c-5f6b-4955-8d76-05cf5a7fc707")
-	)
-	(text "CLUSTER SERVO BOARD - REV B"
-		(exclude_from_sim no)
-		(at 17.78 13.97 0)
-		(effects
-			(font
-				(size 3.556 3.556)
-				(thickness 0.7112)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "5b141c91-d5d0-4005-8faa-1e8ccdf01f08")
-	)
-	(text "HIGH-CURRENT 5V INPUT"
-		(exclude_from_sim no)
-		(at 287.02 30.48 0)
-		(effects
-			(font
-				(size 2.032 2.032)
-				(thickness 0.4064)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "679744c3-1981-4948-86d7-c397ed2d27e0")
-	)
-	(text "LED_5V -> J2 pin7. Each Derek returns data on pin8. JP1..JP7 selects NORMAL(returned output) or BYPASS(current input) for the next Derek."
-		(exclude_from_sim no)
-		(at 17.78 162.56 0)
-		(effects
-			(font
-				(size 1.524 1.524)
-				(thickness 0.3048)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "76684741-4e05-4c04-ad46-8d2c594f7a6c")
-	)
-	(text "DEREK 2 / J3\nPAN=PWM2 LIFT=PWM3"
-		(exclude_from_sim no)
-		(at 74.93 104.14 0)
-		(effects
-			(font
-				(size 1.397 1.397)
-				(thickness 0.2794)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "7987f0ef-1692-443f-8c14-fd984a748419")
-	)
-	(text "J1 - JST-XH-8 FROM LOGIC BOARD"
-		(exclude_from_sim no)
-		(at 19.05 30.48 0)
-		(effects
-			(font
-				(size 2.032 2.032)
-				(thickness 0.4064)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "7d838c91-0bab-4fc2-98b9-ccaa9163d090")
-	)
-	(text "JP4: J5 OUT / J6 IN / J5 IN     JP5: J6 OUT / J7 IN / J6 IN     JP6: J7 OUT / J8 IN / J7 IN     JP7: J8 OUT / J9 IN / J8 IN"
-		(exclude_from_sim no)
-		(at 17.78 182.88 0)
-		(effects
-			(font
-				(size 1.524 1.524)
-				(thickness 0.3048)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "7e624540-308d-4d9c-a696-05438de91541")
+		(uuid "09a3aa62-2baf-4f60-acb9-2a4a9852eefd")
 	)
 	(text "PCB STACKUP: 4 layers recommended — F.Cu signals/pours, In1 +5V plane, In2 GND plane, B.Cu signals/pours.\nUse 2 oz outer copper if practical, generous via stitching at every RJ45 power pad, and verify connector current ratings."
 		(exclude_from_sim no)
@@ -1641,11 +1511,11 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "7fb29176-fd15-45a7-8402-9f047f072b20")
+		(uuid "1000c401-97dd-41f6-95f8-9a53e5fa397e")
 	)
-	(text "DEREK 3 / J4\nPAN=PWM4 LIFT=PWM5"
+	(text "DEREK 2 / J3\nPAN=PWM2 LIFT=PWM3"
 		(exclude_from_sim no)
-		(at 119.38 104.14 0)
+		(at 74.93 104.14 0)
 		(effects
 			(font
 				(size 1.397 1.397)
@@ -1654,11 +1524,11 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "92fec767-5e72-405a-b539-c0eb98c4822e")
+		(uuid "29301d3d-5035-412e-b2e3-17bb306d4374")
 	)
-	(text "DEREK 7 / J8\nPAN=PWM12 LIFT=PWM13"
+	(text "DEREK 8 / J9\nPAN=PWM14 LIFT=PWM15"
 		(exclude_from_sim no)
-		(at 297.18 104.14 0)
+		(at 341.63 104.14 0)
 		(effects
 			(font
 				(size 1.397 1.397)
@@ -1667,24 +1537,11 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "9a992193-8e70-49be-9038-dbdbbb28af64")
+		(uuid "39058b7d-b6c3-48e5-9481-bbfe90f37ff3")
 	)
-	(text "LED DATA CHAIN / BYPASS JUMPERS"
+	(text "J10/J11 are parallel. Use high-current terminals and heavy conductors. Board ceiling ~{15A.}"
 		(exclude_from_sim no)
-		(at 17.78 154.94 0)
-		(effects
-			(font
-				(size 2.032 2.032)
-				(thickness 0.4064)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "9aa3f345-4b55-4111-b9d8-825b35e6f67a")
-	)
-	(text "Power U2 from +5V_SERVO; 100nF directly at VCC/GND. Tie gate OE low."
-		(exclude_from_sim no)
-		(at 208.28 66.04 0)
+		(at 287.02 69.85 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1693,46 +1550,20 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "9ae24d31-5ba5-4fc5-8226-2ade081fac7b")
+		(uuid "41cd2645-681e-4af6-ab32-e93cf422f92a")
 	)
-	(text "POWER DECOUPLING"
+	(text "JP1: J2 OUT / J3 IN / J2 IN     JP2: J3 OUT / J4 IN / J3 IN     JP3: J4 OUT / J5 IN / J4 IN"
 		(exclude_from_sim no)
-		(at 17.78 200.66 0)
+		(at 17.78 175.26 0)
 		(effects
 			(font
-				(size 2.032 2.032)
-				(thickness 0.4064)
+				(size 1.524 1.524)
+				(thickness 0.3048)
 				(bold yes)
 			)
 			(justify left bottom)
 		)
-		(uuid "a11feece-c90d-40b8-8536-ddbf6d867d24")
-	)
-	(text "DEREK 1 / J2\nPAN=PWM0 LIFT=PWM1"
-		(exclude_from_sim no)
-		(at 30.48 104.14 0)
-		(effects
-			(font
-				(size 1.397 1.397)
-				(thickness 0.2794)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "b18201de-d9cb-4fd6-9428-069c73d76663")
-	)
-	(text "U2 - 74AHCT125N LED LEVEL SHIFTER"
-		(exclude_from_sim no)
-		(at 210.82 30.48 0)
-		(effects
-			(font
-				(size 2.032 2.032)
-				(thickness 0.4064)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "b811738d-c029-4ee6-8155-245c78dc59d6")
+		(uuid "4e0526a2-23f5-4fa4-b5bc-a0b302973dbf")
 	)
 	(text "DEREK 5 / J6\nPAN=PWM8 LIFT=PWM9"
 		(exclude_from_sim no)
@@ -1745,37 +1576,11 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "c3c7a73b-4cde-4725-8c98-1b61ede76f85")
+		(uuid "55930451-e8e0-49cc-bca9-7b54755bbb64")
 	)
-	(text "DEREK 6 / J7\nPAN=PWM10 LIFT=PWM11"
+	(text "POWER DECOUPLING"
 		(exclude_from_sim no)
-		(at 252.73 104.14 0)
-		(effects
-			(font
-				(size 1.397 1.397)
-				(thickness 0.2794)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "c94bfcb5-aee8-4544-9abf-47dbdc245aa8")
-	)
-	(text "DEREK RJ45 PORTS - NOT ETHERNET"
-		(exclude_from_sim no)
-		(at 17.78 88.9 0)
-		(effects
-			(font
-				(size 2.286 2.286)
-				(thickness 0.4572)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "ce09387a-23e8-4fe8-aed5-43bd44678334")
-	)
-	(text "U1 - ADAFRUIT PCA9685 16-CHANNEL SERVO MODULE"
-		(exclude_from_sim no)
-		(at 109.22 30.48 0)
+		(at 17.78 200.66 0)
 		(effects
 			(font
 				(size 2.032 2.032)
@@ -1784,20 +1589,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "d80a6703-54fa-4a32-bb5f-bd8e3964a017")
-	)
-	(text "VCC = +3V3_LOGIC; V+ = +5V_SERVO; GND common; SDA/SCL from J1; OE from J1"
-		(exclude_from_sim no)
-		(at 109.22 36.83 0)
-		(effects
-			(font
-				(size 1.524 1.524)
-				(thickness 0.3048)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "ee56f444-450e-4a1b-9cf8-81d70fdba0fc")
+		(uuid "57b1bdce-4b7b-4e03-9813-76bf8c2662ba")
 	)
 	(text "Every port: 1 +5V, 2 +5V, 3 GND, 4 GND, 5 PAN PWM, 6 LIFT PWM, 7 LED DATA IN, 8 LED DATA OUT"
 		(exclude_from_sim no)
@@ -1810,7 +1602,176 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "ef0e0e30-0e78-4c93-afad-8562bca50eba")
+		(uuid "5f0bb693-ae25-4435-bf70-b7037328718b")
+	)
+	(text "DEREK 6 / J7\nPAN=PWM10 LIFT=PWM11"
+		(exclude_from_sim no)
+		(at 252.73 104.14 0)
+		(effects
+			(font
+				(size 1.397 1.397)
+				(thickness 0.2794)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "6161a18e-a325-4ee7-a9b9-9976ddc3aa34")
+	)
+	(text "JP4: J5 OUT / J6 IN / J5 IN     JP5: J6 OUT / J7 IN / J6 IN     JP6: J7 OUT / J8 IN / J7 IN     JP7: J8 OUT / J9 IN / J8 IN"
+		(exclude_from_sim no)
+		(at 17.78 182.88 0)
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.3048)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "673abd5b-48b3-4cd6-b8f2-a9b482bb0174")
+	)
+	(text "U1 - ADAFRUIT PCA9685 16-CHANNEL SERVO MODULE"
+		(exclude_from_sim no)
+		(at 109.22 30.48 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(thickness 0.4064)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "6fb92426-9f76-4965-b863-86a0ccb8a68c")
+	)
+	(text "DEREK 3 / J4\nPAN=PWM4 LIFT=PWM5"
+		(exclude_from_sim no)
+		(at 119.38 104.14 0)
+		(effects
+			(font
+				(size 1.397 1.397)
+				(thickness 0.2794)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "77b619e0-1994-4251-b176-5113e977c4f5")
+	)
+	(text "CLUSTER SERVO BOARD - REV C"
+		(exclude_from_sim no)
+		(at 17.78 13.97 0)
+		(effects
+			(font
+				(size 3.556 3.556)
+				(thickness 0.7112)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "7c69fa75-0877-4506-a342-d09c927c0b53")
+	)
+	(text "C1-C4: 1000uF/10V low-ESR, one per two Derek ports. C5-C12: 100nF branch bypass. C13: 100nF at U2. C14: 10uF local logic bulk."
+		(exclude_from_sim no)
+		(at 17.78 208.28 0)
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.3048)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "8ccdc44d-aa04-401b-bdab-a4d910b380f1")
+	)
+	(text "DEREK RJ45 PORTS - NOT ETHERNET"
+		(exclude_from_sim no)
+		(at 17.78 88.9 0)
+		(effects
+			(font
+				(size 2.286 2.286)
+				(thickness 0.4572)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "9414e0fb-427e-4652-a8db-8f16680c9938")
+	)
+	(text "Power U2 from +5V_SERVO; 100nF directly at VCC/GND. Tie gate OE low."
+		(exclude_from_sim no)
+		(at 208.28 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "974d0284-9cca-4596-b66f-ff8c92131228")
+	)
+	(text "HIGH-CURRENT 5V INPUT"
+		(exclude_from_sim no)
+		(at 287.02 30.48 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(thickness 0.4064)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "977bc348-b5dd-4d76-86ff-33f14b24cdd9")
+	)
+	(text "VCC = +3V3_LOGIC; V+ = +5V_SERVO; GND common; SDA/SCL from J1; OE from J1"
+		(exclude_from_sim no)
+		(at 109.22 36.83 0)
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.3048)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "9de41865-4a01-4632-980a-1d1a39cf2840")
+	)
+	(text "LED DATA CHAIN / BYPASS JUMPERS"
+		(exclude_from_sim no)
+		(at 17.78 154.94 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(thickness 0.4064)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "a1a0a22e-1dfc-4700-bd5f-41b23b2fc163")
+	)
+	(text "J1 - JST-XH-8 FROM LOGIC BOARD"
+		(exclude_from_sim no)
+		(at 19.05 30.48 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(thickness 0.4064)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "c05874e7-2f77-4e4f-bac3-c172b1063ce7")
+	)
+	(text "WARNING: THESE RJ45 CONNECTORS CARRY 5V SERVO/LED POWER. THEY ARE NOT ETHERNET PORTS."
+		(exclude_from_sim no)
+		(at 17.78 246.38 0)
+		(effects
+			(font
+				(size 2.286 2.286)
+				(thickness 0.4572)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "cb5e9181-22ed-42c0-be95-42a8600a0904")
 	)
 	(text "High-current board. 8 Derek ports = 16 servos. Separate 5V input. 4-layer recommended."
 		(exclude_from_sim no)
@@ -1823,11 +1784,37 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "f4a6e819-47f3-4996-9b14-5bb180653bb2")
+		(uuid "dca84146-5826-4379-98d7-f87f624dcc3d")
 	)
-	(text "DEREK 4 / J5\nPAN=PWM6 LIFT=PWM7"
+	(text "U2 - 74AHCT125N LED LEVEL SHIFTER"
 		(exclude_from_sim no)
-		(at 163.83 104.14 0)
+		(at 210.82 30.48 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(thickness 0.4064)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "dd9bce33-d515-4c30-86d5-90c358ffe70f")
+	)
+	(text "LED_5V -> J2 pin7. Each Derek returns data on pin8. JP1..JP7 selects NORMAL(returned output) or BYPASS(current input) for the next Derek."
+		(exclude_from_sim no)
+		(at 17.78 162.56 0)
+		(effects
+			(font
+				(size 1.524 1.524)
+				(thickness 0.3048)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "e54fa90a-514a-4ada-918f-a70c2777021f")
+	)
+	(text "DEREK 1 / J2\nPAN=PWM0 LIFT=PWM1"
+		(exclude_from_sim no)
+		(at 30.48 104.14 0)
 		(effects
 			(font
 				(size 1.397 1.397)
@@ -1836,7 +1823,20 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "fda97a96-b28f-4bd1-90c3-7a31246f4ee9")
+		(uuid "f04a3cb0-3d24-4dba-9709-aeb2c7c69211")
+	)
+	(text "DEREK 7 / J8\nPAN=PWM12 LIFT=PWM13"
+		(exclude_from_sim no)
+		(at 297.18 104.14 0)
+		(effects
+			(font
+				(size 1.397 1.397)
+				(thickness 0.2794)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "fd3dfe6a-7636-4368-915e-8162bdc30864")
 	)
 	(label "LED_DATA_3V3"
 		(at 214.63 50.8 180)
@@ -1846,77 +1846,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "1d638b43-88bc-462b-9d31-40c6d2983d9c")
-	)
-	(label "SPARE"
-		(at 63.5 58.42 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "784c9f4e-0c34-4fb5-98a9-e38ba55825a9")
-	)
-	(label "PCA_OE_N"
-		(at 63.5 55.88 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "8511794f-8533-4eab-9342-a0931ebad3a7")
-	)
-	(label "LED_5V"
-		(at 242.57 50.8 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "907a5745-e322-4102-99cc-0a3fad9188a4")
-	)
-	(label "GND"
-		(at 63.5 43.18 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "a9d39c96-d007-4278-b5f3-f6eb5ba32197")
-	)
-	(label "I2C_SDA"
-		(at 63.5 48.26 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "b35cbf3f-20bf-40d1-b79e-f390ca6bf892")
-	)
-	(label "LED_DATA_3V3"
-		(at 63.5 53.34 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "bd23aea3-ce24-42c5-b469-33e3eeba3ac6")
-	)
-	(label "GND"
-		(at 63.5 40.64 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e1ade7ec-9550-4470-9cb3-62b3014f5045")
+		(uuid "019b0cb1-fe17-402d-b241-587b9178fdf8")
 	)
 	(label "+3V3_LOGIC"
 		(at 63.5 45.72 0)
@@ -1926,7 +1856,47 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "ea4a734a-dad9-47b2-82d9-502a49a15339")
+		(uuid "0899398f-ef92-42d9-a922-8d8589f7effb")
+	)
+	(label "LED_DATA_3V3"
+		(at 63.5 53.34 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "207e0ce6-ba09-41d7-bfce-871899dff1c1")
+	)
+	(label "SPARE"
+		(at 63.5 58.42 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "653896d4-df87-469d-b81b-22e77456a7cb")
+	)
+	(label "GND"
+		(at 63.5 40.64 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "704ee5b1-c2ff-43f8-b393-41538eea19e2")
+	)
+	(label "I2C_SDA"
+		(at 63.5 48.26 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7475d270-3b83-447a-8585-1bd42c9f9b84")
 	)
 	(label "I2C_SCL"
 		(at 63.5 50.8 0)
@@ -1936,7 +1906,37 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "f27573e0-1102-4493-ad08-3e7c50ce8c9e")
+		(uuid "b1ba3404-3da4-4ce9-81f7-251bbc8a255a")
+	)
+	(label "LED_5V"
+		(at 242.57 50.8 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e69e3aa2-e4fc-4472-970b-4fb5e483d9a6")
+	)
+	(label "GND"
+		(at 63.5 43.18 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "edc6b38b-b207-49ce-8d49-6d1c8ebcbab7")
+	)
+	(label "PCA_OE_N"
+		(at 63.5 55.88 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f09e4baf-65d2-4eb0-807e-0ce1a88b7bb5")
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x08")
@@ -2000,33 +2000,33 @@
 				)
 			)
 		)
-		(pin "8"
-			(uuid "37f85a63-4027-4d5e-b628-5cd46450e8f4")
-		)
-		(pin "2"
-			(uuid "bfa3e4ed-32cf-4f79-871b-bac8c42feaa5")
-		)
-		(pin "6"
-			(uuid "0aefaaaa-465a-44f6-87e5-88e8eb2a2aef")
+		(pin "7"
+			(uuid "512991c1-53dd-4150-958f-8922ca5ca772")
 		)
 		(pin "3"
-			(uuid "9e0e17a0-c999-46bb-8de3-baf939efb7e0")
+			(uuid "bd55a253-1c68-4826-9a2e-c71ca5ef7a86")
+		)
+		(pin "8"
+			(uuid "5ddea803-80af-4e6c-8016-97facd632021")
+		)
+		(pin "6"
+			(uuid "3a274ef4-493a-436a-829c-91b2ba770e49")
 		)
 		(pin "1"
-			(uuid "5dd7a680-f11d-4d26-9570-8f5d672ab19c")
-		)
-		(pin "5"
-			(uuid "c0837d12-4d3f-4dd5-90b4-722e78c4120d")
+			(uuid "ff68b8cf-38cf-451f-95ca-af96edc4fdaf")
 		)
 		(pin "4"
-			(uuid "7bdcee5d-bd70-4542-ab3c-b9593e82c503")
+			(uuid "8f171045-d38d-4f0d-944a-72f854fdcb64")
 		)
-		(pin "7"
-			(uuid "5925d3cf-66f1-4dca-a170-9c2372890905")
+		(pin "2"
+			(uuid "7e9dd233-06b2-4afe-bd34-f8a009296962")
+		)
+		(pin "5"
+			(uuid "e386c79d-92d7-47dc-a342-078b7d86ea90")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J1")
 					(unit 1)
 				)
@@ -2096,57 +2096,57 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "375fd737-2d0f-491e-905e-20d2e5f49c90")
-		)
-		(pin "2"
-			(uuid "e763ecf1-34ef-4a21-84c0-42bae9de7977")
+		(pin "6"
+			(uuid "cc4aab10-5b36-4f76-b769-96f59414ffaf")
 		)
 		(pin "3"
-			(uuid "d3378515-d1d5-4e97-995c-79e7319d503c")
-		)
-		(pin "4"
-			(uuid "d746a1aa-8a5e-4d00-8605-41535db57242")
-		)
-		(pin "5"
-			(uuid "72736959-b56b-498b-8b32-7e6d0d0214b1")
-		)
-		(pin "6"
-			(uuid "dac9b300-e2ec-4bf0-bd4f-a2a42ce3a055")
-		)
-		(pin "7"
-			(uuid "8c86ffdc-7431-4ecd-a725-de871c7cdbfe")
-		)
-		(pin "8"
-			(uuid "55a51923-b2c4-41a6-8d52-7337aa91ac9e")
-		)
-		(pin "9"
-			(uuid "0e8aa683-949c-4ea9-9c2c-340353276803")
-		)
-		(pin "10"
-			(uuid "aad79f3e-6d5d-439c-9704-ec0c1b5028fb")
-		)
-		(pin "13"
-			(uuid "68cf431b-2865-4226-b9f7-a753e7d972b2")
-		)
-		(pin "16"
-			(uuid "152c84c4-27af-470a-8010-53e4fdc62ec2")
-		)
-		(pin "14"
-			(uuid "5067498d-5b18-49ab-b87d-4ae2b1f372a7")
-		)
-		(pin "12"
-			(uuid "4e95e620-a2e8-47c4-b086-ceec9a19b9ad")
+			(uuid "927828b0-190d-49a8-92ab-b48d71d1fd54")
 		)
 		(pin "15"
-			(uuid "2e09600a-76f2-4be8-978d-1b8568a24fb5")
+			(uuid "d7d2139d-5ae8-4a10-8b5a-766bf81467b2")
+		)
+		(pin "5"
+			(uuid "80d3deb5-f88c-4fd5-97fc-8bdb179e2954")
+		)
+		(pin "9"
+			(uuid "4348442e-9e49-4cbf-8ece-d0844a6d6ec5")
+		)
+		(pin "10"
+			(uuid "d7f9e715-98c3-4371-aeb3-6a8fae6deb20")
+		)
+		(pin "14"
+			(uuid "f8a0963b-ede3-485c-a926-0533349ed5b7")
+		)
+		(pin "8"
+			(uuid "2751aeeb-842e-412c-ae23-7304da062e6e")
+		)
+		(pin "7"
+			(uuid "2e841337-e37e-4311-99ed-e95fde5cb172")
 		)
 		(pin "11"
-			(uuid "cbf0b543-9733-4f8f-a127-a92a58c39353")
+			(uuid "b74493aa-cbb8-447e-954d-c98fa5b8e1ce")
+		)
+		(pin "12"
+			(uuid "6f89b372-e2c8-4c2c-a8e2-d784c2d96ad7")
+		)
+		(pin "13"
+			(uuid "ac1d6871-0a2d-42ca-9a7c-e1d10a6f9099")
+		)
+		(pin "1"
+			(uuid "129cf432-bb1e-45f8-b878-f1e3709e563e")
+		)
+		(pin "2"
+			(uuid "c11eb7f8-18bb-4da5-9b73-6eeea776d97c")
+		)
+		(pin "16"
+			(uuid "f1d81178-d246-489d-8b50-e77345bfb093")
+		)
+		(pin "4"
+			(uuid "2802af53-0d87-4713-a8c9-6715ab695643")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "U1")
 					(unit 1)
 				)
@@ -2214,51 +2214,51 @@
 				)
 			)
 		)
-		(pin "2"
-			(uuid "f09fcbbb-c963-4f8c-8679-87391f946d87")
+		(pin "9"
+			(uuid "ec4907d8-16d2-4226-ab15-8a401bdf2fdf")
 		)
-		(pin "3"
-			(uuid "da00512e-c8e6-4ae2-87e2-94fe0e9b304a")
+		(pin "2"
+			(uuid "334f17f9-639c-45cb-add1-3d422f65a097")
 		)
 		(pin "4"
-			(uuid "0c6371f1-4a83-423c-a9e7-04fcae341e96")
-		)
-		(pin "5"
-			(uuid "a894b304-10b1-4f46-9046-92a9443c7a89")
-		)
-		(pin "6"
-			(uuid "455b9d09-b054-4f4a-ba72-070ae4903003")
-		)
-		(pin "8"
-			(uuid "a5b02d35-c043-485d-a5e4-383e2d06c57f")
-		)
-		(pin "1"
-			(uuid "40f97954-b9df-416c-8611-27b246cca1b2")
-		)
-		(pin "10"
-			(uuid "d581ee66-ebab-49f0-9e2b-e758153cb14d")
-		)
-		(pin "11"
-			(uuid "33c34ab8-9211-4ff6-97ce-120116298bd7")
-		)
-		(pin "14"
-			(uuid "c860e14a-bbb6-4f9d-b9de-7b5f7fb5a782")
-		)
-		(pin "13"
-			(uuid "d857db05-6f77-48e0-b0d6-85c99f327f3b")
-		)
-		(pin "12"
-			(uuid "d5ce7173-4c52-46fb-bab6-e2bc9e8f79e1")
-		)
-		(pin "9"
-			(uuid "c9ee45fd-71b1-4b44-851b-1f35d961f90c")
+			(uuid "1bc941b1-3ede-4d3c-8f53-b1562d03c870")
 		)
 		(pin "7"
-			(uuid "fe4539a4-4694-4d23-8392-5ed0741b9d20")
+			(uuid "863c909a-fd0b-4e57-84ad-c565ad18a6f4")
+		)
+		(pin "3"
+			(uuid "03bc0a77-775d-4767-a07b-6f96e301ab20")
+		)
+		(pin "1"
+			(uuid "78587f56-ef6a-4881-add0-83c0316a8eda")
+		)
+		(pin "6"
+			(uuid "9bf13523-7b5f-473d-9833-6458623fb62a")
+		)
+		(pin "5"
+			(uuid "abd48402-47ec-4ab7-8a84-1c7156d2c756")
+		)
+		(pin "8"
+			(uuid "1c111b46-b3ff-4402-b5f5-fe26d4ef23a5")
+		)
+		(pin "11"
+			(uuid "828072ea-8016-4ded-9582-9aa08545f833")
+		)
+		(pin "12"
+			(uuid "52e127f5-db80-4086-8060-12c9290594fb")
+		)
+		(pin "10"
+			(uuid "c36c7634-248d-4c9e-a0af-27f460562f88")
+		)
+		(pin "13"
+			(uuid "92793436-5aed-49d5-b4ee-e5e405b9a1e2")
+		)
+		(pin "14"
+			(uuid "fa392770-2d3f-40a2-84fa-235cee4793f8")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "U2")
 					(unit 1)
 				)
@@ -2329,14 +2329,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "e75ef1df-d4d6-4a62-8af6-3c3ed7c1779c")
+			(uuid "5d0387c3-17ab-4374-b041-36b7e671cde2")
 		)
 		(pin "2"
-			(uuid "1e2a9560-4777-47ed-a6b2-f5e0fabeaec2")
+			(uuid "6b5c9f34-88ac-4a05-964d-c03bdfc1a00e")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J10")
 					(unit 1)
 				)
@@ -2406,15 +2406,15 @@
 				)
 			)
 		)
-		(pin "2"
-			(uuid "760eecb3-0b51-4c01-be89-e820e6a0b705")
-		)
 		(pin "1"
-			(uuid "f8c37195-962a-4d8a-ac43-65d2a626436c")
+			(uuid "04841487-fd9a-4562-8500-6fb1457df830")
+		)
+		(pin "2"
+			(uuid "3cfc16a7-e533-4735-84bc-3165ede34236")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J11")
 					(unit 1)
 				)
@@ -2454,8 +2454,9 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 30.48 127 0)
+		(property "Footprint" "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal"
+			(at 0 254 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2484,33 +2485,33 @@
 				)
 			)
 		)
-		(pin "2"
-			(uuid "0a6a364d-f287-4855-80f6-91ae62b7fbd2")
-		)
-		(pin "4"
-			(uuid "d67bba6d-4e1e-4b9d-af76-e81e8eb66b04")
-		)
-		(pin "3"
-			(uuid "63c66e2e-7bef-41e8-bfe3-cbe2044d0135")
-		)
 		(pin "1"
-			(uuid "9ba672b9-6f12-4916-810c-4dfdf355fe8d")
+			(uuid "bdeca21f-7260-4374-bfcc-5b6f10b91002")
 		)
 		(pin "5"
-			(uuid "6e08e7e2-5133-4826-b4b0-eafe480aadce")
+			(uuid "928188d1-ae85-4eb7-842a-ed7c779e43cb")
 		)
 		(pin "6"
-			(uuid "3395667f-1e6e-4c8a-ac16-b46e7ca42780")
-		)
-		(pin "7"
-			(uuid "291bc169-6ae3-433a-9ffe-661ec90b6bbe")
+			(uuid "2fcfa407-0f0c-4368-b74e-ba18cbf7daa6")
 		)
 		(pin "8"
-			(uuid "87833281-b878-431f-89cb-313330696c5a")
+			(uuid "78310bb1-0b94-4797-8ecc-a374fb765ef5")
+		)
+		(pin "2"
+			(uuid "a8b62768-3f45-4c11-82da-b2c9b9f188f9")
+		)
+		(pin "3"
+			(uuid "68d868bb-a483-4945-a363-63b87a8cc3fe")
+		)
+		(pin "4"
+			(uuid "7049438a-3197-4286-a875-5523689383dd")
+		)
+		(pin "7"
+			(uuid "00a6fd08-d540-49be-8804-83a06fd70ba4")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J2")
 					(unit 1)
 				)
@@ -2550,8 +2551,9 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 74.93 127 0)
+		(property "Footprint" "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal"
+			(at 0 254 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2580,33 +2582,33 @@
 				)
 			)
 		)
-		(pin "8"
-			(uuid "3ec790b4-0c86-48fc-bed9-6b508b27e493")
-		)
-		(pin "1"
-			(uuid "aa39c8e7-46c2-405e-8013-a4fea50ec2d5")
-		)
-		(pin "2"
-			(uuid "949cdf5b-7e93-4a23-8bee-9a818eb380d8")
-		)
-		(pin "7"
-			(uuid "9d2157f2-3f14-4711-b1bd-1a8f26c556fb")
-		)
 		(pin "4"
-			(uuid "6a2ee112-c87c-4185-8e48-72e29de7b25e")
-		)
-		(pin "5"
-			(uuid "97daad7b-6b75-4f72-9433-a0e0013980b9")
+			(uuid "2c438770-1871-4548-824a-4b585aa12006")
 		)
 		(pin "3"
-			(uuid "37dd8174-ba1b-4cd0-b6fe-e0897dc68302")
+			(uuid "71cc43ce-e88a-4125-9b42-211a6966f1ec")
+		)
+		(pin "5"
+			(uuid "3ca5a87b-6654-42ce-96b8-75ea5568aed9")
 		)
 		(pin "6"
-			(uuid "0dc7734d-e31a-427f-a698-b62007ffb23f")
+			(uuid "c333b8d5-a1cd-4c26-8ff2-61bcaf6d6475")
+		)
+		(pin "7"
+			(uuid "0f44c431-5056-4da4-a3d5-25356f8052af")
+		)
+		(pin "1"
+			(uuid "e1a0d1d5-a0b2-4e96-a556-49c46198f5cf")
+		)
+		(pin "2"
+			(uuid "bc2ed8d8-bfe1-40b5-847e-a3d671ef22df")
+		)
+		(pin "8"
+			(uuid "53da29ee-6a44-40cd-8e6b-dbc43be6999a")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J3")
 					(unit 1)
 				)
@@ -2646,8 +2648,9 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 119.38 127 0)
+		(property "Footprint" "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal"
+			(at 0 254 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2676,33 +2679,33 @@
 				)
 			)
 		)
-		(pin "5"
-			(uuid "e2494bae-ee72-4157-9f7f-f6c9a5ba5f7e")
-		)
-		(pin "3"
-			(uuid "0a5b3cd8-a202-450a-b8c2-500c268115cf")
-		)
-		(pin "4"
-			(uuid "4adb54ba-70ad-461c-844a-edf034ed039b")
-		)
 		(pin "7"
-			(uuid "d7d9c8bd-e703-4ff1-8440-068fa602173f")
-		)
-		(pin "8"
-			(uuid "c57bd6ff-e8f7-473e-9048-410ab5621841")
+			(uuid "cfbd8d14-c5e4-494c-876f-94ecdb522422")
 		)
 		(pin "1"
-			(uuid "3ef07985-62e7-4691-ab99-e9b680f400ea")
+			(uuid "c347ec6f-764a-4dc7-b6be-9eda5e62adfd")
+		)
+		(pin "8"
+			(uuid "f31f7e1b-67f8-4891-9bcb-b6c622956d2a")
 		)
 		(pin "2"
-			(uuid "47fdc80d-8918-49d0-8950-2089f3395601")
+			(uuid "cbe3cec8-7c53-40bc-922f-774ca6c08cab")
+		)
+		(pin "4"
+			(uuid "4a82c0db-f7ed-4cdd-93c9-975b36fea783")
+		)
+		(pin "5"
+			(uuid "71dca275-16b7-409a-9ab3-6e690ba02613")
+		)
+		(pin "3"
+			(uuid "8318af76-554a-456a-ae9d-ba109664d5c0")
 		)
 		(pin "6"
-			(uuid "6853a14f-2bfd-4733-870b-a5b95883ca0e")
+			(uuid "985bfb7e-636f-4069-8451-17fa6c0bb44c")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J4")
 					(unit 1)
 				)
@@ -2742,8 +2745,9 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 163.83 127 0)
+		(property "Footprint" "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal"
+			(at 0 254 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2772,33 +2776,33 @@
 				)
 			)
 		)
-		(pin "4"
-			(uuid "ff6e6892-fd51-4c29-9b54-c86b98634cf4")
-		)
-		(pin "1"
-			(uuid "f2e46c1c-730c-41a6-a346-fbcabbce1f4d")
-		)
-		(pin "2"
-			(uuid "4e28a64e-2b4e-453b-a025-8e32c51db341")
-		)
-		(pin "5"
-			(uuid "f01f6036-8a3d-4239-8cae-f3a7bc917d9f")
-		)
-		(pin "6"
-			(uuid "a37405f0-49ff-400c-b705-24e6a3ef2b4a")
+		(pin "3"
+			(uuid "85b54e1e-3cbc-45aa-a160-8b3c69cca3dc")
 		)
 		(pin "8"
-			(uuid "ea76873d-bc5e-4b1c-a7dd-ab09098cec17")
+			(uuid "76da51ba-ab62-48b5-9896-5a969938b449")
 		)
-		(pin "3"
-			(uuid "8ac987d6-dc1b-4c37-9d39-4f7a48ee508d")
+		(pin "2"
+			(uuid "aa73b218-79e2-4004-bbd4-84be28259207")
+		)
+		(pin "1"
+			(uuid "cdb979c4-518e-4022-8469-82059785d886")
+		)
+		(pin "4"
+			(uuid "3fa67a05-e3e7-4ec1-b661-2be189ad592b")
+		)
+		(pin "5"
+			(uuid "070471f8-525c-43da-a81d-f343b1674e8f")
+		)
+		(pin "6"
+			(uuid "0cfcf13b-1531-473a-8191-f9a6ce74bcdb")
 		)
 		(pin "7"
-			(uuid "938c3e24-1eaa-4cae-b7d4-88905d572f92")
+			(uuid "3f6951f7-25fe-446b-ae72-f5b242a8d189")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J5")
 					(unit 1)
 				)
@@ -2838,8 +2842,9 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 208.28 127 0)
+		(property "Footprint" "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal"
+			(at 0 254 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2868,33 +2873,33 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "22618139-a378-41b7-86ef-ec210659e972")
-		)
-		(pin "2"
-			(uuid "f6a648ad-d60c-43bd-86dc-f8117f4d26fc")
-		)
-		(pin "3"
-			(uuid "7c55479e-0766-49cc-8a0f-ba2fc26156f4")
-		)
-		(pin "4"
-			(uuid "830688b5-8820-4f44-a95f-fd4151666def")
-		)
-		(pin "5"
-			(uuid "edefbb12-2b72-467a-91ff-d0d7087df4c7")
+		(pin "8"
+			(uuid "986c736d-2441-432c-8f57-e24cf60e7875")
 		)
 		(pin "6"
-			(uuid "4c481a63-a19f-45f7-ac79-40e7ea01eafe")
+			(uuid "b8866edc-744b-4e27-873b-93052cdd8d7c")
 		)
 		(pin "7"
-			(uuid "4fcd5c10-569f-48f8-81de-8e54b8d73341")
+			(uuid "22370a83-fe37-4dc1-93fe-9d8e3ee5c82f")
 		)
-		(pin "8"
-			(uuid "afbc2258-d3de-48c9-aa11-116b3da84def")
+		(pin "1"
+			(uuid "165eeb87-3fa1-435c-8bdf-f982a4c989c8")
+		)
+		(pin "2"
+			(uuid "c28360ea-df09-47c7-a562-8952ec9d10ff")
+		)
+		(pin "3"
+			(uuid "73599592-a166-4b25-a4bc-a0a9fc502126")
+		)
+		(pin "4"
+			(uuid "22e3c465-1cf5-4e1c-8cfd-0723d8c3dd8f")
+		)
+		(pin "5"
+			(uuid "e81d6eff-d2a4-480f-b489-b3d62d92dc46")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J6")
 					(unit 1)
 				)
@@ -2934,8 +2939,9 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 252.73 127 0)
+		(property "Footprint" "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal"
+			(at 0 254 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2964,33 +2970,33 @@
 				)
 			)
 		)
-		(pin "7"
-			(uuid "ada4307e-092b-4a4a-9d47-cbfb33bdf82e")
+		(pin "3"
+			(uuid "895df745-42ad-41cc-b933-cc0e8afcc859")
 		)
 		(pin "6"
-			(uuid "87e55967-89a2-46ee-b2c2-2ca0de7e76ab")
-		)
-		(pin "3"
-			(uuid "e3edb8dc-f9ad-4ce8-88c7-d7ffa81979dc")
-		)
-		(pin "2"
-			(uuid "64ed335a-21c7-4399-9a82-bd30f665c833")
-		)
-		(pin "1"
-			(uuid "c3e3aa8e-5b79-465d-89f6-4bbf3ad7dc80")
-		)
-		(pin "5"
-			(uuid "6f8dfb08-b27a-4856-864e-7430f8234e2d")
+			(uuid "52f6f551-3fd8-46dd-94cc-6228ff03039c")
 		)
 		(pin "8"
-			(uuid "b656bb15-4412-43f9-81ea-64c25de3b449")
+			(uuid "a11faeb2-e967-4699-abb0-469b25c59063")
+		)
+		(pin "1"
+			(uuid "70d833b5-bf48-464d-8824-47d222885546")
+		)
+		(pin "5"
+			(uuid "cb3d3673-8bf9-42ef-8270-3e976ee88ba0")
 		)
 		(pin "4"
-			(uuid "49b3f91e-e278-46fd-b467-358581837835")
+			(uuid "e106a627-b043-41bf-aa05-a5d3fe8ada2a")
+		)
+		(pin "2"
+			(uuid "24d98f93-b710-4902-bfca-682b31387ca7")
+		)
+		(pin "7"
+			(uuid "d388d3d1-4991-468c-abea-ea46b18f4aed")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J7")
 					(unit 1)
 				)
@@ -3030,8 +3036,9 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 297.18 127 0)
+		(property "Footprint" "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal"
+			(at 0 254 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3060,33 +3067,33 @@
 				)
 			)
 		)
-		(pin "8"
-			(uuid "ddbe9774-b628-4c9a-a725-73149b7815f6")
-		)
-		(pin "4"
-			(uuid "52bff494-acae-46dd-ac0b-b62a7b1f5b5d")
-		)
-		(pin "3"
-			(uuid "3448fc2f-aa22-4c9b-b15f-ea70d401e79f")
-		)
-		(pin "1"
-			(uuid "7d7c1079-b38a-4c66-bf00-7f11648db14d")
-		)
-		(pin "5"
-			(uuid "40a3acec-82df-4f82-8404-470f7f0d04e4")
+		(pin "6"
+			(uuid "643c5d99-02dc-4c6c-9f59-56eb5c742082")
 		)
 		(pin "2"
-			(uuid "5987adec-b843-481e-a820-05a7b9cd253f")
+			(uuid "e6610dd0-9795-4cb6-b964-2e790b26034d")
 		)
-		(pin "6"
-			(uuid "42737713-8350-43bf-a8a9-4729b0fb2d7b")
+		(pin "3"
+			(uuid "ddf5ad0c-dfd1-4854-97e6-e7c298584cc7")
 		)
 		(pin "7"
-			(uuid "49dbc22d-3f9f-4858-af9e-d100e94cb6cc")
+			(uuid "5cb3d02c-937d-4758-892f-984176b73266")
+		)
+		(pin "8"
+			(uuid "3faa6ca6-83a5-47fb-9332-1513b5a7732d")
+		)
+		(pin "4"
+			(uuid "da3fbe01-9a15-49b2-a536-4664fa682fc4")
+		)
+		(pin "1"
+			(uuid "ac2b6d9f-d2c5-425a-92be-6768ae0c9b60")
+		)
+		(pin "5"
+			(uuid "48e80637-acbb-432c-b1f6-79414cf2f8bd")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J8")
 					(unit 1)
 				)
@@ -3126,8 +3133,9 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 341.63 127 0)
+		(property "Footprint" "Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal"
+			(at 0 254 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3156,33 +3164,33 @@
 				)
 			)
 		)
-		(pin "2"
-			(uuid "5db7e778-5102-4d41-9f3f-4b66b926ccc9")
-		)
 		(pin "1"
-			(uuid "0c5a7caa-8d1e-4f09-8c56-bc5746a0e4eb")
+			(uuid "8b058e1f-81e5-4788-b39c-58811ab59aa6")
 		)
-		(pin "3"
-			(uuid "25b77f56-397b-4975-9c4b-f5e0d6195e36")
+		(pin "2"
+			(uuid "9a823f3c-6f8b-4101-82d8-22e15581bf63")
 		)
 		(pin "4"
-			(uuid "9c1ee7fc-abbf-4400-af1e-5ffab0594be5")
+			(uuid "694cfd3b-3232-4944-a75a-dfd2c419fe18")
 		)
-		(pin "5"
-			(uuid "f81674da-a25d-46e7-a957-5c32817276a9")
-		)
-		(pin "6"
-			(uuid "de4ddbd6-2bec-4a78-8adc-3a098333dab2")
-		)
-		(pin "7"
-			(uuid "08a708b7-a2bb-43b0-b423-a0e445f6fc8d")
+		(pin "3"
+			(uuid "f00ac2fa-c591-4db5-adcd-cbba20ae7472")
 		)
 		(pin "8"
-			(uuid "642c3d30-42e8-454b-b3e5-2109d5123e1c")
+			(uuid "521ac870-7b49-4255-abe0-6dd684abb2f2")
+		)
+		(pin "6"
+			(uuid "6694b2a0-6df2-4852-bad2-9602e376d023")
+		)
+		(pin "7"
+			(uuid "90907f02-6695-4dfb-be59-f35bc0c1035e")
+		)
+		(pin "5"
+			(uuid "234f8f22-b8f6-4651-8990-f699233f1cc5")
 		)
 		(instances
 			(project "Cluster_Servo_Board"
-				(path "/8d2f48d2-5e7c-4ec1-ac13-670b1efc6924"
+				(path "/388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
 					(reference "J9")
 					(unit 1)
 				)

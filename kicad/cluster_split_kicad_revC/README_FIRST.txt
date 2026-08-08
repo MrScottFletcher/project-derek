@@ -1,10 +1,10 @@
-Derek Cluster Controller Split PCB — Revision B
+Derek Cluster Controller Split PCB — Revision C
 
 This package contains two KiCad projects:
   Cluster_Logic_Board/Cluster_Logic_Board.kicad_pro
   Cluster_Servo_Board/Cluster_Servo_Board.kicad_pro
 
-REV B FOOTPRINT CHANGES
+REV C FOOTPRINT CHANGES
 - Logic U1: full 44-pin (2x22) Hosyond ESP32-S3 N16R8 wide-development-board socket footprint.
   Body outline: 57.15 x 27.94 mm. Header pitch: 2.54 mm. Row spacing: 25.4 mm.
 - Logic U2/U3: full 16-pin DFPlayer Mini / MP3-TF-16P socket footprints, 20 x 20 mm, 2.54 mm pitch.
@@ -22,3 +22,10 @@ The Adafruit PCA9685 outline and mounting-hole geometry are based on Adafruit Pr
 The legacy .sch files are retained because Rev A originated in KiCad legacy schematic format. Open/save them in modern KiCad to migrate to .kicad_sch. The .kicad_pcb and .kicad_pro files are modern KiCad files.
 
 These remain engineering design files. Run ERC/DRC and physically verify module/header orientation before ordering PCBs.
+
+REV C RJ45 CHANGE
+- Servo Board J2-J9 now use Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal rather than the earlier custom one-row placeholder.
+- This is a plain 8P8C right-angle through-hole modular jack footprint family; it is NOT a MagJack and contains no Ethernet magnetics.
+- Existing custom pin functions are preserved: 1/2 +5V, 3/4 GND, 5 Pan PWM, 6 Lift PWM, 7 LED data in, 8 LED data out.
+- A local backup footprint is included in Cluster_Custom.pretty for portability.
+- IMPORTANT: modular-jack mounting-post geometry varies by manufacturer. If purchasing a different generic RJ45 jack, compare its mechanical drawing against this footprint before fabrication.

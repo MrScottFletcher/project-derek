@@ -1,0 +1,5 @@
+Board,Reference,Component,Rev C footprint,Notes
+Logic,U1,Hosyond ESP32-S3 N16R8,Cluster_Custom:ESP32_S3_HOSYOND_N16R8_2x22_WIDE,unchanged from Rev B
+Logic,U2 U3,DFPlayer Mini,Cluster_Custom:DFPlayer_Mini_16P_20x20mm,unchanged from Rev B
+Servo,U1,Adafruit PCA9685 Product 815,Cluster_Custom:Adafruit_PCA9685_16CH_Product815_Carrier,unchanged from Rev B
+Servo,J2-J9,8P8C RJ45 right-angle THT,Connector_RJ:RJ45_Amphenol_54602-x08_Horizontal,plain modular jack; no magnetics; standard KiCad library family
