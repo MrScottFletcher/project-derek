@@ -1,0 +1,13 @@
+Reference,Qty,Part / Value,Footprint,Assembly,Notes
+U1,1,Hosyond ESP32-S3 N16R8 Dev Board,existing carrier footprint,Hand,Pin mapping unchanged from logic-board design
+"U2,U3",2,WWZMDiB Mini MP3 / DFPlayer Mini compatible,Halloween:DFPlayer_Mini_16P,Hand,16-pin standard DFR0299/MP3-TF-16P style
+J2,1,"0.96in SSD1306 I2C OLED, GND VCC SCL SDA",Halloween:OLED_SSD1306_096_4P,Hand,4-pin 2.54mm header
+SW1,1,4-position DIP switch,Package_DIP:DIP-8_W7.62mm,Hand,Direct ESP32 GPIO ID inputs
+R1-R4,4,10k 1/4W axial,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,Hand,ID pullups
+R5-R6,2,1k 1/4W axial,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,Hand,ESP TX to DFPlayer RX
+R7-R9,3,1k 1/4W axial,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,Hand,PIR series
+R10-R12,3,100k 1/4W axial,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,Hand,PIR pulldowns
+C1,1,1000uF 10V radial,Capacitor_THT:CP_Radial_D10.0mm_P5.00mm,Hand,Logic bulk
+"C2,C4",2,47uF 10V radial,Capacitor_THT:CP_Radial_D5.0mm_P2.00mm,Hand,DFPlayer local bulk
+"C3,C5,C6",3,100nF ceramic,Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm,Hand,Bypass
+J10,1,JST-XH 1x8 2.50mm,Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical,Hand,PIN/NET MAPPING UNCHANGED

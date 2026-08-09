@@ -1,0 +1,130 @@
+{
+  "Header": {
+    "GenerationSoftware": {
+      "Vendor": "KiCad",
+      "Application": "Pcbnew",
+      "Version": "10.0.4"
+    },
+    "CreationDate": "2026-08-09T09:14:39-05:00"
+  },
+  "GeneralSpecs": {
+    "ProjectId": {
+      "Name": "Cluster_Servo_Board",
+      "GUID": "436c7573-7465-4725-9f53-6572766f5f42",
+      "Revision": "rev?"
+    },
+    "Size": {
+      "X": 220.5,
+      "Y": 110.5
+    },
+    "LayerNumber": 4,
+    "BoardThickness": 1.6,
+    "Finish": "None"
+  },
+  "DesignRules": [
+    {
+      "Layers": "Outer",
+      "PadToPad": 0.2,
+      "PadToTrack": 0.2,
+      "TrackToTrack": 0.2,
+      "MinLineWidth": 0.3
+    },
+    {
+      "Layers": "Inner",
+      "PadToPad": 0.2,
+      "PadToTrack": 0.2,
+      "TrackToTrack": 0.2,
+      "MinLineWidth": 0.3,
+      "TrackToRegion": 0.25,
+      "RegionToRegion": 0.25
+    }
+  ],
+  "FilesAttributes": [
+    {
+      "Path": "Cluster_Servo_Board-F_Cu.gbr",
+      "FileFunction": "Copper,L1,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "Cluster_Servo_Board-In1_Cu.gbr",
+      "FileFunction": "Copper,L2,Inr",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "Cluster_Servo_Board-In2_Cu.gbr",
+      "FileFunction": "Copper,L3,Inr",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "Cluster_Servo_Board-B_Cu.gbr",
+      "FileFunction": "Copper,L4,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "Cluster_Servo_Board-f_silkscreen.gbr",
+      "FileFunction": "Legend,Top",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "Cluster_Servo_Board-b_silkscreen.gbr",
+      "FileFunction": "Legend,Bot",
+      "FilePolarity": "Positive"
+    },
+    {
+      "Path": "Cluster_Servo_Board-Edge_Cuts.gbr",
+      "FileFunction": "Profile",
+      "FilePolarity": "Positive"
+    }
+  ],
+  "MaterialStackup": [
+    {
+      "Type": "Legend",
+      "Name": "Top Silk Screen"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "F.Cu"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 0.4867,
+      "Material": "FR4",
+      "Name": "F.Cu/In1.Cu",
+      "Notes": "Type: dielectric layer 1 (from F.Cu to In1.Cu)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "In1.Cu"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 0.4867,
+      "Material": "FR4",
+      "Name": "In1.Cu/In2.Cu",
+      "Notes": "Type: dielectric layer 2 (from In1.Cu to In2.Cu)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "In2.Cu"
+    },
+    {
+      "Type": "Dielectric",
+      "Thickness": 0.4867,
+      "Material": "FR4",
+      "Name": "In2.Cu/B.Cu",
+      "Notes": "Type: dielectric layer 3 (from In2.Cu to B.Cu)"
+    },
+    {
+      "Type": "Copper",
+      "Thickness": 0.035,
+      "Name": "B.Cu"
+    },
+    {
+      "Type": "Legend",
+      "Name": "Bottom Silk Screen"
+    }
+  ]
+}
