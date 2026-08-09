@@ -1,5 +1,5 @@
 Reference,Qty,Part / Value,Footprint,Assembly,Purpose / placement
-U1,1,Hosyond ESP32-S3 N16R8 Dev Board,Existing 2x22 carrier footprint,Hand,Controller module
+U1,1,Hosyond ESP32-S3 N16R8 dual-USB-C 44-pin DevKit,Halloween:Hosyond_ESP32-S3_N16R8_44P (J1.x/J3.x pad IDs),Hand,Physical DevKit header mapping; not bare ESP32-S3 MCU package pins
 "U2,U3",2,WWZMDiB DFPlayer Mini compatible,Halloween:DFPlayer_Mini_16P,Hand,Audio modules
 J2,1,"0.96in SSD1306 I2C OLED, GND/VCC/SCL/SDA",Halloween:OLED_SSD1306_096_4P,Hand,Display
 "J3,J4,J5",3,PIR 3-pin headers,2.54mm THT,Hand,PIR sensors

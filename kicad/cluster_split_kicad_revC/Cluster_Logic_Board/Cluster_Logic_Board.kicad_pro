@@ -240,7 +240,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": "Rev E - ESP32 local power decoupling"
+      "sch_revision": "Rev G - U1 rebuilt from DevKit header pinout"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -648,7 +648,7 @@
       {
         "filename": "Cluster_Logic_Board.kicad_sch",
         "name": "Cluster_Logic_Board",
-        "uuid": "9e9962b5-8c25-4142-ac4f-5dfaf9c2bbc2"
+        "uuid": "f79ab5ac-ef38-4b52-a153-e5cf373c7cff"
       }
     ],
     "used_designators": "",
@@ -656,7 +656,7 @@
   },
   "sheets": [
     [
-      "9e9962b5-8c25-4142-ac4f-5dfaf9c2bbc2",
+      "f79ab5ac-ef38-4b52-a153-e5cf373c7cff",
       "Cluster_Logic_Board"
     ]
   ],

@@ -1,0 +1,45 @@
+U1 physical header pin,Board silkscreen/function,System net,System purpose
+J1.1,3V3,+3V3_LOGIC,3.3V regulator rail to J10 PCA logic supply
+J1.2,3V3,+3V3_LOGIC,Same 3.3V regulator rail
+J1.3,EN/RST,NC / reserved,Reserved / intentionally unused
+J1.4,GPIO4,ID0,Cluster ID bit 0
+J1.5,GPIO5,ID1,Cluster ID bit 1
+J1.6,GPIO6,ID2,Cluster ID bit 2
+J1.7,GPIO7,ID3,Cluster ID bit 3
+J1.8,GPIO15,DF2_RX_ESP,ESP TX to DFPlayer #2 RX through R6
+J1.9,GPIO16,DF2_TX,DFPlayer #2 TX to ESP RX
+J1.10,GPIO17,DF1_RX_ESP,ESP TX to DFPlayer #1 RX through R5
+J1.11,GPIO18,DF1_TX,DFPlayer #1 TX to ESP RX
+J1.12,GPIO8,I2C_SDA,I2C SDA to OLED and J10
+J1.13,GPIO3,NC / reserved,Reserved / intentionally unused
+J1.14,GPIO46,NC / reserved,Reserved / intentionally unused
+J1.15,GPIO9,I2C_SCL,I2C SCL to OLED and J10
+J1.16,GPIO10,LED_DATA_3V3,Addressable LED data to J10
+J1.17,GPIO11,PIR_LEFT,PIR left input
+J1.18,GPIO12,PIR_CENTER,PIR center input
+J1.19,GPIO13,PIR_RIGHT,PIR right input
+J1.20,GPIO14,PCA_OE_N,PCA9685 OE control to J10
+J1.21,5V,+5V_LOGIC,5V board supply into DevKit
+J1.22,GND,GND,Ground
+J3.1,GND,GND,Ground
+J3.2,GPIO43/TX0,NC / reserved,Reserved / intentionally unused
+J3.3,GPIO44/RX0,NC / reserved,Reserved / intentionally unused
+J3.4,GPIO1,NC / reserved,Reserved / intentionally unused
+J3.5,GPIO2,NC / reserved,Reserved / intentionally unused
+J3.6,GPIO42,NC / reserved,Reserved / intentionally unused
+J3.7,GPIO41,NC / reserved,Reserved / intentionally unused
+J3.8,GPIO40,NC / reserved,Reserved / intentionally unused
+J3.9,GPIO39,NC / reserved,Reserved / intentionally unused
+J3.10,GPIO38/RGB,NC / reserved,Reserved / intentionally unused
+J3.11,GPIO37,NC / reserved,Reserved / intentionally unused
+J3.12,GPIO36,NC / reserved,Reserved / intentionally unused
+J3.13,GPIO35,NC / reserved,Reserved / intentionally unused
+J3.14,GPIO0/BOOT,NC / reserved,Reserved / intentionally unused
+J3.15,GPIO45,NC / reserved,Reserved / intentionally unused
+J3.16,GPIO48,NC / reserved,Reserved / intentionally unused
+J3.17,GPIO47,NC / reserved,Reserved / intentionally unused
+J3.18,GPIO21,NC / reserved,Reserved / intentionally unused
+J3.19,GPIO20/USB_D+,NC / reserved,Reserved / intentionally unused
+J3.20,GPIO19/USB_D-,NC / reserved,Reserved / intentionally unused
+J3.21,GND,GND,Ground
+J3.22,GND,GND,Ground

@@ -1,0 +1,23 @@
+Cluster Logic Board Rev G validation
+====================================
+
+PASS: KiCad schematic S-expression parentheses balanced.
+PASS: KiCad PCB S-expression parentheses balanced.
+PASS: U1 custom footprint S-expression parentheses balanced.
+
+PASS: U1 3V3 is ONLY on physical DevKit J1.1/J1.2.
+PASS: U1 5V is on physical DevKit J1.21 and is NOT +3V3_LOGIC.
+PASS: U1 grounds include J1.22, J3.1, J3.21, J3.22 and are NOT +3V3_LOGIC.
+PASS: U1 functional GPIO pads match the documented system nets.
+PASS: J10 PCB pin/net mapping remains exactly unchanged:
+      1 GND
+      2 GND
+      3 +3V3_LOGIC
+      4 I2C_SDA
+      5 I2C_SCL
+      6 LED_DATA_3V3
+      7 PCA_OE_N
+      8 SPARE
+
+Native KiCad ERC/DRC was not run in this execution environment.
+Run ERC/DRC in KiCad before fabrication.
