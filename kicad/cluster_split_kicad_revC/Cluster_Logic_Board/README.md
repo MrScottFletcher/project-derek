@@ -51,3 +51,34 @@ All three main project files deliberately have the same basename:
 - `Cluster_Logic_Board.kicad_pcb`
 
 This is how KiCad associates the schematic and PCB within a project.
+
+
+# Rev E update — ESP32 local decoupling
+
+Added two through-hole capacitors physically adjacent to the ESP32-S3 module power entry:
+
+- C7 = 47 uF / 10 V electrolytic, +5V_LOGIC to GND
+- C8 = 100 nF ceramic, +5V_LOGIC to GND
+
+These are local to U1 and complement, rather than replace, C1 at the board power input.
+
+The intended capacitor placement is now:
+- C1: 1000 uF at J1 power input
+- C7/C8: ESP32
+- C2/C3: DFPlayer #1
+- C4/C5: DFPlayer #2
+- C6: PIR connector bank
+
+J10 is unchanged:
+1 GND
+2 GND
+3 +3V3_LOGIC
+4 I2C_SDA
+5 I2C_SCL
+6 LED_DATA_3V3
+7 PCA_OE_N
+8 SPARE
+
+The Cluster Servo Board is not modified.
+
+Open `Cluster_Logic_Board.kicad_pro` from KiCad's Project Manager, then refill zones and run ERC/DRC.

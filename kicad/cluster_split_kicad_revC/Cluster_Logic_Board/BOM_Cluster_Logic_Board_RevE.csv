@@ -1,0 +1,17 @@
+Reference,Qty,Part / Value,Footprint,Assembly,Purpose / placement
+U1,1,Hosyond ESP32-S3 N16R8 Dev Board,Existing 2x22 carrier footprint,Hand,Controller module
+"U2,U3",2,WWZMDiB DFPlayer Mini compatible,Halloween:DFPlayer_Mini_16P,Hand,Audio modules
+J2,1,"0.96in SSD1306 I2C OLED, GND/VCC/SCL/SDA",Halloween:OLED_SSD1306_096_4P,Hand,Display
+"J3,J4,J5",3,PIR 3-pin headers,2.54mm THT,Hand,PIR sensors
+SW1,1,4-position DIP switch,DIP-8 W7.62mm,Hand,Cluster ID
+J10,1,JST-XH 1x8 2.50mm,JST_XH_B8B-XH-A,Hand,UNCHANGED servo-board interconnect
+R1-R4,4,10k 1/4W axial,DIN0207 axial THT,Hand,SW1 ID pull-ups to 3.3V
+R5-R6,2,1k 1/4W axial,DIN0207 axial THT,Hand,ESP32 TX -> DFPlayer RX
+R7-R9,3,1k 1/4W axial,DIN0207 axial THT,Hand,PIR signal series protection
+R10-R12,3,100k 1/4W axial,DIN0207 axial THT,Hand,PIR input pulldowns
+C1,1,1000uF 10V radial electrolytic,CP_Radial_D10mm_P5mm,Hand,Main logic-board bulk at J1
+"C2,C4",2,47uF 10V radial electrolytic,CP_Radial_D5mm_P2mm,Hand,One near each DFPlayer
+"C3,C5",2,100nF ceramic,C_Disc_D5mm_P5mm,Hand,One near each DFPlayer
+C6,1,100nF ceramic,C_Disc_D5mm_P5mm,Hand,PIR connector-bank bypass
+C7,1,47uF 10V radial electrolytic,CP_Radial_D5mm_P2mm,Hand,Local bulk near ESP32 5V/VIN
+C8,1,100nF ceramic,C_Disc_D5mm_P5mm,Hand,Local high-frequency bypass near ESP32 5V/VIN

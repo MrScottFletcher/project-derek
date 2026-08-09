@@ -240,7 +240,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": "Rev C - fixed schematic / DFPlayer footprints"
+      "sch_revision": "Rev E - ESP32 local power decoupling"
     },
     "layer_pairs": [],
     "layer_presets": [],
