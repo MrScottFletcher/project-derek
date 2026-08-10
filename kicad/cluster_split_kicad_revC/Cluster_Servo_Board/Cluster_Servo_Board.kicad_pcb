@@ -14,6 +14,8 @@
 		(2 "B.Cu" signal)
 		(5 "F.SilkS" user "f.silkscreen")
 		(7 "B.SilkS" user "b.silkscreen")
+		(1 "F.Mask" user)
+		(3 "B.Mask" user)
 		(25 "Edge.Cuts" user)
 		(27 "Margin" user)
 		(31 "F.CrtYd" user "F.Courtyard")
@@ -84,7 +86,7 @@
 		(capping no)
 		(filling no)
 		(pcbplotparams
-			(layerselection 0x00000000_00000000_55555555_575555f5)
+			(layerselection 0x00000000_00000000_55555555_575555ff)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
 			(disableapertmacros no)
 			(usegerberextensions no)
