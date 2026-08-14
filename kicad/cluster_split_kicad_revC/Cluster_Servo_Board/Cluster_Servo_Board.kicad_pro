@@ -240,7 +240,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "C"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -645,13 +645,18 @@
       {
         "filename": "Cluster_Servo_Board.kicad_sch",
         "name": "Cluster_Servo_Board",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "388a9e91-0f0e-433a-bd5f-a378c5ea05cf"
       }
     ],
     "used_designators": "",
     "variants": []
   },
-  "sheets": [],
+  "sheets": [
+    [
+      "388a9e91-0f0e-433a-bd5f-a378c5ea05cf",
+      "Cluster_Servo_Board"
+    ]
+  ],
   "text_variables": {
     "REVISION": "C"
   },

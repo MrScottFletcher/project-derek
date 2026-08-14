@@ -95,9 +95,8 @@
 		)
 		(capping no)
 		(filling no)
-		(zone_defaults)
 		(pcbplotparams
-			(layerselection 0x00000000_00000000_5555555f_f75555ff)
+			(layerselection 0x00000000_00000000_5555555f_ff5555ff)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
 			(disableapertmacros no)
 			(usegerberextensions no)
@@ -149,7 +148,7 @@
 			)
 		)
 		(property "Value" "100nF 50V X7R"
-			(at 3 2 0)
+			(at 3 -0.5 0)
 			(layer "F.Fab")
 			(uuid "deb601de-0e93-47d9-94c3-573044145d97")
 			(effects
@@ -232,7 +231,7 @@
 			)
 		)
 		(property "Value" "LIFT_SERVO"
-			(at -5 -2 0)
+			(at 2 0 90)
 			(layer "F.Fab")
 			(uuid "6258cce3-d5ef-4af3-9692-fdb43fa3fd7e")
 			(effects
@@ -888,7 +887,7 @@
 		(uuid "a1b640be-61c0-40b3-a7ba-ab89803f6010")
 		(at 49 35)
 		(property "Reference" "J4"
-			(at 0 -2 0)
+			(at 4 -3 0)
 			(layer "F.SilkS")
 			(uuid "9cdafe1b-380b-4276-b604-ab5ab5c60aa3")
 			(effects
@@ -1006,7 +1005,7 @@
 			)
 		)
 		(property "Value" "PAN_SERVO"
-			(at -5 -2.5 0)
+			(at 2 0 90)
 			(layer "F.Fab")
 			(uuid "ea50a127-6bbf-484c-a9fa-087f27a90c3c")
 			(effects
@@ -1224,7 +1223,18 @@
 		(layer "Edge.Cuts")
 		(uuid "af3326f1-fd0f-419a-b8fe-722148f56ebe")
 	)
-	(gr_text "DEREK CAN V4"
+	(gr_text "RJ45 NOT ETHERNET - 5V POWER"
+		(at 33 25.5 -0)
+		(layer "F.SilkS")
+		(uuid "c81c7a51-d465-4d32-b644-3b9072f3c112")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(gr_text "DEREK CAN V4a"
 		(at 35 20.6 0)
 		(layer "F.SilkS")
 		(uuid "7024d031-acdb-468b-a72b-af9a9d255caa")
@@ -1236,7 +1246,7 @@
 		)
 	)
 	(gr_text "RJ45 NOT ETHERNET - 5V POWER"
-		(at 55.5 43 0)
+		(at 33 25.5 0)
 		(layer "B.SilkS")
 		(uuid "c657815e-2a4b-4697-bed6-84727820d7c3")
 		(effects
