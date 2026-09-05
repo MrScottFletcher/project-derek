@@ -1,3 +1,4 @@
+#line 1 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 #include <Adafruit_PWMServoDriver.h>
@@ -689,3 +690,4 @@ void loop() {
   updateAudioOutputs();
   publishIfNeeded(nowMs);
 }
+

@@ -1,3 +1,4 @@
+#line 1 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 #include <Adafruit_PWMServoDriver.h>
@@ -658,6 +659,11 @@ void publishIfNeeded(uint32_t nowMs) {
 
 }  // namespace
 
+#line 661 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
+void setup();
+#line 678 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
+void loop();
+#line 661 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
 void setup() {
   if (kEnableSerialLogs) {
     Serial.begin(115200);
@@ -689,3 +695,4 @@ void loop() {
   updateAudioOutputs();
   publishIfNeeded(nowMs);
 }
+

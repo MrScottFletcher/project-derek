@@ -1,0 +1,21 @@
+#line 1 "C:\\Repos\\project-derek\\derek-cluster\\.vscode\\arduino.json"
+{
+  "schemaVersion": 1,
+  "port": "COM4",
+  "configuration": "UploadSpeed=921600,USBMode=hwcdc,CDCOnBoot=default,MSCOnBoot=default,DFUOnBoot=default,UploadMode=default,CPUFreq=240,FlashMode=qio,FlashSize=default,PartitionScheme=default,DebugLevel=none,PSRAM=default,LoopCore=1,EventsCore=1,EraseFlash=none,JTAGAdapter=default",
+  "output": "build",
+  "board": "esp32:esp32:fri3d_2024_esp32s3",
+  "programmer": "",
+  "useProgrammer": false,
+  "optimize_for_debug": false,
+  "configurationRequired": true,
+  "compile_profile": "",
+  "monitorPortSettings": {
+    "port": "COM4",
+    "baudRate": 115200,
+    "lineEnding": "\r\n",
+    "dataBits": 8,
+    "parity": "none",
+    "stopBits": "one"
+  }
+}
