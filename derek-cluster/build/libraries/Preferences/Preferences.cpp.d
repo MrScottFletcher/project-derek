@@ -1,5 +1,6 @@
-C:\Repos\project-derek\derek-cluster\build\sketch\derek-cluster.ino.cpp.o: \
- C:\Repos\project-derek\derek-cluster\build\sketch\derek-cluster.ino.cpp \
+C:\Repos\project-derek\derek-cluster\build\libraries\Preferences\Preferences.cpp.o: \
+ C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Preferences\src\Preferences.cpp \
+ C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Preferences\src\Preferences.h \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/Arduino.h \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/newlib/platform_include/stdio.h \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/esp_arduino_version.h \
@@ -171,62 +172,6 @@ C:\Repos\project-derek\derek-cluster\build\sketch\derek-cluster.ino.cpp.o: \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/freertos_stats.h \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/io_pin_remap.h \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/Arduino.h \
- C:\Users\mrsco\Documents\Arduino\libraries\Adafruit_NeoPixel/Adafruit_NeoPixel.h \
- C:\Users\mrsco\Documents\Arduino\libraries\Adafruit_PWM_Servo_Driver_Library/Adafruit_PWMServoDriver.h \
- C:\Users\mrsco\Documents\Arduino\libraries\Adafruit_BusIO/Adafruit_I2CDevice.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Wire\src/Wire.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/esp32-hal.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/esp32-hal-log.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/HardwareI2C.h \
- C:\Users\mrsco\Documents\Arduino\libraries\DFPlayerMini_Fast\src/DFPlayerMini_Fast.h \
- C:\Users\mrsco\Documents\Arduino\libraries\FireTimer\src/FireTimer.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Preferences\src/Preferences.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFi.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/Print.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFiType.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_wifi/include/esp_wifi_types.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_wifi/include/esp_wifi_types_generic.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_hw_support/include/esp_interface.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_wifi/include/local/esp_wifi_types_native.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_wifi/include/esp_wifi_types_generic.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFiSTA.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFiGeneric.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_wifi/include/esp_smartconfig.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_netif/include/esp_netif_types.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_netif/include/esp_netif_ip_addr.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_eth/include/esp_eth_driver.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_eth/include/esp_eth_com.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/hal/include/hal/eth_types.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_eth/include/esp_eth_spec.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_eth/include/esp_eth_mac_spi.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_eth/include/esp_eth_mac.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_driver_spi/include/driver/spi_master.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/hal/include/hal/spi_types.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_driver_spi/include/driver/spi_common.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_system/include/esp_ipc.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_eth/include/esp_eth_phy.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/espressif__network_provisioning/include/network_provisioning/manager.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/protocomm/include/common/protocomm.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/protocomm/include/security/protocomm_security.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/espressif__network_provisioning/include/network_provisioning/network_config.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Network\src/Network.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Network\src/NetworkInterface.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/Printable.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Network\src/NetworkEvents.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Network\src/NetworkManager.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/WString.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Network\src/NetworkClient.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/Client.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Network\src/NetworkServer.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/Server.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Network\src/NetworkUdp.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/Udp.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/cbuf.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_ringbuf/include/freertos/ringbuf.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFiAP.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFiScan.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFiClient.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFiServer.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFiUdp.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Network\src/NetworkUdp.h \
- C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/esp_wifi/include/esp_now.h
+ C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/nvs_flash/include/nvs.h \
+ C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/nvs_flash/include/nvs_flash.h \
+ C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\tools\esp32s3-libs\3.3.11/include/nvs_flash/include/nvs.h

@@ -3,6 +3,7 @@
 #include <Adafruit_NeoPixel.h>
 #include <Adafruit_PWMServoDriver.h>
 #include <DFPlayerMini_Fast.h>
+#include <Preferences.h>
 #include <WiFi.h>
 #include <Wire.h>
 #include <esp_now.h>
@@ -24,9 +25,11 @@ constexpr uint32_t kCommandTimeoutMs = 1500;
 constexpr uint32_t kMotionUpdateIntervalMs = 20;
 constexpr bool kEnableClusterSelfTest = true;
 constexpr uint32_t kSelfTestIntervalMs = 1000;
+constexpr uint32_t kFullClusterTestStageMs = 2500;
 constexpr uint16_t kSelfTestAudioTrack = 1;
 constexpr uint8_t kPanStepPerTick = 2;
 constexpr uint8_t kLiftStepPerTick = 2;
+constexpr size_t kSerialCommandBufferSize = 96;
 constexpr uint8_t kBroadcastMac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 
 constexpr int8_t kI2cSdaPin = 8;
@@ -50,6 +53,41 @@ constexpr uint8_t kCanLedsPerDerek = 1;
 constexpr uint8_t kExteriorLedsPerDerek = 1;
 constexpr uint8_t kLedsPerDerek = kEyeLedsPerDerek + kCanLedsPerDerek + kExteriorLedsPerDerek;
 constexpr uint16_t kTotalLedCount = kMaxDerricks * kLedsPerDerek;
+constexpr uint8_t kDerekTypeConfigVersion = 1;
+
+enum CanType : uint8_t {
+  kCanSmallest = 0,
+  kCanSmall = 1,
+  kCanMedium = 2,
+  kCanTall = 3,
+  kCanTallest = 4,
+  kCanTypeCount = 5,
+};
+
+struct CanLiftProfile {
+  uint8_t minPercent;
+  uint8_t maxPercent;
+};
+
+constexpr uint8_t kLiftTravelMinAngle = 0;
+constexpr uint8_t kLiftTravelMaxAngle = 170;
+constexpr CanLiftProfile kDefaultCanLiftProfiles[kCanTypeCount] = {
+    {0, 80},  // Smallest
+    {0, 80},  // Small
+    {0, 80},  // Medium
+    {0, 80},  // Tall
+    {0, 80},  // Tallest
+};
+constexpr CanType kDefaultDerekCanTypes[kMaxDerricks] = {
+    kCanMedium,
+    kCanMedium,
+    kCanMedium,
+    kCanMedium,
+    kCanMedium,
+    kCanMedium,
+    kCanMedium,
+    kCanMedium,
+};
 
 enum MessageKind : uint8_t {
   kMessageRegister = 1,
@@ -136,6 +174,8 @@ struct ClusterStatusPacket {
 #pragma pack(pop)
 
 DerekState gDerricks[kMaxDerricks];
+CanLiftProfile gCanLiftProfiles[kCanTypeCount];
+CanType gDerekCanTypes[kMaxDerricks];
 uint8_t gActiveDerricks = kMaxDerricks;
 uint8_t gPirStateBits = 0;
 uint8_t gLastReportedPirBits = 0;
@@ -157,6 +197,10 @@ bool gPendingAudioA = false;
 bool gPendingAudioB = false;
 uint32_t gLastSelfTestAtMs = 0;
 uint8_t gSelfTestStep = 0;
+uint32_t gLastFullClusterTestAtMs = 0;
+uint8_t gFullClusterTestStage = 0;
+char gSerialCommandBuffer[kSerialCommandBufferSize] = {};
+size_t gSerialCommandLength = 0;
 bool gOledReady = false;
 Adafruit_NeoPixel gLedStrip(kTotalLedCount, kLedDataPin, NEO_GRB + NEO_KHZ800);
 Adafruit_PWMServoDriver gServoDriver(kPca9685Address, Wire);
@@ -164,9 +208,11 @@ HardwareSerial gDfPlayer1Serial(1);
 HardwareSerial gDfPlayer2Serial(2);
 DFPlayerMini_Fast gDfPlayer1;
 DFPlayerMini_Fast gDfPlayer2;
+Preferences gConfigPreferences;
 
 void writeLedOutputs();
 void writeOledTestOutput(uint8_t derrickIndex, uint8_t step);
+void writeOledSequenceStage(uint8_t stage);
 
 void logLine(const char* message) {
   if (kEnableSerialLogs) {
@@ -176,6 +222,278 @@ void logLine(const char* message) {
 
 uint8_t clampU8(uint8_t value, uint8_t minimum, uint8_t maximum) {
   return value < minimum ? minimum : (value > maximum ? maximum : value);
+}
+
+bool isCanTypeValid(CanType canType) {
+  return static_cast<uint8_t>(canType) < kCanTypeCount;
+}
+
+CanLiftProfile sanitizeCanLiftProfile(CanLiftProfile profile) {
+  profile.minPercent = clampU8(profile.minPercent, 0, 100);
+  profile.maxPercent = clampU8(profile.maxPercent, 0, 100);
+  if (profile.minPercent > profile.maxPercent) {
+    const uint8_t swappedMin = profile.maxPercent;
+    profile.maxPercent = profile.minPercent;
+    profile.minPercent = swappedMin;
+  }
+  return profile;
+}
+
+void loadDefaultDerekTypeConfig() {
+  for (uint8_t i = 0; i < kCanTypeCount; ++i) {
+    gCanLiftProfiles[i] = kDefaultCanLiftProfiles[i];
+  }
+  for (uint8_t i = 0; i < kMaxDerricks; ++i) {
+    gDerekCanTypes[i] = kDefaultDerekCanTypes[i];
+  }
+}
+
+void saveDerekTypeConfig() {
+  // Serial configuration commands, entered at 115200 baud with newline:
+  //   help
+  //   config
+  //   type <derek 1-8> <smallest|small|medium|tall|tallest>
+  //   profile <smallest|small|medium|tall|tallest> <minPercent 0-100> <maxPercent 0-100>
+  //   defaults
+  // Successful type/profile/defaults commands call this method and persist to ESP32 NVS.
+  if (!gConfigPreferences.begin("derek-types", false)) {
+    logLine("Derek type config save failed.");
+    return;
+  }
+
+  uint8_t canTypeBytes[kMaxDerricks];
+  for (uint8_t i = 0; i < kMaxDerricks; ++i) {
+    canTypeBytes[i] = static_cast<uint8_t>(gDerekCanTypes[i]);
+  }
+
+  gConfigPreferences.putUChar("version", kDerekTypeConfigVersion);
+  gConfigPreferences.putBytes("profiles", gCanLiftProfiles, sizeof(gCanLiftProfiles));
+  gConfigPreferences.putBytes("assign", canTypeBytes, sizeof(canTypeBytes));
+  gConfigPreferences.end();
+}
+
+void loadDerekTypeConfig() {
+  loadDefaultDerekTypeConfig();
+
+  if (!gConfigPreferences.begin("derek-types", true)) {
+    logLine("Using default Derek type config.");
+    saveDerekTypeConfig();
+    return;
+  }
+
+  const uint8_t storedVersion = gConfigPreferences.getUChar("version", 0);
+  const size_t profileBytes = gConfigPreferences.getBytesLength("profiles");
+  const size_t assignmentBytes = gConfigPreferences.getBytesLength("assign");
+  const bool hasStoredConfig =
+      storedVersion == kDerekTypeConfigVersion && profileBytes == sizeof(gCanLiftProfiles) &&
+      assignmentBytes == kMaxDerricks;
+
+  if (hasStoredConfig) {
+    gConfigPreferences.getBytes("profiles", gCanLiftProfiles, sizeof(gCanLiftProfiles));
+    uint8_t canTypeBytes[kMaxDerricks] = {};
+    gConfigPreferences.getBytes("assign", canTypeBytes, sizeof(canTypeBytes));
+    for (uint8_t i = 0; i < kMaxDerricks; ++i) {
+      const CanType storedType = static_cast<CanType>(canTypeBytes[i]);
+      gDerekCanTypes[i] = isCanTypeValid(storedType) ? storedType : kDefaultDerekCanTypes[i];
+    }
+    for (uint8_t i = 0; i < kCanTypeCount; ++i) {
+      gCanLiftProfiles[i] = sanitizeCanLiftProfile(gCanLiftProfiles[i]);
+    }
+  }
+
+  gConfigPreferences.end();
+
+  if (!hasStoredConfig) {
+    logLine("Writing default Derek type config.");
+    saveDerekTypeConfig();
+  }
+}
+
+const char* canTypeName(CanType canType) {
+  switch (canType) {
+    case kCanSmallest:
+      return "Smallest";
+    case kCanSmall:
+      return "Small";
+    case kCanMedium:
+      return "Medium";
+    case kCanTall:
+      return "Tall";
+    case kCanTallest:
+      return "Tallest";
+    default:
+      return "Unknown";
+  }
+}
+
+bool parseCanType(const char* text, CanType& canType) {
+  if (strcasecmp(text, "smallest") == 0 || strcmp(text, "0") == 0) {
+    canType = kCanSmallest;
+    return true;
+  }
+  if (strcasecmp(text, "small") == 0 || strcmp(text, "1") == 0) {
+    canType = kCanSmall;
+    return true;
+  }
+  if (strcasecmp(text, "medium") == 0 || strcmp(text, "2") == 0) {
+    canType = kCanMedium;
+    return true;
+  }
+  if (strcasecmp(text, "tall") == 0 || strcmp(text, "3") == 0) {
+    canType = kCanTall;
+    return true;
+  }
+  if (strcasecmp(text, "tallest") == 0 || strcmp(text, "4") == 0) {
+    canType = kCanTallest;
+    return true;
+  }
+  return false;
+}
+
+bool parsePercent(const char* text, uint8_t& percent) {
+  char* end = nullptr;
+  const long value = strtol(text, &end, 10);
+  if (end == text || *end != '\0' || value < 0 || value > 100) {
+    return false;
+  }
+  percent = static_cast<uint8_t>(value);
+  return true;
+}
+
+void printSerialConfig() {
+  if (!kEnableSerialLogs) {
+    return;
+  }
+
+  Serial.println("Derek type profiles:");
+  for (uint8_t i = 0; i < kCanTypeCount; ++i) {
+    Serial.print("  ");
+    Serial.print(i);
+    Serial.print(" ");
+    Serial.print(canTypeName(static_cast<CanType>(i)));
+    Serial.print(": min=");
+    Serial.print(gCanLiftProfiles[i].minPercent);
+    Serial.print("% max=");
+    Serial.print(gCanLiftProfiles[i].maxPercent);
+    Serial.println("%");
+  }
+
+  Serial.println("Derek assignments:");
+  for (uint8_t i = 0; i < kMaxDerricks; ++i) {
+    Serial.print("  Derek ");
+    Serial.print(i + 1);
+    Serial.print(": ");
+    Serial.println(canTypeName(gDerekCanTypes[i]));
+  }
+}
+
+void printSerialHelp() {
+  if (!kEnableSerialLogs) {
+    return;
+  }
+
+  Serial.println("Commands:");
+  Serial.println("  help");
+  Serial.println("  config");
+  Serial.println("  type <derek 1-8> <smallest|small|medium|tall|tallest>");
+  Serial.println("  profile <type> <minPercent 0-100> <maxPercent 0-100>");
+  Serial.println("  defaults");
+}
+
+void handleSerialCommand(char* commandLine) {
+  char* command = strtok(commandLine, " \t");
+  if (command == nullptr) {
+    return;
+  }
+
+  if (strcasecmp(command, "help") == 0) {
+    printSerialHelp();
+    return;
+  }
+
+  if (strcasecmp(command, "config") == 0) {
+    printSerialConfig();
+    return;
+  }
+
+  if (strcasecmp(command, "defaults") == 0) {
+    loadDefaultDerekTypeConfig();
+    saveDerekTypeConfig();
+    Serial.println("Default Derek type config saved.");
+    printSerialConfig();
+    return;
+  }
+
+  if (strcasecmp(command, "type") == 0) {
+    const char* derekText = strtok(nullptr, " \t");
+    const char* typeText = strtok(nullptr, " \t");
+    if (derekText == nullptr || typeText == nullptr) {
+      Serial.println("Usage: type <derek 1-8> <smallest|small|medium|tall|tallest>");
+      return;
+    }
+
+    const int derekNumber = atoi(derekText);
+    CanType canType = kCanMedium;
+    if (derekNumber < 1 || derekNumber > kMaxDerricks || !parseCanType(typeText, canType)) {
+      Serial.println("Invalid Derek number or can type.");
+      return;
+    }
+
+    gDerekCanTypes[derekNumber - 1] = canType;
+    saveDerekTypeConfig();
+    Serial.println("Derek type saved.");
+    printSerialConfig();
+    return;
+  }
+
+  if (strcasecmp(command, "profile") == 0) {
+    const char* typeText = strtok(nullptr, " \t");
+    const char* minText = strtok(nullptr, " \t");
+    const char* maxText = strtok(nullptr, " \t");
+    CanType canType = kCanMedium;
+    uint8_t minPercent = 0;
+    uint8_t maxPercent = 0;
+    if (typeText == nullptr || minText == nullptr || maxText == nullptr || !parseCanType(typeText, canType) ||
+        !parsePercent(minText, minPercent) || !parsePercent(maxText, maxPercent) || minPercent > maxPercent) {
+      Serial.println("Usage: profile <type> <minPercent 0-100> <maxPercent 0-100>");
+      return;
+    }
+
+    gCanLiftProfiles[canType] = {minPercent, maxPercent};
+    saveDerekTypeConfig();
+    Serial.println("Can profile saved.");
+    printSerialConfig();
+    return;
+  }
+
+  Serial.println("Unknown command. Type help.");
+}
+
+void updateSerialCommands() {
+  if (!kEnableSerialLogs) {
+    return;
+  }
+
+  while (Serial.available() > 0) {
+    const char next = static_cast<char>(Serial.read());
+    if (next == '\r') {
+      continue;
+    }
+    if (next == '\n') {
+      gSerialCommandBuffer[gSerialCommandLength] = '\0';
+      handleSerialCommand(gSerialCommandBuffer);
+      gSerialCommandLength = 0;
+      gSerialCommandBuffer[0] = '\0';
+      continue;
+    }
+    if (gSerialCommandLength < kSerialCommandBufferSize - 1) {
+      gSerialCommandBuffer[gSerialCommandLength++] = next;
+    } else {
+      gSerialCommandLength = 0;
+      gSerialCommandBuffer[0] = '\0';
+      Serial.println("Command too long.");
+    }
+  }
 }
 
 bool isProtocolPacketValid(const uint8_t* data, size_t len, uint8_t expectedKind) {
@@ -256,9 +574,19 @@ uint8_t applyPanCalibration(uint8_t derrickIndex, uint8_t requestedPan) {
   return clampU8(requestedPan, calibration.panMin, calibration.panMax);
 }
 
+uint8_t percentToLiftAngle(uint8_t percent) {
+  const uint8_t clampedPercent = clampU8(percent, 0, 100);
+  return map(clampedPercent, 0, 100, kLiftTravelMinAngle, kLiftTravelMaxAngle);
+}
+
 uint8_t applyLiftCalibration(uint8_t derrickIndex, uint8_t requestedLift) {
   const DerekCalibration& calibration = gDerricks[derrickIndex].calibration;
-  return clampU8(requestedLift, calibration.liftMin, calibration.liftMax);
+  const CanLiftProfile& canProfile = gCanLiftProfiles[gDerekCanTypes[derrickIndex]];
+  const uint8_t canLiftMin = percentToLiftAngle(canProfile.minPercent);
+  const uint8_t canLiftMax = percentToLiftAngle(canProfile.maxPercent);
+  const uint8_t effectiveLiftMin = max<uint8_t>(calibration.liftMin, canLiftMin);
+  const uint8_t effectiveLiftMax = min<uint8_t>(calibration.liftMax, canLiftMax);
+  return clampU8(requestedLift, effectiveLiftMin, effectiveLiftMax);
 }
 
 bool writeI2cBytes(uint8_t address, const uint8_t* data, size_t len) {
@@ -383,6 +711,49 @@ void writeOledTestOutput(uint8_t derrickIndex, uint8_t step) {
   }
 }
 
+void writeOledSequenceStage(uint8_t stage) {
+  if (gOledReady) {
+    uint8_t pageData[128];
+    const uint8_t activeWidth = static_cast<uint8_t>((stage + 1) * 16);
+
+    for (uint8_t page = 0; page < 8; ++page) {
+      sendOledCommand(0xB0 + page);
+      sendOledCommand(0x00);
+      sendOledCommand(0x10);
+
+      for (uint8_t col = 0; col < sizeof(pageData); ++col) {
+        if (page <= 1) {
+          pageData[col] = col < activeWidth ? 0xFF : 0x00;
+        } else if (page == 3 || page == 4) {
+          pageData[col] = (col / 16) == stage ? 0xFF : 0x18;
+        } else if (page == 6) {
+          pageData[col] = (col + stage) % 8 == 0 ? 0xFF : 0x00;
+        } else {
+          pageData[col] = 0x00;
+        }
+      }
+
+      sendOledData(pageData, sizeof(pageData));
+    }
+  }
+
+  if (kEnableSerialLogs) {
+    static const char* const kStageNames[] = {
+        "white leds",
+        "raise lifts",
+        "eyes left",
+        "eyes red",
+        "eyes right",
+        "eyes green",
+        "center lower",
+        "leds off",
+    };
+
+    Serial.print("OLED SEQUENCE: ");
+    Serial.println(kStageNames[stage]);
+  }
+}
+
 void updateAudioOutputs() {
   if (gPendingAudioA) {
     gPendingAudioA = false;
@@ -444,6 +815,62 @@ void runClusterSelfTest(uint32_t nowMs) {
   writeLedOutputs();
   writeOledTestOutput(derrickIndex, gSelfTestStep);
   ++gSelfTestStep;
+}
+
+void setAllDerekOutputs(uint8_t pan, uint8_t lift, RgbColor eyeColor, RgbColor canColor, RgbColor exteriorColor) {
+  gActiveDerricks = kMaxDerricks;
+
+  for (uint8_t i = 0; i < kMaxDerricks; ++i) {
+    DerekState& derrick = gDerricks[i];
+    derrick.targetPan = applyPanCalibration(i, pan);
+    derrick.targetLift = applyLiftCalibration(i, lift);
+    derrick.output = {derrick.targetPan, derrick.targetLift, eyeColor, canColor, exteriorColor};
+  }
+
+  writeLedOutputs();
+}
+
+void runFullClusterSequenceTest(uint32_t nowMs) {
+  if (!kEnableClusterSelfTest || (nowMs - gLastFullClusterTestAtMs) < kFullClusterTestStageMs) {
+    return;
+  }
+
+  gLastFullClusterTestAtMs = nowMs;
+
+  constexpr RgbColor kOff = {0, 0, 0};
+  constexpr RgbColor kWhite = {255, 255, 255};
+  constexpr RgbColor kRed = {255, 0, 0};
+  constexpr RgbColor kGreen = {0, 255, 0};
+
+  switch (gFullClusterTestStage) {
+    case 0:
+      setAllDerekOutputs(90, 0, kWhite, kWhite, kWhite);
+      break;
+    case 1:
+      setAllDerekOutputs(90, 170, kWhite, kWhite, kWhite);
+      break;
+    case 2:
+      setAllDerekOutputs(10, 170, kWhite, kWhite, kWhite);
+      break;
+    case 3:
+      setAllDerekOutputs(10, 170, kRed, kWhite, kWhite);
+      break;
+    case 4:
+      setAllDerekOutputs(170, 170, kRed, kWhite, kWhite);
+      break;
+    case 5:
+      setAllDerekOutputs(170, 170, kGreen, kWhite, kWhite);
+      break;
+    case 6:
+      setAllDerekOutputs(90, 0, kGreen, kWhite, kWhite);
+      break;
+    default:
+      setAllDerekOutputs(90, 0, kOff, kOff, kOff);
+      break;
+  }
+
+  writeOledSequenceStage(gFullClusterTestStage);
+  gFullClusterTestStage = (gFullClusterTestStage + 1) % 8;
 }
 
 void updateMotion(uint32_t nowMs) {
@@ -600,11 +1027,11 @@ bool initializeEspNow() {
 
 void initializeDerrickState() {
   for (uint8_t i = 0; i < kMaxDerricks; ++i) {
-    gDerricks[i].calibration = {10, 90, 170, 0, 170};
+    gDerricks[i].calibration = {10, 90, 170, kLiftTravelMinAngle, kLiftTravelMaxAngle};
     gDerricks[i].currentPan = gDerricks[i].calibration.panCenter;
     gDerricks[i].targetPan = gDerricks[i].calibration.panCenter;
-    gDerricks[i].currentLift = gDerricks[i].calibration.liftMin;
-    gDerricks[i].targetLift = gDerricks[i].calibration.liftMin;
+    gDerricks[i].currentLift = applyLiftCalibration(i, kLiftTravelMinAngle);
+    gDerricks[i].targetLift = gDerricks[i].currentLift;
     gDerricks[i].output = {gDerricks[i].currentPan, gDerricks[i].currentLift, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
   }
 }
@@ -659,16 +1086,17 @@ void publishIfNeeded(uint32_t nowMs) {
 
 }  // namespace
 
-#line 661 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
+#line 1088 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
 void setup();
-#line 678 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
+#line 1108 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
 void loop();
-#line 661 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
+#line 1088 "C:\\Repos\\project-derek\\derek-cluster\\derek-cluster.ino"
 void setup() {
   if (kEnableSerialLogs) {
     Serial.begin(115200);
   }
 
+  loadDerekTypeConfig();
   initializeDerrickState();
   initializePirInputs();
   initializeHardwareAvailability();
@@ -679,18 +1107,21 @@ void setup() {
   }
 
   logLine("Cluster controller ready.");
+  printSerialHelp();
+  printSerialConfig();
 }
 
 void loop() {
   const uint32_t nowMs = millis();
 
+  updateSerialCommands();
   updatePirInputs();
 
   if (gLastCommandAtMs != 0 && (nowMs - gLastCommandAtMs) > kCommandTimeoutMs) {
     applyFailsafeTargets();
   }
 
-  runClusterSelfTest(nowMs);
+  runFullClusterSequenceTest(nowMs);
   updateMotion(nowMs);
   updateAudioOutputs();
   publishIfNeeded(nowMs);

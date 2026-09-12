@@ -180,6 +180,7 @@ derek-cluster.ino.cpp.o: \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/HardwareI2C.h \
  C:\Users\mrsco\Documents\Arduino\libraries\DFPlayerMini_Fast\src/DFPlayerMini_Fast.h \
  C:\Users\mrsco\Documents\Arduino\libraries\FireTimer\src/FireTimer.h \
+ C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\Preferences\src/Preferences.h \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFi.h \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\cores\esp32/Print.h \
  C:\Users\mrsco\AppData\Local\Arduino15\packages\esp32\hardware\esp32\3.3.11\libraries\WiFi\src/WiFiType.h \

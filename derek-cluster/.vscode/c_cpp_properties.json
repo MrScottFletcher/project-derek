@@ -15,6 +15,7 @@
         "C:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\Wire\\src/**",
         "C:\\Users\\mrsco\\Documents\\Arduino\\libraries\\DFPlayerMini_Fast\\src/**",
         "C:\\Users\\mrsco\\Documents\\Arduino\\libraries\\FireTimer\\src/**",
+        "C:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\Preferences\\src/**",
         "C:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\WiFi\\src/**",
         "C:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\Network\\src/**",
         "C:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\SPI\\src/**"
@@ -63,6 +64,7 @@
         "-IC:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\Wire\\src",
         "-IC:\\Users\\mrsco\\Documents\\Arduino\\libraries\\DFPlayerMini_Fast\\src",
         "-IC:\\Users\\mrsco\\Documents\\Arduino\\libraries\\FireTimer\\src",
+        "-IC:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\Preferences\\src",
         "-IC:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\WiFi\\src",
         "-IC:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\Network\\src",
         "-IC:\\Users\\mrsco\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.11\\libraries\\SPI\\src",
