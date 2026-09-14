@@ -14,15 +14,20 @@
 namespace {
 
 constexpr bool kEnableSerialLogs = true;
+constexpr uint8_t kSoftwareVersionMajor = 1;
+constexpr uint8_t kSoftwareVersionMinor = 0;
+constexpr uint8_t kSoftwareVersionRevision = 1;
 constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;
-constexpr uint8_t kClusterId = 1;
+constexpr uint8_t kDefaultClusterId = 1;
 constexpr uint8_t kMaxDerricks = 8;
+constexpr uint8_t kMaxClusters = 15;
 constexpr uint32_t kStatusIntervalMs = 250;
 constexpr uint32_t kRegistrationIntervalMs = 1000;
 constexpr uint32_t kCommandTimeoutMs = 1500;
 constexpr uint32_t kMotionUpdateIntervalMs = 20;
-constexpr bool kEnableClusterSelfTest = true;
+constexpr uint32_t kServoSoftRestDelayMs = 1000;
+constexpr bool kRunSelfTestAtBoot = false;
 constexpr uint32_t kSelfTestIntervalMs = 1000;
 constexpr uint32_t kFullClusterTestStageMs = 2500;
 constexpr uint16_t kSelfTestAudioTrack = 1;
@@ -33,6 +38,7 @@ constexpr uint8_t kBroadcastMac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 
 constexpr int8_t kI2cSdaPin = 8;
 constexpr int8_t kI2cSclPin = 9;
+constexpr int8_t kClusterIdPins[4] = {4, 5, 6, 7};
 constexpr int8_t kLedDataPin = 10;
 constexpr int8_t kPirPins[3] = {11, 12, 13};
 constexpr int8_t kPcaOePin = 14;
@@ -111,6 +117,13 @@ enum HealthFlags : uint16_t {
   kHealthPirReady = 1 << 4,
   kHealthControllerLinked = 1 << 5,
   kHealthCommandStale = 1 << 6,
+  kHealthServoPwmEnabled = 1 << 7,
+};
+
+enum SelfTestMode : uint8_t {
+  kSelfTestModeOff = 0,
+  kSelfTestModeSingle = 1,
+  kSelfTestModeFull = 2,
 };
 
 struct RgbColor {
@@ -175,6 +188,7 @@ struct ClusterStatusPacket {
 DerekState gDerricks[kMaxDerricks];
 CanLiftProfile gCanLiftProfiles[kCanTypeCount];
 CanType gDerekCanTypes[kMaxDerricks];
+uint8_t gClusterId = kDefaultClusterId;
 uint8_t gActiveDerricks = kMaxDerricks;
 uint8_t gPirStateBits = 0;
 uint8_t gLastReportedPirBits = 0;
@@ -185,11 +199,13 @@ bool gLedsReady = false;
 bool gAudio1Ready = false;
 bool gAudio2Ready = false;
 bool gPirReady = false;
+bool gServoPwmEnabled = false;
 uint16_t gLastSequence = 0;
 uint32_t gLastCommandAtMs = 0;
 uint32_t gLastStatusAtMs = 0;
 uint32_t gLastRegistrationAtMs = 0;
 uint32_t gLastMotionUpdateAtMs = 0;
+uint32_t gLastServoMotionAtMs = 0;
 uint16_t gPendingAudioTrackA = 0;
 uint16_t gPendingAudioTrackB = 0;
 bool gPendingAudioA = false;
@@ -198,9 +214,11 @@ uint32_t gLastSelfTestAtMs = 0;
 uint8_t gSelfTestStep = 0;
 uint32_t gLastFullClusterTestAtMs = 0;
 uint8_t gFullClusterTestStage = 0;
+SelfTestMode gSelfTestMode = kRunSelfTestAtBoot ? kSelfTestModeFull : kSelfTestModeOff;
 char gSerialCommandBuffer[kSerialCommandBufferSize] = {};
 size_t gSerialCommandLength = 0;
 bool gOledReady = false;
+bool gOledRuntimeRefreshPending = false;
 Adafruit_NeoPixel gLedStrip(kTotalLedCount, kLedDataPin, NEO_GRB + NEO_KHZ800);
 Adafruit_PWMServoDriver gServoDriver(kPca9685Address, Wire);
 HardwareSerial gDfPlayer1Serial(1);
@@ -212,6 +230,7 @@ Preferences gConfigPreferences;
 void writeLedOutputs();
 void writeOledTestOutput(uint8_t derrickIndex, uint8_t step);
 void writeOledSequenceStage(uint8_t stage);
+void applyFailsafeTargets();
 
 void logLine(const char* message) {
   if (kEnableSerialLogs) {
@@ -359,6 +378,21 @@ bool parsePercent(const char* text, uint8_t& percent) {
   return true;
 }
 
+void initializeClusterIdInputs() {
+  for (uint8_t i = 0; i < 4; ++i) {
+    pinMode(kClusterIdPins[i], INPUT_PULLUP);
+  }
+
+  uint8_t dipValue = 0;
+  for (uint8_t i = 0; i < 4; ++i) {
+    if (digitalRead(kClusterIdPins[i]) == LOW) {
+      dipValue |= 1 << i;
+    }
+  }
+
+  gClusterId = dipValue == 0 || dipValue > kMaxClusters ? kDefaultClusterId : dipValue;
+}
+
 void printSerialConfig() {
   if (!kEnableSerialLogs) {
     return;
@@ -384,6 +418,17 @@ void printSerialConfig() {
     Serial.print(": ");
     Serial.println(canTypeName(gDerekCanTypes[i]));
   }
+
+  Serial.print("Cluster ID: ");
+  Serial.println(gClusterId);
+  Serial.print("Software version: ");
+  Serial.print(kSoftwareVersionMajor);
+  Serial.print(".");
+  Serial.print(kSoftwareVersionMinor);
+  Serial.print(".");
+  Serial.println(kSoftwareVersionRevision);
+  Serial.print("Self-test mode: ");
+  Serial.println(gSelfTestMode == kSelfTestModeFull ? "full" : (gSelfTestMode == kSelfTestModeSingle ? "single" : "off"));
 }
 
 void printSerialHelp() {
@@ -397,6 +442,7 @@ void printSerialHelp() {
   Serial.println("  type <derek 1-8> <smallest|small|medium|tall|tallest>");
   Serial.println("  profile <type> <minPercent 0-100> <maxPercent 0-100>");
   Serial.println("  defaults");
+  Serial.println("  selftest off|single|full");
 }
 
 void handleSerialCommand(char* commandLine) {
@@ -412,6 +458,36 @@ void handleSerialCommand(char* commandLine) {
 
   if (strcasecmp(command, "config") == 0) {
     printSerialConfig();
+    return;
+  }
+
+  if (strcasecmp(command, "selftest") == 0) {
+    const char* modeText = strtok(nullptr, " \t");
+    if (modeText == nullptr) {
+      Serial.println("Usage: selftest off|single|full");
+      return;
+    }
+
+    if (strcasecmp(modeText, "off") == 0) {
+      gSelfTestMode = kSelfTestModeOff;
+      applyFailsafeTargets();
+      Serial.println("Self-test off. MCU control enabled.");
+      return;
+    }
+    if (strcasecmp(modeText, "single") == 0) {
+      gSelfTestMode = kSelfTestModeSingle;
+      gLastSelfTestAtMs = 0;
+      Serial.println("Single-Derek self-test enabled.");
+      return;
+    }
+    if (strcasecmp(modeText, "full") == 0) {
+      gSelfTestMode = kSelfTestModeFull;
+      gLastFullClusterTestAtMs = 0;
+      Serial.println("Full-cluster self-test enabled.");
+      return;
+    }
+
+    Serial.println("Usage: selftest off|single|full");
     return;
   }
 
@@ -526,8 +602,12 @@ bool addEspNowPeer(const uint8_t* macAddress) {
 }
 
 void ensureControllerPeer(const uint8_t* macAddress) {
+  const bool wasKnown = gControllerMacKnown;
   memcpy(gControllerMac, macAddress, sizeof(gControllerMac));
   gControllerMacKnown = addEspNowPeer(macAddress);
+  if (!wasKnown && gControllerMacKnown) {
+    gOledRuntimeRefreshPending = true;
+  }
 }
 
 uint16_t buildHealthFlags(uint32_t nowMs) {
@@ -552,6 +632,9 @@ uint16_t buildHealthFlags(uint32_t nowMs) {
   }
   if (gLastCommandAtMs == 0 || (nowMs - gLastCommandAtMs) > kCommandTimeoutMs) {
     flags |= kHealthCommandStale;
+  }
+  if (gServoPwmEnabled) {
+    flags |= kHealthServoPwmEnabled;
   }
   return flags;
 }
@@ -597,18 +680,38 @@ bool writeI2cBytes(uint8_t address, const uint8_t* data, size_t len) {
 bool initializePca9685() {
   pinMode(kPcaOePin, OUTPUT);
   digitalWrite(kPcaOePin, HIGH);
+  gServoPwmEnabled = false;
 
   const bool ok = gServoDriver.begin();
   if (ok) {
     gServoDriver.setPWMFreq(kServoPwmFrequencyHz);
     delay(10);
   }
-  digitalWrite(kPcaOePin, ok ? LOW : HIGH);
+  digitalWrite(kPcaOePin, HIGH);
   return ok;
 }
 
 uint16_t angleToServoPulseUs(uint8_t angle) {
   return map(angle, 0, 180, kServoMinPulseUs, kServoMaxPulseUs);
+}
+
+void setServoPwmEnabled(bool enabled) {
+  if (!gServosReady || gServoPwmEnabled == enabled) {
+    return;
+  }
+
+  digitalWrite(kPcaOePin, enabled ? LOW : HIGH);
+  gServoPwmEnabled = enabled;
+}
+
+bool areActiveServosAtTargets() {
+  for (uint8_t i = 0; i < gActiveDerricks; ++i) {
+    const DerekState& derrick = gDerricks[i];
+    if (derrick.currentPan != derrick.targetPan || derrick.currentLift != derrick.targetLift) {
+      return false;
+    }
+  }
+  return true;
 }
 
 void writeServoOutputs(uint8_t derrickIndex) {
@@ -685,6 +788,168 @@ bool initializeOled() {
   }
 
   return true;
+}
+
+uint8_t fontColumn(char character, uint8_t column) {
+  static const uint8_t kDigits[10][5] = {
+      {0x3E, 0x51, 0x49, 0x45, 0x3E}, {0x00, 0x42, 0x7F, 0x40, 0x00},
+      {0x42, 0x61, 0x51, 0x49, 0x46}, {0x21, 0x41, 0x45, 0x4B, 0x31},
+      {0x18, 0x14, 0x12, 0x7F, 0x10}, {0x27, 0x45, 0x45, 0x45, 0x39},
+      {0x3C, 0x4A, 0x49, 0x49, 0x30}, {0x01, 0x71, 0x09, 0x05, 0x03},
+      {0x36, 0x49, 0x49, 0x49, 0x36}, {0x06, 0x49, 0x49, 0x29, 0x1E},
+  };
+  static const uint8_t kLetters[26][5] = {
+      {0x7E, 0x11, 0x11, 0x11, 0x7E}, {0x7F, 0x49, 0x49, 0x49, 0x36},
+      {0x3E, 0x41, 0x41, 0x41, 0x22}, {0x7F, 0x41, 0x41, 0x22, 0x1C},
+      {0x7F, 0x49, 0x49, 0x49, 0x41}, {0x7F, 0x09, 0x09, 0x09, 0x01},
+      {0x3E, 0x41, 0x49, 0x49, 0x7A}, {0x7F, 0x08, 0x08, 0x08, 0x7F},
+      {0x00, 0x41, 0x7F, 0x41, 0x00}, {0x20, 0x40, 0x41, 0x3F, 0x01},
+      {0x7F, 0x08, 0x14, 0x22, 0x41}, {0x7F, 0x40, 0x40, 0x40, 0x40},
+      {0x7F, 0x02, 0x0C, 0x02, 0x7F}, {0x7F, 0x04, 0x08, 0x10, 0x7F},
+      {0x3E, 0x41, 0x41, 0x41, 0x3E}, {0x7F, 0x09, 0x09, 0x09, 0x06},
+      {0x3E, 0x41, 0x51, 0x21, 0x5E}, {0x7F, 0x09, 0x19, 0x29, 0x46},
+      {0x46, 0x49, 0x49, 0x49, 0x31}, {0x01, 0x01, 0x7F, 0x01, 0x01},
+      {0x3F, 0x40, 0x40, 0x40, 0x3F}, {0x1F, 0x20, 0x40, 0x20, 0x1F},
+      {0x3F, 0x40, 0x38, 0x40, 0x3F}, {0x63, 0x14, 0x08, 0x14, 0x63},
+      {0x07, 0x08, 0x70, 0x08, 0x07}, {0x61, 0x51, 0x49, 0x45, 0x43},
+  };
+
+  if (column >= 5) {
+    return 0x00;
+  }
+  if (character >= 'a' && character <= 'z') {
+    character -= 32;
+  }
+  if (character >= '0' && character <= '9') {
+    return kDigits[character - '0'][column];
+  }
+  if (character >= 'A' && character <= 'Z') {
+    return kLetters[character - 'A'][column];
+  }
+  switch (character) {
+    case ':':
+      return column == 2 ? 0x36 : 0x00;
+    case '.':
+      return column == 2 ? 0x40 : 0x00;
+    case '/':
+      return 0x40 >> column;
+    case '-':
+      return column > 0 && column < 4 ? 0x08 : 0x00;
+    case '%':
+      return column == 0 ? 0x63 : (column == 1 ? 0x13 : (column == 2 ? 0x08 : (column == 3 ? 0x64 : 0x63)));
+    case ' ':
+    default:
+      return 0x00;
+  }
+}
+
+void writeOledLine(uint8_t page, const char* text) {
+  if (!gOledReady || page >= 8) {
+    return;
+  }
+
+  uint8_t pageData[128] = {};
+  uint8_t cursor = 0;
+  for (uint8_t i = 0; text[i] != '\0' && cursor < sizeof(pageData); ++i) {
+    for (uint8_t col = 0; col < 5 && cursor < sizeof(pageData); ++col) {
+      pageData[cursor++] = fontColumn(text[i], col);
+    }
+    if (cursor < sizeof(pageData)) {
+      pageData[cursor++] = 0x00;
+    }
+  }
+
+  sendOledCommand(0xB0 + page);
+  sendOledCommand(0x00);
+  sendOledCommand(0x10);
+  sendOledData(pageData, sizeof(pageData));
+}
+
+void clearOled() {
+  if (!gOledReady) {
+    return;
+  }
+  for (uint8_t page = 0; page < 8; ++page) {
+    writeOledLine(page, "");
+  }
+}
+
+const char* selfTestModeName() {
+  switch (gSelfTestMode) {
+    case kSelfTestModeSingle:
+      return "SINGLE";
+    case kSelfTestModeFull:
+      return "FULL";
+    default:
+      return "OFF";
+  }
+}
+
+void showOledStartupStatus(const char* step) {
+  if (!gOledReady) {
+    return;
+  }
+
+  char line[22] = {};
+  clearOled();
+  snprintf(
+      line,
+      sizeof(line),
+      "CL%u V%u.%u.%u",
+      gClusterId,
+      kSoftwareVersionMajor,
+      kSoftwareVersionMinor,
+      kSoftwareVersionRevision);
+  writeOledLine(0, line);
+  writeOledLine(1, "STARTUP");
+  writeOledLine(2, step);
+}
+
+void showOledRuntimeSummary(const char* status) {
+  if (!gOledReady) {
+    return;
+  }
+
+  char line[22] = {};
+  clearOled();
+
+  snprintf(
+      line,
+      sizeof(line),
+      "CL%u V%u.%u.%u",
+      gClusterId,
+      kSoftwareVersionMajor,
+      kSoftwareVersionMinor,
+      kSoftwareVersionRevision);
+  writeOledLine(0, line);
+
+  writeOledLine(1, status);
+  snprintf(line, sizeof(line), "MCU %s", gControllerMacKnown ? "LINKED" : "WAITING");
+  writeOledLine(2, line);
+
+  snprintf(line, sizeof(line), "ID %u ACTIVE %u", gClusterId, gActiveDerricks);
+  writeOledLine(3, line);
+
+  snprintf(line, sizeof(line), "S%u L%u A%u%u P%u", gServosReady, gLedsReady, gAudio1Ready, gAudio2Ready, gPirReady);
+  writeOledLine(4, line);
+
+  snprintf(line, sizeof(line), "PIR %u PWM %s", gPirStateBits, gServoPwmEnabled ? "ON" : "REST");
+  writeOledLine(5, line);
+
+  snprintf(line, sizeof(line), "TEST %s", selfTestModeName());
+  writeOledLine(6, line);
+
+  snprintf(line, sizeof(line), "SEQ %u", gLastSequence);
+  writeOledLine(7, line);
+}
+
+void serviceOledRuntimeSummary() {
+  if (!gOledRuntimeRefreshPending || !areActiveServosAtTargets() || gServoPwmEnabled) {
+    return;
+  }
+
+  gOledRuntimeRefreshPending = false;
+  showOledRuntimeSummary(gControllerMacKnown ? "MCU LINKED" : "WAIT MCU");
 }
 
 void writeOledTestOutput(uint8_t derrickIndex, uint8_t step) {
@@ -770,7 +1035,7 @@ void updateAudioOutputs() {
 }
 
 void runClusterSelfTest(uint32_t nowMs) {
-  if (!kEnableClusterSelfTest || (nowMs - gLastSelfTestAtMs) < kSelfTestIntervalMs) {
+  if (gSelfTestMode != kSelfTestModeSingle || (nowMs - gLastSelfTestAtMs) < kSelfTestIntervalMs) {
     return;
   }
 
@@ -812,7 +1077,6 @@ void runClusterSelfTest(uint32_t nowMs) {
   }
 
   writeLedOutputs();
-  writeOledTestOutput(derrickIndex, gSelfTestStep);
   ++gSelfTestStep;
 }
 
@@ -830,7 +1094,7 @@ void setAllDerekOutputs(uint8_t pan, uint8_t lift, RgbColor eyeColor, RgbColor c
 }
 
 void runFullClusterSequenceTest(uint32_t nowMs) {
-  if (!kEnableClusterSelfTest || (nowMs - gLastFullClusterTestAtMs) < kFullClusterTestStageMs) {
+  if (gSelfTestMode != kSelfTestModeFull || (nowMs - gLastFullClusterTestAtMs) < kFullClusterTestStageMs) {
     return;
   }
 
@@ -868,7 +1132,6 @@ void runFullClusterSequenceTest(uint32_t nowMs) {
       break;
   }
 
-  writeOledSequenceStage(gFullClusterTestStage);
   gFullClusterTestStage = (gFullClusterTestStage + 1) % 8;
 }
 
@@ -878,8 +1141,12 @@ void updateMotion(uint32_t nowMs) {
   }
   gLastMotionUpdateAtMs = nowMs;
 
+  bool anyServoMoved = false;
+
   for (uint8_t i = 0; i < gActiveDerricks; ++i) {
     DerekState& derrick = gDerricks[i];
+    const uint8_t previousPan = derrick.currentPan;
+    const uint8_t previousLift = derrick.currentLift;
 
     if (derrick.currentPan < derrick.targetPan) {
       derrick.currentPan = min<uint8_t>(derrick.targetPan, derrick.currentPan + kPanStepPerTick);
@@ -897,7 +1164,22 @@ void updateMotion(uint32_t nowMs) {
       derrick.currentLift = max<uint8_t>(derrick.targetLift, nextLift);
     }
 
-    writeServoOutputs(i);
+    if (derrick.currentPan != previousPan || derrick.currentLift != previousLift) {
+      anyServoMoved = true;
+    }
+  }
+
+  if (anyServoMoved || !areActiveServosAtTargets()) {
+    setServoPwmEnabled(true);
+    gLastServoMotionAtMs = nowMs;
+    for (uint8_t i = 0; i < gActiveDerricks; ++i) {
+      writeServoOutputs(i);
+    }
+    return;
+  }
+
+  if (gServoPwmEnabled && (nowMs - gLastServoMotionAtMs) >= kServoSoftRestDelayMs) {
+    setServoPwmEnabled(false);
   }
 }
 
@@ -923,7 +1205,7 @@ void sendStatusPacket(uint8_t kind, uint32_t nowMs) {
   status.magic = kProtocolMagic;
   status.version = kProtocolVersion;
   status.kind = kind;
-  status.clusterId = kClusterId;
+  status.clusterId = gClusterId;
   status.sequence = gLastSequence;
   status.activeDerricks = gActiveDerricks;
   status.pirStateBits = gPirStateBits;
@@ -936,13 +1218,17 @@ void sendStatusPacket(uint8_t kind, uint32_t nowMs) {
 }
 
 void handleCommand(const ClusterCommandPacket& packet, uint32_t nowMs) {
-  if (packet.clusterId != 0 && packet.clusterId != kClusterId) {
+  if (packet.clusterId != 0 && packet.clusterId != gClusterId) {
     return;
   }
 
   gLastSequence = packet.sequence;
   gLastCommandAtMs = nowMs;
   gActiveDerricks = packet.activeDerricks > kMaxDerricks ? kMaxDerricks : packet.activeDerricks;
+
+  if ((packet.flags & kCommandFlagDiscovery) == 0) {
+    gSelfTestMode = kSelfTestModeOff;
+  }
 
   if (packet.flags & kCommandFlagEmergencyHide) {
     applyFailsafeTargets();
@@ -1050,16 +1336,19 @@ void initializeHardwareAvailability() {
   Wire.begin(kI2cSdaPin, kI2cSclPin);
   gServosReady = initializePca9685();
   gOledReady = initializeOled();
+  showOledStartupStatus("OLED READY");
 
   gLedStrip.begin();
   gLedStrip.clear();
   gLedStrip.show();
   gLedsReady = true;
+  showOledStartupStatus(gServosReady ? "SERVO OK" : "SERVO FAIL");
 
   gDfPlayer1Serial.begin(9600, SERIAL_8N1, kDfPlayer1RxPin, kDfPlayer1TxPin);
   gDfPlayer2Serial.begin(9600, SERIAL_8N1, kDfPlayer2RxPin, kDfPlayer2TxPin);
   gAudio1Ready = gDfPlayer1.begin(gDfPlayer1Serial);
   gAudio2Ready = gDfPlayer2.begin(gDfPlayer2Serial);
+  showOledStartupStatus("AUDIO CHECKED");
 
   if (gAudio1Ready) {
     gDfPlayer1.volume(22);
@@ -1090,19 +1379,24 @@ void setup() {
     Serial.begin(115200);
   }
 
+  initializeClusterIdInputs();
   loadDerekTypeConfig();
   initializeDerrickState();
   initializePirInputs();
   initializeHardwareAvailability();
+  showOledStartupStatus("HARDWARE READY");
 
   if (!initializeEspNow()) {
     logLine("ESP-NOW init failed.");
+    showOledStartupStatus("ESPNOW FAIL");
     return;
   }
+  showOledStartupStatus("ESPNOW READY");
 
   logLine("Cluster controller ready.");
   printSerialHelp();
   printSerialConfig();
+  showOledRuntimeSummary("WAIT MCU");
 }
 
 void loop() {
@@ -1115,8 +1409,10 @@ void loop() {
     applyFailsafeTargets();
   }
 
+  runClusterSelfTest(nowMs);
   runFullClusterSequenceTest(nowMs);
   updateMotion(nowMs);
   updateAudioOutputs();
   publishIfNeeded(nowMs);
+  serviceOledRuntimeSummary();
 }

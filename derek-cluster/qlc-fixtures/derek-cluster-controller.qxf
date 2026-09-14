@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FixtureDefinition>
+<FixtureDefinition xmlns="http://www.qlcplus.org/FixtureDefinition">
+ <Creator>
+  <Name>Q Light Controller Plus</Name>
+  <Version>5</Version>
+  <Author>Project Derek</Author>
+ </Creator>
+ <Manufacturer>Project Derek</Manufacturer>
+ <Model>Derek Cluster Controller</Model>
+ <Type>Other</Type>
+ <Channel Name="Active Dereks" Default="8">
+  <Group Byte="0">Maintenance</Group>
+  <Capability Min="0" Max="0">No active Dereks</Capability>
+  <Capability Min="1" Max="1">1 active Derek</Capability>
+  <Capability Min="2" Max="2">2 active Dereks</Capability>
+  <Capability Min="3" Max="3">3 active Dereks</Capability>
+  <Capability Min="4" Max="4">4 active Dereks</Capability>
+  <Capability Min="5" Max="5">5 active Dereks</Capability>
+  <Capability Min="6" Max="6">6 active Dereks</Capability>
+  <Capability Min="7" Max="7">7 active Dereks</Capability>
+  <Capability Min="8" Max="255">8 active Dereks</Capability>
+ </Channel>
+ <Channel Name="Apply Outputs" Default="255">
+  <Group Byte="0">Maintenance</Group>
+  <Capability Min="0" Max="127">Do not apply Derek output channels</Capability>
+  <Capability Min="128" Max="255">Apply Derek output channels</Capability>
+ </Channel>
+ <Channel Name="Emergency Hide" Default="0">
+  <Group Byte="0">Maintenance</Group>
+  <Capability Min="0" Max="127">Normal operation</Capability>
+  <Capability Min="128" Max="255">Hide active Dereks and blackout LEDs</Capability>
+ </Channel>
+ <Channel Name="Request Status" Default="0">
+  <Group Byte="0">Maintenance</Group>
+  <Capability Min="0" Max="127">Normal status interval</Capability>
+  <Capability Min="128" Max="255">Request immediate status packet</Capability>
+ </Channel>
+ <Channel Name="Discovery" Default="0">
+  <Group Byte="0">Maintenance</Group>
+  <Capability Min="0" Max="127">Normal command</Capability>
+  <Capability Min="128" Max="255">Discovery command</Capability>
+ </Channel>
+ <Channel Name="Audio A Track MSB" Default="0">
+  <Group Byte="0">Effect</Group>
+  <Capability Min="0" Max="255">DFPlayer A track high byte</Capability>
+ </Channel>
+ <Channel Name="Audio A Track LSB" Default="0">
+  <Group Byte="1">Effect</Group>
+  <Capability Min="0" Max="255">DFPlayer A track low byte</Capability>
+ </Channel>
+ <Channel Name="Audio A Trigger" Default="0">
+  <Group Byte="0">Effect</Group>
+  <Capability Min="0" Max="127">Do not trigger DFPlayer A</Capability>
+  <Capability Min="128" Max="255">Trigger DFPlayer A track</Capability>
+ </Channel>
+ <Channel Name="Audio B Track MSB" Default="0">
+  <Group Byte="0">Effect</Group>
+  <Capability Min="0" Max="255">DFPlayer B track high byte</Capability>
+ </Channel>
+ <Channel Name="Audio B Track LSB" Default="0">
+  <Group Byte="1">Effect</Group>
+  <Capability Min="0" Max="255">DFPlayer B track low byte</Capability>
+ </Channel>
+ <Channel Name="Audio B Trigger" Default="0">
+  <Group Byte="0">Effect</Group>
+  <Capability Min="0" Max="127">Do not trigger DFPlayer B</Capability>
+  <Capability Min="128" Max="255">Trigger DFPlayer B track</Capability>
+ </Channel>
+ <Channel Name="PIR Left" Default="0">
+  <Group Byte="0">Effect</Group>
+  <Capability Min="0" Max="127">No motion</Capability>
+  <Capability Min="128" Max="255">Motion detected</Capability>
+ </Channel>
+ <Channel Name="PIR Center" Default="0">
+  <Group Byte="0">Effect</Group>
+  <Capability Min="0" Max="127">No motion</Capability>
+  <Capability Min="128" Max="255">Motion detected</Capability>
+ </Channel>
+ <Channel Name="PIR Right" Default="0">
+  <Group Byte="0">Effect</Group>
+  <Capability Min="0" Max="127">No motion</Capability>
+  <Capability Min="128" Max="255">Motion detected</Capability>
+ </Channel>
+ <Mode Name="14 Channel">
+  <Channel Number="0">Active Dereks</Channel>
+  <Channel Number="1">Apply Outputs</Channel>
+  <Channel Number="2">Emergency Hide</Channel>
+  <Channel Number="3">Request Status</Channel>
+  <Channel Number="4">Discovery</Channel>
+  <Channel Number="5">Audio A Track MSB</Channel>
+  <Channel Number="6">Audio A Track LSB</Channel>
+  <Channel Number="7">Audio A Trigger</Channel>
+  <Channel Number="8">Audio B Track MSB</Channel>
+  <Channel Number="9">Audio B Track LSB</Channel>
+  <Channel Number="10">Audio B Trigger</Channel>
+  <Channel Number="11">PIR Left</Channel>
+  <Channel Number="12">PIR Center</Channel>
+  <Channel Number="13">PIR Right</Channel>
+ </Mode>
+ <Physical>
+  <Bulb Type="Controller status fixture" Lumens="0" ColourTemperature="0"/>
+  <Dimensions Width="120" Height="40" Depth="80" Weight="0.2"/>
+  <Lens Name="Other" DegreesMin="0" DegreesMax="0"/>
+  <Focus Type="Fixed" PanMax="0" TiltMax="0"/>
+  <Technical PowerConsumption="5" DmxConnector="Wireless"/>
+ </Physical>
+</FixtureDefinition>
