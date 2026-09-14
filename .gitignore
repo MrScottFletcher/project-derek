@@ -1,0 +1,17 @@
+﻿# Arduino / ESP32 build outputs
+**/build/
+
+# Compiled firmware artifacts
+*.bin
+*.elf
+*.map
+*.hex
+*.o
+*.d
+*.a
+
+# Arduino / VS Code generated local config
+**/.vscode/
+
+# QLC+ autosaves
+*.autosave.qxw
