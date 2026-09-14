@@ -21,208 +21,21 @@
   </InputOutputMap>
   <Fixture>
    <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Cluster Controller</Model>
-   <Mode>14 Channel</Mode>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
    <ID>0</ID>
-   <Name>Derek Cluster Controller</Name>
+   <Name>Derek Unit [1]</Name>
    <Universe>0</Universe>
    <Address>0</Address>
-   <Channels>14</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Cluster Controller</Model>
-   <Mode>14 Channel</Mode>
-   <ID>2</ID>
-   <Name>Derek Cluster Controller</Name>
-   <Universe>1</Universe>
-   <Address>0</Address>
-   <Channels>14</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>16</ID>
-   <Name>Derek Unit #1</Name>
-   <Universe>1</Universe>
-   <Address>14</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>17</ID>
-   <Name>Derek Unit #2</Name>
-   <Universe>1</Universe>
-   <Address>25</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>18</ID>
-   <Name>Derek Unit #3</Name>
-   <Universe>1</Universe>
-   <Address>36</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>19</ID>
-   <Name>Derek Unit #4</Name>
-   <Universe>1</Universe>
-   <Address>47</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>20</ID>
-   <Name>Derek Unit #5</Name>
-   <Universe>1</Universe>
-   <Address>58</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>21</ID>
-   <Name>Derek Unit #6</Name>
-   <Universe>1</Universe>
-   <Address>69</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>22</ID>
-   <Name>Derek Unit #7</Name>
-   <Universe>1</Universe>
-   <Address>80</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>23</ID>
-   <Name>Derek Unit #8</Name>
-   <Universe>1</Universe>
-   <Address>91</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>24</ID>
-   <Name>Derek Unit #1</Name>
-   <Universe>0</Universe>
-   <Address>14</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>25</ID>
-   <Name>Derek Unit #2</Name>
-   <Universe>0</Universe>
-   <Address>25</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>26</ID>
-   <Name>Derek Unit #3</Name>
-   <Universe>0</Universe>
-   <Address>36</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>27</ID>
-   <Name>Derek Unit #4</Name>
-   <Universe>0</Universe>
-   <Address>47</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>28</ID>
-   <Name>Derek Unit #5</Name>
-   <Universe>0</Universe>
-   <Address>58</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>29</ID>
-   <Name>Derek Unit #6</Name>
-   <Universe>0</Universe>
-   <Address>69</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>30</ID>
-   <Name>Derek Unit #7</Name>
-   <Universe>0</Universe>
-   <Address>80</Address>
-   <Channels>11</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Unit</Model>
-   <Mode>11 Channel</Mode>
-   <ID>31</ID>
-   <Name>Derek Unit #8</Name>
-   <Universe>0</Universe>
-   <Address>91</Address>
    <Channels>11</Channels>
   </Fixture>
   <Monitor DisplayMode="0" ShowLabels="0">
    <Font>Arial,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1</Font>
    <ChannelStyle>0</ChannelStyle>
    <ValueStyle>0</ValueStyle>
-   <Grid Width="5" Height="3" Depth="5" Units="0" POV="1"/>
+   <Grid Width="5" Height="3" Depth="5" Units="0" POV="2"/>
    <StageItem>0</StageItem>
-   <FxItem ID="0" XPos="-229.463" YPos="1000" ZPos="156.881"/>
-   <FxItem ID="2" XPos="855.049" YPos="1000" ZPos="222.249"/>
-   <FxItem ID="16" XPos="345.78" YPos="152.5" ZPos="475.874"/>
-   <FxItem ID="17" XPos="495.78" YPos="152.5" ZPos="483.718"/>
-   <FxItem ID="18" XPos="645.78" YPos="152.5" ZPos="483.718"/>
-   <FxItem ID="19" XPos="795.78" YPos="152.5" ZPos="483.718"/>
-   <FxItem ID="20" XPos="945.78" YPos="152.5" ZPos="483.718"/>
-   <FxItem ID="21" XPos="1095.78" YPos="152.5" ZPos="483.718"/>
-   <FxItem ID="22" XPos="1245.78" YPos="152.5" ZPos="483.718"/>
-   <FxItem ID="23" XPos="1395.78" YPos="152.5" ZPos="483.718"/>
-   <FxItem ID="24" XPos="1647.55" YPos="160" ZPos="457.571"/>
-   <FxItem ID="25" XPos="1797.55" YPos="160" ZPos="457.571"/>
-   <FxItem ID="26" XPos="1947.55" YPos="160" ZPos="457.571"/>
-   <FxItem ID="27" XPos="2097.55" YPos="160" ZPos="457.571"/>
-   <FxItem ID="28" XPos="2247.55" YPos="160" ZPos="457.571"/>
-   <FxItem ID="29" XPos="2397.55" YPos="160" ZPos="457.571"/>
-   <FxItem ID="30" XPos="2547.55" YPos="160" ZPos="457.571"/>
-   <FxItem ID="31" XPos="2681.86" YPos="160" ZPos="468.029"/>
+   <FxItem ID="0" XPos="1867.5" YPos="645" ZPos="0"/>
   </Monitor>
  </Engine>
  <VirtualConsole>

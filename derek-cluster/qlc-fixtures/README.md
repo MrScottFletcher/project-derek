@@ -50,17 +50,17 @@ The MCU maps QLC+ OSC output paths using QLC's zero-based OSC convention:
 
 The Derek unit maps directly to `DerekCommand`:
 
-1. Pan
-2. Lift
-3. Eye red
-4. Eye green
-5. Eye blue
-6. Can interior red
-7. Can interior green
-8. Can interior blue
-9. Exterior red
-10. Exterior green
-11. Exterior blue
+1. Eye pan
+2. Eye lift and lid
+3. Eye LED red
+4. Eye LED green
+5. Eye LED blue
+6. Can glow red
+7. Can glow green
+8. Can glow blue
+9. Front pinspot red
+10. Front pinspot green
+11. Front pinspot blue
 
 The cluster controller maps to cluster-level packet fields and status bits:
 
