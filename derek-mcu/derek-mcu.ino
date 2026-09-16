@@ -29,6 +29,8 @@ constexpr uint16_t kOscStatusPort = 9000;
 constexpr size_t kOscPacketBufferSize = 768;
 constexpr bool kEnableOscDebugLogs = true;
 constexpr uint32_t kOscDebugLogIntervalMs = 1000;
+constexpr bool kEnableRadioDebugLogs = true;
+constexpr uint32_t kRadioDebugLogIntervalMs = 1000;
 constexpr uint8_t kClusterControllerChannels = 14;
 constexpr uint8_t kChannelsPerDerek = 11;
 constexpr uint8_t kDerekChannelsStart = kClusterControllerChannels + 1;
@@ -45,7 +47,7 @@ constexpr uint16_t kControllerAudioATriggerChannel = 8;
 constexpr uint16_t kControllerAudioBTrackMsbChannel = 9;
 constexpr uint16_t kControllerAudioBTrackLsbChannel = 10;
 constexpr uint16_t kControllerAudioBTriggerChannel = 11;
-constexpr uint16_t kControllerPirLeftChannel = 12;
+constexpr uint16_t kControllerMovementSpeedChannel = 12;
 constexpr uint16_t kControllerPirCenterChannel = 13;
 constexpr uint16_t kControllerPirRightChannel = 14;
 constexpr int8_t kI2cSdaPin = 8;
@@ -86,6 +88,12 @@ enum BootDerekTestPhase : uint8_t {
   kBootDerekTestPhaseCount = 5,
 };
 
+enum MovementSpeed : uint8_t {
+  kMovementSpeedFast = 0,
+  kMovementSpeedMedium = 1,
+  kMovementSpeedSlow = 2,
+};
+
 struct RgbColor {
   uint8_t r;
   uint8_t g;
@@ -109,6 +117,7 @@ struct ClusterCommandPacket {
   uint16_t sequence;
   uint8_t flags;
   uint8_t activeDerricks;
+  uint8_t movementSpeed;
   uint16_t audioTrackA;
   uint16_t audioTrackB;
   DerekCommand derricks[kMaxDerricks];
@@ -143,6 +152,7 @@ struct ClusterRuntime {
   uint16_t audioTrackBSetting;
   bool audioATriggerHigh;
   bool audioBTriggerHigh;
+  MovementSpeed movementSpeed;
   ClusterCommandPacket desiredCommand;
 };
 
@@ -174,6 +184,18 @@ uint16_t gLastOscChannel = 0;
 uint8_t gLastOscValue = 0;
 char gLastOscAddress[32] = {};
 char gLastOscRejectReason[24] = "none";
+uint32_t gEspNowPacketsQueued = 0;
+uint32_t gEspNowQueueFailures = 0;
+uint32_t gEspNowSendSuccesses = 0;
+uint32_t gEspNowSendFailures = 0;
+uint32_t gLastEspNowQueuedAtMs = 0;
+uint32_t gLastEspNowCallbackAtMs = 0;
+uint32_t gLastRadioDebugLogAtMs = 0;
+uint8_t gLastEspNowClusterId = 0;
+uint16_t gLastEspNowSequence = 0;
+uint8_t gLastEspNowFlags = 0;
+int gLastEspNowQueueResult = 0;
+int gLastEspNowSendStatus = 0;
 
 void sendOscStatus(const ClusterRuntime& cluster);
 
@@ -490,6 +512,32 @@ uint8_t dmxToLift(uint8_t value) {
   return map(value, 0, 255, 0, 170);
 }
 
+MovementSpeed dmxToMovementSpeed(uint8_t value) {
+  if (value < 85) {
+    return kMovementSpeedFast;
+  }
+  if (value < 170) {
+    return kMovementSpeedMedium;
+  }
+  return kMovementSpeedSlow;
+}
+
+bool parseMovementSpeedName(const char* speedName, MovementSpeed& movementSpeed) {
+  if (strcmp(speedName, "fast") == 0 || strcmp(speedName, "Fast") == 0) {
+    movementSpeed = kMovementSpeedFast;
+    return true;
+  }
+  if (strcmp(speedName, "medium") == 0 || strcmp(speedName, "Medium") == 0) {
+    movementSpeed = kMovementSpeedMedium;
+    return true;
+  }
+  if (strcmp(speedName, "slow") == 0 || strcmp(speedName, "Slow") == 0) {
+    movementSpeed = kMovementSpeedSlow;
+    return true;
+  }
+  return false;
+}
+
 void initializeDefaultCommand(ClusterCommandPacket& command, uint8_t clusterId) {
   memset(&command, 0, sizeof(command));
   command.magic = kProtocolMagic;
@@ -497,6 +545,7 @@ void initializeDefaultCommand(ClusterCommandPacket& command, uint8_t clusterId) 
   command.kind = kMessageCommand;
   command.clusterId = clusterId;
   command.activeDerricks = kMaxDerricks;
+  command.movementSpeed = kMovementSpeedFast;
   command.flags = kCommandFlagApplyOutputs;
 
   for (uint8_t i = 0; i < kMaxDerricks; ++i) {
@@ -586,7 +635,11 @@ void applyClusterControllerChannel(ClusterRuntime& cluster, uint16_t channel, ui
       }
       cluster.audioBTriggerHigh = high;
       break;
-    case kControllerPirLeftChannel:
+    case kControllerMovementSpeedChannel:
+      cluster.movementSpeed = dmxToMovementSpeed(value);
+      packet.movementSpeed = cluster.movementSpeed;
+      packet.flags |= kCommandFlagRequestStatus;
+      break;
     case kControllerPirCenterChannel:
     case kControllerPirRightChannel:
       // PIR channels are feedback/status placeholders in the QLC fixture.
@@ -691,6 +744,7 @@ int8_t reserveClusterSlot(const uint8_t* macAddress, uint8_t clusterId) {
       gClusters[i].online = true;
       gClusters[i].clusterId = clusterId;
       gClusters[i].lastActiveDerricks = kMaxDerricks;
+      gClusters[i].movementSpeed = kMovementSpeedFast;
       memcpy(gClusters[i].mac, macAddress, 6);
       initializeDefaultCommand(gClusters[i].desiredCommand, clusterId);
       addEspNowPeer(macAddress);
@@ -939,16 +993,73 @@ void runBootDerekTest(uint32_t nowMs) {
   advanceBootDerekTestCursor();
 }
 
+void printRadioDebugSummary() {
+  Serial.print("ESP-NOW queued=");
+  Serial.print(gEspNowPacketsQueued);
+  Serial.print(" queueFail=");
+  Serial.print(gEspNowQueueFailures);
+  Serial.print(" sendOk=");
+  Serial.print(gEspNowSendSuccesses);
+  Serial.print(" sendFail=");
+  Serial.print(gEspNowSendFailures);
+  Serial.print(" last C");
+  Serial.print(gLastEspNowClusterId);
+  Serial.print(" seq=");
+  Serial.print(gLastEspNowSequence);
+  Serial.print(" flags=0x");
+  Serial.print(gLastEspNowFlags, HEX);
+  Serial.print(" queueResult=");
+  Serial.print(gLastEspNowQueueResult);
+  Serial.print(" cbStatus=");
+  Serial.println(gLastEspNowSendStatus);
+}
+
+void maybePrintRadioDebugSummary(uint32_t nowMs) {
+  if (!kEnableSerialLogs || !kEnableRadioDebugLogs) {
+    return;
+  }
+
+  if ((nowMs - gLastRadioDebugLogAtMs) < kRadioDebugLogIntervalMs) {
+    return;
+  }
+
+  gLastRadioDebugLogAtMs = nowMs;
+  printRadioDebugSummary();
+}
+
 void sendCommandToCluster(ClusterRuntime& cluster) {
   cluster.desiredCommand.magic = kProtocolMagic;
   cluster.desiredCommand.version = kProtocolVersion;
   cluster.desiredCommand.kind = kMessageCommand;
   cluster.desiredCommand.sequence = gSequenceCounter++;
+  cluster.desiredCommand.movementSpeed = cluster.movementSpeed;
 
-  esp_now_send(
+  const uint16_t sentSequence = cluster.desiredCommand.sequence;
+  const uint8_t sentFlags = cluster.desiredCommand.flags;
+  const esp_err_t sendResult = esp_now_send(
       cluster.mac,
       reinterpret_cast<const uint8_t*>(&cluster.desiredCommand),
       sizeof(cluster.desiredCommand));
+
+  gLastEspNowQueuedAtMs = millis();
+  gLastEspNowClusterId = cluster.clusterId;
+  gLastEspNowSequence = sentSequence;
+  gLastEspNowFlags = sentFlags;
+  gLastEspNowQueueResult = static_cast<int>(sendResult);
+  if (sendResult == ESP_OK) {
+    ++gEspNowPacketsQueued;
+  } else {
+    ++gEspNowQueueFailures;
+    if (kEnableSerialLogs) {
+      Serial.print("ESP-NOW queue failed C");
+      Serial.print(cluster.clusterId);
+      Serial.print(" seq=");
+      Serial.print(sentSequence);
+      Serial.print(" result=");
+      Serial.println(gLastEspNowQueueResult);
+    }
+  }
+  maybePrintRadioDebugSummary(gLastEspNowQueuedAtMs);
 
   cluster.desiredCommand.flags &= kCommandFlagApplyOutputs;
   cluster.desiredCommand.audioTrackA = 0;
@@ -1316,6 +1427,26 @@ void parseSerialCommand(char* line) {
     return;
   }
 
+  if (strcmp(command, "radio") == 0) {
+    printRadioDebugSummary();
+    return;
+  }
+
+  if (strcmp(command, "speed") == 0) {
+    char speedName[8] = {};
+    MovementSpeed movementSpeed = kMovementSpeedFast;
+    if (sscanf(line, "%15s %d %7s", command, &clusterId, speedName) == 3 &&
+        parseMovementSpeedName(speedName, movementSpeed)) {
+      const int8_t clusterIndex = findClusterIndexById(static_cast<uint8_t>(clusterId));
+      if (clusterIndex >= 0) {
+        gClusters[clusterIndex].movementSpeed = movementSpeed;
+        gClusters[clusterIndex].desiredCommand.movementSpeed = movementSpeed;
+        gClusters[clusterIndex].desiredCommand.flags |= kCommandFlagRequestStatus;
+      }
+    }
+    return;
+  }
+
   if (strcmp(command, "dmx") == 0 &&
       sscanf(line, "%15s %d %d %d", command, &clusterId, &a, &b) == 4) {
     const int8_t clusterIndex = findClusterIndexById(static_cast<uint8_t>(clusterId));
@@ -1378,7 +1509,7 @@ void parseSerialCommand(char* line) {
     return;
   }
 
-  Serial.println("Commands: list | osc | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
+  Serial.println("Commands: list | osc | radio | speed <cluster> <fast|medium|slow> | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
 }
 
 void updateSerialConsole() {
@@ -1432,7 +1563,13 @@ void onEspNowSend(const wifi_tx_info_t* txInfo, esp_now_send_status_t status) {
 void onEspNowSend(const uint8_t* macAddr, esp_now_send_status_t status) {
   (void)macAddr;
 #endif
-  (void)status;
+  gLastEspNowCallbackAtMs = millis();
+  gLastEspNowSendStatus = static_cast<int>(status);
+  if (status == ESP_NOW_SEND_SUCCESS) {
+    ++gEspNowSendSuccesses;
+  } else {
+    ++gEspNowSendFailures;
+  }
 }
 
 bool initializeEspNow() {
@@ -1470,7 +1607,7 @@ void setup() {
   Serial.print(kSoftwareVersionMinor);
   Serial.print(".");
   Serial.println(kSoftwareVersionRevision);
-  Serial.println("Serial console commands: list, hide, track, eyes, dmx, audio");
+  Serial.println("Serial console commands: list, osc, radio, speed, hide, track, eyes, dmx, audio");
 }
 
 void loop() {

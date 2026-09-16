@@ -67,10 +67,11 @@
   <Capability Min="0" Max="127">Do not trigger DFPlayer B</Capability>
   <Capability Min="128" Max="255">Trigger DFPlayer B track</Capability>
  </Channel>
- <Channel Name="PIR Left" Default="0">
+ <Channel Name="Movement Speed" Default="0">
   <Group Byte="0">Effect</Group>
-  <Capability Min="0" Max="127">No motion</Capability>
-  <Capability Min="128" Max="255">Motion detected</Capability>
+  <Capability Min="0" Max="84">Fast snap to target</Capability>
+  <Capability Min="85" Max="169">Medium ramp to target</Capability>
+  <Capability Min="170" Max="255">Slow ramp to target</Capability>
  </Channel>
  <Channel Name="PIR Center" Default="0">
   <Group Byte="0">Effect</Group>
@@ -94,7 +95,7 @@
   <Channel Number="8">Audio B Track MSB</Channel>
   <Channel Number="9">Audio B Track LSB</Channel>
   <Channel Number="10">Audio B Trigger</Channel>
-  <Channel Number="11">PIR Left</Channel>
+  <Channel Number="11">Movement Speed</Channel>
   <Channel Number="12">PIR Center</Channel>
   <Channel Number="13">PIR Right</Channel>
  </Mode>

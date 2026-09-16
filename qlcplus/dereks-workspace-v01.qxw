@@ -26,7 +26,177 @@
    <ID>0</ID>
    <Name>Derek Unit [1]</Name>
    <Universe>0</Universe>
+   <Address>14</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>1</ID>
+   <Name>Derek Unit [2]</Name>
+   <Universe>0</Universe>
+   <Address>25</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>2</ID>
+   <Name>Derek Unit [3]</Name>
+   <Universe>0</Universe>
+   <Address>36</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>3</ID>
+   <Name>Derek Unit [4]</Name>
+   <Universe>0</Universe>
+   <Address>47</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>4</ID>
+   <Name>Derek Unit [5]</Name>
+   <Universe>0</Universe>
+   <Address>58</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>5</ID>
+   <Name>Derek Unit [6]</Name>
+   <Universe>0</Universe>
+   <Address>69</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>6</ID>
+   <Name>Derek Unit [7]</Name>
+   <Universe>0</Universe>
+   <Address>80</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>7</ID>
+   <Name>Derek Unit [8]</Name>
+   <Universe>0</Universe>
+   <Address>91</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Cluster Controller</Model>
+   <Mode>14 Channel</Mode>
+   <ID>8</ID>
+   <Name>Derek Cluster Controller [9]</Name>
+   <Universe>0</Universe>
    <Address>0</Address>
+   <Channels>14</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>9</ID>
+   <Name>Derek Unit [10]</Name>
+   <Universe>1</Universe>
+   <Address>0</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>10</ID>
+   <Name>Derek Unit [11]</Name>
+   <Universe>1</Universe>
+   <Address>11</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>11</ID>
+   <Name>Derek Unit [12]</Name>
+   <Universe>1</Universe>
+   <Address>22</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>12</ID>
+   <Name>Derek Unit [13]</Name>
+   <Universe>1</Universe>
+   <Address>33</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>13</ID>
+   <Name>Derek Unit [14]</Name>
+   <Universe>1</Universe>
+   <Address>44</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>14</ID>
+   <Name>Derek Unit [15]</Name>
+   <Universe>1</Universe>
+   <Address>55</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>15</ID>
+   <Name>Derek Unit [16]</Name>
+   <Universe>1</Universe>
+   <Address>66</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Cluster Controller</Model>
+   <Mode>14 Channel</Mode>
+   <ID>16</ID>
+   <Name>Derek Cluster Controller [17]</Name>
+   <Universe>1</Universe>
+   <Address>88</Address>
+   <Channels>14</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>17</ID>
+   <Name>Derek Unit [18]</Name>
+   <Universe>1</Universe>
+   <Address>77</Address>
    <Channels>11</Channels>
   </Fixture>
   <Monitor DisplayMode="0" ShowLabels="0">
@@ -35,7 +205,24 @@
    <ValueStyle>0</ValueStyle>
    <Grid Width="5" Height="3" Depth="5" Units="0" POV="2"/>
    <StageItem>0</StageItem>
-   <FxItem ID="0" XPos="1867.5" YPos="645" ZPos="0"/>
+   <FxItem ID="0" XPos="10.9052" YPos="1792.5" ZPos="0"/>
+   <FxItem ID="1" XPos="14.4252" YPos="1521.67" ZPos="2.74065" XRot="180"/>
+   <FxItem ID="2" XPos="0" YPos="1290" ZPos="0"/>
+   <FxItem ID="3" XPos="0" YPos="1095" ZPos="0"/>
+   <FxItem ID="4" XPos="0" YPos="855" ZPos="0"/>
+   <FxItem ID="5" XPos="0" YPos="637.5" ZPos="0"/>
+   <FxItem ID="6" XPos="0" YPos="397.5" ZPos="0"/>
+   <FxItem ID="7" XPos="0" YPos="217.5" ZPos="0"/>
+   <FxItem ID="8" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="9" XPos="0" YPos="1665" ZPos="-1350"/>
+   <FxItem ID="10" XPos="0" YPos="1365" ZPos="-1267.5"/>
+   <FxItem ID="11" XPos="-46.5438" YPos="1072.5" ZPos="-1285.85"/>
+   <FxItem ID="12" XPos="0" YPos="900" ZPos="-1117.5"/>
+   <FxItem ID="13" XPos="0" YPos="667.5" ZPos="-1170"/>
+   <FxItem ID="14" XPos="0" YPos="435" ZPos="-1155"/>
+   <FxItem ID="15" XPos="0" YPos="202.5" ZPos="-1140"/>
+   <FxItem ID="16" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="17" XPos="0" YPos="-58.5777" ZPos="-1177.5"/>
   </Monitor>
  </Engine>
  <VirtualConsole>
@@ -49,6 +236,14 @@
    <ShowEnableButton>True</ShowEnableButton>
    <Collapsed>False</Collapsed>
    <Disabled>False</Disabled>
+   <Slider Caption="Slider 1" ID="0" WidgetStyle="Slider" InvertedAppearance="false">
+    <WindowState Visible="True" X="1119" Y="412" Width="147" Height="392"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <SliderMode ValueDisplayStyle="Exact">Adjust</SliderMode>
+    <Level LowLimit="0" HighLimit="255" Value="171"/>
+   </Slider>
   </Frame>
  </VirtualConsole>
 </Workspace>

@@ -33,6 +33,8 @@ constexpr uint32_t kFullClusterTestStageMs = 2500;
 constexpr uint16_t kSelfTestAudioTrack = 1;
 constexpr uint8_t kPanStepPerTick = 2;
 constexpr uint8_t kLiftStepPerTick = 2;
+constexpr uint8_t kMediumPanStepPerTick = 8;
+constexpr uint8_t kMediumLiftStepPerTick = 8;
 constexpr size_t kSerialCommandBufferSize = 96;
 constexpr uint8_t kBroadcastMac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 
@@ -126,6 +128,12 @@ enum SelfTestMode : uint8_t {
   kSelfTestModeFull = 2,
 };
 
+enum MovementSpeed : uint8_t {
+  kMovementSpeedFast = 0,
+  kMovementSpeedMedium = 1,
+  kMovementSpeedSlow = 2,
+};
+
 struct RgbColor {
   uint8_t r;
   uint8_t g;
@@ -166,6 +174,7 @@ struct ClusterCommandPacket {
   uint16_t sequence;
   uint8_t flags;
   uint8_t activeDerricks;
+  uint8_t movementSpeed;
   uint16_t audioTrackA;
   uint16_t audioTrackB;
   DerekCommand derricks[kMaxDerricks];
@@ -210,6 +219,7 @@ uint16_t gPendingAudioTrackA = 0;
 uint16_t gPendingAudioTrackB = 0;
 bool gPendingAudioA = false;
 bool gPendingAudioB = false;
+MovementSpeed gMovementSpeed = kMovementSpeedFast;
 uint32_t gLastSelfTestAtMs = 0;
 uint8_t gSelfTestStep = 0;
 uint32_t gLastFullClusterTestAtMs = 0;
@@ -714,6 +724,18 @@ bool areActiveServosAtTargets() {
   return true;
 }
 
+MovementSpeed normalizeMovementSpeed(uint8_t movementSpeed) {
+  switch (movementSpeed) {
+    case kMovementSpeedMedium:
+      return kMovementSpeedMedium;
+    case kMovementSpeedSlow:
+      return kMovementSpeedSlow;
+    case kMovementSpeedFast:
+    default:
+      return kMovementSpeedFast;
+  }
+}
+
 void writeServoOutputs(uint8_t derrickIndex) {
   if (derrickIndex >= kMaxDerricks || !gServosReady) {
     return;
@@ -1142,26 +1164,31 @@ void updateMotion(uint32_t nowMs) {
   gLastMotionUpdateAtMs = nowMs;
 
   bool anyServoMoved = false;
+  const uint8_t panStep = gMovementSpeed == kMovementSpeedMedium ? kMediumPanStepPerTick : kPanStepPerTick;
+  const uint8_t liftStep = gMovementSpeed == kMovementSpeedMedium ? kMediumLiftStepPerTick : kLiftStepPerTick;
 
   for (uint8_t i = 0; i < gActiveDerricks; ++i) {
     DerekState& derrick = gDerricks[i];
     const uint8_t previousPan = derrick.currentPan;
     const uint8_t previousLift = derrick.currentLift;
 
-    if (derrick.currentPan < derrick.targetPan) {
-      derrick.currentPan = min<uint8_t>(derrick.targetPan, derrick.currentPan + kPanStepPerTick);
-    } else if (derrick.currentPan > derrick.targetPan) {
-      const uint8_t nextPan =
-          derrick.currentPan > kPanStepPerTick ? derrick.currentPan - kPanStepPerTick : 0;
-      derrick.currentPan = max<uint8_t>(derrick.targetPan, nextPan);
-    }
+    if (gMovementSpeed == kMovementSpeedFast) {
+      derrick.currentPan = derrick.targetPan;
+      derrick.currentLift = derrick.targetLift;
+    } else {
+      if (derrick.currentPan < derrick.targetPan) {
+        derrick.currentPan = min<uint8_t>(derrick.targetPan, derrick.currentPan + panStep);
+      } else if (derrick.currentPan > derrick.targetPan) {
+        const uint8_t nextPan = derrick.currentPan > panStep ? derrick.currentPan - panStep : 0;
+        derrick.currentPan = max<uint8_t>(derrick.targetPan, nextPan);
+      }
 
-    if (derrick.currentLift < derrick.targetLift) {
-      derrick.currentLift = min<uint8_t>(derrick.targetLift, derrick.currentLift + kLiftStepPerTick);
-    } else if (derrick.currentLift > derrick.targetLift) {
-      const uint8_t nextLift =
-          derrick.currentLift > kLiftStepPerTick ? derrick.currentLift - kLiftStepPerTick : 0;
-      derrick.currentLift = max<uint8_t>(derrick.targetLift, nextLift);
+      if (derrick.currentLift < derrick.targetLift) {
+        derrick.currentLift = min<uint8_t>(derrick.targetLift, derrick.currentLift + liftStep);
+      } else if (derrick.currentLift > derrick.targetLift) {
+        const uint8_t nextLift = derrick.currentLift > liftStep ? derrick.currentLift - liftStep : 0;
+        derrick.currentLift = max<uint8_t>(derrick.targetLift, nextLift);
+      }
     }
 
     if (derrick.currentPan != previousPan || derrick.currentLift != previousLift) {
@@ -1225,6 +1252,7 @@ void handleCommand(const ClusterCommandPacket& packet, uint32_t nowMs) {
   gLastSequence = packet.sequence;
   gLastCommandAtMs = nowMs;
   gActiveDerricks = packet.activeDerricks > kMaxDerricks ? kMaxDerricks : packet.activeDerricks;
+  gMovementSpeed = normalizeMovementSpeed(packet.movementSpeed);
 
   if ((packet.flags & kCommandFlagDiscovery) == 0) {
     gSelfTestMode = kSelfTestModeOff;
