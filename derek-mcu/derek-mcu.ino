@@ -37,9 +37,12 @@ constexpr uint32_t kBootMassTestDiscoveryWaitMs = 5000;
 constexpr uint32_t kBootMassTestAllUpHoldMs = 5000;
 constexpr uint16_t kOscListenPort = 7700;
 constexpr uint16_t kOscStatusPort = 9000;
+constexpr uint16_t kArtNetListenPort = 6454;
 constexpr size_t kOscPacketBufferSize = 4096;
 constexpr uint8_t kMaxOscPacketsPerLoop = 96;
 constexpr uint32_t kMaxOscDrainMs = 10;
+constexpr size_t kArtNetPacketBufferSize = 600;
+constexpr uint8_t kMaxArtNetPacketsPerLoop = 16;
 constexpr bool kEnableOscDebugLogs = true;
 constexpr uint32_t kOscDebugLogIntervalMs = 1000;
 constexpr bool kEnableRadioDebugLogs = true;
@@ -214,6 +217,7 @@ bool gTestAllDownButtonWasPressed = false;
 uint32_t gTestLastButtonEventAtMs = 0;
 TestLiftState gTestLiftState = kTestLiftAllDown;
 WiFiUDP gOscUdp;
+WiFiUDP gArtNetUdp;
 IPAddress gLastOscRemoteIp;
 uint16_t gLastOscRemotePort = 0;
 uint32_t gOscPacketsReceived = 0;
@@ -228,6 +232,12 @@ uint16_t gLastOscChannel = 0;
 uint8_t gLastOscValue = 0;
 char gLastOscAddress[32] = {};
 char gLastOscRejectReason[24] = "none";
+uint8_t gArtNetDmx[kMaxClusters][kChannelsPerCluster] = {};
+bool gArtNetUniverseSeen[kMaxClusters] = {};
+uint32_t gArtNetPacketsReceived = 0;
+uint32_t gArtNetFramesAccepted = 0;
+uint32_t gArtNetFramesRejected = 0;
+uint32_t gLastArtNetFrameAtMs = 0;
 uint32_t gEspNowPacketsQueued = 0;
 uint32_t gEspNowQueueFailures = 0;
 uint32_t gEspNowSendSuccesses = 0;
@@ -250,6 +260,8 @@ char gConflictExistingMac[18] = {};
 char gConflictNewMac[18] = {};
 
 void sendOscStatus(const ClusterRuntime& cluster);
+int8_t findClusterIndexById(uint8_t clusterId);
+void applyCachedArtNetUniverse(uint8_t clusterId);
 
 bool addEspNowPeer(const uint8_t* macAddress) {
   if (esp_now_is_peer_exist(macAddress)) {
@@ -810,6 +822,22 @@ void applyDmxChannelToCluster(ClusterRuntime& cluster, uint16_t channel, uint8_t
   applyDerekChannel(cluster.desiredCommand, channel, value);
 }
 
+void applyCachedArtNetUniverse(uint8_t clusterId) {
+  if (clusterId >= kMaxClusters || !gArtNetUniverseSeen[clusterId]) {
+    return;
+  }
+
+  const int8_t clusterIndex = findClusterIndexById(clusterId);
+  if (clusterIndex < 0) {
+    return;
+  }
+
+  ClusterRuntime& cluster = gClusters[clusterIndex];
+  for (uint16_t channel = 1; channel <= kChannelsPerCluster; ++channel) {
+    applyDmxChannelToCluster(cluster, channel, gArtNetDmx[clusterId][channel - 1]);
+  }
+}
+
 int8_t findClusterIndexByMac(const uint8_t* macAddress) {
   for (uint8_t i = 0; i < kMaxClusters; ++i) {
     if (gClusters[i].occupied && memcmp(gClusters[i].mac, macAddress, 6) == 0) {
@@ -911,6 +939,7 @@ void updateClusterFromStatus(const uint8_t* macAddress, const ClusterStatusPacke
   }
 
   ClusterRuntime& cluster = gClusters[clusterIndex];
+  const bool firstStatusForCluster = cluster.lastSeenAtMs == 0;
   cluster.online = true;
   cluster.clusterId = status.clusterId;
   cluster.lastSequence = status.sequence;
@@ -921,6 +950,9 @@ void updateClusterFromStatus(const uint8_t* macAddress, const ClusterStatusPacke
   cluster.lastStatusUptimeMs = status.uptimeMs;
   cluster.desiredCommand.clusterId = status.clusterId;
   cluster.desiredCommand.activeDerricks = cluster.lastActiveDerricks;
+  if (firstStatusForCluster) {
+    applyCachedArtNetUniverse(status.clusterId);
+  }
 }
 
 void printClusterSummary(const ClusterRuntime& cluster) {
@@ -1388,6 +1420,7 @@ void initializeWifiAndOsc() {
   }
 
   gOscUdp.begin(kOscListenPort);
+  gArtNetUdp.begin(kArtNetListenPort);
 
   if (gOledReady) {
     if (WiFi.status() == WL_CONNECTED) {
@@ -1413,6 +1446,8 @@ void initializeWifiAndOsc() {
   Serial.println(WiFi.channel());
   Serial.print("OSC listen port: ");
   Serial.println(kOscListenPort);
+  Serial.print("Art-Net listen port: ");
+  Serial.println(kArtNetListenPort);
   if (WiFi.status() == WL_CONNECTED) {
     Serial.println("Wi-Fi connected.");
     Serial.print("Wi-Fi IP: ");
@@ -1742,6 +1777,78 @@ void updateOscInput() {
   }
 }
 
+void applyArtNetDmxFrame(uint8_t clusterId, const uint8_t* dmxData, uint16_t dmxLength) {
+  if (clusterId >= kMaxClusters || dmxData == nullptr) {
+    ++gArtNetFramesRejected;
+    return;
+  }
+
+  const uint16_t channelsToCache = min<uint16_t>(dmxLength, kChannelsPerCluster);
+  const bool firstFrameForUniverse = !gArtNetUniverseSeen[clusterId];
+  gArtNetUniverseSeen[clusterId] = true;
+  ++gArtNetFramesAccepted;
+  gLastArtNetFrameAtMs = millis();
+
+  const int8_t clusterIndex = findClusterIndexById(clusterId);
+  for (uint16_t channelIndex = 0; channelIndex < channelsToCache; ++channelIndex) {
+    const uint8_t value = dmxData[channelIndex];
+    const bool changed = firstFrameForUniverse || gArtNetDmx[clusterId][channelIndex] != value;
+    gArtNetDmx[clusterId][channelIndex] = value;
+    if (changed && clusterIndex >= 0) {
+      applyDmxChannelToCluster(gClusters[clusterIndex], channelIndex + 1, value);
+    }
+  }
+}
+
+void handleArtNetPacket(const uint8_t* data, size_t len) {
+  constexpr uint8_t kArtNetId[] = {'A', 'r', 't', '-', 'N', 'e', 't', '\0'};
+  constexpr uint16_t kArtNetOpDmx = 0x5000;
+  constexpr size_t kArtNetDmxHeaderSize = 18;
+
+  if (len < 10 || memcmp(data, kArtNetId, sizeof(kArtNetId)) != 0) {
+    ++gArtNetFramesRejected;
+    return;
+  }
+
+  const uint16_t opcode = static_cast<uint16_t>(data[8]) | (static_cast<uint16_t>(data[9]) << 8);
+  if (opcode != kArtNetOpDmx) {
+    return;
+  }
+  if (len < kArtNetDmxHeaderSize) {
+    ++gArtNetFramesRejected;
+    return;
+  }
+
+  const uint16_t universe = static_cast<uint16_t>(data[14]) | (static_cast<uint16_t>(data[15]) << 8);
+  const uint16_t dmxLength = (static_cast<uint16_t>(data[16]) << 8) | data[17];
+  if (universe >= kMaxClusters || dmxLength == 0 || dmxLength > 512 || kArtNetDmxHeaderSize + dmxLength > len) {
+    ++gArtNetFramesRejected;
+    return;
+  }
+
+  // QLC+ universe IDs 0-14 map directly to cluster/DIP IDs 0-14.
+  applyArtNetDmxFrame(static_cast<uint8_t>(universe), data + kArtNetDmxHeaderSize, dmxLength);
+}
+
+void updateArtNetInput() {
+  static uint8_t packetBuffer[kArtNetPacketBufferSize] = {};
+
+  for (uint8_t packetsRead = 0; packetsRead < kMaxArtNetPacketsPerLoop; ++packetsRead) {
+    const int packetSize = gArtNetUdp.parsePacket();
+    if (packetSize <= 0) {
+      return;
+    }
+
+    const size_t bytesRead = gArtNetUdp.read(packetBuffer, min(packetSize, static_cast<int>(sizeof(packetBuffer))));
+    ++gArtNetPacketsReceived;
+    if (packetSize > static_cast<int>(sizeof(packetBuffer))) {
+      ++gArtNetFramesRejected;
+      continue;
+    }
+    handleArtNetPacket(packetBuffer, bytesRead);
+  }
+}
+
 void parseSerialCommand(char* line) {
   char command[16] = {};
   int clusterId = 0;
@@ -1785,6 +1892,18 @@ void parseSerialCommand(char* line) {
     Serial.print(gLastOscRemoteIp);
     Serial.print(":");
     Serial.println(gLastOscRemotePort);
+    return;
+  }
+
+  if (strcmp(command, "artnet") == 0) {
+    Serial.print("Art-Net packets=");
+    Serial.print(gArtNetPacketsReceived);
+    Serial.print(" accepted=");
+    Serial.print(gArtNetFramesAccepted);
+    Serial.print(" rejected=");
+    Serial.print(gArtNetFramesRejected);
+    Serial.print(" lastAtMs=");
+    Serial.println(gLastArtNetFrameAtMs);
     return;
   }
 
@@ -1876,7 +1995,7 @@ void parseSerialCommand(char* line) {
     return;
   }
 
-  Serial.println("Commands: list | showstate | osc | radio | speed <cluster> <fast|medium|slow> | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
+  Serial.println("Commands: list | showstate | osc | artnet | radio | speed <cluster> <fast|medium|slow> | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
 }
 
 void updateSerialConsole() {
@@ -1984,7 +2103,7 @@ void setup() {
   Serial.print(kSoftwareVersionMinor);
   Serial.print(".");
   Serial.println(kSoftwareVersionRevision);
-  Serial.println("Serial console commands: list, showstate, osc, radio, speed, hide, track, eyes, dmx, audio");
+  Serial.println("Serial console commands: list, showstate, osc, artnet, radio, speed, hide, track, eyes, dmx, audio");
 }
 
 void loop() {
@@ -2011,6 +2130,7 @@ void loop() {
   }
 
   updateSerialConsole();
+  updateArtNetInput();
   updateOscInput();
   markOfflineClusters(nowMs);
 

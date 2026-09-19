@@ -11,23 +11,23 @@
    <BeatGenerator BeatType="Disabled" BPM="120"/>
    <NetworkServer Type="Native" AutoStart="False" Name="" Password=""/>
    <Universe Name="Universe 1" ID="0">
-    <Output Plugin="OSC" Name="192.168.1.17" UID="" Line="4">
-     <PluginParameters outputIP="192.168.4.86" outputPort="7700"/>
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+     <PluginParameters outputIP="192.168.4.86"/>
     </Output>
    </Universe>
    <Universe Name="Universe 2" ID="1">
-    <Output Plugin="OSC" Name="192.168.1.17" UID="" Line="4">
-     <PluginParameters outputIP="192.168.4.86" outputPort="7700"/>
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+     <PluginParameters outputIP="192.168.4.86"/>
     </Output>
    </Universe>
    <Universe Name="Universe 3" ID="2">
-    <Output Plugin="OSC" Name="192.168.1.17" UID="" Line="4">
-     <PluginParameters outputIP="192.168.4.86" outputPort="7700"/>
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+     <PluginParameters outputIP="192.168.4.86"/>
     </Output>
    </Universe>
    <Universe Name="Universe 4" ID="3">
-    <Output Plugin="OSC" Name="192.168.1.17" UID="" Line="4">
-     <PluginParameters outputIP="192.168.4.86" outputPort="7700"/>
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+     <PluginParameters outputIP="192.168.4.86"/>
     </Output>
    </Universe>
   </InputOutputMap>
