@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Workspace>
-<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="FIXANDFUNC">
+<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="SHOWMGR">
  <Creator>
   <Name>Q Light Controller Plus</Name>
   <Version>5.2.2</Version>
@@ -11,13 +11,25 @@
    <BeatGenerator BeatType="Disabled" BPM="120"/>
    <NetworkServer Type="Native" AutoStart="False" Name="" Password=""/>
    <Universe Name="Universe 1" ID="0">
-    <Output Plugin="OSC" Name="192.168.4.149" UID="" Line="5">
+    <Output Plugin="OSC" Name="192.168.1.17" UID="" Line="4">
      <PluginParameters outputIP="192.168.4.86" outputPort="7700"/>
     </Output>
    </Universe>
-   <Universe Name="Universe 2" ID="1"/>
-   <Universe Name="Universe 3" ID="2"/>
-   <Universe Name="Universe 4" ID="3"/>
+   <Universe Name="Universe 2" ID="1">
+    <Output Plugin="OSC" Name="192.168.1.17" UID="" Line="4">
+     <PluginParameters outputIP="192.168.4.86" outputPort="7700"/>
+    </Output>
+   </Universe>
+   <Universe Name="Universe 3" ID="2">
+    <Output Plugin="OSC" Name="192.168.1.17" UID="" Line="4">
+     <PluginParameters outputIP="192.168.4.86" outputPort="7700"/>
+    </Output>
+   </Universe>
+   <Universe Name="Universe 4" ID="3">
+    <Output Plugin="OSC" Name="192.168.1.17" UID="" Line="4">
+     <PluginParameters outputIP="192.168.4.86" outputPort="7700"/>
+    </Output>
+   </Universe>
   </InputOutputMap>
   <Fixture>
    <Manufacturer>Project Derek</Manufacturer>
@@ -116,7 +128,7 @@
    <ID>9</ID>
    <Name>Derek Unit [10]</Name>
    <Universe>1</Universe>
-   <Address>0</Address>
+   <Address>14</Address>
    <Channels>11</Channels>
   </Fixture>
   <Fixture>
@@ -126,7 +138,7 @@
    <ID>10</ID>
    <Name>Derek Unit [11]</Name>
    <Universe>1</Universe>
-   <Address>11</Address>
+   <Address>25</Address>
    <Channels>11</Channels>
   </Fixture>
   <Fixture>
@@ -136,7 +148,7 @@
    <ID>11</ID>
    <Name>Derek Unit [12]</Name>
    <Universe>1</Universe>
-   <Address>22</Address>
+   <Address>36</Address>
    <Channels>11</Channels>
   </Fixture>
   <Fixture>
@@ -146,7 +158,7 @@
    <ID>12</ID>
    <Name>Derek Unit [13]</Name>
    <Universe>1</Universe>
-   <Address>33</Address>
+   <Address>47</Address>
    <Channels>11</Channels>
   </Fixture>
   <Fixture>
@@ -156,7 +168,7 @@
    <ID>13</ID>
    <Name>Derek Unit [14]</Name>
    <Universe>1</Universe>
-   <Address>44</Address>
+   <Address>58</Address>
    <Channels>11</Channels>
   </Fixture>
   <Fixture>
@@ -166,7 +178,7 @@
    <ID>14</ID>
    <Name>Derek Unit [15]</Name>
    <Universe>1</Universe>
-   <Address>55</Address>
+   <Address>69</Address>
    <Channels>11</Channels>
   </Fixture>
   <Fixture>
@@ -176,7 +188,7 @@
    <ID>15</ID>
    <Name>Derek Unit [16]</Name>
    <Universe>1</Universe>
-   <Address>66</Address>
+   <Address>80</Address>
    <Channels>11</Channels>
   </Fixture>
   <Fixture>
@@ -186,7 +198,7 @@
    <ID>16</ID>
    <Name>Derek Cluster Controller [17]</Name>
    <Universe>1</Universe>
-   <Address>88</Address>
+   <Address>0</Address>
    <Channels>14</Channels>
   </Fixture>
   <Fixture>
@@ -196,9 +208,263 @@
    <ID>17</ID>
    <Name>Derek Unit [18]</Name>
    <Universe>1</Universe>
-   <Address>77</Address>
+   <Address>91</Address>
    <Channels>11</Channels>
   </Fixture>
+  <FixtureGroup ID="0">
+   <Name>Scott First Derek Group</Name>
+   <Size X="2" Y="10"/>
+   <Head X="0" Y="0" Fixture="0">0</Head>
+   <Head X="1" Y="0" Fixture="1">0</Head>
+   <Head X="0" Y="1" Fixture="9">0</Head>
+   <Head X="0" Y="3" Fixture="10">0</Head>
+   <Head X="1" Y="3" Fixture="2">0</Head>
+   <Head X="0" Y="4" Fixture="11">0</Head>
+   <Head X="1" Y="4" Fixture="3">0</Head>
+   <Head X="0" Y="5" Fixture="12">0</Head>
+   <Head X="1" Y="5" Fixture="4">0</Head>
+   <Head X="0" Y="6" Fixture="13">0</Head>
+   <Head X="1" Y="6" Fixture="5">0</Head>
+   <Head X="0" Y="7" Fixture="14">0</Head>
+   <Head X="1" Y="7" Fixture="6">0</Head>
+   <Head X="0" Y="8" Fixture="7">0</Head>
+   <Head X="1" Y="8" Fixture="15">0</Head>
+   <Head X="0" Y="9" Fixture="17">0</Head>
+  </FixtureGroup>
+  <Function ID="0" Type="Show" Name="New Show 0">
+   <TimeDivision Type="Time" BPM="120"/>
+   <Track ID="0" Name="Track 1" isMute="1">
+    <ShowFunction ID="6" StartTime="54" Duration="15148" Color="#608053"/>
+   </Track>
+   <Track ID="1" Name="Track 2" isMute="0">
+    <ShowFunction ID="1" StartTime="54" Duration="1122" Color="#646464"/>
+    <ShowFunction ID="1" StartTime="2625" Duration="1376" Color="#646464"/>
+    <ShowFunction ID="1" StartTime="5492" Duration="1648" Color="#646464"/>
+    <ShowFunction ID="1" StartTime="8756" Duration="1378" Color="#646464"/>
+    <ShowFunction ID="1" StartTime="15990" Duration="9205" Color="#646464"/>
+   </Track>
+   <Track ID="2" Name="Track 3" isMute="0">
+    <ShowFunction ID="2" StartTime="4001" Duration="1480" Color="#646464"/>
+    <ShowFunction ID="2" StartTime="7118" Duration="1638" Color="#646464"/>
+    <ShowFunction ID="2" StartTime="1176" Duration="1463" Color="#646464"/>
+    <ShowFunction ID="2" StartTime="10220" Duration="1017" Color="#646464"/>
+    <ShowFunction ID="2" StartTime="25195" Duration="13967" Color="#646464"/>
+   </Track>
+  </Function>
+  <Function ID="1" Type="Scene" Name="Scott Scene 1">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,1,0</FixtureVal>
+   <FixtureVal ID="1">0,0,1,0</FixtureVal>
+   <FixtureVal ID="9">0,0,1,0</FixtureVal>
+   <FixtureVal ID="10">0,0,1,0</FixtureVal>
+   <FixtureVal ID="2">0,0,1,0</FixtureVal>
+   <FixtureVal ID="11">0,0,1,0</FixtureVal>
+   <FixtureVal ID="3">0,0,1,0</FixtureVal>
+   <FixtureVal ID="12">0,0,1,0</FixtureVal>
+   <FixtureVal ID="4">0,0,1,0</FixtureVal>
+   <FixtureVal ID="13">0,0,1,0</FixtureVal>
+   <FixtureVal ID="5">0,0,1,0</FixtureVal>
+   <FixtureVal ID="14">0,0,1,0</FixtureVal>
+   <FixtureVal ID="6">0,0,1,0</FixtureVal>
+   <FixtureVal ID="7">0,0,1,0</FixtureVal>
+   <FixtureVal ID="15">0,0,1,0</FixtureVal>
+   <FixtureVal ID="17">0,0,1,0</FixtureVal>
+  </Function>
+  <Function ID="2" Type="Scene" Name="Scott Scene 2">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,1,255</FixtureVal>
+   <FixtureVal ID="1">0,255,1,255</FixtureVal>
+   <FixtureVal ID="9">0,255,1,255</FixtureVal>
+   <FixtureVal ID="10">0,255,1,255</FixtureVal>
+   <FixtureVal ID="2">0,255,1,255</FixtureVal>
+   <FixtureVal ID="11">0,255,1,255</FixtureVal>
+   <FixtureVal ID="3">0,255,1,255</FixtureVal>
+   <FixtureVal ID="12">0,255,1,255</FixtureVal>
+   <FixtureVal ID="4">0,255,1,255</FixtureVal>
+   <FixtureVal ID="13">0,255,1,255</FixtureVal>
+   <FixtureVal ID="5">0,255,1,255</FixtureVal>
+   <FixtureVal ID="14">0,255,1,255</FixtureVal>
+   <FixtureVal ID="6">0,255,1,255</FixtureVal>
+   <FixtureVal ID="7">0,255,1,255</FixtureVal>
+   <FixtureVal ID="15">0,255,1,255</FixtureVal>
+   <FixtureVal ID="17">0,255,1,255</FixtureVal>
+  </Function>
+  <Function ID="3" Type="Show" Name="New Show 3">
+   <TimeDivision Type="Time" BPM="120"/>
+   <Track ID="0" Name="Track 1" isMute="0">
+    <ShowFunction ID="1" StartTime="56" Duration="9894" Color="#646464"/>
+   </Track>
+   <Track ID="1" Name="Track 2" isMute="0">
+    <ShowFunction ID="2" StartTime="10014" Duration="10035" Color="#646464"/>
+   </Track>
+  </Function>
+  <Function ID="4" Type="Show" Name="Scott Show - Down Up x 4">
+   <TimeDivision Type="Time" BPM="120"/>
+   <Track ID="0" Name="Track 1" isMute="0">
+    <ShowFunction ID="1" StartTime="5799" Duration="9979" Color="#646464"/>
+    <ShowFunction ID="1" StartTime="25445" Duration="10064" Color="#646464"/>
+    <ShowFunction ID="1" StartTime="45832" Duration="5000" Color="#646464"/>
+    <ShowFunction ID="1" StartTime="55848" Duration="5000" Color="#646464"/>
+   </Track>
+   <Track ID="1" Name="Track 2" isMute="0">
+    <ShowFunction ID="2" StartTime="15777" Duration="9668" Color="#646464"/>
+    <ShowFunction ID="2" StartTime="35509" Duration="10432" Color="#646464"/>
+    <ShowFunction ID="2" StartTime="50832" Duration="5000" Color="#646464"/>
+    <ShowFunction ID="2" StartTime="60847" Duration="5000" Color="#646464"/>
+   </Track>
+  </Function>
+  <Function ID="5" Type="Show" Name="Scott First Show Ever">
+   <TimeDivision Type="Time" BPM="120"/>
+   <Track ID="0" Name="Track 1" isMute="0">
+    <ShowFunction ID="6" StartTime="11680" Duration="62494" Color="#608053"/>
+   </Track>
+  </Function>
+  <Function ID="6" Type="Audio" Name="FindingNemo_Mine_1minute01.wav">
+   <Speed FadeIn="0" FadeOut="0" Duration="62494"/>
+   <RunOrder>SingleShot</RunOrder>
+   <Source>S:/2026_00_DerekEyeProject/Edited/FindingNemo_Mine_1minute01.wav</Source>
+  </Function>
+  <Function ID="7" Type="EFX" Name="New EFX 7">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>17</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>17</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="20000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Circle</Algorithm>
+   <Width>127</Width>
+   <Height>127</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>127</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
   <Monitor DisplayMode="0" ShowLabels="0">
    <Font>Arial,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1</Font>
    <ChannelStyle>0</ChannelStyle>

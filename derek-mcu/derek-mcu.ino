@@ -11,6 +11,9 @@
 namespace {
 
 constexpr bool kEnableSerialLogs = true;
+// Keep the serial monitor quiet during normal operation.  The `list`, `osc`,
+// `radio`, and `showstate` console commands always print on demand.
+constexpr bool kEnablePeriodicSerialStatus = false;
 constexpr uint8_t kSoftwareVersionMajor = 1;
 constexpr uint8_t kSoftwareVersionMinor = 0;
 constexpr uint8_t kSoftwareVersionRevision = 0;
@@ -18,15 +21,25 @@ constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;
 constexpr uint8_t kMaxClusters = 15;
 constexpr uint8_t kMaxDerricks = 8;
+constexpr uint8_t kBroadcastClusterId = 0xFF;
 constexpr uint32_t kDiscoveryIntervalMs = 2000;
-constexpr uint32_t kCommandIntervalMs = 100;
+// ESP-NOW only has a small transmit queue.  During a QLC+ fade many clusters
+// become dirty together, so serialize sends instead of filling that queue and
+// silently losing the tail of a large update.
+constexpr uint32_t kCommandIntervalMs = 5;
+constexpr uint32_t kCommandHeartbeatMs = 750;
+constexpr uint32_t kOscOutputSettleMs = 40;
 constexpr uint32_t kStatusPageIntervalMs = 1000;
 constexpr uint32_t kClusterOfflineMs = 3000;
 constexpr uint32_t kBootDerekTestWaitMs = 5000;
 constexpr uint32_t kBootDerekTestStepMs = 1200;
+constexpr uint32_t kBootMassTestDiscoveryWaitMs = 5000;
+constexpr uint32_t kBootMassTestAllUpHoldMs = 5000;
 constexpr uint16_t kOscListenPort = 7700;
 constexpr uint16_t kOscStatusPort = 9000;
-constexpr size_t kOscPacketBufferSize = 768;
+constexpr size_t kOscPacketBufferSize = 4096;
+constexpr uint8_t kMaxOscPacketsPerLoop = 96;
+constexpr uint32_t kMaxOscDrainMs = 10;
 constexpr bool kEnableOscDebugLogs = true;
 constexpr uint32_t kOscDebugLogIntervalMs = 1000;
 constexpr bool kEnableRadioDebugLogs = true;
@@ -53,6 +66,12 @@ constexpr uint16_t kControllerPirRightChannel = 14;
 constexpr int8_t kI2cSdaPin = 8;
 constexpr int8_t kI2cSclPin = 9;
 constexpr uint8_t kOledAddress = 0x3C;
+constexpr int8_t kTestModeSwitchPin = 4;
+constexpr int8_t kTestAllUpButtonPin = 5;
+constexpr int8_t kTestAllDownButtonPin = 6;
+constexpr uint32_t kTestButtonDebounceMs = 35;
+constexpr uint8_t kDerekLiftMinimum = 0;
+constexpr uint8_t kDerekLiftMaximum = 170;
 constexpr uint8_t kBroadcastMac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 
 // Fill these in for the router/network used by the QLC+ computer.
@@ -60,7 +79,10 @@ constexpr uint8_t kBroadcastMac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 constexpr char kWifiSsid[] = "DerekWifi";
 constexpr char kWifiPassword[] = "derekderek";
 
-// OLED wiring on this board: GND, VCC, SCL -> GPIO9, SDA/SCA -> GPIO8.
+// MCU OLED: Hosyond 2.42-inch 128x64 I2C module with an SSD1309 controller.
+// Wiring on this board: GND, VCC, SCL -> GPIO9, SDA/SCA -> GPIO8.
+// Test inputs use internal pull-ups: wire each switch/button from its GPIO to GND.
+// GPIO4: test-mode switch; GPIO5: All Up button; GPIO6: All Down button.
 constexpr int8_t kButtonNextPin = -1;
 constexpr int8_t kButtonPrevPin = -1;
 
@@ -88,10 +110,21 @@ enum BootDerekTestPhase : uint8_t {
   kBootDerekTestPhaseCount = 5,
 };
 
+enum BootMassTestPhase : uint8_t {
+  kBootMassTestWaitingForClusters = 0,
+  kBootMassTestAllUp = 1,
+  kBootMassTestDone = 2,
+};
+
 enum MovementSpeed : uint8_t {
   kMovementSpeedFast = 0,
   kMovementSpeedMedium = 1,
   kMovementSpeedSlow = 2,
+};
+
+enum TestLiftState : uint8_t {
+  kTestLiftAllDown = 0,
+  kTestLiftAllUp = 1,
 };
 
 struct RgbColor {
@@ -150,8 +183,11 @@ struct ClusterRuntime {
   uint32_t lastStatusUptimeMs;
   uint16_t audioTrackASetting;
   uint16_t audioTrackBSetting;
+  uint32_t lastCommandSentAtMs;
+  uint32_t lastOutputChangedAtMs;
   bool audioATriggerHigh;
   bool audioBTriggerHigh;
+  bool commandDirty;
   MovementSpeed movementSpeed;
   ClusterCommandPacket desiredCommand;
 };
@@ -162,6 +198,7 @@ uint32_t gLastCommandAtMs = 0;
 uint32_t gLastStatusPageAtMs = 0;
 uint32_t gBootStartedAtMs = 0;
 uint32_t gLastBootDerekTestStepAtMs = 0;
+uint32_t gBootMassTestPhaseStartedAtMs = 0;
 uint16_t gSequenceCounter = 1;
 uint8_t gCurrentPage = 0;
 uint8_t gBootDerekTestClusterCursor = 0;
@@ -169,7 +206,13 @@ uint8_t gBootDerekTestDerekCursor = 0;
 BootDerekTestPhase gBootDerekTestPhase = kBootDerekTestLift;
 bool gBootDerekTestRunning = false;
 bool gBootDerekTestDone = false;
+BootMassTestPhase gBootMassTestPhase = kBootMassTestWaitingForClusters;
 bool gOledReady = false;
+bool gTestModeEnabled = false;
+bool gTestAllUpButtonWasPressed = false;
+bool gTestAllDownButtonWasPressed = false;
+uint32_t gTestLastButtonEventAtMs = 0;
+TestLiftState gTestLiftState = kTestLiftAllDown;
 WiFiUDP gOscUdp;
 IPAddress gLastOscRemoteIp;
 uint16_t gLastOscRemotePort = 0;
@@ -179,6 +222,7 @@ uint32_t gOscMessagesRejected = 0;
 uint32_t gLastOscPacketAtMs = 0;
 uint32_t gLastOscAcceptedAtMs = 0;
 uint32_t gLastOscDebugLogAtMs = 0;
+bool gLastOscEventAccepted = false;
 uint8_t gLastOscClusterId = 0;
 uint16_t gLastOscChannel = 0;
 uint8_t gLastOscValue = 0;
@@ -191,11 +235,19 @@ uint32_t gEspNowSendFailures = 0;
 uint32_t gLastEspNowQueuedAtMs = 0;
 uint32_t gLastEspNowCallbackAtMs = 0;
 uint32_t gLastRadioDebugLogAtMs = 0;
+volatile bool gEspNowSendInFlight = false;
+volatile int8_t gEspNowInFlightClusterIndex = -1;
+volatile int8_t gEspNowFailedClusterIndex = -1;
+uint8_t gNextCommandClusterIndex = 0;
 uint8_t gLastEspNowClusterId = 0;
 uint16_t gLastEspNowSequence = 0;
 uint8_t gLastEspNowFlags = 0;
 int gLastEspNowQueueResult = 0;
 int gLastEspNowSendStatus = 0;
+bool gClusterIdConflictDetected = false;
+uint8_t gConflictClusterId = 0;
+char gConflictExistingMac[18] = {};
+char gConflictNewMac[18] = {};
 
 void sendOscStatus(const ClusterRuntime& cluster);
 
@@ -261,9 +313,11 @@ void sendOledData(const uint8_t* data, size_t len) {
 }
 
 bool initializeOled() {
+  // SSD1309 initialization for a 128x64, internally powered I2C panel.  This
+  // differs from the old SSD1306 sequence in its DC-DC control command.
   const uint8_t initCommands[] = {
-      0xAE, 0xD5, 0x80, 0xA8, 0x3F, 0xD3, 0x00, 0x40, 0x8D, 0x14, 0x20, 0x00,
-      0xA1, 0xC8, 0xDA, 0x12, 0x81, 0x7F, 0xD9, 0xF1, 0xDB, 0x40, 0xA4, 0xA6,
+      0xAE, 0xD5, 0x80, 0xA8, 0x3F, 0xD3, 0x00, 0x40, 0xAD, 0x8B, 0x20, 0x00,
+      0xA1, 0xC8, 0xDA, 0x12, 0x81, 0x7F, 0xD9, 0x22, 0xDB, 0x34, 0xA4, 0xA6,
       0x2E, 0xAF,
   };
 
@@ -358,6 +412,23 @@ void clearOled() {
   }
 }
 
+void writeOledClusterIdConflict() {
+  if (!gOledReady) {
+    return;
+  }
+
+  char line[22] = {};
+  writeOledLine(0, "DIP CONFLICT");
+  snprintf(line, sizeof(line), "UNIVERSE %u DUP", gConflictClusterId);
+  writeOledLine(1, line);
+  writeOledLine(2, "KEEPING EXISTING");
+  writeOledLine(3, gConflictExistingMac);
+  writeOledLine(4, "IGNORING NEW");
+  writeOledLine(5, gConflictNewMac);
+  writeOledLine(6, "CHECK DIP SWITCHES");
+  writeOledLine(7, "REBOOT AFTER FIX");
+}
+
 uint8_t countRegisteredClusters() {
   uint8_t count = 0;
   for (uint8_t i = 0; i < kMaxClusters; ++i) {
@@ -400,6 +471,11 @@ void writeOledStatusPage(uint32_t nowMs) {
     return;
   }
 
+  if (gClusterIdConflictDetected) {
+    writeOledClusterIdConflict();
+    return;
+  }
+
   char line[22] = {};
   snprintf(
       line,
@@ -423,20 +499,23 @@ void writeOledStatusPage(uint32_t nowMs) {
   }
   writeOledLine(2, line);
 
-  if (gBootDerekTestRunning) {
-    snprintf(
-        line,
-        sizeof(line),
-        "TEST C%u D%u %s",
-        gClusters[gBootDerekTestClusterCursor].clusterId,
-        gBootDerekTestDerekCursor + 1,
-        bootDerekTestPhaseName());
-  } else {
-    snprintf(line, sizeof(line), "TEST %s", gBootDerekTestDone ? "DONE" : "WAIT");
+  switch (gBootMassTestPhase) {
+    case kBootMassTestWaitingForClusters:
+      snprintf(line, sizeof(line), "TEST WAIT NODES");
+      break;
+    case kBootMassTestAllUp:
+      snprintf(line, sizeof(line), "TEST ALL UP 5 SEC");
+      break;
+    case kBootMassTestDone:
+    default:
+      snprintf(line, sizeof(line), "TEST DONE");
+      break;
   }
   writeOledLine(3, line);
 
-  if (gOscMessagesAccepted > 0) {
+  if (gOscPacketsReceived > 0 && !gLastOscEventAccepted) {
+    snprintf(line, sizeof(line), "OSC RX%lu %s", static_cast<unsigned long>(gOscPacketsReceived), gLastOscRejectReason);
+  } else if (gOscMessagesAccepted > 0) {
     snprintf(line, sizeof(line), "OSC C%u CH%u V%u", gLastOscClusterId, gLastOscChannel, gLastOscValue);
   } else if (gOscPacketsReceived > 0) {
     snprintf(line, sizeof(line), "OSC RX%lu %s", static_cast<unsigned long>(gOscPacketsReceived), gLastOscRejectReason);
@@ -461,6 +540,23 @@ void writeOledStatusPage(uint32_t nowMs) {
     }
     writeOledLine(5 + lineIndex, line);
   }
+}
+
+void writeOledTestModePage() {
+  if (!gOledReady) {
+    return;
+  }
+
+  char line[22] = {};
+  writeOledLine(0, "MCU TEST MODE");
+  writeOledLine(1, gTestLiftState == kTestLiftAllUp ? "INTENDED ALL UP" : "INTENDED ALL DOWN");
+  writeOledLine(2, "GPIO5 ALL UP");
+  writeOledLine(3, "GPIO6 ALL DOWN");
+  snprintf(line, sizeof(line), "NODES %u ONLINE %u", countRegisteredClusters(), countOnlineClusters());
+  writeOledLine(4, line);
+  writeOledLine(5, "OSC INPUT DISABLED");
+  writeOledLine(6, "ESP-NOW ACTIVE");
+  writeOledLine(7, "SWITCH GPIO4 ON");
 }
 
 uint16_t readOscPaddedString(const uint8_t* data, size_t len, size_t offset, char* output, size_t outputLen) {
@@ -577,6 +673,7 @@ void triggerAudioTrack(ClusterRuntime& cluster, bool playerA) {
     packet.flags |= kCommandFlagAudioB;
   }
   packet.flags |= kCommandFlagRequestStatus;
+  cluster.commandDirty = true;
 }
 
 void applyClusterControllerChannel(ClusterRuntime& cluster, uint16_t channel, uint8_t value) {
@@ -585,14 +682,12 @@ void applyClusterControllerChannel(ClusterRuntime& cluster, uint16_t channel, ui
 
   switch (channel) {
     case kControllerActiveDerricksChannel:
-      packet.activeDerricks = value > kMaxDerricks ? kMaxDerricks : value;
+      packet.activeDerricks = value == 0 ? kMaxDerricks : min<uint8_t>(value, kMaxDerricks);
       packet.flags |= kCommandFlagRequestStatus;
       break;
     case kControllerApplyOutputsChannel:
       if (high) {
         packet.flags |= kCommandFlagApplyOutputs;
-      } else {
-        packet.flags &= ~kCommandFlagApplyOutputs;
       }
       packet.flags |= kCommandFlagRequestStatus;
       break;
@@ -652,8 +747,6 @@ void applyDerekChannel(ClusterCommandPacket& packet, uint16_t channel, uint8_t v
     return;
   }
 
-  packet.flags |= kCommandFlagRequestStatus;
-
   if (channel < kDerekChannelsStart || channel > kChannelsPerCluster) {
     return;
   }
@@ -706,11 +799,14 @@ void applyDmxChannelToCluster(ClusterRuntime& cluster, uint16_t channel, uint8_t
     return;
   }
 
+  cluster.commandDirty = true;
+
   if (channel <= kClusterControllerChannels) {
     applyClusterControllerChannel(cluster, channel, value);
     return;
   }
 
+  cluster.lastOutputChangedAtMs = millis();
   applyDerekChannel(cluster.desiredCommand, channel, value);
 }
 
@@ -732,26 +828,79 @@ int8_t findClusterIndexById(uint8_t clusterId) {
   return -1;
 }
 
+void initializeClusterSlot(ClusterRuntime& cluster, const uint8_t* macAddress, uint8_t clusterId) {
+  cluster.occupied = true;
+  cluster.online = true;
+  cluster.clusterId = clusterId;
+  cluster.lastActiveDerricks = kMaxDerricks;
+  cluster.movementSpeed = kMovementSpeedFast;
+  memcpy(cluster.mac, macAddress, 6);
+  initializeDefaultCommand(cluster.desiredCommand, clusterId);
+  addEspNowPeer(macAddress);
+}
+
+void clearClusterSlot(ClusterRuntime& cluster) {
+  memset(&cluster, 0, sizeof(cluster));
+}
+
+void printClusterIdConflict(uint8_t clusterId, const uint8_t* existingMac, const uint8_t* newMac) {
+  gClusterIdConflictDetected = true;
+  gConflictClusterId = clusterId;
+  formatMac(existingMac, gConflictExistingMac, sizeof(gConflictExistingMac));
+  formatMac(newMac, gConflictNewMac, sizeof(gConflictNewMac));
+  writeOledClusterIdConflict();
+
+  if (!kEnableSerialLogs) {
+    return;
+  }
+
+  Serial.print("Cluster ID conflict: DIP/Universe ");
+  Serial.print(clusterId);
+  Serial.print(" already belongs to ");
+  Serial.print(gConflictExistingMac);
+  Serial.print("; ignoring ");
+  Serial.println(gConflictNewMac);
+}
+
 int8_t reserveClusterSlot(const uint8_t* macAddress, uint8_t clusterId) {
+  if (clusterId >= kMaxClusters) {
+    return -1;
+  }
+
+  const uint8_t preferredIndex = clusterId;
   const int8_t existingByMac = findClusterIndexByMac(macAddress);
-  if (existingByMac >= 0) {
+  ClusterRuntime& preferredSlot = gClusters[preferredIndex];
+
+  if (existingByMac == preferredIndex) {
     return existingByMac;
   }
 
-  for (uint8_t i = 0; i < kMaxClusters; ++i) {
-    if (!gClusters[i].occupied) {
-      gClusters[i].occupied = true;
-      gClusters[i].online = true;
-      gClusters[i].clusterId = clusterId;
-      gClusters[i].lastActiveDerricks = kMaxDerricks;
-      gClusters[i].movementSpeed = kMovementSpeedFast;
-      memcpy(gClusters[i].mac, macAddress, 6);
-      initializeDefaultCommand(gClusters[i].desiredCommand, clusterId);
-      addEspNowPeer(macAddress);
+  if (preferredSlot.occupied && memcmp(preferredSlot.mac, macAddress, 6) != 0) {
+    printClusterIdConflict(clusterId, preferredSlot.mac, macAddress);
+    return -1;
+  }
+
+  if (existingByMac >= 0) {
+    ClusterRuntime movedCluster = gClusters[existingByMac];
+    clearClusterSlot(gClusters[existingByMac]);
+    gClusters[preferredIndex] = movedCluster;
+    gClusters[preferredIndex].clusterId = clusterId;
+    gClusters[preferredIndex].desiredCommand.clusterId = clusterId;
+    return static_cast<int8_t>(preferredIndex);
+  }
+
+  initializeClusterSlot(preferredSlot, macAddress, clusterId);
+  return static_cast<int8_t>(preferredIndex);
+}
+
+int8_t findNextOnlineClusterIndex(uint8_t startIndex) {
+  for (uint8_t i = startIndex; i < kMaxClusters; ++i) {
+    const uint8_t expectedClusterId = i;
+    if (gClusters[i].occupied && gClusters[i].online && gClusters[i].clusterId == expectedClusterId &&
+        gClusters[i].lastActiveDerricks > 0) {
       return static_cast<int8_t>(i);
     }
   }
-
   return -1;
 }
 
@@ -792,10 +941,10 @@ void printClusterSummary(const ClusterRuntime& cluster) {
   Serial.println(cluster.lastStatusUptimeMs);
 }
 
-void renderStatusPage(uint32_t nowMs) {
+void renderStatusPage(uint32_t nowMs, bool includeSerialOutput = true) {
   writeOledStatusPage(nowMs);
 
-  if (!kEnableSerialLogs) {
+  if (!kEnableSerialLogs || !includeSerialOutput) {
     return;
   }
 
@@ -803,6 +952,51 @@ void renderStatusPage(uint32_t nowMs) {
   for (uint8_t i = 0; i < kMaxClusters; ++i) {
     if (gClusters[i].occupied) {
       printClusterSummary(gClusters[i]);
+    }
+  }
+}
+
+const char* movementSpeedName(MovementSpeed speed) {
+  switch (speed) {
+    case kMovementSpeedSlow:
+      return "slow";
+    case kMovementSpeedMedium:
+      return "medium";
+    case kMovementSpeedFast:
+    default:
+      return "fast";
+  }
+}
+
+void printIntendedDerekState() {
+  Serial.println("--- Intended Derek State ---");
+  Serial.println("Cached MCU targets; compare with physical positions.");
+
+  for (uint8_t clusterIndex = 0; clusterIndex < kMaxClusters; ++clusterIndex) {
+    const ClusterRuntime& cluster = gClusters[clusterIndex];
+    if (!cluster.occupied) {
+      continue;
+    }
+
+    Serial.print("C");
+    Serial.print(cluster.clusterId);
+    Serial.print(" online=");
+    Serial.print(cluster.online ? "yes" : "no");
+    Serial.print(" active=");
+    Serial.print(cluster.desiredCommand.activeDerricks);
+    Serial.print(" speed=");
+    Serial.print(movementSpeedName(cluster.movementSpeed));
+    Serial.print(" flags=0x");
+    Serial.println(cluster.desiredCommand.flags, HEX);
+
+    for (uint8_t derekIndex = 0; derekIndex < kMaxDerricks; ++derekIndex) {
+      const DerekCommand& derek = cluster.desiredCommand.derricks[derekIndex];
+      Serial.print("  D");
+      Serial.print(derekIndex + 1);
+      Serial.print(" pan=");
+      Serial.print(derek.pan);
+      Serial.print(" lift=");
+      Serial.println(derek.lift);
     }
   }
 }
@@ -836,6 +1030,23 @@ void updateButtonInputs() {
   }
 }
 
+void initializeTestModeInputs() {
+  pinMode(kTestModeSwitchPin, INPUT_PULLUP);
+  pinMode(kTestAllUpButtonPin, INPUT_PULLUP);
+  pinMode(kTestAllDownButtonPin, INPUT_PULLUP);
+
+  gTestModeEnabled = digitalRead(kTestModeSwitchPin) == LOW;
+  gTestAllUpButtonWasPressed = digitalRead(kTestAllUpButtonPin) == LOW;
+  gTestAllDownButtonWasPressed = digitalRead(kTestAllDownButtonPin) == LOW;
+
+  if (!gTestModeEnabled) {
+    return;
+  }
+
+  writeOledTestModePage();
+  Serial.println("MCU test mode enabled: OSC input disabled; GPIO5=All Up, GPIO6=All Down.");
+}
+
 void markOfflineClusters(uint32_t nowMs) {
   for (uint8_t i = 0; i < kMaxClusters; ++i) {
     if (!gClusters[i].occupied) {
@@ -849,7 +1060,7 @@ void markOfflineClusters(uint32_t nowMs) {
 void setAllDerekNeutral(ClusterCommandPacket& command) {
   for (uint8_t i = 0; i < kMaxDerricks; ++i) {
     command.derricks[i].pan = 90;
-    command.derricks[i].lift = 0;
+    command.derricks[i].lift = kDerekLiftMinimum;
   }
 }
 
@@ -857,6 +1068,7 @@ void applyBootDerekTestPose(ClusterRuntime& cluster, uint8_t derekIndex, BootDer
   ClusterCommandPacket& command = cluster.desiredCommand;
   setAllDerekNeutral(command);
   command.flags = kCommandFlagApplyOutputs | kCommandFlagRequestStatus;
+  cluster.commandDirty = true;
   command.activeDerricks = kMaxDerricks;
 
   if (derekIndex >= kMaxDerricks) {
@@ -895,20 +1107,12 @@ void applyBootDerekTestPose(ClusterRuntime& cluster, uint8_t derekIndex, BootDer
   }
 }
 
-int8_t findNextOnlineClusterIndex(uint8_t startIndex) {
-  for (uint8_t i = startIndex; i < kMaxClusters; ++i) {
-    if (gClusters[i].occupied && gClusters[i].online && gClusters[i].lastActiveDerricks > 0) {
-      return static_cast<int8_t>(i);
-    }
-  }
-  return -1;
-}
-
 void finishBootDerekTest() {
   for (uint8_t i = 0; i < kMaxClusters; ++i) {
     if (gClusters[i].occupied) {
       setAllDerekNeutral(gClusters[i].desiredCommand);
       gClusters[i].desiredCommand.flags = kCommandFlagApplyOutputs | kCommandFlagRequestStatus;
+      gClusters[i].commandDirty = true;
     }
   }
   gBootDerekTestRunning = false;
@@ -1027,7 +1231,11 @@ void maybePrintRadioDebugSummary(uint32_t nowMs) {
   printRadioDebugSummary();
 }
 
-void sendCommandToCluster(ClusterRuntime& cluster) {
+bool sendCommandToCluster(ClusterRuntime& cluster, uint8_t clusterIndex) {
+  if (gEspNowSendInFlight) {
+    return false;
+  }
+
   cluster.desiredCommand.magic = kProtocolMagic;
   cluster.desiredCommand.version = kProtocolVersion;
   cluster.desiredCommand.kind = kMessageCommand;
@@ -1036,6 +1244,10 @@ void sendCommandToCluster(ClusterRuntime& cluster) {
 
   const uint16_t sentSequence = cluster.desiredCommand.sequence;
   const uint8_t sentFlags = cluster.desiredCommand.flags;
+  // Register the ownership before queuing: on fast links the send callback
+  // can run before esp_now_send returns.
+  gEspNowInFlightClusterIndex = static_cast<int8_t>(clusterIndex);
+  gEspNowSendInFlight = true;
   const esp_err_t sendResult = esp_now_send(
       cluster.mac,
       reinterpret_cast<const uint8_t*>(&cluster.desiredCommand),
@@ -1048,7 +1260,11 @@ void sendCommandToCluster(ClusterRuntime& cluster) {
   gLastEspNowQueueResult = static_cast<int>(sendResult);
   if (sendResult == ESP_OK) {
     ++gEspNowPacketsQueued;
+    cluster.commandDirty = false;
+    cluster.lastCommandSentAtMs = gLastEspNowQueuedAtMs;
   } else {
+    gEspNowInFlightClusterIndex = -1;
+    gEspNowSendInFlight = false;
     ++gEspNowQueueFailures;
     if (kEnableSerialLogs) {
       Serial.print("ESP-NOW queue failed C");
@@ -1064,6 +1280,98 @@ void sendCommandToCluster(ClusterRuntime& cluster) {
   cluster.desiredCommand.flags &= kCommandFlagApplyOutputs;
   cluster.desiredCommand.audioTrackA = 0;
   cluster.desiredCommand.audioTrackB = 0;
+  return sendResult == ESP_OK;
+}
+
+void applyAllDerekLiftTargetToCluster(ClusterRuntime& cluster, uint8_t liftTarget) {
+  ClusterCommandPacket& command = cluster.desiredCommand;
+  command.flags = kCommandFlagApplyOutputs | kCommandFlagRequestStatus;
+  command.activeDerricks = kMaxDerricks;
+  cluster.movementSpeed = kMovementSpeedFast;
+  command.movementSpeed = kMovementSpeedFast;
+
+  for (uint8_t derekIndex = 0; derekIndex < kMaxDerricks; ++derekIndex) {
+    command.derricks[derekIndex].lift = liftTarget;
+  }
+  cluster.commandDirty = true;
+}
+
+void sendAllDerekLiftTargetToAllClusters(uint8_t liftTarget) {
+  for (uint8_t clusterIndex = 0; clusterIndex < kMaxClusters; ++clusterIndex) {
+    ClusterRuntime& cluster = gClusters[clusterIndex];
+    if (!cluster.occupied) {
+      continue;
+    }
+
+    applyAllDerekLiftTargetToCluster(cluster, liftTarget);
+    // Let the normal scheduler serialize this burst.  Calling esp_now_send
+    // once per cluster here can overflow the radio's small TX queue.
+  }
+}
+
+void applyTestLiftStateToCluster(ClusterRuntime& cluster) {
+  const uint8_t liftTarget = gTestLiftState == kTestLiftAllUp ? kDerekLiftMaximum : kDerekLiftMinimum;
+  applyAllDerekLiftTargetToCluster(cluster, liftTarget);
+}
+
+void sendTestLiftStateToAllClusters() {
+  const uint8_t liftTarget = gTestLiftState == kTestLiftAllUp ? kDerekLiftMaximum : kDerekLiftMinimum;
+  sendAllDerekLiftTargetToAllClusters(liftTarget);
+}
+
+void updateTestModeInputs(uint32_t nowMs) {
+  const bool allUpPressed = digitalRead(kTestAllUpButtonPin) == LOW;
+  const bool allDownPressed = digitalRead(kTestAllDownButtonPin) == LOW;
+  const bool debounceElapsed = (nowMs - gTestLastButtonEventAtMs) >= kTestButtonDebounceMs;
+
+  if (allUpPressed && !gTestAllUpButtonWasPressed && debounceElapsed) {
+    gTestLiftState = kTestLiftAllUp;
+    gTestLastButtonEventAtMs = nowMs;
+    sendTestLiftStateToAllClusters();
+    writeOledTestModePage();
+    Serial.println("Test mode: commanded all Derek units UP.");
+  } else if (allDownPressed && !gTestAllDownButtonWasPressed && debounceElapsed) {
+    gTestLiftState = kTestLiftAllDown;
+    gTestLastButtonEventAtMs = nowMs;
+    sendTestLiftStateToAllClusters();
+    writeOledTestModePage();
+    Serial.println("Test mode: commanded all Derek units DOWN.");
+  }
+
+  gTestAllUpButtonWasPressed = allUpPressed;
+  gTestAllDownButtonWasPressed = allDownPressed;
+}
+
+void runBootMassLiftTest(uint32_t nowMs) {
+  switch (gBootMassTestPhase) {
+    case kBootMassTestWaitingForClusters:
+      if ((nowMs - gBootMassTestPhaseStartedAtMs) < kBootMassTestDiscoveryWaitMs) {
+        return;
+      }
+      if (countOnlineClusters() == 0) {
+        gBootMassTestPhase = kBootMassTestDone;
+        Serial.println("Boot mass test skipped; no online clusters.");
+        return;
+      }
+      sendAllDerekLiftTargetToAllClusters(kDerekLiftMaximum);
+      gBootMassTestPhase = kBootMassTestAllUp;
+      gBootMassTestPhaseStartedAtMs = nowMs;
+      Serial.println("Boot mass test: all Derek units UP.");
+      return;
+
+    case kBootMassTestAllUp:
+      if ((nowMs - gBootMassTestPhaseStartedAtMs) < kBootMassTestAllUpHoldMs) {
+        return;
+      }
+      sendAllDerekLiftTargetToAllClusters(kDerekLiftMinimum);
+      gBootMassTestPhase = kBootMassTestDone;
+      Serial.println("Boot mass test: all Derek units DOWN; complete.");
+      return;
+
+    case kBootMassTestDone:
+    default:
+      return;
+  }
 }
 
 void initializeWifiAndOsc() {
@@ -1119,7 +1427,7 @@ void broadcastDiscovery() {
   discovery.magic = kProtocolMagic;
   discovery.version = kProtocolVersion;
   discovery.kind = kMessageCommand;
-  discovery.clusterId = 0;
+  discovery.clusterId = kBroadcastClusterId;
   discovery.sequence = gSequenceCounter++;
   discovery.flags = kCommandFlagDiscovery | kCommandFlagRequestStatus;
   discovery.activeDerricks = kMaxDerricks;
@@ -1134,9 +1442,42 @@ void sendScheduledCommands(uint32_t nowMs) {
 
   gLastCommandAtMs = nowMs;
 
-  for (uint8_t i = 0; i < kMaxClusters; ++i) {
-    if (gClusters[i].occupied && gClusters[i].online) {
-      sendCommandToCluster(gClusters[i]);
+  // Send callbacks run outside the sketch loop.  Move the retry request into
+  // the loop before touching the normal command cache.
+  const int8_t failedClusterIndex = gEspNowFailedClusterIndex;
+  if (failedClusterIndex >= 0 && failedClusterIndex < kMaxClusters) {
+    gClusters[failedClusterIndex].commandDirty = true;
+    gEspNowFailedClusterIndex = -1;
+  }
+
+  if (gEspNowSendInFlight) {
+    return;
+  }
+
+  // Round-robin selection prevents lower-numbered clusters from starving
+  // during a sustained multi-universe QLC+ update.
+  for (uint8_t offset = 0; offset < kMaxClusters; ++offset) {
+    const uint8_t i = (gNextCommandClusterIndex + offset) % kMaxClusters;
+    if (!gClusters[i].occupied || !gClusters[i].online) {
+      continue;
+    }
+
+    const bool heartbeatDue =
+        gClusters[i].lastCommandSentAtMs == 0 || (nowMs - gClusters[i].lastCommandSentAtMs) >= kCommandHeartbeatMs;
+    const bool outputSettlePending =
+        gClusters[i].commandDirty &&
+        (gClusters[i].desiredCommand.flags & kCommandFlagApplyOutputs) != 0 &&
+        gClusters[i].lastOutputChangedAtMs != 0 &&
+        (nowMs - gClusters[i].lastOutputChangedAtMs) < kOscOutputSettleMs;
+    if (outputSettlePending) {
+      continue;
+    }
+
+    if (gClusters[i].commandDirty || heartbeatDue) {
+      if (sendCommandToCluster(gClusters[i], i)) {
+        gNextCommandClusterIndex = (i + 1) % kMaxClusters;
+      }
+      return;
     }
   }
 }
@@ -1163,6 +1504,11 @@ void handleStatusPacket(const uint8_t* macAddress, const ClusterStatusPacket& st
 
   const uint8_t previousPirBits = gClusters[clusterIndex].lastPirBits;
   updateClusterFromStatus(macAddress, status, nowMs);
+  if (gTestModeEnabled) {
+    applyTestLiftStateToCluster(gClusters[clusterIndex]);
+  } else if (gBootMassTestPhase == kBootMassTestAllUp) {
+    applyAllDerekLiftTargetToCluster(gClusters[clusterIndex], kDerekLiftMaximum);
+  }
   handlePirEvent(gClusters[clusterIndex], previousPirBits, status.pirStateBits);
 }
 
@@ -1170,20 +1516,20 @@ bool parseOscDmxAddress(const char* address, uint8_t& clusterId, uint16_t& chann
   int universe = 0;
   int dmxChannel = 0;
 
-  // QLC+ OSC output emits zero-based paths shaped like /<universe-1>/dmx/<channel-1>.
-  // QLC Universe 1 / DMX channel 1 therefore arrives as /0/dmx/0.
+  // QLC+ OSC uses zero-based protocol numbers: Universe 0 / channel 0 arrives
+  // as /0/dmx/0. Universe numbers match the DIP/Cluster ID directly.
   if (sscanf(address, "/%d/dmx/%d", &universe, &dmxChannel) == 2) {
     if (universe >= 0 && universe < kMaxClusters && dmxChannel >= 0) {
-      clusterId = static_cast<uint8_t>(universe + 1);
+      clusterId = static_cast<uint8_t>(universe);
       channel = static_cast<uint16_t>(dmxChannel + 1);
       return true;
     }
   }
 
   // Friendly direct test path for tools like Protokol or oscsend:
-  // /derek/cluster/1/channel/1 255
+  // /derek/cluster/0/channel/1 255
   if (sscanf(address, "/derek/cluster/%d/channel/%d", &universe, &dmxChannel) == 2) {
-    if (universe >= 1 && universe <= kMaxClusters && dmxChannel >= 1) {
+    if (universe >= 0 && universe < kMaxClusters && dmxChannel >= 1) {
       clusterId = static_cast<uint8_t>(universe);
       channel = static_cast<uint16_t>(dmxChannel);
       return true;
@@ -1248,6 +1594,7 @@ void sendOscStatus(const ClusterRuntime& cluster) {
 
 void recordOscReject(const char* reason) {
   ++gOscMessagesRejected;
+  gLastOscEventAccepted = false;
   strncpy(gLastOscRejectReason, reason, sizeof(gLastOscRejectReason) - 1);
   gLastOscRejectReason[sizeof(gLastOscRejectReason) - 1] = '\0';
 
@@ -1272,6 +1619,7 @@ void recordOscReject(const char* reason) {
 void recordOscAccepted(const char* address, uint8_t clusterId, uint16_t channel, uint8_t value) {
   ++gOscMessagesAccepted;
   gLastOscAcceptedAtMs = millis();
+  gLastOscEventAccepted = true;
   gLastOscClusterId = clusterId;
   gLastOscChannel = channel;
   gLastOscValue = value;
@@ -1368,22 +1716,30 @@ void handleOscPacket(const uint8_t* data, size_t len) {
 }
 
 void updateOscInput() {
-  const int packetSize = gOscUdp.parsePacket();
-  if (packetSize <= 0) {
-    return;
-  }
+  static uint8_t packetBuffer[kOscPacketBufferSize] = {};
+  const uint32_t startedAtMs = millis();
 
-  uint8_t packetBuffer[kOscPacketBufferSize] = {};
-  const size_t bytesRead = gOscUdp.read(packetBuffer, min(packetSize, static_cast<int>(sizeof(packetBuffer))));
-  gLastOscRemoteIp = gOscUdp.remoteIP();
-  gLastOscRemotePort = gOscUdp.remotePort();
-  ++gOscPacketsReceived;
-  gLastOscPacketAtMs = millis();
-  if (packetSize > static_cast<int>(sizeof(packetBuffer))) {
-    recordOscReject("packet-too-large");
-    return;
+  for (uint8_t packetsRead = 0; packetsRead < kMaxOscPacketsPerLoop; ++packetsRead) {
+    const int packetSize = gOscUdp.parsePacket();
+    if (packetSize <= 0) {
+      return;
+    }
+
+    const size_t bytesRead = gOscUdp.read(packetBuffer, min(packetSize, static_cast<int>(sizeof(packetBuffer))));
+    gLastOscRemoteIp = gOscUdp.remoteIP();
+    gLastOscRemotePort = gOscUdp.remotePort();
+    ++gOscPacketsReceived;
+    gLastOscPacketAtMs = millis();
+    if (packetSize > static_cast<int>(sizeof(packetBuffer))) {
+      recordOscReject("packet-too-large");
+    } else {
+      handleOscPacket(packetBuffer, bytesRead);
+    }
+
+    if ((millis() - startedAtMs) >= kMaxOscDrainMs) {
+      return;
+    }
   }
-  handleOscPacket(packetBuffer, bytesRead);
 }
 
 void parseSerialCommand(char* line) {
@@ -1400,6 +1756,11 @@ void parseSerialCommand(char* line) {
 
   if (strcmp(command, "list") == 0) {
     renderStatusPage(millis());
+    return;
+  }
+
+  if (strcmp(command, "showstate") == 0) {
+    printIntendedDerekState();
     return;
   }
 
@@ -1442,6 +1803,7 @@ void parseSerialCommand(char* line) {
         gClusters[clusterIndex].movementSpeed = movementSpeed;
         gClusters[clusterIndex].desiredCommand.movementSpeed = movementSpeed;
         gClusters[clusterIndex].desiredCommand.flags |= kCommandFlagRequestStatus;
+        gClusters[clusterIndex].commandDirty = true;
       }
     }
     return;
@@ -1467,9 +1829,11 @@ void parseSerialCommand(char* line) {
       if (a == 1) {
         packet.audioTrackA = static_cast<uint16_t>(constrain(b, 1, 3000));
         packet.flags |= kCommandFlagAudioA | kCommandFlagRequestStatus;
+        gClusters[clusterIndex].commandDirty = true;
       } else if (a == 2) {
         packet.audioTrackB = static_cast<uint16_t>(constrain(b, 1, 3000));
         packet.flags |= kCommandFlagAudioB | kCommandFlagRequestStatus;
+        gClusters[clusterIndex].commandDirty = true;
       }
     }
     return;
@@ -1479,6 +1843,7 @@ void parseSerialCommand(char* line) {
     const int8_t clusterIndex = findClusterIndexById(static_cast<uint8_t>(clusterId));
     if (clusterIndex >= 0) {
       gClusters[clusterIndex].desiredCommand.flags = kCommandFlagEmergencyHide | kCommandFlagRequestStatus;
+      gClusters[clusterIndex].commandDirty = true;
     }
     return;
   }
@@ -1491,6 +1856,7 @@ void parseSerialCommand(char* line) {
       packet.flags = kCommandFlagApplyOutputs | kCommandFlagRequestStatus;
       packet.derricks[derrickIndex].pan = constrain(a, 0, 180);
       packet.derricks[derrickIndex].lift = constrain(b, 0, 170);
+      gClusters[clusterIndex].commandDirty = true;
     }
     return;
   }
@@ -1505,11 +1871,12 @@ void parseSerialCommand(char* line) {
           static_cast<uint8_t>(constrain(a, 0, 255)),
           static_cast<uint8_t>(constrain(b, 0, 255)),
           static_cast<uint8_t>(constrain(c, 0, 255))};
+      gClusters[clusterIndex].commandDirty = true;
     }
     return;
   }
 
-  Serial.println("Commands: list | osc | radio | speed <cluster> <fast|medium|slow> | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
+  Serial.println("Commands: list | showstate | osc | radio | speed <cluster> <fast|medium|slow> | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
 }
 
 void updateSerialConsole() {
@@ -1563,12 +1930,19 @@ void onEspNowSend(const wifi_tx_info_t* txInfo, esp_now_send_status_t status) {
 void onEspNowSend(const uint8_t* macAddr, esp_now_send_status_t status) {
   (void)macAddr;
 #endif
+  const int8_t clusterIndex = gEspNowInFlightClusterIndex;
+  gEspNowInFlightClusterIndex = -1;
+  gEspNowSendInFlight = false;
   gLastEspNowCallbackAtMs = millis();
   gLastEspNowSendStatus = static_cast<int>(status);
   if (status == ESP_NOW_SEND_SUCCESS) {
     ++gEspNowSendSuccesses;
   } else {
     ++gEspNowSendFailures;
+    // A packet accepted by the local ESP-NOW queue can still fail over the
+    // air.  Re-mark its cached pose so the scheduler retries immediately,
+    // rather than waiting for the 750 ms heartbeat.
+    gEspNowFailedClusterIndex = clusterIndex;
   }
 }
 
@@ -1601,17 +1975,40 @@ void setup() {
     return;
   }
 
+  gBootMassTestPhaseStartedAtMs = millis();
+  initializeTestModeInputs();
+
   Serial.print("MCU gateway ready. Version ");
   Serial.print(kSoftwareVersionMajor);
   Serial.print(".");
   Serial.print(kSoftwareVersionMinor);
   Serial.print(".");
   Serial.println(kSoftwareVersionRevision);
-  Serial.println("Serial console commands: list, osc, radio, speed, hide, track, eyes, dmx, audio");
+  Serial.println("Serial console commands: list, showstate, osc, radio, speed, hide, track, eyes, dmx, audio");
 }
 
 void loop() {
   const uint32_t nowMs = millis();
+
+  if (gTestModeEnabled) {
+    // Keep cluster discovery, registration callbacks, status processing, and
+    // ESP-NOW heartbeats active, while deliberately ignoring QLC+ OSC input.
+    markOfflineClusters(nowMs);
+
+    if ((nowMs - gLastDiscoveryAtMs) >= kDiscoveryIntervalMs) {
+      broadcastDiscovery();
+      gLastDiscoveryAtMs = nowMs;
+    }
+
+    updateTestModeInputs(nowMs);
+    sendScheduledCommands(nowMs);
+
+    if ((nowMs - gLastStatusPageAtMs) >= kStatusPageIntervalMs) {
+      writeOledTestModePage();
+      gLastStatusPageAtMs = nowMs;
+    }
+    return;
+  }
 
   updateSerialConsole();
   updateOscInput();
@@ -1622,11 +2019,13 @@ void loop() {
     gLastDiscoveryAtMs = nowMs;
   }
 
-  runBootDerekTest(nowMs);
+  // The original one-by-one boot test remains available in runBootDerekTest()
+  // for a future manual trigger. Startup uses the shorter all-up/all-down test.
+  runBootMassLiftTest(nowMs);
   sendScheduledCommands(nowMs);
 
   if ((nowMs - gLastStatusPageAtMs) >= kStatusPageIntervalMs) {
-    renderStatusPage(nowMs);
+    renderStatusPage(nowMs, kEnablePeriodicSerialStatus);
     gLastStatusPageAtMs = nowMs;
     gCurrentPage = (gCurrentPage + 1) % 2;
   }

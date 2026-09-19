@@ -19,14 +19,21 @@ constexpr uint8_t kSoftwareVersionMinor = 0;
 constexpr uint8_t kSoftwareVersionRevision = 1;
 constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;
-constexpr uint8_t kDefaultClusterId = 1;
+constexpr uint8_t kDefaultClusterId = 0;
 constexpr uint8_t kMaxDerricks = 8;
 constexpr uint8_t kMaxClusters = 15;
+constexpr uint8_t kBroadcastClusterId = 0xFF;
 constexpr uint32_t kStatusIntervalMs = 250;
 constexpr uint32_t kRegistrationIntervalMs = 1000;
 constexpr uint32_t kCommandTimeoutMs = 1500;
 constexpr uint32_t kMotionUpdateIntervalMs = 20;
 constexpr uint32_t kServoSoftRestDelayMs = 1000;
+constexpr uint32_t kI2cClockHz = 400000;
+constexpr uint32_t kServoOutputServiceIntervalMs = 5;
+constexpr uint8_t kServoDereksPerService = 1;
+constexpr uint8_t kServoOutputRefreshPasses = 3;
+constexpr uint8_t kCommandQueueDepth = 8;
+constexpr uint8_t kMaxQueuedCommandsPerLoop = 4;
 constexpr bool kRunSelfTestAtBoot = false;
 constexpr uint32_t kSelfTestIntervalMs = 1000;
 constexpr uint32_t kFullClusterTestStageMs = 2500;
@@ -194,6 +201,11 @@ struct ClusterStatusPacket {
 };
 #pragma pack(pop)
 
+struct QueuedCommand {
+  ClusterCommandPacket packet;
+  uint8_t senderMac[6];
+};
+
 DerekState gDerricks[kMaxDerricks];
 CanLiftProfile gCanLiftProfiles[kCanTypeCount];
 CanType gDerekCanTypes[kMaxDerricks];
@@ -219,6 +231,18 @@ uint16_t gPendingAudioTrackA = 0;
 uint16_t gPendingAudioTrackB = 0;
 bool gPendingAudioA = false;
 bool gPendingAudioB = false;
+portMUX_TYPE gPendingCommandMux = portMUX_INITIALIZER_UNLOCKED;
+QueuedCommand gCommandQueue[kCommandQueueDepth] = {};
+volatile uint8_t gCommandQueueHead = 0;
+volatile uint8_t gCommandQueueTail = 0;
+volatile uint8_t gCommandQueueCount = 0;
+uint32_t gCommandQueueOverflows = 0;
+uint8_t gServoDirtyMask = 0;
+uint8_t gServoRefreshPassesRemaining[kMaxDerricks] = {};
+uint8_t gNextServoServiceIndex = 0;
+uint32_t gLastServoOutputServiceAtMs = 0;
+uint32_t gServoI2cWrites = 0;
+uint32_t gServoI2cFailures = 0;
 MovementSpeed gMovementSpeed = kMovementSpeedFast;
 uint32_t gLastSelfTestAtMs = 0;
 uint8_t gSelfTestStep = 0;
@@ -241,6 +265,8 @@ void writeLedOutputs();
 void writeOledTestOutput(uint8_t derrickIndex, uint8_t step);
 void writeOledSequenceStage(uint8_t stage);
 void applyFailsafeTargets();
+void markServoOutputDirty(uint8_t derrickIndex);
+void markActiveServoOutputsDirty();
 
 void logLine(const char* message) {
   if (kEnableSerialLogs) {
@@ -400,7 +426,12 @@ void initializeClusterIdInputs() {
     }
   }
 
-  gClusterId = dipValue == 0 || dipValue > kMaxClusters ? kDefaultClusterId : dipValue;
+  gClusterId = dipValue >= kMaxClusters ? kDefaultClusterId : dipValue;
+
+  if (kEnableSerialLogs) {
+    Serial.print("DIP Universe/Cluster ID: ");
+    Serial.println(gClusterId);
+  }
 }
 
 void printSerialConfig() {
@@ -656,6 +687,7 @@ void applyFailsafeTargets() {
     gDerricks[i].output.eyeColor = {0, 0, 0};
     gDerricks[i].output.canColor = {0, 0, 0};
     gDerricks[i].output.exteriorColor = {0, 0, 0};
+    markServoOutputDirty(i);
   }
 
   writeLedOutputs();
@@ -705,6 +737,11 @@ uint16_t angleToServoPulseUs(uint8_t angle) {
   return map(angle, 0, 180, kServoMinPulseUs, kServoMaxPulseUs);
 }
 
+uint16_t pulseUsToPwmTicks(uint16_t pulseUs) {
+  const uint32_t numerator = static_cast<uint32_t>(pulseUs) * kServoPwmFrequencyHz * 4096UL;
+  return static_cast<uint16_t>(constrain((numerator + 500000UL) / 1000000UL, 0UL, 4095UL));
+}
+
 void setServoPwmEnabled(bool enabled) {
   if (!gServosReady || gServoPwmEnabled == enabled) {
     return;
@@ -724,6 +761,23 @@ bool areActiveServosAtTargets() {
   return true;
 }
 
+bool areServoOutputsPending() {
+  return gServoDirtyMask != 0;
+}
+
+void markServoOutputDirty(uint8_t derrickIndex) {
+  if (derrickIndex < kMaxDerricks) {
+    gServoDirtyMask |= static_cast<uint8_t>(1U << derrickIndex);
+    gServoRefreshPassesRemaining[derrickIndex] = kServoOutputRefreshPasses;
+  }
+}
+
+void markActiveServoOutputsDirty() {
+  for (uint8_t i = 0; i < gActiveDerricks; ++i) {
+    markServoOutputDirty(i);
+  }
+}
+
 MovementSpeed normalizeMovementSpeed(uint8_t movementSpeed) {
   switch (movementSpeed) {
     case kMovementSpeedMedium:
@@ -736,22 +790,65 @@ MovementSpeed normalizeMovementSpeed(uint8_t movementSpeed) {
   }
 }
 
-void writeServoOutputs(uint8_t derrickIndex) {
+bool writeServoChannel(uint8_t channel, uint8_t angle) {
+  const uint8_t result = gServoDriver.setPWM(channel, 0, pulseUsToPwmTicks(angleToServoPulseUs(angle)));
+  ++gServoI2cWrites;
+  if (result != 0) {
+    ++gServoI2cFailures;
+    return false;
+  }
+  return true;
+}
+
+bool writeServoOutputs(uint8_t derrickIndex) {
   if (derrickIndex >= kMaxDerricks || !gServosReady) {
-    return;
+    return false;
   }
 
+  bool ok = true;
   const int8_t panChannel = kServoPanChannels[derrickIndex];
   const int8_t liftChannel = kServoLiftChannels[derrickIndex];
   if (panChannel >= 0) {
-    gServoDriver.writeMicroseconds(
-        static_cast<uint8_t>(panChannel),
-        angleToServoPulseUs(gDerricks[derrickIndex].currentPan));
+    ok = writeServoChannel(static_cast<uint8_t>(panChannel), gDerricks[derrickIndex].currentPan) && ok;
   }
   if (liftChannel >= 0) {
-    gServoDriver.writeMicroseconds(
-        static_cast<uint8_t>(liftChannel),
-        angleToServoPulseUs(gDerricks[derrickIndex].currentLift));
+    ok = writeServoChannel(static_cast<uint8_t>(liftChannel), gDerricks[derrickIndex].currentLift) && ok;
+  }
+  return ok;
+}
+
+void serviceServoOutputs(uint32_t nowMs) {
+  if (!areServoOutputsPending()) {
+    return;
+  }
+  if ((nowMs - gLastServoOutputServiceAtMs) < kServoOutputServiceIntervalMs) {
+    return;
+  }
+  gLastServoOutputServiceAtMs = nowMs;
+
+  setServoPwmEnabled(true);
+  gLastServoMotionAtMs = nowMs;
+
+  uint8_t serviced = 0;
+  uint8_t checked = 0;
+  while (serviced < kServoDereksPerService && checked < kMaxDerricks) {
+    const uint8_t derrickIndex = gNextServoServiceIndex;
+    gNextServoServiceIndex = (gNextServoServiceIndex + 1) % kMaxDerricks;
+    ++checked;
+
+    const uint8_t mask = static_cast<uint8_t>(1U << derrickIndex);
+    if ((gServoDirtyMask & mask) == 0) {
+      continue;
+    }
+
+    const bool writeOk = writeServoOutputs(derrickIndex);
+    if (writeOk && gServoRefreshPassesRemaining[derrickIndex] > 0) {
+      --gServoRefreshPassesRemaining[derrickIndex];
+    }
+    if (gServoRefreshPassesRemaining[derrickIndex] == 0) {
+      gServoDirtyMask &= ~mask;
+    }
+    ++serviced;
   }
 }
 
@@ -1089,6 +1186,7 @@ void runClusterSelfTest(uint32_t nowMs) {
       derrick.targetLift = derrick.calibration.liftMin;
       derrick.output = {derrick.targetPan, derrick.targetLift, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
     }
+    markServoOutputDirty(i);
   }
 
   if (derrickIndex == 0 && motionPhase == 0) {
@@ -1110,6 +1208,7 @@ void setAllDerekOutputs(uint8_t pan, uint8_t lift, RgbColor eyeColor, RgbColor c
     derrick.targetPan = applyPanCalibration(i, pan);
     derrick.targetLift = applyLiftCalibration(i, lift);
     derrick.output = {derrick.targetPan, derrick.targetLift, eyeColor, canColor, exteriorColor};
+    markServoOutputDirty(i);
   }
 
   writeLedOutputs();
@@ -1193,19 +1292,17 @@ void updateMotion(uint32_t nowMs) {
 
     if (derrick.currentPan != previousPan || derrick.currentLift != previousLift) {
       anyServoMoved = true;
+      markServoOutputDirty(i);
     }
   }
 
-  if (anyServoMoved || !areActiveServosAtTargets()) {
+  if (anyServoMoved || !areActiveServosAtTargets() || areServoOutputsPending()) {
     setServoPwmEnabled(true);
     gLastServoMotionAtMs = nowMs;
-    for (uint8_t i = 0; i < gActiveDerricks; ++i) {
-      writeServoOutputs(i);
-    }
     return;
   }
 
-  if (gServoPwmEnabled && (nowMs - gLastServoMotionAtMs) >= kServoSoftRestDelayMs) {
+  if (gServoPwmEnabled && !areServoOutputsPending() && (nowMs - gLastServoMotionAtMs) >= kServoSoftRestDelayMs) {
     setServoPwmEnabled(false);
   }
 }
@@ -1245,13 +1342,13 @@ void sendStatusPacket(uint8_t kind, uint32_t nowMs) {
 }
 
 void handleCommand(const ClusterCommandPacket& packet, uint32_t nowMs) {
-  if (packet.clusterId != 0 && packet.clusterId != gClusterId) {
+  if (packet.clusterId != kBroadcastClusterId && packet.clusterId != gClusterId) {
     return;
   }
 
   gLastSequence = packet.sequence;
   gLastCommandAtMs = nowMs;
-  gActiveDerricks = packet.activeDerricks > kMaxDerricks ? kMaxDerricks : packet.activeDerricks;
+  gActiveDerricks = packet.activeDerricks == 0 ? kMaxDerricks : min<uint8_t>(packet.activeDerricks, kMaxDerricks);
   gMovementSpeed = normalizeMovementSpeed(packet.movementSpeed);
 
   if ((packet.flags & kCommandFlagDiscovery) == 0) {
@@ -1267,6 +1364,7 @@ void handleCommand(const ClusterCommandPacket& packet, uint32_t nowMs) {
       gDerricks[i].targetPan = applyPanCalibration(i, packet.derricks[i].pan);
       gDerricks[i].targetLift = applyLiftCalibration(i, packet.derricks[i].lift);
       gDerricks[i].output = packet.derricks[i];
+      markServoOutputDirty(i);
     }
 
     writeLedOutputs();
@@ -1284,6 +1382,32 @@ void handleCommand(const ClusterCommandPacket& packet, uint32_t nowMs) {
 
   if (packet.flags & kCommandFlagRequestStatus) {
     sendStatusPacket(kMessageStatus, nowMs);
+  }
+}
+
+void processPendingCommand(uint32_t nowMs) {
+  for (uint8_t processed = 0; processed < kMaxQueuedCommandsPerLoop; ++processed) {
+    ClusterCommandPacket packet = {};
+    uint8_t senderMac[6] = {};
+    bool hasCommand = false;
+
+    portENTER_CRITICAL(&gPendingCommandMux);
+    if (gCommandQueueCount > 0) {
+      const QueuedCommand& queued = gCommandQueue[gCommandQueueHead];
+      memcpy(&packet, &queued.packet, sizeof(packet));
+      memcpy(senderMac, queued.senderMac, sizeof(senderMac));
+      gCommandQueueHead = (gCommandQueueHead + 1) % kCommandQueueDepth;
+      --gCommandQueueCount;
+      hasCommand = true;
+    }
+    portEXIT_CRITICAL(&gPendingCommandMux);
+
+    if (!hasCommand) {
+      return;
+    }
+
+    ensureControllerPeer(senderMac);
+    handleCommand(packet, nowMs);
   }
 }
 
@@ -1308,10 +1432,19 @@ void onEspNowReceive(const uint8_t* senderMac, const uint8_t* data, int len) {
     return;
   }
 
-  ClusterCommandPacket packet = {};
-  memcpy(&packet, data, sizeof(packet));
-  ensureControllerPeer(senderMac);
-  handleCommand(packet, millis());
+  portENTER_CRITICAL(&gPendingCommandMux);
+  if (gCommandQueueCount >= kCommandQueueDepth) {
+    gCommandQueueHead = (gCommandQueueHead + 1) % kCommandQueueDepth;
+    --gCommandQueueCount;
+    ++gCommandQueueOverflows;
+  }
+
+  QueuedCommand& queued = gCommandQueue[gCommandQueueTail];
+  memcpy(&queued.packet, data, sizeof(queued.packet));
+  memcpy(queued.senderMac, senderMac, sizeof(queued.senderMac));
+  gCommandQueueTail = (gCommandQueueTail + 1) % kCommandQueueDepth;
+  ++gCommandQueueCount;
+  portEXIT_CRITICAL(&gPendingCommandMux);
 }
 
 #if ESP_ARDUINO_VERSION_MAJOR >= 3
@@ -1362,6 +1495,7 @@ void initializePirInputs() {
 
 void initializeHardwareAvailability() {
   Wire.begin(kI2cSdaPin, kI2cSclPin);
+  Wire.setClock(kI2cClockHz);
   gServosReady = initializePca9685();
   gOledReady = initializeOled();
   showOledStartupStatus("OLED READY");
@@ -1432,6 +1566,7 @@ void loop() {
 
   updateSerialCommands();
   updatePirInputs();
+  processPendingCommand(nowMs);
 
   if (gLastCommandAtMs != 0 && (nowMs - gLastCommandAtMs) > kCommandTimeoutMs) {
     applyFailsafeTargets();
@@ -1440,6 +1575,7 @@ void loop() {
   runClusterSelfTest(nowMs);
   runFullClusterSequenceTest(nowMs);
   updateMotion(nowMs);
+  serviceServoOutputs(nowMs);
   updateAudioOutputs();
   publishIfNeeded(nowMs);
   serviceOledRuntimeSummary();
