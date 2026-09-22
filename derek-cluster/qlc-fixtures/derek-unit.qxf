@@ -23,66 +23,66 @@
   <Capability Min="137" Max="170">Upper travel if can profile allows it</Capability>
   <Capability Min="171" Max="255">Clamped to configured lift limit</Capability>
  </Channel>
- <Channel Name="Eye Red" Default="0">
+ <Channel Name="Spotlight Red" Default="0">
   <Group Byte="0">Intensity</Group>
   <Colour>Red</Colour>
-  <Capability Min="0" Max="255">Eye red intensity</Capability>
+  <Capability Min="0" Max="255">Two-pixel spotlight red intensity</Capability>
  </Channel>
- <Channel Name="Eye Green" Default="0">
+ <Channel Name="Spotlight Green" Default="0">
   <Group Byte="0">Intensity</Group>
   <Colour>Green</Colour>
-  <Capability Min="0" Max="255">Eye green intensity</Capability>
+  <Capability Min="0" Max="255">Two-pixel spotlight green intensity</Capability>
  </Channel>
- <Channel Name="Eye Blue" Default="0">
+ <Channel Name="Spotlight Blue" Default="0">
   <Group Byte="0">Intensity</Group>
   <Colour>Blue</Colour>
-  <Capability Min="0" Max="255">Eye blue intensity</Capability>
+  <Capability Min="0" Max="255">Two-pixel spotlight blue intensity</Capability>
  </Channel>
- <Channel Name="Can Red" Default="0">
+ <Channel Name="Right Eye Red" Default="0">
   <Group Byte="0">Intensity</Group>
   <Colour>Red</Colour>
-  <Capability Min="0" Max="255">Can interior red intensity</Capability>
+  <Capability Min="0" Max="255">Right eye red intensity</Capability>
  </Channel>
- <Channel Name="Can Green" Default="0">
+ <Channel Name="Right Eye Green" Default="0">
   <Group Byte="0">Intensity</Group>
   <Colour>Green</Colour>
-  <Capability Min="0" Max="255">Can interior green intensity</Capability>
+  <Capability Min="0" Max="255">Right eye green intensity</Capability>
  </Channel>
- <Channel Name="Can Blue" Default="0">
+ <Channel Name="Right Eye Blue" Default="0">
   <Group Byte="0">Intensity</Group>
   <Colour>Blue</Colour>
-  <Capability Min="0" Max="255">Can interior blue intensity</Capability>
+  <Capability Min="0" Max="255">Right eye blue intensity</Capability>
  </Channel>
- <Channel Name="Exterior Red" Default="0">
+ <Channel Name="Left Eye Red" Default="0">
   <Group Byte="0">Intensity</Group>
   <Colour>Red</Colour>
-  <Capability Min="0" Max="255">Exterior red intensity</Capability>
+  <Capability Min="0" Max="255">Left eye red intensity</Capability>
  </Channel>
- <Channel Name="Exterior Green" Default="0">
+ <Channel Name="Left Eye Green" Default="0">
   <Group Byte="0">Intensity</Group>
   <Colour>Green</Colour>
-  <Capability Min="0" Max="255">Exterior green intensity</Capability>
+  <Capability Min="0" Max="255">Left eye green intensity</Capability>
  </Channel>
- <Channel Name="Exterior Blue" Default="0">
+ <Channel Name="Left Eye Blue" Default="0">
   <Group Byte="0">Intensity</Group>
   <Colour>Blue</Colour>
-  <Capability Min="0" Max="255">Exterior blue intensity</Capability>
+  <Capability Min="0" Max="255">Left eye blue intensity</Capability>
  </Channel>
  <Mode Name="11 Channel">
   <Channel Number="0">Pan</Channel>
   <Channel Number="1">Lift</Channel>
-  <Channel Number="2">Eye Red</Channel>
-  <Channel Number="3">Eye Green</Channel>
-  <Channel Number="4">Eye Blue</Channel>
-  <Channel Number="5">Can Red</Channel>
-  <Channel Number="6">Can Green</Channel>
-  <Channel Number="7">Can Blue</Channel>
-  <Channel Number="8">Exterior Red</Channel>
-  <Channel Number="9">Exterior Green</Channel>
-  <Channel Number="10">Exterior Blue</Channel>
+  <Channel Number="2">Spotlight Red</Channel>
+  <Channel Number="3">Spotlight Green</Channel>
+  <Channel Number="4">Spotlight Blue</Channel>
+  <Channel Number="5">Right Eye Red</Channel>
+  <Channel Number="6">Right Eye Green</Channel>
+  <Channel Number="7">Right Eye Blue</Channel>
+  <Channel Number="8">Left Eye Red</Channel>
+  <Channel Number="9">Left Eye Green</Channel>
+  <Channel Number="10">Left Eye Blue</Channel>
  </Mode>
  <Physical>
-  <Bulb Type="RGB LED pixels and two servos" Lumens="0" ColourTemperature="0"/>
+  <Bulb Type="2 spotlight LEDs plus independent right and left eye LEDs, with two servos" Lumens="0" ColourTemperature="0"/>
   <Dimensions Width="100" Height="180" Depth="100" Weight="0.5"/>
   <Lens Name="Other" DegreesMin="0" DegreesMax="360"/>
   <Focus Type="Head" PanMax="160" TiltMax="170"/>

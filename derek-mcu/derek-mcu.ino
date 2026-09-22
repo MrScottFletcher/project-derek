@@ -11,8 +11,8 @@
 namespace {
 
 constexpr bool kEnableSerialLogs = true;
-// Keep the serial monitor quiet during normal operation.  The `list`, `osc`,
-// `radio`, and `showstate` console commands always print on demand.
+// Keep the serial monitor quiet during normal operation.  The `list`,
+// `artnet`, `radio`, and `showstate` console commands always print on demand.
 constexpr bool kEnablePeriodicSerialStatus = false;
 constexpr uint8_t kSoftwareVersionMajor = 1;
 constexpr uint8_t kSoftwareVersionMinor = 0;
@@ -28,23 +28,16 @@ constexpr uint32_t kDiscoveryIntervalMs = 2000;
 // silently losing the tail of a large update.
 constexpr uint32_t kCommandIntervalMs = 5;
 constexpr uint32_t kCommandHeartbeatMs = 750;
-constexpr uint32_t kOscOutputSettleMs = 40;
+constexpr uint32_t kOutputSettleMs = 40;
 constexpr uint32_t kStatusPageIntervalMs = 1000;
 constexpr uint32_t kClusterOfflineMs = 3000;
 constexpr uint32_t kBootDerekTestWaitMs = 5000;
 constexpr uint32_t kBootDerekTestStepMs = 1200;
 constexpr uint32_t kBootMassTestDiscoveryWaitMs = 5000;
 constexpr uint32_t kBootMassTestAllUpHoldMs = 5000;
-constexpr uint16_t kOscListenPort = 7700;
-constexpr uint16_t kOscStatusPort = 9000;
 constexpr uint16_t kArtNetListenPort = 6454;
-constexpr size_t kOscPacketBufferSize = 4096;
-constexpr uint8_t kMaxOscPacketsPerLoop = 96;
-constexpr uint32_t kMaxOscDrainMs = 10;
 constexpr size_t kArtNetPacketBufferSize = 600;
 constexpr uint8_t kMaxArtNetPacketsPerLoop = 16;
-constexpr bool kEnableOscDebugLogs = true;
-constexpr uint32_t kOscDebugLogIntervalMs = 1000;
 constexpr bool kEnableRadioDebugLogs = true;
 constexpr uint32_t kRadioDebugLogIntervalMs = 1000;
 constexpr uint8_t kClusterControllerChannels = 14;
@@ -139,9 +132,11 @@ struct RgbColor {
 struct DerekCommand {
   uint8_t pan;
   uint8_t lift;
-  RgbColor eyeColor;
-  RgbColor canColor;
-  RgbColor exteriorColor;
+  // RGB controls map to the physical LED-chain order: spotlight (two pixels),
+  // right eye (one pixel), then left eye (one pixel).
+  RgbColor spotlightColor;
+  RgbColor rightEyeColor;
+  RgbColor leftEyeColor;
 };
 
 #pragma pack(push, 1)
@@ -216,28 +211,17 @@ bool gTestAllUpButtonWasPressed = false;
 bool gTestAllDownButtonWasPressed = false;
 uint32_t gTestLastButtonEventAtMs = 0;
 TestLiftState gTestLiftState = kTestLiftAllDown;
-WiFiUDP gOscUdp;
 WiFiUDP gArtNetUdp;
-IPAddress gLastOscRemoteIp;
-uint16_t gLastOscRemotePort = 0;
-uint32_t gOscPacketsReceived = 0;
-uint32_t gOscMessagesAccepted = 0;
-uint32_t gOscMessagesRejected = 0;
-uint32_t gLastOscPacketAtMs = 0;
-uint32_t gLastOscAcceptedAtMs = 0;
-uint32_t gLastOscDebugLogAtMs = 0;
-bool gLastOscEventAccepted = false;
-uint8_t gLastOscClusterId = 0;
-uint16_t gLastOscChannel = 0;
-uint8_t gLastOscValue = 0;
-char gLastOscAddress[32] = {};
-char gLastOscRejectReason[24] = "none";
 uint8_t gArtNetDmx[kMaxClusters][kChannelsPerCluster] = {};
 bool gArtNetUniverseSeen[kMaxClusters] = {};
 uint32_t gArtNetPacketsReceived = 0;
 uint32_t gArtNetFramesAccepted = 0;
 uint32_t gArtNetFramesRejected = 0;
 uint32_t gLastArtNetFrameAtMs = 0;
+bool gLastArtNetCommandValid = false;
+uint8_t gLastArtNetCommandClusterId = 0;
+uint16_t gLastArtNetCommandChannel = 0;
+uint8_t gLastArtNetCommandValue = 0;
 uint32_t gEspNowPacketsQueued = 0;
 uint32_t gEspNowQueueFailures = 0;
 uint32_t gEspNowSendSuccesses = 0;
@@ -259,7 +243,6 @@ uint8_t gConflictClusterId = 0;
 char gConflictExistingMac[18] = {};
 char gConflictNewMac[18] = {};
 
-void sendOscStatus(const ClusterRuntime& cluster);
 int8_t findClusterIndexById(uint8_t clusterId);
 void applyCachedArtNetUniverse(uint8_t clusterId);
 
@@ -525,14 +508,20 @@ void writeOledStatusPage(uint32_t nowMs) {
   }
   writeOledLine(3, line);
 
-  if (gOscPacketsReceived > 0 && !gLastOscEventAccepted) {
-    snprintf(line, sizeof(line), "OSC RX%lu %s", static_cast<unsigned long>(gOscPacketsReceived), gLastOscRejectReason);
-  } else if (gOscMessagesAccepted > 0) {
-    snprintf(line, sizeof(line), "OSC C%u CH%u V%u", gLastOscClusterId, gLastOscChannel, gLastOscValue);
-  } else if (gOscPacketsReceived > 0) {
-    snprintf(line, sizeof(line), "OSC RX%lu %s", static_cast<unsigned long>(gOscPacketsReceived), gLastOscRejectReason);
+  if (gLastArtNetCommandValid) {
+    snprintf(
+        line,
+        sizeof(line),
+        "ART U%u CH%u V%u",
+        gLastArtNetCommandClusterId,
+        gLastArtNetCommandChannel,
+        gLastArtNetCommandValue);
+  } else if (gArtNetFramesAccepted > 0) {
+    snprintf(line, sizeof(line), "ARTNET RX%lu", static_cast<unsigned long>(gArtNetFramesAccepted));
+  } else if (gArtNetPacketsReceived > 0) {
+    snprintf(line, sizeof(line), "ARTNET REJECT %lu", static_cast<unsigned long>(gArtNetFramesRejected));
   } else {
-    snprintf(line, sizeof(line), "OSC WAIT %u", kOscListenPort);
+    snprintf(line, sizeof(line), "ARTNET WAIT %u", kArtNetListenPort);
   }
   writeOledLine(4, line);
 
@@ -566,50 +555,9 @@ void writeOledTestModePage() {
   writeOledLine(3, "GPIO6 ALL DOWN");
   snprintf(line, sizeof(line), "NODES %u ONLINE %u", countRegisteredClusters(), countOnlineClusters());
   writeOledLine(4, line);
-  writeOledLine(5, "OSC INPUT DISABLED");
+  writeOledLine(5, "ARTNET INPUT PAUSED");
   writeOledLine(6, "ESP-NOW ACTIVE");
   writeOledLine(7, "SWITCH GPIO4 ON");
-}
-
-uint16_t readOscPaddedString(const uint8_t* data, size_t len, size_t offset, char* output, size_t outputLen) {
-  if (offset >= len || outputLen == 0) {
-    return 0;
-  }
-
-  size_t cursor = offset;
-  size_t outCursor = 0;
-  while (cursor < len && data[cursor] != '\0') {
-    if (outCursor < outputLen - 1) {
-      output[outCursor++] = static_cast<char>(data[cursor]);
-    }
-    ++cursor;
-  }
-
-  if (cursor >= len) {
-    output[0] = '\0';
-    return 0;
-  }
-
-  output[outCursor] = '\0';
-  ++cursor;
-  while ((cursor % 4) != 0) {
-    ++cursor;
-  }
-  return static_cast<uint16_t>(cursor);
-}
-
-uint32_t readOscUint32(const uint8_t* data, size_t offset) {
-  return (static_cast<uint32_t>(data[offset]) << 24) |
-         (static_cast<uint32_t>(data[offset + 1]) << 16) |
-         (static_cast<uint32_t>(data[offset + 2]) << 8) |
-         static_cast<uint32_t>(data[offset + 3]);
-}
-
-uint8_t valueToByte(float value) {
-  if (value <= 1.0f) {
-    return static_cast<uint8_t>(constrain(lroundf(value * 255.0f), 0, 255));
-  }
-  return static_cast<uint8_t>(constrain(lroundf(value), 0, 255));
 }
 
 uint8_t dmxToPan(uint8_t value) {
@@ -777,31 +725,31 @@ void applyDerekChannel(ClusterCommandPacket& packet, uint16_t channel, uint8_t v
       derek.lift = dmxToLift(value);
       break;
     case 2:
-      derek.eyeColor.r = value;
+      derek.spotlightColor.r = value;
       break;
     case 3:
-      derek.eyeColor.g = value;
+      derek.spotlightColor.g = value;
       break;
     case 4:
-      derek.eyeColor.b = value;
+      derek.spotlightColor.b = value;
       break;
     case 5:
-      derek.canColor.r = value;
+      derek.rightEyeColor.r = value;
       break;
     case 6:
-      derek.canColor.g = value;
+      derek.rightEyeColor.g = value;
       break;
     case 7:
-      derek.canColor.b = value;
+      derek.rightEyeColor.b = value;
       break;
     case 8:
-      derek.exteriorColor.r = value;
+      derek.leftEyeColor.r = value;
       break;
     case 9:
-      derek.exteriorColor.g = value;
+      derek.leftEyeColor.g = value;
       break;
     case 10:
-      derek.exteriorColor.b = value;
+      derek.leftEyeColor.b = value;
       break;
   }
 }
@@ -1076,7 +1024,7 @@ void initializeTestModeInputs() {
   }
 
   writeOledTestModePage();
-  Serial.println("MCU test mode enabled: OSC input disabled; GPIO5=All Up, GPIO6=All Down.");
+  Serial.println("MCU test mode enabled: Art-Net input paused; GPIO5=All Up, GPIO6=All Down.");
 }
 
 void markOfflineClusters(uint32_t nowMs) {
@@ -1108,9 +1056,9 @@ void applyBootDerekTestPose(ClusterRuntime& cluster, uint8_t derekIndex, BootDer
   }
 
   DerekCommand& derek = command.derricks[derekIndex];
-  derek.eyeColor = {40, 40, 40};
-  derek.canColor = {0, 0, 0};
-  derek.exteriorColor = {0, 0, 0};
+  derek.spotlightColor = {40, 40, 40};
+  derek.rightEyeColor = {0, 0, 0};
+  derek.leftEyeColor = {0, 0, 0};
 
   switch (phase) {
     case kBootDerekTestLift:
@@ -1132,7 +1080,7 @@ void applyBootDerekTestPose(ClusterRuntime& cluster, uint8_t derekIndex, BootDer
     case kBootDerekTestLower:
       derek.pan = 90;
       derek.lift = 0;
-      derek.eyeColor = {0, 0, 0};
+      derek.spotlightColor = {0, 0, 0};
       break;
     default:
       break;
@@ -1406,7 +1354,7 @@ void runBootMassLiftTest(uint32_t nowMs) {
   }
 }
 
-void initializeWifiAndOsc() {
+void initializeWifiAndArtNet() {
   WiFi.mode(WIFI_STA);
 
   if (strlen(kWifiSsid) > 0) {
@@ -1419,7 +1367,6 @@ void initializeWifiAndOsc() {
     WiFi.disconnect(false, true);
   }
 
-  gOscUdp.begin(kOscListenPort);
   gArtNetUdp.begin(kArtNetListenPort);
 
   if (gOledReady) {
@@ -1444,8 +1391,6 @@ void initializeWifiAndOsc() {
   Serial.println(WiFi.macAddress());
   Serial.print("Wi-Fi channel: ");
   Serial.println(WiFi.channel());
-  Serial.print("OSC listen port: ");
-  Serial.println(kOscListenPort);
   Serial.print("Art-Net listen port: ");
   Serial.println(kArtNetListenPort);
   if (WiFi.status() == WL_CONNECTED) {
@@ -1503,7 +1448,7 @@ void sendScheduledCommands(uint32_t nowMs) {
         gClusters[i].commandDirty &&
         (gClusters[i].desiredCommand.flags & kCommandFlagApplyOutputs) != 0 &&
         gClusters[i].lastOutputChangedAtMs != 0 &&
-        (nowMs - gClusters[i].lastOutputChangedAtMs) < kOscOutputSettleMs;
+        (nowMs - gClusters[i].lastOutputChangedAtMs) < kOutputSettleMs;
     if (outputSettlePending) {
       continue;
     }
@@ -1528,7 +1473,6 @@ void handlePirEvent(const ClusterRuntime& cluster, uint8_t priorPirBits, uint8_t
   Serial.print(priorPirBits, BIN);
   Serial.print(" -> ");
   Serial.println(newPirBits, BIN);
-  sendOscStatus(cluster);
 }
 
 void handleStatusPacket(const uint8_t* macAddress, const ClusterStatusPacket& status, uint32_t nowMs) {
@@ -1545,236 +1489,6 @@ void handleStatusPacket(const uint8_t* macAddress, const ClusterStatusPacket& st
     applyAllDerekLiftTargetToCluster(gClusters[clusterIndex], kDerekLiftMaximum);
   }
   handlePirEvent(gClusters[clusterIndex], previousPirBits, status.pirStateBits);
-}
-
-bool parseOscDmxAddress(const char* address, uint8_t& clusterId, uint16_t& channel) {
-  int universe = 0;
-  int dmxChannel = 0;
-
-  // QLC+ OSC uses zero-based protocol numbers: Universe 0 / channel 0 arrives
-  // as /0/dmx/0. Universe numbers match the DIP/Cluster ID directly.
-  if (sscanf(address, "/%d/dmx/%d", &universe, &dmxChannel) == 2) {
-    if (universe >= 0 && universe < kMaxClusters && dmxChannel >= 0) {
-      clusterId = static_cast<uint8_t>(universe);
-      channel = static_cast<uint16_t>(dmxChannel + 1);
-      return true;
-    }
-  }
-
-  // Friendly direct test path for tools like Protokol or oscsend:
-  // /derek/cluster/0/channel/1 255
-  if (sscanf(address, "/derek/cluster/%d/channel/%d", &universe, &dmxChannel) == 2) {
-    if (universe >= 0 && universe < kMaxClusters && dmxChannel >= 1) {
-      clusterId = static_cast<uint8_t>(universe);
-      channel = static_cast<uint16_t>(dmxChannel);
-      return true;
-    }
-  }
-
-  return false;
-}
-
-bool parseOscValue(const uint8_t* data, size_t len, size_t offset, const char* typeTags, uint8_t& value) {
-  if (typeTags[0] != ',' || typeTags[1] == '\0') {
-    return false;
-  }
-
-  switch (typeTags[1]) {
-    case 'i':
-      if (offset + 4 > len) {
-        return false;
-      }
-      value = static_cast<uint8_t>(constrain(static_cast<int32_t>(readOscUint32(data, offset)), 0, 255));
-      return true;
-    case 'f': {
-      if (offset + 4 > len) {
-        return false;
-      }
-      const uint32_t raw = readOscUint32(data, offset);
-      float floatValue = 0.0f;
-      memcpy(&floatValue, &raw, sizeof(floatValue));
-      value = valueToByte(floatValue);
-      return true;
-    }
-    case 'T':
-      value = 255;
-      return true;
-    case 'F':
-      value = 0;
-      return true;
-  }
-
-  return false;
-}
-
-void sendOscStatus(const ClusterRuntime& cluster) {
-  if (gLastOscRemotePort == 0) {
-    return;
-  }
-
-  char message[96] = {};
-  snprintf(
-      message,
-      sizeof(message),
-      "/derek/cluster/%u/status online=%u pir=%u health=0x%04X",
-      cluster.clusterId,
-      cluster.online ? 1 : 0,
-      cluster.lastPirBits,
-      cluster.lastHealthFlags);
-
-  gOscUdp.beginPacket(gLastOscRemoteIp, kOscStatusPort);
-  gOscUdp.print(message);
-  gOscUdp.endPacket();
-}
-
-void recordOscReject(const char* reason) {
-  ++gOscMessagesRejected;
-  gLastOscEventAccepted = false;
-  strncpy(gLastOscRejectReason, reason, sizeof(gLastOscRejectReason) - 1);
-  gLastOscRejectReason[sizeof(gLastOscRejectReason) - 1] = '\0';
-
-  if (!kEnableSerialLogs || !kEnableOscDebugLogs) {
-    return;
-  }
-
-  const uint32_t nowMs = millis();
-  if ((nowMs - gLastOscDebugLogAtMs) >= kOscDebugLogIntervalMs) {
-    gLastOscDebugLogAtMs = nowMs;
-    Serial.print("OSC rejected: ");
-    Serial.print(gLastOscRejectReason);
-    Serial.print(" packets=");
-    Serial.print(gOscPacketsReceived);
-    Serial.print(" accepted=");
-    Serial.print(gOscMessagesAccepted);
-    Serial.print(" rejected=");
-    Serial.println(gOscMessagesRejected);
-  }
-}
-
-void recordOscAccepted(const char* address, uint8_t clusterId, uint16_t channel, uint8_t value) {
-  ++gOscMessagesAccepted;
-  gLastOscAcceptedAtMs = millis();
-  gLastOscEventAccepted = true;
-  gLastOscClusterId = clusterId;
-  gLastOscChannel = channel;
-  gLastOscValue = value;
-  strncpy(gLastOscAddress, address, sizeof(gLastOscAddress) - 1);
-  gLastOscAddress[sizeof(gLastOscAddress) - 1] = '\0';
-  strncpy(gLastOscRejectReason, "none", sizeof(gLastOscRejectReason) - 1);
-  gLastOscRejectReason[sizeof(gLastOscRejectReason) - 1] = '\0';
-
-  if (!kEnableSerialLogs || !kEnableOscDebugLogs) {
-    return;
-  }
-
-  const uint32_t nowMs = millis();
-  if ((nowMs - gLastOscDebugLogAtMs) >= kOscDebugLogIntervalMs) {
-    gLastOscDebugLogAtMs = nowMs;
-    Serial.print("OSC accepted ");
-    Serial.print(address);
-    Serial.print(" -> cluster ");
-    Serial.print(clusterId);
-    Serial.print(" channel ");
-    Serial.print(channel);
-    Serial.print(" value ");
-    Serial.print(value);
-    Serial.print(" from ");
-    Serial.print(gLastOscRemoteIp);
-    Serial.print(":");
-    Serial.println(gLastOscRemotePort);
-  }
-}
-
-void handleOscMessage(const uint8_t* data, size_t len) {
-  char address[64] = {};
-  char typeTags[16] = {};
-  uint8_t clusterId = 0;
-  uint16_t channel = 0;
-  uint8_t value = 0;
-
-  size_t offset = readOscPaddedString(data, len, 0, address, sizeof(address));
-  if (offset == 0) {
-    recordOscReject("bad-address");
-    return;
-  }
-
-  offset = readOscPaddedString(data, len, offset, typeTags, sizeof(typeTags));
-  if (offset == 0) {
-    recordOscReject("bad-typetag");
-    return;
-  }
-  if (!parseOscDmxAddress(address, clusterId, channel)) {
-    recordOscReject("bad-path");
-    return;
-  }
-  if (!parseOscValue(data, len, offset, typeTags, value)) {
-    recordOscReject("bad-value");
-    return;
-  }
-
-  const int8_t clusterIndex = findClusterIndexById(clusterId);
-  if (clusterIndex < 0) {
-    if (kEnableSerialLogs) {
-      Serial.print("OSC for undiscovered cluster ");
-      Serial.println(clusterId);
-    }
-    recordOscReject("no-cluster");
-    return;
-  }
-
-  applyDmxChannelToCluster(gClusters[clusterIndex], channel, value);
-  recordOscAccepted(address, clusterId, channel, value);
-}
-
-void handleOscPacket(const uint8_t* data, size_t len) {
-  if (len < 4) {
-    recordOscReject("short-packet");
-    return;
-  }
-
-  if (len >= 16 && memcmp(data, "#bundle", 7) == 0) {
-    size_t offset = 16;
-    while (offset + 4 <= len) {
-      const uint32_t elementLen = readOscUint32(data, offset);
-      offset += 4;
-      if (elementLen == 0 || offset + elementLen > len) {
-        recordOscReject("bad-bundle");
-        return;
-      }
-      handleOscMessage(data + offset, elementLen);
-      offset += elementLen;
-    }
-    return;
-  }
-
-  handleOscMessage(data, len);
-}
-
-void updateOscInput() {
-  static uint8_t packetBuffer[kOscPacketBufferSize] = {};
-  const uint32_t startedAtMs = millis();
-
-  for (uint8_t packetsRead = 0; packetsRead < kMaxOscPacketsPerLoop; ++packetsRead) {
-    const int packetSize = gOscUdp.parsePacket();
-    if (packetSize <= 0) {
-      return;
-    }
-
-    const size_t bytesRead = gOscUdp.read(packetBuffer, min(packetSize, static_cast<int>(sizeof(packetBuffer))));
-    gLastOscRemoteIp = gOscUdp.remoteIP();
-    gLastOscRemotePort = gOscUdp.remotePort();
-    ++gOscPacketsReceived;
-    gLastOscPacketAtMs = millis();
-    if (packetSize > static_cast<int>(sizeof(packetBuffer))) {
-      recordOscReject("packet-too-large");
-    } else {
-      handleOscPacket(packetBuffer, bytesRead);
-    }
-
-    if ((millis() - startedAtMs) >= kMaxOscDrainMs) {
-      return;
-    }
-  }
 }
 
 void applyArtNetDmxFrame(uint8_t clusterId, const uint8_t* dmxData, uint16_t dmxLength) {
@@ -1794,8 +1508,14 @@ void applyArtNetDmxFrame(uint8_t clusterId, const uint8_t* dmxData, uint16_t dmx
     const uint8_t value = dmxData[channelIndex];
     const bool changed = firstFrameForUniverse || gArtNetDmx[clusterId][channelIndex] != value;
     gArtNetDmx[clusterId][channelIndex] = value;
-    if (changed && clusterIndex >= 0) {
-      applyDmxChannelToCluster(gClusters[clusterIndex], channelIndex + 1, value);
+    if (changed) {
+      gLastArtNetCommandValid = true;
+      gLastArtNetCommandClusterId = clusterId;
+      gLastArtNetCommandChannel = channelIndex + 1;
+      gLastArtNetCommandValue = value;
+      if (clusterIndex >= 0) {
+        applyDmxChannelToCluster(gClusters[clusterIndex], channelIndex + 1, value);
+      }
     }
   }
 }
@@ -1868,30 +1588,6 @@ void parseSerialCommand(char* line) {
 
   if (strcmp(command, "showstate") == 0) {
     printIntendedDerekState();
-    return;
-  }
-
-  if (strcmp(command, "osc") == 0) {
-    Serial.print("OSC packets=");
-    Serial.print(gOscPacketsReceived);
-    Serial.print(" accepted=");
-    Serial.print(gOscMessagesAccepted);
-    Serial.print(" rejected=");
-    Serial.print(gOscMessagesRejected);
-    Serial.print(" last=");
-    Serial.print(gLastOscAddress);
-    Serial.print(" C");
-    Serial.print(gLastOscClusterId);
-    Serial.print(" CH");
-    Serial.print(gLastOscChannel);
-    Serial.print(" V");
-    Serial.print(gLastOscValue);
-    Serial.print(" reject=");
-    Serial.print(gLastOscRejectReason);
-    Serial.print(" remote=");
-    Serial.print(gLastOscRemoteIp);
-    Serial.print(":");
-    Serial.println(gLastOscRemotePort);
     return;
   }
 
@@ -1986,7 +1682,7 @@ void parseSerialCommand(char* line) {
     if (clusterIndex >= 0 && derrickIndex >= 0 && derrickIndex < kMaxDerricks) {
       ClusterCommandPacket& packet = gClusters[clusterIndex].desiredCommand;
       packet.flags = kCommandFlagApplyOutputs | kCommandFlagRequestStatus;
-      packet.derricks[derrickIndex].eyeColor = {
+      packet.derricks[derrickIndex].spotlightColor = {
           static_cast<uint8_t>(constrain(a, 0, 255)),
           static_cast<uint8_t>(constrain(b, 0, 255)),
           static_cast<uint8_t>(constrain(c, 0, 255))};
@@ -1995,7 +1691,7 @@ void parseSerialCommand(char* line) {
     return;
   }
 
-  Serial.println("Commands: list | showstate | osc | artnet | radio | speed <cluster> <fast|medium|slow> | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
+  Serial.println("Commands: list | showstate | artnet | radio | speed <cluster> <fast|medium|slow> | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
 }
 
 void updateSerialConsole() {
@@ -2087,7 +1783,7 @@ void setup() {
   gBootStartedAtMs = millis();
   initializeDisplayHardware();
   updateButtonInputs();
-  initializeWifiAndOsc();
+  initializeWifiAndArtNet();
 
   if (!initializeEspNow()) {
     Serial.println("ESP-NOW init failed.");
@@ -2103,7 +1799,7 @@ void setup() {
   Serial.print(kSoftwareVersionMinor);
   Serial.print(".");
   Serial.println(kSoftwareVersionRevision);
-  Serial.println("Serial console commands: list, showstate, osc, artnet, radio, speed, hide, track, eyes, dmx, audio");
+  Serial.println("Serial console commands: list, showstate, artnet, radio, speed, hide, track, eyes, dmx, audio");
 }
 
 void loop() {
@@ -2111,7 +1807,7 @@ void loop() {
 
   if (gTestModeEnabled) {
     // Keep cluster discovery, registration callbacks, status processing, and
-    // ESP-NOW heartbeats active, while deliberately ignoring QLC+ OSC input.
+    // ESP-NOW heartbeats remain active while Art-Net input is paused.
     markOfflineClusters(nowMs);
 
     if ((nowMs - gLastDiscoveryAtMs) >= kDiscoveryIntervalMs) {
@@ -2131,7 +1827,6 @@ void loop() {
 
   updateSerialConsole();
   updateArtNetInput();
-  updateOscInput();
   markOfflineClusters(nowMs);
 
   if ((nowMs - gLastDiscoveryAtMs) >= kDiscoveryIntervalMs) {

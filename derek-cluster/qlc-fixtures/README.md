@@ -63,15 +63,51 @@ The Derek unit maps directly to `DerekCommand`:
 
 1. Pan
 2. Lift
-3. Eye red
-4. Eye green
-5. Eye blue
-6. Can interior red
-7. Can interior green
-8. Can interior blue
-9. Exterior red
-10. Exterior green
-11. Exterior blue
+3. Spotlight red (two physical LEDs)
+4. Spotlight green (two physical LEDs)
+5. Spotlight blue (two physical LEDs)
+6. Right eye red (one physical LED)
+7. Right eye green (one physical LED)
+8. Right eye blue (one physical LED)
+9. Left eye red (one physical LED)
+10. Left eye green (one physical LED)
+11. Left eye blue (one physical LED)
+
+The physical LED chain within each Derek is: Spotlight LED 1, Spotlight LED 2,
+Right Eye, Left Eye.
+
+## Cluster Channel Mapping
+
+Each Art-Net universe maps directly to the cluster with the same zero-based ID:
+universe `0` controls cluster `0`, universe `1` controls cluster `1`, and so on.
+
+Within a cluster universe, channels `1-14` belong to the `Derek Cluster
+Controller`. The eight Derek units then occupy the following 11-channel ranges:
+
+| Derek | Universe channels |
+| --- | ---: |
+| Derek 1 | 15-25 |
+| Derek 2 | 26-36 |
+| Derek 3 | 37-47 |
+| Derek 4 | 48-58 |
+| Derek 5 | 59-69 |
+| Derek 6 | 70-80 |
+| Derek 7 | 81-91 |
+| Derek 8 | 92-102 |
+
+For any Derek starting at channel `S`, the channels are:
+
+| Channel | Function |
+| --- | --- |
+| S | Pan |
+| S + 1 | Lift |
+| S + 2 through S + 4 | Spotlight RGB (both spotlight LEDs) |
+| S + 5 through S + 7 | Right Eye RGB |
+| S + 8 through S + 10 | Left Eye RGB |
+
+For example, Derek 3 begins at universe channel 37: channel 37 is Pan, 38 is
+Lift, 39-41 are Spotlight RGB, 42-44 are Right Eye RGB, and 45-47 are Left Eye
+RGB.
 
 The cluster controller maps to cluster-level packet fields and status bits:
 

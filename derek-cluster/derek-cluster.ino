@@ -16,7 +16,7 @@ namespace {
 constexpr bool kEnableSerialLogs = true;
 constexpr uint8_t kSoftwareVersionMajor = 1;
 constexpr uint8_t kSoftwareVersionMinor = 0;
-constexpr uint8_t kSoftwareVersionRevision = 1;
+constexpr uint8_t kSoftwareVersionRevision = 2;
 constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;
 constexpr uint8_t kDefaultClusterId = 0;
@@ -62,10 +62,13 @@ constexpr uint8_t kOledAddress = 0x3C;
 constexpr uint16_t kServoMinPulseUs = 500;
 constexpr uint16_t kServoMaxPulseUs = 2500;
 constexpr uint16_t kServoPwmFrequencyHz = 50;
-constexpr uint8_t kEyeLedsPerDerek = 2;
-constexpr uint8_t kCanLedsPerDerek = 1;
-constexpr uint8_t kExteriorLedsPerDerek = 1;
-constexpr uint8_t kLedsPerDerek = kEyeLedsPerDerek + kCanLedsPerDerek + kExteriorLedsPerDerek;
+// Physical LED-chain order for every Derek: two spotlight pixels, one right
+// eye pixel, then one left eye pixel.
+constexpr uint8_t kSpotlightLedsPerDerek = 2;
+constexpr uint8_t kRightEyeLedsPerDerek = 1;
+constexpr uint8_t kLeftEyeLedsPerDerek = 1;
+constexpr uint8_t kLedsPerDerek =
+    kSpotlightLedsPerDerek + kRightEyeLedsPerDerek + kLeftEyeLedsPerDerek;
 constexpr uint16_t kTotalLedCount = kMaxDerricks * kLedsPerDerek;
 constexpr uint8_t kDerekTypeConfigVersion = 1;
 
@@ -150,9 +153,9 @@ struct RgbColor {
 struct DerekCommand {
   uint8_t pan;
   uint8_t lift;
-  RgbColor eyeColor;
-  RgbColor canColor;
-  RgbColor exteriorColor;
+  RgbColor spotlightColor;
+  RgbColor rightEyeColor;
+  RgbColor leftEyeColor;
 };
 
 struct DerekCalibration {
@@ -684,9 +687,9 @@ void applyFailsafeTargets() {
   for (uint8_t i = 0; i < gActiveDerricks; ++i) {
     gDerricks[i].targetLift = gDerricks[i].calibration.liftMin;
     gDerricks[i].targetPan = gDerricks[i].calibration.panCenter;
-    gDerricks[i].output.eyeColor = {0, 0, 0};
-    gDerricks[i].output.canColor = {0, 0, 0};
-    gDerricks[i].output.exteriorColor = {0, 0, 0};
+    gDerricks[i].output.spotlightColor = {0, 0, 0};
+    gDerricks[i].output.rightEyeColor = {0, 0, 0};
+    gDerricks[i].output.leftEyeColor = {0, 0, 0};
     markServoOutputDirty(i);
   }
 
@@ -860,15 +863,17 @@ void writeLedOutputs() {
   for (uint8_t i = 0; i < kMaxDerricks; ++i) {
     const uint16_t base = i * kLedsPerDerek;
     const DerekCommand& output = gDerricks[i].output;
-    for (uint8_t eye = 0; eye < kEyeLedsPerDerek; ++eye) {
-      gLedStrip.setPixelColor(base + eye, gLedStrip.Color(output.eyeColor.r, output.eyeColor.g, output.eyeColor.b));
+    for (uint8_t spotlight = 0; spotlight < kSpotlightLedsPerDerek; ++spotlight) {
+      gLedStrip.setPixelColor(
+          base + spotlight,
+          gLedStrip.Color(output.spotlightColor.r, output.spotlightColor.g, output.spotlightColor.b));
     }
     gLedStrip.setPixelColor(
-        base + kEyeLedsPerDerek,
-        gLedStrip.Color(output.canColor.r, output.canColor.g, output.canColor.b));
+        base + kSpotlightLedsPerDerek,
+        gLedStrip.Color(output.rightEyeColor.r, output.rightEyeColor.g, output.rightEyeColor.b));
     gLedStrip.setPixelColor(
-        base + kEyeLedsPerDerek + kCanLedsPerDerek,
-        gLedStrip.Color(output.exteriorColor.r, output.exteriorColor.g, output.exteriorColor.b));
+        base + kSpotlightLedsPerDerek + kRightEyeLedsPerDerek,
+        gLedStrip.Color(output.leftEyeColor.r, output.leftEyeColor.g, output.leftEyeColor.b));
   }
 
   gLedStrip.show();
@@ -1200,14 +1205,19 @@ void runClusterSelfTest(uint32_t nowMs) {
   ++gSelfTestStep;
 }
 
-void setAllDerekOutputs(uint8_t pan, uint8_t lift, RgbColor eyeColor, RgbColor canColor, RgbColor exteriorColor) {
+void setAllDerekOutputs(
+    uint8_t pan,
+    uint8_t lift,
+    RgbColor spotlightColor,
+    RgbColor rightEyeColor,
+    RgbColor leftEyeColor) {
   gActiveDerricks = kMaxDerricks;
 
   for (uint8_t i = 0; i < kMaxDerricks; ++i) {
     DerekState& derrick = gDerricks[i];
     derrick.targetPan = applyPanCalibration(i, pan);
     derrick.targetLift = applyLiftCalibration(i, lift);
-    derrick.output = {derrick.targetPan, derrick.targetLift, eyeColor, canColor, exteriorColor};
+    derrick.output = {derrick.targetPan, derrick.targetLift, spotlightColor, rightEyeColor, leftEyeColor};
     markServoOutputDirty(i);
   }
 
