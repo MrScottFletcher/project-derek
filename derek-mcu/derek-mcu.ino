@@ -15,7 +15,7 @@ constexpr bool kEnableSerialLogs = true;
 // `artnet`, `radio`, and `showstate` console commands always print on demand.
 constexpr bool kEnablePeriodicSerialStatus = false;
 constexpr uint8_t kSoftwareVersionMajor = 1;
-constexpr uint8_t kSoftwareVersionMinor = 0;
+constexpr uint8_t kSoftwareVersionMinor = 5;
 constexpr uint8_t kSoftwareVersionRevision = 0;
 constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;

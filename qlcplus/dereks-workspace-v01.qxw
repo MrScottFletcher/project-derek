@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Workspace>
-<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="FIXANDFUNC">
+<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="SHOWMGR">
  <Creator>
   <Name>Q Light Controller Plus</Name>
   <Version>5.2.2</Version>
@@ -215,10 +215,207 @@
    <Name>Scott First Derek Group</Name>
    <Size X="2" Y="10"/>
   </FixtureGroup>
+  <FixtureGroup ID="1">
+   <Name>U1 All Dereks Group</Name>
+   <Size X="8" Y="1"/>
+   <Head X="0" Y="0" Fixture="0">0</Head>
+   <Head X="1" Y="0" Fixture="1">0</Head>
+   <Head X="2" Y="0" Fixture="2">0</Head>
+   <Head X="3" Y="0" Fixture="3">0</Head>
+   <Head X="4" Y="0" Fixture="4">0</Head>
+   <Head X="5" Y="0" Fixture="5">0</Head>
+   <Head X="6" Y="0" Fixture="6">0</Head>
+   <Head X="7" Y="0" Fixture="7">0</Head>
+  </FixtureGroup>
+  <Function ID="0" Type="Scene" Name="All U 1-4 Down/Off">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="1">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="2">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="3">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="4">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="5">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="6">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="7">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="8">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0,11,0,12,0,13,0</FixtureVal>
+   <FixtureVal ID="9">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="10">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="11">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="12">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="13">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="14">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="15">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="16">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="17">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0,11,0,12,0,13,0</FixtureVal>
+  </Function>
+  <Function ID="1" Type="Scene" Name="U1 All UP/Left/RGB Test">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255,1,254,2,255,3,0,4,0,5,0,6,255,7,0,8,0,9,0,10,255</FixtureVal>
+   <FixtureVal ID="1">0,255,1,255,2,255,3,0,4,0,5,0,6,255,7,0,8,0,9,0,10,255</FixtureVal>
+   <FixtureVal ID="2">0,255,1,255,2,255,3,0,4,0,5,0,6,255,7,0,8,0,9,0,10,255</FixtureVal>
+   <FixtureVal ID="3">0,255,1,255,2,255,3,0,4,0,5,0,6,255,7,0,8,0,9,0,10,255</FixtureVal>
+   <FixtureVal ID="4">0,255,1,255,2,255,3,0,4,0,5,0,6,255,7,0,8,0,9,0,10,255</FixtureVal>
+   <FixtureVal ID="5">0,255,1,255,2,255,3,0,4,0,5,0,6,255,7,0,8,0,9,0,10,255</FixtureVal>
+   <FixtureVal ID="6">0,255,1,255,2,255,3,0,4,0,5,0,6,255,7,0,8,0,9,0,10,255</FixtureVal>
+   <FixtureVal ID="7">0,255,1,255,2,255,3,0,4,0,5,0,6,255,7,0,8,0,9,0,10,255</FixtureVal>
+  </Function>
+  <Function ID="2" Type="Scene" Name="New Scene" Hidden="True">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+  </Function>
+  <Function ID="3" Type="Show" Name="U1 ALL TEST CYCLE">
+   <TimeDivision Type="Time" BPM="120"/>
+   <Track ID="0" Name="Track 1" isMute="0">
+    <ShowFunction ID="0" StartTime="84" Duration="14956" Color="#646464"/>
+   </Track>
+   <Track ID="1" Name="Track 2" isMute="0">
+    <ShowFunction ID="1" StartTime="15040" Duration="15014" Color="#646464"/>
+   </Track>
+   <Track ID="2" Name="Track 3" isMute="0"/>
+  </Function>
+  <Function ID="4" Type="Chaser" Name="U1 Test Chaser LOOP">
+   <Speed FadeIn="0" FadeOut="0" Duration="30000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <SpeedModes FadeIn="Default" FadeOut="Default" Duration="Common"/>
+   <Step Number="0" FadeIn="0" Hold="30000" FadeOut="0">3</Step>
+  </Function>
+  <Function ID="5" Type="Scene" Name="U1 All Half Up">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,148,1,74,2,0,3,0,4,140,5,0,6,142,7,0,8,146,9,0,10,0</FixtureVal>
+   <FixtureVal ID="1">0,150,1,149,2,0,3,0,4,146,5,0,6,144,7,0,8,148,9,0,10,0</FixtureVal>
+   <FixtureVal ID="2">0,148,1,145,2,0,3,0,4,149,5,0,6,144,7,0,8,143,9,0,10,0</FixtureVal>
+   <FixtureVal ID="3">0,150,1,149,2,0,3,0,4,150,5,0,6,148,7,0,8,148,9,0,10,0</FixtureVal>
+   <FixtureVal ID="4">0,145,1,143,2,0,3,0,4,148,5,0,6,153,7,0,8,157,9,0,10,0</FixtureVal>
+   <FixtureVal ID="5">0,152,1,152,2,0,3,0,4,144,5,0,6,141,7,0,8,144,9,0,10,0</FixtureVal>
+   <FixtureVal ID="6">0,137,1,147,2,0,3,0,4,145,5,0,6,145,7,0,8,144,9,0,10,0</FixtureVal>
+   <FixtureVal ID="7">0,140,1,138,2,0,3,0,4,139,5,0,6,142,7,0,8,140,9,0,10,0</FixtureVal>
+  </Function>
   <Function ID="6" Type="Audio" Name="FindingNemo_Mine_1minute01.wav">
    <Speed FadeIn="0" FadeOut="0" Duration="62494"/>
    <RunOrder>SingleShot</RunOrder>
    <Source>S:/2026_00_DerekEyeProject/Edited/FindingNemo_Mine_1minute01.wav</Source>
+  </Function>
+  <Function ID="7" Type="Scene" Name="U1 All Look Left">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,255</FixtureVal>
+   <FixtureVal ID="1">0,252</FixtureVal>
+   <FixtureVal ID="2">0,255</FixtureVal>
+   <FixtureVal ID="3">0,252</FixtureVal>
+   <FixtureVal ID="4">0,255</FixtureVal>
+   <FixtureVal ID="5">0,255</FixtureVal>
+   <FixtureVal ID="6">0,251</FixtureVal>
+   <FixtureVal ID="7">0,255</FixtureVal>
+  </Function>
+  <Function ID="8" Type="Scene" Name="U1 All Look Center">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,129</FixtureVal>
+   <FixtureVal ID="1">0,137</FixtureVal>
+   <FixtureVal ID="2">0,140</FixtureVal>
+   <FixtureVal ID="3">0,139</FixtureVal>
+   <FixtureVal ID="4">0,133</FixtureVal>
+   <FixtureVal ID="5">0,133</FixtureVal>
+   <FixtureVal ID="6">0,134</FixtureVal>
+   <FixtureVal ID="7">0,133</FixtureVal>
+  </Function>
+  <Function ID="9" Type="Scene" Name="U1 All Look Right">
+   <Speed FadeIn="0" FadeOut="0" Duration="0"/>
+   <FixtureVal ID="0">0,0</FixtureVal>
+   <FixtureVal ID="1">0,1</FixtureVal>
+   <FixtureVal ID="2">0,0</FixtureVal>
+   <FixtureVal ID="3">0,0</FixtureVal>
+   <FixtureVal ID="4">0,0</FixtureVal>
+   <FixtureVal ID="5">0,1</FixtureVal>
+   <FixtureVal ID="6">0,0</FixtureVal>
+   <FixtureVal ID="7">0,0</FixtureVal>
+  </Function>
+  <Function ID="10" Type="Chaser" Name="U1 Stepped Test Loop">
+   <Speed FadeIn="0" FadeOut="0" Duration="5000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <SpeedModes FadeIn="Default" FadeOut="Default" Duration="Common"/>
+   <Step Number="0" FadeIn="0" Hold="5000" FadeOut="0">5</Step>
+   <Step Number="1" FadeIn="0" Hold="5000" FadeOut="0">7</Step>
+   <Step Number="2" FadeIn="0" Hold="5000" FadeOut="0">8</Step>
+   <Step Number="3" FadeIn="0" Hold="5000" FadeOut="0">9</Step>
+   <Step Number="4" FadeIn="0" Hold="5000" FadeOut="0">0</Step>
+  </Function>
+  <Function ID="11" Type="EFX" Name="New EFX 11">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="20000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Circle</Algorithm>
+   <Width>127</Width>
+   <Height>127</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>127</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
   </Function>
   <Monitor DisplayMode="0" ShowLabels="0">
    <Font>Arial,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1</Font>

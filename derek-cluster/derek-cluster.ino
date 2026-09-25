@@ -15,8 +15,8 @@ namespace {
 
 constexpr bool kEnableSerialLogs = true;
 constexpr uint8_t kSoftwareVersionMajor = 1;
-constexpr uint8_t kSoftwareVersionMinor = 0;
-constexpr uint8_t kSoftwareVersionRevision = 2;
+constexpr uint8_t kSoftwareVersionMinor = 5;
+constexpr uint8_t kSoftwareVersionRevision = 0;
 constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;
 constexpr uint8_t kDefaultClusterId = 0;
