@@ -76,6 +76,23 @@ The Derek unit maps directly to `DerekCommand`:
 The physical LED chain within each Derek is: Spotlight LED 1, Spotlight LED 2,
 Right Eye, Left Eye.
 
+## EFX RGB Heads
+
+`derek-unit.qxf` exposes three QLC+ heads, each with the shared Pan/Lift
+channels and one independent RGB emitter. Their fixed order is:
+
+| QLC+ head | RGB emitter | Fixture channels |
+| --- | --- | --- |
+| Head 0 | Left Eye | 9-11 |
+| Head 1 | Right Eye | 6-8 |
+| Head 2 | Spotlight | 3-5 |
+
+To animate every LED identically, add all three heads of each Derek to the EFX,
+select `RGB` for each row, and give the rows the same direction and start
+offset. To animate them independently, add only the intended head(s), or use
+separate EFX functions. Head 0 deliberately remains the Left Eye so existing
+EFX rows keep their current RGB target after the fixture definition is reloaded.
+
 ## Cluster Channel Mapping
 
 Each Art-Net universe maps directly to the cluster with the same zero-based ID:

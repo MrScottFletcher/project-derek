@@ -80,6 +80,32 @@
   <Channel Number="8">Left Eye Red</Channel>
   <Channel Number="9">Left Eye Green</Channel>
   <Channel Number="10">Left Eye Blue</Channel>
+  <!--
+    Each Head exposes the shared pan/lift channels plus one independent RGB
+    emitter.  Keep the left eye first so existing EFX entries (Head 0) retain
+    their current RGB target after this fixture is reloaded in QLC+.
+  -->
+  <Head>
+   <Channel>0</Channel>
+   <Channel>1</Channel>
+   <Channel>8</Channel>
+   <Channel>9</Channel>
+   <Channel>10</Channel>
+  </Head>
+  <Head>
+   <Channel>0</Channel>
+   <Channel>1</Channel>
+   <Channel>5</Channel>
+   <Channel>6</Channel>
+   <Channel>7</Channel>
+  </Head>
+  <Head>
+   <Channel>0</Channel>
+   <Channel>1</Channel>
+   <Channel>2</Channel>
+   <Channel>3</Channel>
+   <Channel>4</Channel>
+  </Head>
  </Mode>
  <Physical>
   <Bulb Type="2 spotlight LEDs plus independent right and left eye LEDs, with two servos" Lumens="0" ColourTemperature="0"/>
