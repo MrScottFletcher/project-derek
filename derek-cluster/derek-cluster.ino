@@ -16,7 +16,7 @@ namespace {
 constexpr bool kEnableSerialLogs = true;
 constexpr uint8_t kSoftwareVersionMajor = 1;
 constexpr uint8_t kSoftwareVersionMinor = 5;
-constexpr uint8_t kSoftwareVersionRevision = 0;
+constexpr uint8_t kSoftwareVersionRevision = 4;
 constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;
 constexpr uint8_t kDefaultClusterId = 0;
@@ -27,10 +27,16 @@ constexpr uint32_t kStatusIntervalMs = 250;
 constexpr uint32_t kRegistrationIntervalMs = 1000;
 constexpr uint32_t kCommandTimeoutMs = 1500;
 constexpr uint32_t kMotionUpdateIntervalMs = 20;
+// LEDs retain their last color, so avoid re-sending a full data frame for every
+// motion packet. 67 ms produces a stable 14.93 Hz LED update rate.
+constexpr uint32_t kLedOutputUpdateIntervalMs = 67;
+// Repeat a changed LED frame a few times in case a noisy chain corrupts one.
+constexpr uint8_t kLedOutputRepeatFrames = 3;
 constexpr uint32_t kServoSoftRestDelayMs = 1000;
 constexpr uint32_t kI2cClockHz = 400000;
 constexpr uint32_t kServoOutputServiceIntervalMs = 5;
-constexpr uint8_t kServoDereksPerService = 1;
+// Two Dereks per service keeps all eight servo pairs refreshed every 20 ms.
+constexpr uint8_t kServoDereksPerService = 2;
 constexpr uint8_t kServoOutputRefreshPasses = 3;
 constexpr uint8_t kCommandQueueDepth = 8;
 constexpr uint8_t kMaxQueuedCommandsPerLoop = 4;
@@ -38,10 +44,15 @@ constexpr bool kRunSelfTestAtBoot = false;
 constexpr uint32_t kSelfTestIntervalMs = 1000;
 constexpr uint32_t kFullClusterTestStageMs = 2500;
 constexpr uint16_t kSelfTestAudioTrack = 1;
-constexpr uint8_t kPanStepPerTick = 2;
-constexpr uint8_t kLiftStepPerTick = 2;
-constexpr uint8_t kMediumPanStepPerTick = 8;
-constexpr uint8_t kMediumLiftStepPerTick = 8;
+constexpr int32_t kAngleQ8Scale = 256;
+constexpr uint16_t kMediumPanMaxSpeedDegreesPerSecond = 180;
+constexpr uint16_t kMediumLiftMaxSpeedDegreesPerSecond = 120;
+constexpr uint16_t kMediumPanAccelerationDegreesPerSecond2 = 720;
+constexpr uint16_t kMediumLiftAccelerationDegreesPerSecond2 = 480;
+constexpr uint16_t kSlowPanMaxSpeedDegreesPerSecond = 60;
+constexpr uint16_t kSlowLiftMaxSpeedDegreesPerSecond = 45;
+constexpr uint16_t kSlowPanAccelerationDegreesPerSecond2 = 240;
+constexpr uint16_t kSlowLiftAccelerationDegreesPerSecond2 = 180;
 constexpr size_t kSerialCommandBufferSize = 96;
 constexpr uint8_t kBroadcastMac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 
@@ -171,6 +182,10 @@ struct DerekState {
   uint8_t currentLift;
   uint8_t targetPan;
   uint8_t targetLift;
+  int32_t panPositionQ8;
+  int32_t liftPositionQ8;
+  int32_t panVelocityQ8PerSecond;
+  int32_t liftVelocityQ8PerSecond;
   DerekCommand output;
   DerekCalibration calibration;
 };
@@ -230,6 +245,9 @@ uint32_t gLastStatusAtMs = 0;
 uint32_t gLastRegistrationAtMs = 0;
 uint32_t gLastMotionUpdateAtMs = 0;
 uint32_t gLastServoMotionAtMs = 0;
+uint32_t gLastLedOutputAtMs = 0;
+bool gLedOutputPending = false;
+uint8_t gLedOutputFramesRemaining = 0;
 uint16_t gPendingAudioTrackA = 0;
 uint16_t gPendingAudioTrackB = 0;
 bool gPendingAudioA = false;
@@ -265,6 +283,9 @@ DFPlayerMini_Fast gDfPlayer2;
 Preferences gConfigPreferences;
 
 void writeLedOutputs();
+void serviceLedOutputs(uint32_t nowMs);
+void queueLedOutputFrames(uint8_t frameCount);
+bool ledColorsDiffer(const DerekCommand& current, const DerekCommand& next);
 void writeOledTestOutput(uint8_t derrickIndex, uint8_t step);
 void writeOledSequenceStage(uint8_t stage);
 void applyFailsafeTargets();
@@ -684,16 +705,26 @@ uint16_t buildHealthFlags(uint32_t nowMs) {
 }
 
 void applyFailsafeTargets() {
+  bool ledColorsChanged = false;
   for (uint8_t i = 0; i < gActiveDerricks; ++i) {
+    const DerekCommand blackedOutOutput = {
+        gDerricks[i].output.pan,
+        gDerricks[i].output.lift,
+        {0, 0, 0},
+        {0, 0, 0},
+        {0, 0, 0},
+    };
+    ledColorsChanged = ledColorsDiffer(gDerricks[i].output, blackedOutOutput) || ledColorsChanged;
     gDerricks[i].targetLift = gDerricks[i].calibration.liftMin;
     gDerricks[i].targetPan = gDerricks[i].calibration.panCenter;
-    gDerricks[i].output.spotlightColor = {0, 0, 0};
-    gDerricks[i].output.rightEyeColor = {0, 0, 0};
-    gDerricks[i].output.leftEyeColor = {0, 0, 0};
+    gDerricks[i].output = blackedOutOutput;
     markServoOutputDirty(i);
   }
 
-  writeLedOutputs();
+  if (ledColorsChanged) {
+    queueLedOutputFrames(kLedOutputRepeatFrames);
+    writeLedOutputs();
+  }
 }
 
 uint8_t applyPanCalibration(uint8_t derrickIndex, uint8_t requestedPan) {
@@ -757,7 +788,10 @@ void setServoPwmEnabled(bool enabled) {
 bool areActiveServosAtTargets() {
   for (uint8_t i = 0; i < gActiveDerricks; ++i) {
     const DerekState& derrick = gDerricks[i];
-    if (derrick.currentPan != derrick.targetPan || derrick.currentLift != derrick.targetLift) {
+    if (derrick.currentPan != derrick.targetPan || derrick.currentLift != derrick.targetLift ||
+        derrick.panPositionQ8 != static_cast<int32_t>(derrick.targetPan) * kAngleQ8Scale ||
+        derrick.liftPositionQ8 != static_cast<int32_t>(derrick.targetLift) * kAngleQ8Scale ||
+        derrick.panVelocityQ8PerSecond != 0 || derrick.liftVelocityQ8PerSecond != 0) {
       return false;
     }
   }
@@ -877,6 +911,36 @@ void writeLedOutputs() {
   }
 
   gLedStrip.show();
+  gLastLedOutputAtMs = millis();
+  if (gLedOutputFramesRemaining > 0) {
+    --gLedOutputFramesRemaining;
+  }
+  gLedOutputPending = gLedOutputFramesRemaining > 0;
+}
+
+void queueLedOutputFrames(uint8_t frameCount) {
+  gLedOutputFramesRemaining = max<uint8_t>(gLedOutputFramesRemaining, frameCount);
+  gLedOutputPending = gLedOutputFramesRemaining > 0;
+}
+
+void serviceLedOutputs(uint32_t nowMs) {
+  if (!gLedOutputPending || (nowMs - gLastLedOutputAtMs) < kLedOutputUpdateIntervalMs) {
+    return;
+  }
+
+  writeLedOutputs();
+}
+
+bool ledColorsDiffer(const DerekCommand& current, const DerekCommand& next) {
+  return current.spotlightColor.r != next.spotlightColor.r ||
+         current.spotlightColor.g != next.spotlightColor.g ||
+         current.spotlightColor.b != next.spotlightColor.b ||
+         current.rightEyeColor.r != next.rightEyeColor.r ||
+         current.rightEyeColor.g != next.rightEyeColor.g ||
+         current.rightEyeColor.b != next.rightEyeColor.b ||
+         current.leftEyeColor.r != next.leftEyeColor.r ||
+         current.leftEyeColor.g != next.leftEyeColor.g ||
+         current.leftEyeColor.b != next.leftEyeColor.b;
 }
 
 void sendOledCommand(uint8_t command) {
@@ -1266,40 +1330,102 @@ void runFullClusterSequenceTest(uint32_t nowMs) {
   gFullClusterTestStage = (gFullClusterTestStage + 1) % 8;
 }
 
+int32_t absoluteValue(int32_t value) {
+  return value < 0 ? -value : value;
+}
+
+void advanceMotionAxis(
+    int32_t& positionQ8,
+    int32_t& velocityQ8PerSecond,
+    uint8_t targetAngle,
+    uint16_t maximumSpeedDegreesPerSecond,
+    uint16_t accelerationDegreesPerSecond2,
+    uint32_t elapsedMs) {
+  const int32_t targetQ8 = static_cast<int32_t>(targetAngle) * kAngleQ8Scale;
+  const int32_t accelerationQ8PerSecond2 =
+      static_cast<int32_t>(accelerationDegreesPerSecond2) * kAngleQ8Scale;
+  const int32_t maximumSpeedQ8PerSecond =
+      static_cast<int32_t>(maximumSpeedDegreesPerSecond) * kAngleQ8Scale;
+  const int32_t distanceQ8 = targetQ8 - positionQ8;
+
+  if (distanceQ8 == 0 && velocityQ8PerSecond == 0) {
+    return;
+  }
+
+  const int32_t stoppingDistanceQ8 =
+      (absoluteValue(velocityQ8PerSecond) * absoluteValue(velocityQ8PerSecond)) /
+      (2 * accelerationQ8PerSecond2);
+  const int32_t desiredVelocityQ8PerSecond = absoluteValue(distanceQ8) <= stoppingDistanceQ8
+                                                  ? 0
+                                                  : (distanceQ8 > 0 ? maximumSpeedQ8PerSecond
+                                                                    : -maximumSpeedQ8PerSecond);
+  const int32_t velocityChangeQ8 = max<int32_t>(
+      1,
+      (accelerationQ8PerSecond2 * static_cast<int32_t>(elapsedMs)) / 1000);
+
+  if (velocityQ8PerSecond < desiredVelocityQ8PerSecond) {
+    velocityQ8PerSecond = min<int32_t>(desiredVelocityQ8PerSecond, velocityQ8PerSecond + velocityChangeQ8);
+  } else if (velocityQ8PerSecond > desiredVelocityQ8PerSecond) {
+    velocityQ8PerSecond = max<int32_t>(desiredVelocityQ8PerSecond, velocityQ8PerSecond - velocityChangeQ8);
+  }
+
+  const int32_t previousPositionQ8 = positionQ8;
+  positionQ8 += (velocityQ8PerSecond * static_cast<int32_t>(elapsedMs)) / 1000;
+  if ((previousPositionQ8 <= targetQ8 && positionQ8 >= targetQ8) ||
+      (previousPositionQ8 >= targetQ8 && positionQ8 <= targetQ8)) {
+    positionQ8 = targetQ8;
+    velocityQ8PerSecond = 0;
+  }
+}
+
 void updateMotion(uint32_t nowMs) {
   if ((nowMs - gLastMotionUpdateAtMs) < kMotionUpdateIntervalMs) {
     return;
   }
+
+  const uint32_t elapsedMs = min<uint32_t>(nowMs - gLastMotionUpdateAtMs, kMotionUpdateIntervalMs * 2);
   gLastMotionUpdateAtMs = nowMs;
 
-  bool anyServoMoved = false;
-  const uint8_t panStep = gMovementSpeed == kMovementSpeedMedium ? kMediumPanStepPerTick : kPanStepPerTick;
-  const uint8_t liftStep = gMovementSpeed == kMovementSpeedMedium ? kMediumLiftStepPerTick : kLiftStepPerTick;
+  const bool mediumSpeed = gMovementSpeed == kMovementSpeedMedium;
+  const uint16_t panMaximumSpeed =
+      mediumSpeed ? kMediumPanMaxSpeedDegreesPerSecond : kSlowPanMaxSpeedDegreesPerSecond;
+  const uint16_t liftMaximumSpeed =
+      mediumSpeed ? kMediumLiftMaxSpeedDegreesPerSecond : kSlowLiftMaxSpeedDegreesPerSecond;
+  const uint16_t panAcceleration =
+      mediumSpeed ? kMediumPanAccelerationDegreesPerSecond2 : kSlowPanAccelerationDegreesPerSecond2;
+  const uint16_t liftAcceleration =
+      mediumSpeed ? kMediumLiftAccelerationDegreesPerSecond2 : kSlowLiftAccelerationDegreesPerSecond2;
 
+  bool anyServoMoved = false;
   for (uint8_t i = 0; i < gActiveDerricks; ++i) {
     DerekState& derrick = gDerricks[i];
     const uint8_t previousPan = derrick.currentPan;
     const uint8_t previousLift = derrick.currentLift;
 
     if (gMovementSpeed == kMovementSpeedFast) {
-      derrick.currentPan = derrick.targetPan;
-      derrick.currentLift = derrick.targetLift;
+      derrick.panPositionQ8 = static_cast<int32_t>(derrick.targetPan) * kAngleQ8Scale;
+      derrick.liftPositionQ8 = static_cast<int32_t>(derrick.targetLift) * kAngleQ8Scale;
+      derrick.panVelocityQ8PerSecond = 0;
+      derrick.liftVelocityQ8PerSecond = 0;
     } else {
-      if (derrick.currentPan < derrick.targetPan) {
-        derrick.currentPan = min<uint8_t>(derrick.targetPan, derrick.currentPan + panStep);
-      } else if (derrick.currentPan > derrick.targetPan) {
-        const uint8_t nextPan = derrick.currentPan > panStep ? derrick.currentPan - panStep : 0;
-        derrick.currentPan = max<uint8_t>(derrick.targetPan, nextPan);
-      }
-
-      if (derrick.currentLift < derrick.targetLift) {
-        derrick.currentLift = min<uint8_t>(derrick.targetLift, derrick.currentLift + liftStep);
-      } else if (derrick.currentLift > derrick.targetLift) {
-        const uint8_t nextLift = derrick.currentLift > liftStep ? derrick.currentLift - liftStep : 0;
-        derrick.currentLift = max<uint8_t>(derrick.targetLift, nextLift);
-      }
+      advanceMotionAxis(
+          derrick.panPositionQ8,
+          derrick.panVelocityQ8PerSecond,
+          derrick.targetPan,
+          panMaximumSpeed,
+          panAcceleration,
+          elapsedMs);
+      advanceMotionAxis(
+          derrick.liftPositionQ8,
+          derrick.liftVelocityQ8PerSecond,
+          derrick.targetLift,
+          liftMaximumSpeed,
+          liftAcceleration,
+          elapsedMs);
     }
 
+    derrick.currentPan = static_cast<uint8_t>((derrick.panPositionQ8 + (kAngleQ8Scale / 2)) / kAngleQ8Scale);
+    derrick.currentLift = static_cast<uint8_t>((derrick.liftPositionQ8 + (kAngleQ8Scale / 2)) / kAngleQ8Scale);
     if (derrick.currentPan != previousPan || derrick.currentLift != previousLift) {
       anyServoMoved = true;
       markServoOutputDirty(i);
@@ -1370,14 +1496,18 @@ void handleCommand(const ClusterCommandPacket& packet, uint32_t nowMs) {
   }
 
   if (packet.flags & kCommandFlagApplyOutputs) {
+    bool ledColorsChanged = false;
     for (uint8_t i = 0; i < gActiveDerricks; ++i) {
       gDerricks[i].targetPan = applyPanCalibration(i, packet.derricks[i].pan);
       gDerricks[i].targetLift = applyLiftCalibration(i, packet.derricks[i].lift);
+      ledColorsChanged = ledColorsDiffer(gDerricks[i].output, packet.derricks[i]) || ledColorsChanged;
       gDerricks[i].output = packet.derricks[i];
       markServoOutputDirty(i);
     }
 
-    writeLedOutputs();
+    if (ledColorsChanged) {
+      queueLedOutputFrames(kLedOutputRepeatFrames);
+    }
   }
 
   if (packet.flags & kCommandFlagAudioA) {
@@ -1488,6 +1618,10 @@ void initializeDerrickState() {
     gDerricks[i].targetPan = gDerricks[i].calibration.panCenter;
     gDerricks[i].currentLift = applyLiftCalibration(i, kLiftTravelMinAngle);
     gDerricks[i].targetLift = gDerricks[i].currentLift;
+    gDerricks[i].panPositionQ8 = static_cast<int32_t>(gDerricks[i].currentPan) * kAngleQ8Scale;
+    gDerricks[i].liftPositionQ8 = static_cast<int32_t>(gDerricks[i].currentLift) * kAngleQ8Scale;
+    gDerricks[i].panVelocityQ8PerSecond = 0;
+    gDerricks[i].liftVelocityQ8PerSecond = 0;
     gDerricks[i].output = {gDerricks[i].currentPan, gDerricks[i].currentLift, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
   }
 }
@@ -1577,6 +1711,7 @@ void loop() {
   updateSerialCommands();
   updatePirInputs();
   processPendingCommand(nowMs);
+  serviceLedOutputs(nowMs);
 
   if (gLastCommandAtMs != 0 && (nowMs - gLastCommandAtMs) > kCommandTimeoutMs) {
     applyFailsafeTargets();

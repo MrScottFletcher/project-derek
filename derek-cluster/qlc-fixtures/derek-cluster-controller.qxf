@@ -70,8 +70,8 @@
  <Channel Name="Movement Speed" Default="0">
   <Group Byte="0">Effect</Group>
   <Capability Min="0" Max="84">Fast snap to target</Capability>
-  <Capability Min="85" Max="169">Medium ramp to target</Capability>
-  <Capability Min="170" Max="255">Slow ramp to target</Capability>
+  <Capability Min="85" Max="169">Medium smooth motion</Capability>
+  <Capability Min="170" Max="255">Slow gentle tracking</Capability>
  </Channel>
  <Channel Name="PIR Center" Default="0">
   <Group Byte="0">Effect</Group>

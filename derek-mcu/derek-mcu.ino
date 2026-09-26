@@ -16,7 +16,7 @@ constexpr bool kEnableSerialLogs = true;
 constexpr bool kEnablePeriodicSerialStatus = false;
 constexpr uint8_t kSoftwareVersionMajor = 1;
 constexpr uint8_t kSoftwareVersionMinor = 5;
-constexpr uint8_t kSoftwareVersionRevision = 0;
+constexpr uint8_t kSoftwareVersionRevision = 1;
 constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;
 constexpr uint8_t kMaxClusters = 15;
@@ -28,7 +28,10 @@ constexpr uint32_t kDiscoveryIntervalMs = 2000;
 // silently losing the tail of a large update.
 constexpr uint32_t kCommandIntervalMs = 5;
 constexpr uint32_t kCommandHeartbeatMs = 750;
-constexpr uint32_t kOutputSettleMs = 40;
+// Art-Net frames can arrive faster than the ESP-NOW scheduler can safely send
+// them. Keep only the newest target and transmit it at a regular cadence,
+// rather than waiting for a quiet period that would turn fades into snaps.
+constexpr uint32_t kOutputFrameIntervalMs = 20;
 constexpr uint32_t kStatusPageIntervalMs = 1000;
 constexpr uint32_t kClusterOfflineMs = 3000;
 constexpr uint32_t kBootDerekTestWaitMs = 5000;
@@ -182,7 +185,6 @@ struct ClusterRuntime {
   uint16_t audioTrackASetting;
   uint16_t audioTrackBSetting;
   uint32_t lastCommandSentAtMs;
-  uint32_t lastOutputChangedAtMs;
   bool audioATriggerHigh;
   bool audioBTriggerHigh;
   bool commandDirty;
@@ -766,7 +768,6 @@ void applyDmxChannelToCluster(ClusterRuntime& cluster, uint16_t channel, uint8_t
     return;
   }
 
-  cluster.lastOutputChangedAtMs = millis();
   applyDerekChannel(cluster.desiredCommand, channel, value);
 }
 
@@ -1444,16 +1445,16 @@ void sendScheduledCommands(uint32_t nowMs) {
 
     const bool heartbeatDue =
         gClusters[i].lastCommandSentAtMs == 0 || (nowMs - gClusters[i].lastCommandSentAtMs) >= kCommandHeartbeatMs;
-    const bool outputSettlePending =
+    const bool urgentCommandPending =
         gClusters[i].commandDirty &&
-        (gClusters[i].desiredCommand.flags & kCommandFlagApplyOutputs) != 0 &&
-        gClusters[i].lastOutputChangedAtMs != 0 &&
-        (nowMs - gClusters[i].lastOutputChangedAtMs) < kOutputSettleMs;
-    if (outputSettlePending) {
-      continue;
-    }
+        (gClusters[i].desiredCommand.flags &
+         (kCommandFlagAudioA | kCommandFlagAudioB | kCommandFlagEmergencyHide)) != 0;
+    const bool outputFrameDue =
+        gClusters[i].commandDirty &&
+        (gClusters[i].lastCommandSentAtMs == 0 ||
+         (nowMs - gClusters[i].lastCommandSentAtMs) >= kOutputFrameIntervalMs);
 
-    if (gClusters[i].commandDirty || heartbeatDue) {
+    if (urgentCommandPending || outputFrameDue || heartbeatDue) {
       if (sendCommandToCluster(gClusters[i], i)) {
         gNextCommandClusterIndex = (i + 1) % kMaxClusters;
       }
