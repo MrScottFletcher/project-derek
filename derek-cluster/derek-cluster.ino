@@ -16,7 +16,7 @@ namespace {
 constexpr bool kEnableSerialLogs = true;
 constexpr uint8_t kSoftwareVersionMajor = 1;
 constexpr uint8_t kSoftwareVersionMinor = 5;
-constexpr uint8_t kSoftwareVersionRevision = 4;
+constexpr uint8_t kSoftwareVersionRevision = 2;
 constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;
 constexpr uint8_t kDefaultClusterId = 0;
@@ -28,10 +28,8 @@ constexpr uint32_t kRegistrationIntervalMs = 1000;
 constexpr uint32_t kCommandTimeoutMs = 1500;
 constexpr uint32_t kMotionUpdateIntervalMs = 20;
 // LEDs retain their last color, so avoid re-sending a full data frame for every
-// motion packet. 67 ms produces a stable 14.93 Hz LED update rate.
-constexpr uint32_t kLedOutputUpdateIntervalMs = 67;
-// Repeat a changed LED frame a few times in case a noisy chain corrupts one.
-constexpr uint8_t kLedOutputRepeatFrames = 3;
+// motion packet. This limits actual color updates to 25 Hz.
+constexpr uint32_t kLedOutputUpdateIntervalMs = 40;
 constexpr uint32_t kServoSoftRestDelayMs = 1000;
 constexpr uint32_t kI2cClockHz = 400000;
 constexpr uint32_t kServoOutputServiceIntervalMs = 5;
@@ -247,7 +245,6 @@ uint32_t gLastMotionUpdateAtMs = 0;
 uint32_t gLastServoMotionAtMs = 0;
 uint32_t gLastLedOutputAtMs = 0;
 bool gLedOutputPending = false;
-uint8_t gLedOutputFramesRemaining = 0;
 uint16_t gPendingAudioTrackA = 0;
 uint16_t gPendingAudioTrackB = 0;
 bool gPendingAudioA = false;
@@ -284,7 +281,6 @@ Preferences gConfigPreferences;
 
 void writeLedOutputs();
 void serviceLedOutputs(uint32_t nowMs);
-void queueLedOutputFrames(uint8_t frameCount);
 bool ledColorsDiffer(const DerekCommand& current, const DerekCommand& next);
 void writeOledTestOutput(uint8_t derrickIndex, uint8_t step);
 void writeOledSequenceStage(uint8_t stage);
@@ -722,7 +718,6 @@ void applyFailsafeTargets() {
   }
 
   if (ledColorsChanged) {
-    queueLedOutputFrames(kLedOutputRepeatFrames);
     writeLedOutputs();
   }
 }
@@ -912,15 +907,7 @@ void writeLedOutputs() {
 
   gLedStrip.show();
   gLastLedOutputAtMs = millis();
-  if (gLedOutputFramesRemaining > 0) {
-    --gLedOutputFramesRemaining;
-  }
-  gLedOutputPending = gLedOutputFramesRemaining > 0;
-}
-
-void queueLedOutputFrames(uint8_t frameCount) {
-  gLedOutputFramesRemaining = max<uint8_t>(gLedOutputFramesRemaining, frameCount);
-  gLedOutputPending = gLedOutputFramesRemaining > 0;
+  gLedOutputPending = false;
 }
 
 void serviceLedOutputs(uint32_t nowMs) {
@@ -1505,9 +1492,7 @@ void handleCommand(const ClusterCommandPacket& packet, uint32_t nowMs) {
       markServoOutputDirty(i);
     }
 
-    if (ledColorsChanged) {
-      queueLedOutputFrames(kLedOutputRepeatFrames);
-    }
+    gLedOutputPending = gLedOutputPending || ledColorsChanged;
   }
 
   if (packet.flags & kCommandFlagAudioA) {

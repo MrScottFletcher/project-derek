@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Workspace>
-<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="SHOWMGR">
+<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="SDESK">
  <Creator>
   <Name>Q Light Controller Plus</Name>
   <Version>5.2.2</Version>
@@ -11,22 +11,22 @@
    <BeatGenerator BeatType="Disabled" BPM="120"/>
    <NetworkServer Type="Native" AutoStart="False" Name="" Password=""/>
    <Universe Name="Universe 1" ID="0">
-    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="5">
      <PluginParameters UniverseChannels="102" outputIP="192.168.4.86"/>
     </Output>
    </Universe>
    <Universe Name="Universe 2" ID="1">
-    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="5">
      <PluginParameters UniverseChannels="102" outputIP="192.168.4.86"/>
     </Output>
    </Universe>
    <Universe Name="Universe 3" ID="2">
-    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="5">
      <PluginParameters outputIP="192.168.4.86"/>
     </Output>
    </Universe>
    <Universe Name="Universe 4" ID="3">
-    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="5">
      <PluginParameters outputIP="192.168.4.86"/>
     </Output>
    </Universe>
@@ -232,7 +232,7 @@
    <FixtureVal ID="0">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
    <FixtureVal ID="1">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
    <FixtureVal ID="2">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
-   <FixtureVal ID="3">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
+   <FixtureVal ID="3">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,1,9,0,10,0</FixtureVal>
    <FixtureVal ID="4">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
    <FixtureVal ID="5">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
    <FixtureVal ID="6">0,0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,10,0</FixtureVal>
