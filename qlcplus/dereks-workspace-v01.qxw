@@ -513,7 +513,7 @@
    <Fixture>
     <ID>0</ID>
     <Head>0</Head>
-    <Mode>2</Mode>
+    <Mode>0</Mode>
     <Direction>Backward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
@@ -529,6 +529,13 @@
     <Head>0</Head>
     <Mode>2</Mode>
     <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
    <Fixture>
@@ -606,6 +613,20 @@
     <Head>1</Head>
     <Mode>2</Mode>
     <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
    <Fixture>
@@ -689,9 +710,9 @@
    <Speed FadeIn="0" FadeOut="0" Duration="20000"/>
    <Direction>Forward</Direction>
    <RunOrder>Loop</RunOrder>
-   <Algorithm>Circle</Algorithm>
-   <Width>64</Width>
-   <Height>63</Height>
+   <Algorithm>Diamond</Algorithm>
+   <Width>53</Width>
+   <Height>51</Height>
    <Rotation>0</Rotation>
    <StartOffset>0</StartOffset>
    <IsRelative>0</IsRelative>
