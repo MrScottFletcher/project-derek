@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Workspace>
-<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="SHOWMGR">
+<Workspace xmlns="http://www.qlcplus.org/Workspace" CurrentWindow="FIXANDFUNC">
  <Creator>
   <Name>Q Light Controller Plus</Name>
   <Version>5.2.2</Version>
@@ -11,22 +11,22 @@
    <BeatGenerator BeatType="Disabled" BPM="120"/>
    <NetworkServer Type="Native" AutoStart="False" Name="" Password=""/>
    <Universe Name="Universe 1" ID="0">
-    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="5">
-     <PluginParameters UniverseChannels="102" outputIP="192.168.4.86"/>
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+     <PluginParameters UniverseChannels="116" outputIP="192.168.4.86"/>
     </Output>
    </Universe>
    <Universe Name="Universe 2" ID="1">
-    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="5">
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
      <PluginParameters UniverseChannels="102" outputIP="192.168.4.86"/>
     </Output>
    </Universe>
    <Universe Name="Universe 3" ID="2">
-    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="5">
-     <PluginParameters outputIP="192.168.4.86"/>
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
+     <PluginParameters UniverseChannels="102" outputIP="192.168.4.86"/>
     </Output>
    </Universe>
    <Universe Name="Universe 4" ID="3">
-    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="5">
+    <Output Plugin="ArtNet" Name="192.168.1.17" UID="" Line="4">
      <PluginParameters outputIP="192.168.4.86"/>
     </Output>
    </Universe>
@@ -210,6 +210,106 @@
    <Universe>1</Universe>
    <Address>0</Address>
    <Channels>14</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Cluster Controller</Model>
+   <Mode>14 Channel</Mode>
+   <ID>18</ID>
+   <Name>Derek Cluster Controller [19]</Name>
+   <Universe>0</Universe>
+   <Address>102</Address>
+   <Channels>14</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Cluster Controller</Model>
+   <Mode>14 Channel</Mode>
+   <ID>19</ID>
+   <Name>Derek Cluster Controller [20]</Name>
+   <Universe>2</Universe>
+   <Address>0</Address>
+   <Channels>14</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>20</ID>
+   <Name>Derek Unit [21]</Name>
+   <Universe>2</Universe>
+   <Address>14</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>21</ID>
+   <Name>Derek Unit [22]</Name>
+   <Universe>2</Universe>
+   <Address>25</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>22</ID>
+   <Name>Derek Unit [23]</Name>
+   <Universe>2</Universe>
+   <Address>36</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>23</ID>
+   <Name>Derek Unit [24]</Name>
+   <Universe>2</Universe>
+   <Address>47</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>24</ID>
+   <Name>Derek Unit [25]</Name>
+   <Universe>2</Universe>
+   <Address>58</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>25</ID>
+   <Name>Derek Unit [26]</Name>
+   <Universe>2</Universe>
+   <Address>69</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>26</ID>
+   <Name>Derek Unit [27]</Name>
+   <Universe>2</Universe>
+   <Address>80</Address>
+   <Channels>11</Channels>
+  </Fixture>
+  <Fixture>
+   <Manufacturer>Project Derek</Manufacturer>
+   <Model>Derek Unit</Model>
+   <Mode>11 Channel</Mode>
+   <ID>27</ID>
+   <Name>Derek Unit [28]</Name>
+   <Universe>2</Universe>
+   <Address>91</Address>
+   <Channels>11</Channels>
   </Fixture>
   <FixtureGroup ID="0">
    <Name>Scott First Derek Group</Name>
@@ -513,14 +613,14 @@
    <Fixture>
     <ID>0</ID>
     <Head>0</Head>
-    <Mode>0</Mode>
+    <Mode>2</Mode>
     <Direction>Backward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
    <Fixture>
     <ID>0</ID>
     <Head>0</Head>
-    <Mode>2</Mode>
+    <Mode>0</Mode>
     <Direction>Backward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
@@ -534,15 +634,15 @@
    <Fixture>
     <ID>2</ID>
     <Head>0</Head>
-    <Mode>2</Mode>
-    <Direction>Backward</Direction>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
    <Fixture>
     <ID>2</ID>
     <Head>0</Head>
-    <Mode>0</Mode>
-    <Direction>Forward</Direction>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
    <Fixture>
@@ -751,6 +851,16 @@
    <FxItem ID="15" XPos="0" YPos="0" ZPos="0"/>
    <FxItem ID="16" XPos="0" YPos="0" ZPos="0"/>
    <FxItem ID="17" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="18" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="19" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="20" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="21" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="22" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="23" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="24" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="25" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="26" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="27" XPos="0" YPos="0" ZPos="0"/>
   </Monitor>
  </Engine>
  <VirtualConsole>
