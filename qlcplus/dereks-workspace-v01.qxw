@@ -215,16 +215,6 @@
    <Manufacturer>Project Derek</Manufacturer>
    <Model>Derek Cluster Controller</Model>
    <Mode>14 Channel</Mode>
-   <ID>18</ID>
-   <Name>Derek Cluster Controller [19]</Name>
-   <Universe>0</Universe>
-   <Address>102</Address>
-   <Channels>14</Channels>
-  </Fixture>
-  <Fixture>
-   <Manufacturer>Project Derek</Manufacturer>
-   <Model>Derek Cluster Controller</Model>
-   <Mode>14 Channel</Mode>
    <ID>19</ID>
    <Name>Derek Cluster Controller [20]</Name>
    <Universe>2</Universe>
@@ -613,14 +603,14 @@
    <Fixture>
     <ID>0</ID>
     <Head>0</Head>
-    <Mode>2</Mode>
+    <Mode>0</Mode>
     <Direction>Backward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
    <Fixture>
     <ID>0</ID>
     <Head>0</Head>
-    <Mode>0</Mode>
+    <Mode>2</Mode>
     <Direction>Backward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
@@ -634,15 +624,15 @@
    <Fixture>
     <ID>2</ID>
     <Head>0</Head>
-    <Mode>0</Mode>
-    <Direction>Forward</Direction>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
    <Fixture>
     <ID>2</ID>
     <Head>0</Head>
-    <Mode>2</Mode>
-    <Direction>Backward</Direction>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
     <StartOffset>0</StartOffset>
    </Fixture>
    <Fixture>
@@ -851,7 +841,6 @@
    <FxItem ID="15" XPos="0" YPos="0" ZPos="0"/>
    <FxItem ID="16" XPos="0" YPos="0" ZPos="0"/>
    <FxItem ID="17" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="18" XPos="0" YPos="0" ZPos="0"/>
    <FxItem ID="19" XPos="0" YPos="0" ZPos="0"/>
    <FxItem ID="20" XPos="0" YPos="0" ZPos="0"/>
    <FxItem ID="21" XPos="0" YPos="0" ZPos="0"/>

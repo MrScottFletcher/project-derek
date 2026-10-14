@@ -1197,14 +1197,17 @@ void updateAudioOutputs() {
   if (gPendingAudioA) {
     gPendingAudioA = false;
     if (gAudio1Ready) {
-      gDfPlayer1.play(gPendingAudioTrackA);
+      // Cue IDs map directly to zero-padded filenames in the SD card's /mp3 folder
+      // (for example, cue 501 plays /mp3/0501.mp3), independent of file copy order.
+      gDfPlayer1.playFromMP3Folder(gPendingAudioTrackA);
     }
   }
 
   if (gPendingAudioB) {
     gPendingAudioB = false;
     if (gAudio2Ready) {
-      gDfPlayer2.play(gPendingAudioTrackB);
+      // Keep both players on the same deterministic cue-addressing convention.
+      gDfPlayer2.playFromMP3Folder(gPendingAudioTrackB);
     }
   }
 }
