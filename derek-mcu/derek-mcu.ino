@@ -3,6 +3,7 @@
 #include <WiFiUdp.h>
 #include <Wire.h>
 #include <esp_now.h>
+#include <Preferences.h>
 
 #ifndef ARDUINO_ARCH_ESP32
 #error "This sketch targets ESP32-class boards."
@@ -16,7 +17,7 @@ constexpr bool kEnableSerialLogs = true;
 constexpr bool kEnablePeriodicSerialStatus = false;
 constexpr uint8_t kSoftwareVersionMajor = 1;
 constexpr uint8_t kSoftwareVersionMinor = 5;
-constexpr uint8_t kSoftwareVersionRevision = 1;
+constexpr uint8_t kSoftwareVersionRevision = 3;
 constexpr uint8_t kProtocolVersion = 1;
 constexpr uint16_t kProtocolMagic = 0xD311;
 constexpr uint8_t kMaxClusters = 15;
@@ -39,6 +40,9 @@ constexpr uint32_t kBootDerekTestStepMs = 1200;
 constexpr uint32_t kBootMassTestDiscoveryWaitMs = 5000;
 constexpr uint32_t kBootMassTestAllUpHoldMs = 5000;
 constexpr uint16_t kArtNetListenPort = 6454;
+constexpr uint16_t kQlcOscPort = 7700;
+const IPAddress kDefaultQlcOscHost(192, 168, 1, 149);
+constexpr uint32_t kPirOscReleaseDelayMs = 75;
 constexpr size_t kArtNetPacketBufferSize = 600;
 constexpr uint8_t kMaxArtNetPacketsPerLoop = 16;
 constexpr bool kEnableRadioDebugLogs = true;
@@ -69,6 +73,19 @@ constexpr int8_t kTestModeSwitchPin = 4;
 constexpr int8_t kTestAllUpButtonPin = 5;
 constexpr int8_t kTestAllDownButtonPin = 6;
 constexpr uint32_t kTestButtonDebounceMs = 35;
+// RX480E-4 receiver inputs. Power the receiver from the MCU's 3.3 V rail so
+// its D0-D3 CMOS outputs are always safe for ESP32-S3 GPIO. The receiver must
+// be paired in momentary mode: a rising edge is one QLC+ show request.
+constexpr int8_t kRemoteButtonAPin = 15;  // RX480E D0
+constexpr int8_t kRemoteButtonBPin = 16;  // RX480E D1
+constexpr int8_t kRemoteButtonCPin = 17;  // RX480E D2
+constexpr int8_t kRemoteButtonDPin = 18;  // RX480E D3
+constexpr uint8_t kRemoteButtonCount = 4;
+constexpr int8_t kRemoteButtonPins[kRemoteButtonCount] = {
+    kRemoteButtonAPin, kRemoteButtonBPin, kRemoteButtonCPin, kRemoteButtonDPin};
+constexpr char kRemoteButtonNames[kRemoteButtonCount] = {'A', 'B', 'C', 'D'};
+constexpr uint32_t kRemoteButtonDebounceMs = 125;
+constexpr uint32_t kRemoteOscReleaseDelayMs = 75;
 constexpr uint8_t kDerekLiftMinimum = 0;
 constexpr uint8_t kDerekLiftMaximum = 170;
 constexpr uint8_t kBroadcastMac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
@@ -192,6 +209,19 @@ struct ClusterRuntime {
   ClusterCommandPacket desiredCommand;
 };
 
+struct PendingPirOscRelease {
+  bool active;
+  uint8_t clusterId;
+  uint8_t sensorBit;
+  uint32_t dueAtMs;
+};
+
+struct PendingRemoteOscRelease {
+  bool active;
+  uint8_t buttonIndex;
+  uint32_t dueAtMs;
+};
+
 ClusterRuntime gClusters[kMaxClusters];
 uint32_t gLastDiscoveryAtMs = 0;
 uint32_t gLastCommandAtMs = 0;
@@ -213,7 +243,14 @@ bool gTestAllUpButtonWasPressed = false;
 bool gTestAllDownButtonWasPressed = false;
 uint32_t gTestLastButtonEventAtMs = 0;
 TestLiftState gTestLiftState = kTestLiftAllDown;
+bool gRemoteButtonWasPressed[kRemoteButtonCount] = {};
+uint32_t gRemoteLastButtonEventAtMs[kRemoteButtonCount] = {};
 WiFiUDP gArtNetUdp;
+WiFiUDP gQlcOscUdp;
+IPAddress gQlcOscHost = kDefaultQlcOscHost;
+Preferences gMcuPreferences;
+PendingPirOscRelease gPendingPirOscReleases[kMaxClusters * 3] = {};
+PendingRemoteOscRelease gPendingRemoteOscReleases[kRemoteButtonCount] = {};
 uint8_t gArtNetDmx[kMaxClusters][kChannelsPerCluster] = {};
 bool gArtNetUniverseSeen[kMaxClusters] = {};
 uint32_t gArtNetPacketsReceived = 0;
@@ -275,6 +312,160 @@ void formatMac(const uint8_t* mac, char* buffer, size_t bufferLen) {
 
 void formatIpAddress(const IPAddress& ip, char* buffer, size_t bufferLen) {
   snprintf(buffer, bufferLen, "%u.%u.%u.%u", ip[0], ip[1], ip[2], ip[3]);
+}
+
+bool parseIpAddress(const char* text, IPAddress& ip) {
+  unsigned int octets[4] = {};
+  char trailing = '\0';
+  if (text == nullptr || sscanf(text, "%u.%u.%u.%u%c", &octets[0], &octets[1], &octets[2], &octets[3], &trailing) != 4) {
+    return false;
+  }
+
+  for (uint8_t i = 0; i < 4; ++i) {
+    if (octets[i] > 255) {
+      return false;
+    }
+  }
+
+  ip = IPAddress(octets[0], octets[1], octets[2], octets[3]);
+  return true;
+}
+
+void loadQlcOscConfiguration() {
+  gMcuPreferences.begin("derek-mcu", false);
+
+  char hostText[16] = {};
+  const size_t hostLength = gMcuPreferences.getString("qlcOscHost", hostText, sizeof(hostText));
+  IPAddress configuredHost;
+  if (hostLength > 0 && parseIpAddress(hostText, configuredHost)) {
+    gQlcOscHost = configuredHost;
+  } else {
+    gQlcOscHost = kDefaultQlcOscHost;
+    char defaultHostText[16] = {};
+    formatIpAddress(gQlcOscHost, defaultHostText, sizeof(defaultHostText));
+    gMcuPreferences.putString("qlcOscHost", defaultHostText);
+  }
+}
+
+bool writeOscString(const char* value) {
+  if (value == nullptr) {
+    return false;
+  }
+
+  const size_t valueLength = strlen(value) + 1;
+  if (gQlcOscUdp.write(reinterpret_cast<const uint8_t*>(value), valueLength) != valueLength) {
+    return false;
+  }
+
+  const uint8_t padding[3] = {0, 0, 0};
+  const size_t paddingLength = (4 - (valueLength % 4)) % 4;
+  return paddingLength == 0 || gQlcOscUdp.write(padding, paddingLength) == paddingLength;
+}
+
+bool sendQlcOscFloatEvent(const char* address, bool active) {
+  if (WiFi.status() != WL_CONNECTED || address == nullptr) {
+    return false;
+  }
+
+  if (!gQlcOscUdp.beginPacket(gQlcOscHost, kQlcOscPort)) {
+    return false;
+  }
+
+  const uint8_t value[] = {0x3F, 0x80, 0x00, 0x00};  // OSC float32 1.0
+  const uint8_t zero[] = {0x00, 0x00, 0x00, 0x00};
+  const bool wrote = writeOscString(address) && writeOscString(",f") &&
+                     gQlcOscUdp.write(active ? value : zero, sizeof(value)) == sizeof(value);
+  if (!wrote) {
+    gQlcOscUdp.endPacket();
+    return false;
+  }
+
+  return gQlcOscUdp.endPacket() == 1;
+}
+
+bool sendQlcOscPirEvent(uint8_t clusterId, const char* direction, bool active) {
+  if (direction == nullptr || clusterId >= kMaxClusters) {
+    return false;
+  }
+
+  char address[36] = {};
+  snprintf(address, sizeof(address), "/derek/pir/%u/%s", clusterId, direction);
+  return sendQlcOscFloatEvent(address, active);
+}
+
+bool sendQlcOscRemoteEvent(uint8_t buttonIndex, bool active) {
+  if (buttonIndex >= kRemoteButtonCount) {
+    return false;
+  }
+
+  char address[20] = {};
+  snprintf(address, sizeof(address), "/derek/remote/%c", kRemoteButtonNames[buttonIndex]);
+  return sendQlcOscFloatEvent(address, active);
+}
+
+const char* pirDirectionName(uint8_t sensorBit) {
+  static constexpr const char* kDirectionNames[] = {"left", "center", "right"};
+  return sensorBit < 3 ? kDirectionNames[sensorBit] : nullptr;
+}
+
+void queuePirOscRelease(uint8_t clusterId, uint8_t sensorBit, uint32_t nowMs) {
+  for (PendingPirOscRelease& pending : gPendingPirOscReleases) {
+    if (!pending.active) {
+      pending = {true, clusterId, sensorBit, nowMs + kPirOscReleaseDelayMs};
+      return;
+    }
+  }
+
+  Serial.println("PIR OSC release queue full.");
+}
+
+void publishPirRisingEdges(uint8_t clusterId, uint8_t priorPirBits, uint8_t newPirBits, uint32_t nowMs) {
+  const uint8_t risingBits = static_cast<uint8_t>((~priorPirBits) & newPirBits & 0x07);
+  for (uint8_t sensorBit = 0; sensorBit < 3; ++sensorBit) {
+    if ((risingBits & (1 << sensorBit)) == 0) {
+      continue;
+    }
+
+    const char* direction = pirDirectionName(sensorBit);
+    if (sendQlcOscPirEvent(clusterId, direction, true)) {
+      queuePirOscRelease(clusterId, sensorBit, nowMs);
+    } else {
+      Serial.print("PIR OSC send failed for cluster ");
+      Serial.println(clusterId);
+    }
+  }
+}
+
+void servicePendingPirOscReleases(uint32_t nowMs) {
+  for (PendingPirOscRelease& pending : gPendingPirOscReleases) {
+    if (!pending.active || static_cast<int32_t>(nowMs - pending.dueAtMs) < 0) {
+      continue;
+    }
+
+    const char* direction = pirDirectionName(pending.sensorBit);
+    sendQlcOscPirEvent(pending.clusterId, direction, false);
+    pending.active = false;
+  }
+}
+
+void queueRemoteOscRelease(uint8_t buttonIndex, uint32_t nowMs) {
+  if (buttonIndex >= kRemoteButtonCount) {
+    return;
+  }
+
+  gPendingRemoteOscReleases[buttonIndex] = {
+      true, buttonIndex, nowMs + kRemoteOscReleaseDelayMs};
+}
+
+void servicePendingRemoteOscReleases(uint32_t nowMs) {
+  for (PendingRemoteOscRelease& pending : gPendingRemoteOscReleases) {
+    if (!pending.active || static_cast<int32_t>(nowMs - pending.dueAtMs) < 0) {
+      continue;
+    }
+
+    sendQlcOscRemoteEvent(pending.buttonIndex, false);
+    pending.active = false;
+  }
 }
 
 bool isProtocolPacketValid(const uint8_t* data, size_t len) {
@@ -1028,6 +1219,18 @@ void initializeTestModeInputs() {
   Serial.println("MCU test mode enabled: Art-Net input paused; GPIO5=All Up, GPIO6=All Down.");
 }
 
+void initializeRemoteInputs() {
+  const uint32_t nowMs = millis();
+  for (uint8_t buttonIndex = 0; buttonIndex < kRemoteButtonCount; ++buttonIndex) {
+    // RX480E D0-D3 are driven CMOS outputs, so do not enable an internal
+    // pull-up that could disguise an unpowered receiver as a button press.
+    pinMode(kRemoteButtonPins[buttonIndex], INPUT);
+    gRemoteButtonWasPressed[buttonIndex] =
+        digitalRead(kRemoteButtonPins[buttonIndex]) == HIGH;
+    gRemoteLastButtonEventAtMs[buttonIndex] = nowMs - kRemoteButtonDebounceMs;
+  }
+}
+
 void markOfflineClusters(uint32_t nowMs) {
   for (uint8_t i = 0; i < kMaxClusters; ++i) {
     if (!gClusters[i].occupied) {
@@ -1323,6 +1526,32 @@ void updateTestModeInputs(uint32_t nowMs) {
   gTestAllDownButtonWasPressed = allDownPressed;
 }
 
+void updateRemoteInputs(uint32_t nowMs) {
+  for (uint8_t buttonIndex = 0; buttonIndex < kRemoteButtonCount; ++buttonIndex) {
+    const bool pressed = digitalRead(kRemoteButtonPins[buttonIndex]) == HIGH;
+    const bool debounceElapsed =
+        (nowMs - gRemoteLastButtonEventAtMs[buttonIndex]) >= kRemoteButtonDebounceMs;
+
+    if (pressed && !gRemoteButtonWasPressed[buttonIndex] && debounceElapsed) {
+      gRemoteLastButtonEventAtMs[buttonIndex] = nowMs;
+      if (sendQlcOscRemoteEvent(buttonIndex, true)) {
+        queueRemoteOscRelease(buttonIndex, nowMs);
+        if (kEnableSerialLogs) {
+          Serial.print("Remote ");
+          Serial.print(kRemoteButtonNames[buttonIndex]);
+          Serial.println(" requested its QLC+ show.");
+        }
+      } else {
+        Serial.print("Remote ");
+        Serial.print(kRemoteButtonNames[buttonIndex]);
+        Serial.println(" OSC send failed.");
+      }
+    }
+
+    gRemoteButtonWasPressed[buttonIndex] = pressed;
+  }
+}
+
 void runBootMassLiftTest(uint32_t nowMs) {
   switch (gBootMassTestPhase) {
     case kBootMassTestWaitingForClusters:
@@ -1369,6 +1598,7 @@ void initializeWifiAndArtNet() {
   }
 
   gArtNetUdp.begin(kArtNetListenPort);
+  gQlcOscUdp.begin(0);
 
   if (gOledReady) {
     if (WiFi.status() == WL_CONNECTED) {
@@ -1394,6 +1624,12 @@ void initializeWifiAndArtNet() {
   Serial.println(WiFi.channel());
   Serial.print("Art-Net listen port: ");
   Serial.println(kArtNetListenPort);
+  char qlcOscHostText[16] = {};
+  formatIpAddress(gQlcOscHost, qlcOscHostText, sizeof(qlcOscHostText));
+  Serial.print("QLC+ OSC target: ");
+  Serial.print(qlcOscHostText);
+  Serial.print(":");
+  Serial.println(kQlcOscPort);
   if (WiFi.status() == WL_CONNECTED) {
     Serial.println("Wi-Fi connected.");
     Serial.print("Wi-Fi IP: ");
@@ -1490,6 +1726,7 @@ void handleStatusPacket(const uint8_t* macAddress, const ClusterStatusPacket& st
     applyAllDerekLiftTargetToCluster(gClusters[clusterIndex], kDerekLiftMaximum);
   }
   handlePirEvent(gClusters[clusterIndex], previousPirBits, status.pirStateBits);
+  publishPirRisingEdges(status.clusterId, previousPirBits, status.pirStateBits, nowMs);
 }
 
 void applyArtNetDmxFrame(uint8_t clusterId, const uint8_t* dmxData, uint16_t dmxLength) {
@@ -1572,6 +1809,7 @@ void updateArtNetInput() {
 
 void parseSerialCommand(char* line) {
   char command[16] = {};
+  char argument[16] = {};
   int clusterId = 0;
   int derrickIndex = 0;
   int a = 0;
@@ -1606,6 +1844,30 @@ void parseSerialCommand(char* line) {
 
   if (strcmp(command, "radio") == 0) {
     printRadioDebugSummary();
+    return;
+  }
+
+  if (strcmp(command, "osc") == 0) {
+    char hostText[16] = {};
+    if (sscanf(line, "%15s %15s %15s", command, argument, hostText) == 1) {
+      char configuredHostText[16] = {};
+      formatIpAddress(gQlcOscHost, configuredHostText, sizeof(configuredHostText));
+      Serial.print("QLC+ OSC target: ");
+      Serial.print(configuredHostText);
+      Serial.print(":");
+      Serial.println(kQlcOscPort);
+    } else if (strcmp(argument, "host") == 0) {
+      IPAddress configuredHost;
+      if (parseIpAddress(hostText, configuredHost)) {
+        gQlcOscHost = configuredHost;
+        gMcuPreferences.putString("qlcOscHost", hostText);
+        Serial.println("QLC+ OSC target saved.");
+      } else {
+        Serial.println("Invalid OSC host IP address.");
+      }
+    } else {
+      Serial.println("Usage: osc [host <IPv4-address>]");
+    }
     return;
   }
 
@@ -1692,7 +1954,7 @@ void parseSerialCommand(char* line) {
     return;
   }
 
-  Serial.println("Commands: list | showstate | artnet | radio | speed <cluster> <fast|medium|slow> | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
+  Serial.println("Commands: list | showstate | artnet | radio | osc [host <IPv4-address>] | speed <cluster> <fast|medium|slow> | hide <cluster> | track <cluster> <derrick 0-7> <pan> <lift> | eyes <cluster> <derrick 0-7> <r> <g> <b> | dmx <cluster> <channel> <value> | audio <cluster> <player 1-2> <track>");
 }
 
 void updateSerialConsole() {
@@ -1782,6 +2044,7 @@ void setup() {
 
   memset(gClusters, 0, sizeof(gClusters));
   gBootStartedAtMs = millis();
+  loadQlcOscConfiguration();
   initializeDisplayHardware();
   updateButtonInputs();
   initializeWifiAndArtNet();
@@ -1793,6 +2056,7 @@ void setup() {
 
   gBootMassTestPhaseStartedAtMs = millis();
   initializeTestModeInputs();
+  initializeRemoteInputs();
 
   Serial.print("MCU gateway ready. Version ");
   Serial.print(kSoftwareVersionMajor);
@@ -1800,11 +2064,13 @@ void setup() {
   Serial.print(kSoftwareVersionMinor);
   Serial.print(".");
   Serial.println(kSoftwareVersionRevision);
-  Serial.println("Serial console commands: list, showstate, artnet, radio, speed, hide, track, eyes, dmx, audio");
+  Serial.println("Serial console commands: list, showstate, artnet, radio, osc, speed, hide, track, eyes, dmx, audio");
 }
 
 void loop() {
   const uint32_t nowMs = millis();
+  updateRemoteInputs(nowMs);
+  servicePendingRemoteOscReleases(nowMs);
 
   if (gTestModeEnabled) {
     // Keep cluster discovery, registration callbacks, status processing, and
@@ -1817,6 +2083,7 @@ void loop() {
     }
 
     updateTestModeInputs(nowMs);
+    servicePendingPirOscReleases(nowMs);
     sendScheduledCommands(nowMs);
 
     if ((nowMs - gLastStatusPageAtMs) >= kStatusPageIntervalMs) {
@@ -1828,6 +2095,7 @@ void loop() {
 
   updateSerialConsole();
   updateArtNetInput();
+  servicePendingPirOscReleases(nowMs);
   markOfflineClusters(nowMs);
 
   if ((nowMs - gLastDiscoveryAtMs) >= kDiscoveryIntervalMs) {
