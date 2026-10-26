@@ -15,19 +15,20 @@ ESP32-S3 MCU                         RX480E-4 receiver
 -------------                         -----------------
 3V3  --------------------------------  +V / VDD
 GND  --------------------------------  GND
-GPIO15 ------------------------------  D0  (fob A*)
-GPIO16 ------------------------------  D1  (fob B*)
-GPIO17 ------------------------------  D2  (fob C*)
-GPIO18 ------------------------------  D3  (fob D*)
+GPIO15 ------------------------------  D0  (fob D*)
+GPIO16 ------------------------------  D1  (fob C*)
+GPIO17 ------------------------------  D2  (fob B*)
+GPIO18 ------------------------------  D3  (fob A*)
                                       ANT -- 433 MHz antenna
                                       VT  -- leave unconnected
 ```
 
-`*` The usual RX480E-4 mapping is D0=A, D1=B, D2=C, D3=D. Clone boards and
-some bundled remotes have a different C/D order. Before final installation,
-watch the MCU serial log while pressing A–D; if the labels do not match the
-fob, swap only the affected D2/D3 wires (or update the four pin constants near
-the top of `derek-mcu.ino`).
+`*` The installed fob maps in reverse order: D0=D, D1=C, D2=B, D3=A. The
+firmware constants are configured for this observed mapping, so the wiring
+above sends each physical fob letter to its same-letter OSC path. Before final
+installation, confirm the serial log once while pressing A–D; if a replacement
+fob maps differently, update the four pin constants near the top of
+`derek-mcu.ino`.
 
 Do not connect the receiver to 5 V when its D0–D3 lines go straight to the
 ESP32: ESP32 GPIO is **not** 5 V tolerant. Place a 0.1 uF ceramic capacitor
@@ -77,7 +78,8 @@ configured with the existing `osc` serial command (default UDP port 7700).
 
 1. With the MCU powered, confirm RX480E +V is about 3.3 V and GND is common.
 2. Press A–D and confirm one corresponding `Remote <letter> requested...`
-   serial message each time; correct D2/D3 mapping if needed.
+   serial message each time; update the pin constants if a replacement remote
+   maps differently.
 3. Confirm QLC+ receives one `1.0` then `0.0` input event for each press.
 4. Start any remote show, then press another fob button; the new show should
    start and the former Solo Frame show should stop.

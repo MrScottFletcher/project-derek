@@ -76,10 +76,11 @@ constexpr uint32_t kTestButtonDebounceMs = 35;
 // RX480E-4 receiver inputs. Power the receiver from the MCU's 3.3 V rail so
 // its D0-D3 CMOS outputs are always safe for ESP32-S3 GPIO. The receiver must
 // be paired in momentary mode: a rising edge is one QLC+ show request.
-constexpr int8_t kRemoteButtonAPin = 15;  // RX480E D0
-constexpr int8_t kRemoteButtonBPin = 16;  // RX480E D1
-constexpr int8_t kRemoteButtonCPin = 17;  // RX480E D2
-constexpr int8_t kRemoteButtonDPin = 18;  // RX480E D3
+// The installed fob labels run opposite the receiver's D0-D3 output order.
+constexpr int8_t kRemoteButtonAPin = 18;  // RX480E D3
+constexpr int8_t kRemoteButtonBPin = 17;  // RX480E D2
+constexpr int8_t kRemoteButtonCPin = 16;  // RX480E D1
+constexpr int8_t kRemoteButtonDPin = 15;  // RX480E D0
 constexpr uint8_t kRemoteButtonCount = 4;
 constexpr int8_t kRemoteButtonPins[kRemoteButtonCount] = {
     kRemoteButtonAPin, kRemoteButtonBPin, kRemoteButtonCPin, kRemoteButtonDPin};
@@ -245,6 +246,7 @@ uint32_t gTestLastButtonEventAtMs = 0;
 TestLiftState gTestLiftState = kTestLiftAllDown;
 bool gRemoteButtonWasPressed[kRemoteButtonCount] = {};
 uint32_t gRemoteLastButtonEventAtMs[kRemoteButtonCount] = {};
+int8_t gLastRemoteButtonIndex = -1;
 WiFiUDP gArtNetUdp;
 WiFiUDP gQlcOscUdp;
 IPAddress gQlcOscHost = kDefaultQlcOscHost;
@@ -687,17 +689,21 @@ void writeOledStatusPage(uint32_t nowMs) {
   }
   writeOledLine(2, line);
 
-  switch (gBootMassTestPhase) {
-    case kBootMassTestWaitingForClusters:
-      snprintf(line, sizeof(line), "TEST WAIT NODES");
-      break;
-    case kBootMassTestAllUp:
-      snprintf(line, sizeof(line), "TEST ALL UP 5 SEC");
-      break;
-    case kBootMassTestDone:
-    default:
-      snprintf(line, sizeof(line), "TEST DONE");
-      break;
+  if (gLastRemoteButtonIndex >= 0) {
+    snprintf(line, sizeof(line), "REMOTE %c PRESSED", kRemoteButtonNames[gLastRemoteButtonIndex]);
+  } else {
+    switch (gBootMassTestPhase) {
+      case kBootMassTestWaitingForClusters:
+        snprintf(line, sizeof(line), "TEST WAIT NODES");
+        break;
+      case kBootMassTestAllUp:
+        snprintf(line, sizeof(line), "TEST ALL UP 5 SEC");
+        break;
+      case kBootMassTestDone:
+      default:
+        snprintf(line, sizeof(line), "TEST DONE");
+        break;
+    }
   }
   writeOledLine(3, line);
 
@@ -1534,6 +1540,10 @@ void updateRemoteInputs(uint32_t nowMs) {
 
     if (pressed && !gRemoteButtonWasPressed[buttonIndex] && debounceElapsed) {
       gRemoteLastButtonEventAtMs[buttonIndex] = nowMs;
+      gLastRemoteButtonIndex = buttonIndex;
+      if (!gTestModeEnabled) {
+        writeOledStatusPage(nowMs);
+      }
       if (sendQlcOscRemoteEvent(buttonIndex, true)) {
         queueRemoteOscRelease(buttonIndex, nowMs);
         if (kEnableSerialLogs) {
