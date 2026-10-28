@@ -47,10 +47,30 @@ configured with the existing `osc` serial command (default UDP port 7700).
 
 | Fob | Intended show | OSC path |
 | --- | --- | --- |
-| A | I like your costume!! | `/derek/remote/A` |
-| B | Oooo that is a scary costume | `/derek/remote/B` |
-| C | Look, it's a super hero!!! | `/derek/remote/C` |
-| D | You're welcome!! | `/derek/remote/D` |
+| A | I Like Your Costume | `/derek/remote/A` |
+| B | Oooh Scarey Costume | `/derek/remote/B` |
+| C | You're Welcome (after “Thank you”) | `/derek/remote/C` |
+| D | One of Us (when shown a hand eyeball puppet) | `/derek/remote/D` |
+
+## DFPlayer remote audio tracks
+
+SD-card image v02 adds six alternate voice versions for each remote show. All
+variants are on every card; configure QLC+ to send a different track to each
+cluster/player when a varied response is wanted. The MCU's two-byte audio
+track controls already support these track IDs, so no packet or firmware change
+is required.
+
+| Fob | Scenario | Original source versions | DFPlayer tracks |
+| --- | --- | --- | --- |
+| A | I Like Your Costume | `Remote_LikeYourCostume_01.mp3`–`_06.mp3` | 512–517 (`0512.mp3`–`0517.mp3`) |
+| B | Oooh Scarey Costume | `Remote_OohScarey_01.mp3`–`_06.mp3` | 518–523 (`0518.mp3`–`0523.mp3`) |
+| C | You're Welcome | `Remote_YoureWelcome_01.mp3`–`_06.mp3` | 524–529 (`0524.mp3`–`0529.mp3`) |
+| D | One of Us | `Remote_OneOfUs_01.mp3`–`_06.mp3` | 530–535 (`0530.mp3`–`0535.mp3`) |
+
+For example, assign player/cluster variant 1 to the first track in the
+corresponding range, variant 2 to the second, through variant 6 to the last.
+The SD image's `audio-cues.csv` is the authoritative track-to-original-file
+catalog.
 
 ## QLC+ setup
 
