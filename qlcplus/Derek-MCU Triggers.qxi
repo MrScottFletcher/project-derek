@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE InputProfile>
+<InputProfile xmlns="http://www.qlcplus.org/InputProfile">
+ <Creator>
+  <Name>Q Light Controller Plus</Name>
+  <Version>5.2.2</Version>
+  <Author>mrsco</Author>
+ </Creator>
+ <Manufacturer>Derek</Manufacturer>
+ <Model>MCU Triggers</Model>
+ <Type>OSC</Type>
+ <Channel Number="2013">
+  <Name>/derek/pir/2/center</Name>
+  <Type>Button</Type>
+ </Channel>
+ <Channel Number="3067">
+  <Name>/derek/pir/1/right</Name>
+  <Type>Button</Type>
+ </Channel>
+ <Channel Number="26429">
+  <Name>/derek/pir/1/left</Name>
+  <Type>Button</Type>
+ </Channel>
+ <Channel Number="27456">
+  <Name>/derek/pir/2/left</Name>
+  <Type>Button</Type>
+ </Channel>
+ <Channel Number="34617">
+  <Name>/derek/remote/A</Name>
+  <Type>Button</Type>
+ </Channel>
+ <Channel Number="36109">
+  <Name>/derek/pir/1/center</Name>
+  <Type>Button</Type>
+ </Channel>
+ <Channel Number="41877">
+  <Name>/derek/pir/2/right</Name>
+  <Type>Button</Type>
+ </Channel>
+ <Channel Number="42027">
+  <Name>/derek/remote/C</Name>
+  <Type>Button</Type>
+ </Channel>
+ <Channel Number="46498">
+  <Name>/derek/remote/B</Name>
+  <Type>Button</Type>
+ </Channel>
+ <Channel Number="53396">
+  <Name>/derek/remote/D</Name>
+  <Type>Button</Type>
+ </Channel>
+</InputProfile>
