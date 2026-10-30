@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FixtureDefinition>
+<FixtureDefinition xmlns="http://www.qlcplus.org/FixtureDefinition">
+ <Creator>
+  <Name>Q Light Controller Plus</Name>
+  <Version>5</Version>
+  <Author>Project Derek</Author>
+ </Creator>
+ <Manufacturer>Project Derek</Manufacturer>
+ <Model>Derek Unit</Model>
+ <Type>Moving Head</Type>
+ <Channel Name="Pan" Default="90">
+  <Group Byte="0">Pan</Group>
+  <Capability Min="0" Max="9">Clamped to left limit</Capability>
+  <Capability Min="10" Max="90">Look left to center</Capability>
+  <Capability Min="91" Max="170">Look center to right</Capability>
+  <Capability Min="171" Max="255">Clamped to right limit</Capability>
+ </Channel>
+ <Channel Name="Lift" Default="0">
+  <Group Byte="0">Tilt</Group>
+  <Capability Min="0" Max="0">Hidden</Capability>
+  <Capability Min="1" Max="136">Raise through default can travel</Capability>
+  <Capability Min="137" Max="170">Upper travel if can profile allows it</Capability>
+  <Capability Min="171" Max="255">Clamped to configured lift limit</Capability>
+ </Channel>
+ <Channel Name="Spotlight Red" Default="0">
+  <Group Byte="0">Intensity</Group>
+  <Colour>Red</Colour>
+  <Capability Min="0" Max="255">Two-pixel spotlight red intensity</Capability>
+ </Channel>
+ <Channel Name="Spotlight Green" Default="0">
+  <Group Byte="0">Intensity</Group>
+  <Colour>Green</Colour>
+  <Capability Min="0" Max="255">Two-pixel spotlight green intensity</Capability>
+ </Channel>
+ <Channel Name="Spotlight Blue" Default="0">
+  <Group Byte="0">Intensity</Group>
+  <Colour>Blue</Colour>
+  <Capability Min="0" Max="255">Two-pixel spotlight blue intensity</Capability>
+ </Channel>
+ <Channel Name="Right Eye Red" Default="0">
+  <Group Byte="0">Intensity</Group>
+  <Colour>Red</Colour>
+  <Capability Min="0" Max="255">Right eye red intensity</Capability>
+ </Channel>
+ <Channel Name="Right Eye Green" Default="0">
+  <Group Byte="0">Intensity</Group>
+  <Colour>Green</Colour>
+  <Capability Min="0" Max="255">Right eye green intensity</Capability>
+ </Channel>
+ <Channel Name="Right Eye Blue" Default="0">
+  <Group Byte="0">Intensity</Group>
+  <Colour>Blue</Colour>
+  <Capability Min="0" Max="255">Right eye blue intensity</Capability>
+ </Channel>
+ <Channel Name="Left Eye Red" Default="0">
+  <Group Byte="0">Intensity</Group>
+  <Colour>Red</Colour>
+  <Capability Min="0" Max="255">Left eye red intensity</Capability>
+ </Channel>
+ <Channel Name="Left Eye Green" Default="0">
+  <Group Byte="0">Intensity</Group>
+  <Colour>Green</Colour>
+  <Capability Min="0" Max="255">Left eye green intensity</Capability>
+ </Channel>
+ <Channel Name="Left Eye Blue" Default="0">
+  <Group Byte="0">Intensity</Group>
+  <Colour>Blue</Colour>
+  <Capability Min="0" Max="255">Left eye blue intensity</Capability>
+ </Channel>
+ <Mode Name="11 Channel">
+  <Channel Number="0">Pan</Channel>
+  <Channel Number="1">Lift</Channel>
+  <Channel Number="2">Spotlight Red</Channel>
+  <Channel Number="3">Spotlight Green</Channel>
+  <Channel Number="4">Spotlight Blue</Channel>
+  <Channel Number="5">Right Eye Red</Channel>
+  <Channel Number="6">Right Eye Green</Channel>
+  <Channel Number="7">Right Eye Blue</Channel>
+  <Channel Number="8">Left Eye Red</Channel>
+  <Channel Number="9">Left Eye Green</Channel>
+  <Channel Number="10">Left Eye Blue</Channel>
+  <!--
+    Each Head exposes the shared pan/lift channels plus one independent RGB
+    emitter.  Keep the left eye first so existing EFX entries (Head 0) retain
+    their current RGB target after this fixture is reloaded in QLC+.
+  -->
+  <Head>
+   <Channel>0</Channel>
+   <Channel>1</Channel>
+   <Channel>8</Channel>
+   <Channel>9</Channel>
+   <Channel>10</Channel>
+  </Head>
+  <Head>
+   <Channel>0</Channel>
+   <Channel>1</Channel>
+   <Channel>5</Channel>
+   <Channel>6</Channel>
+   <Channel>7</Channel>
+  </Head>
+  <Head>
+   <Channel>0</Channel>
+   <Channel>1</Channel>
+   <Channel>2</Channel>
+   <Channel>3</Channel>
+   <Channel>4</Channel>
+  </Head>
+ </Mode>
+ <Physical>
+  <Bulb Type="2 spotlight LEDs plus independent right and left eye LEDs, with two servos" Lumens="0" ColourTemperature="0"/>
+  <Dimensions Width="100" Height="180" Depth="100" Weight="0.5"/>
+  <Lens Name="Other" DegreesMin="0" DegreesMax="360"/>
+  <Focus Type="Head" PanMax="160" TiltMax="170"/>
+  <Technical PowerConsumption="10" DmxConnector="Wireless"/>
+ </Physical>
+</FixtureDefinition>
