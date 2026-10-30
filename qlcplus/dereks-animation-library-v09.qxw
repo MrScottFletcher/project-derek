@@ -17986,7 +17986,7 @@
     <StartOffset>97</StartOffset>
    </Fixture>
    <PropagationMode>Parallel</PropagationMode>
-   <Speed FadeIn="0" FadeOut="0" Duration="7000"/>
+   <Speed FadeIn="0" FadeOut="0" Duration="21000"/>
    <Direction>Forward</Direction>
    <RunOrder>Loop</RunOrder>
    <Algorithm>Circle</Algorithm>
@@ -18002,6 +18002,2110 @@
    </Axis>
    <Axis Name="Y">
     <Offset>5</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
+  <Function ID="1189" Type="EFX" Name="MOTORS-EFX-BASE">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>0</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>0</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>15</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>15</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>15</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>30</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>30</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>30</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>90</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>90</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>105</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>105</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>105</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>135</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>135</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>135</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>150</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>150</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>150</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>165</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>165</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>160</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>175</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>172</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>173</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>190</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>190</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>190</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>205</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>206</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>207</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>220</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>221</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>226</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>235</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>235</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>235</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>250</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>250</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>250</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>265</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>265</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>265</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>280</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>280</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>280</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>295</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>295</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>295</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>310</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>310</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>310</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>325</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>325</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>325</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>340</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>340</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>340</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="20000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Circle</Algorithm>
+   <Width>127</Width>
+   <Height>127</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>127</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
+  <Function ID="1190" Type="EFX" Name="MOTORS-EFX-BASE ALT1">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>0</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>0</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>15</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>15</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>15</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>30</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>30</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>30</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>86</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>90</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>105</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>105</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>105</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>135</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>135</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>135</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>150</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>150</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>150</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>165</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>165</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>160</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>175</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>172</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>173</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>190</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>190</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>190</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>205</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>206</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>207</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>220</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>221</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>226</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>235</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>235</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>235</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>250</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>250</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>250</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>265</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>265</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>265</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>280</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>280</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>280</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>295</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>295</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>295</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>310</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>310</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>310</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>325</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>325</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>325</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>340</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>340</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>340</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="10000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Circle</Algorithm>
+   <Width>127</Width>
+   <Height>127</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>127</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
+  <Function ID="1191" Type="EFX" Name="LED - EFX Offset - Color Chase - ANGRY">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>0</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>0</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>5</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>5</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>5</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>9</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>9</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>9</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>14</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>14</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>14</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>19</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>19</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>19</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>23</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>23</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>23</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>27</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>27</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>27</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>32</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>32</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>32</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>37</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>37</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>37</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>41</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>41</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>41</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>50</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>50</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>50</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>54</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>54</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>54</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>59</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>59</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>59</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>63</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>63</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>63</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>68</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>68</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>68</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>72</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>72</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>72</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>77</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>77</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>77</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>82</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>82</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>82</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>86</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>86</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>86</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>89</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>89</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>89</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>92</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>92</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>92</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>94</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>94</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>94</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>0</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>97</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>97</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>2</Head>
+    <Mode>2</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>97</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="7000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Circle</Algorithm>
+   <Width>5</Width>
+   <Height>20</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>250</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>150</Offset>
+    <Frequency>3</Frequency>
+    <Phase>0</Phase>
+   </Axis>
+  </Function>
+  <Function ID="1192" Type="EFX" Name="MOTORS-EFX-BASE ALT1 FAST">
+   <Fixture>
+    <ID>0</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>0</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>0</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>0</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>15</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>15</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>1</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>15</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>30</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>30</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>2</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>30</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>3</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>45</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>4</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>60</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>5</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>86</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>90</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>6</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>75</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>105</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>1</Head>
+    <Mode>2</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>105</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>7</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>105</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>9</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>120</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>135</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>135</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>10</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>135</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>150</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>150</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>11</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>150</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>165</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>165</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>12</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>160</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>175</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>172</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>13</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>173</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>190</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>190</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>14</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>190</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>205</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>206</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>15</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>207</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>220</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>221</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>16</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>226</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>235</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>235</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>20</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>235</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>250</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>250</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>21</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>250</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>265</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>265</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>22</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>265</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>280</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>280</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>23</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>280</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>295</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>295</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>24</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>295</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>310</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>310</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>25</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>310</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>325</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>325</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>26</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Forward</Direction>
+    <StartOffset>325</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>0</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>340</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>1</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>340</StartOffset>
+   </Fixture>
+   <Fixture>
+    <ID>27</ID>
+    <Head>2</Head>
+    <Mode>0</Mode>
+    <Direction>Backward</Direction>
+    <StartOffset>340</StartOffset>
+   </Fixture>
+   <PropagationMode>Parallel</PropagationMode>
+   <Speed FadeIn="0" FadeOut="0" Duration="3000"/>
+   <Direction>Forward</Direction>
+   <RunOrder>Loop</RunOrder>
+   <Algorithm>Circle</Algorithm>
+   <Width>127</Width>
+   <Height>127</Height>
+   <Rotation>0</Rotation>
+   <StartOffset>0</StartOffset>
+   <IsRelative>0</IsRelative>
+   <Axis Name="X">
+    <Offset>127</Offset>
+    <Frequency>2</Frequency>
+    <Phase>90</Phase>
+   </Axis>
+   <Axis Name="Y">
+    <Offset>127</Offset>
     <Frequency>3</Frequency>
     <Phase>0</Phase>
    </Axis>
@@ -25446,8 +27550,7 @@
   <Function ID="2776" Type="Show" Name="REMOTE A — I Like Your Costume">
    <TimeDivision Type="Time" BPM="120"/>
    <Track ID="0" Name="Bouncy Hello: happy jumps and bright greeting" isMute="0">
-    <ShowFunction ID="1134" StartTime="0" Duration="16600" Color="#e6a83a"/>
-    <ShowFunction ID="1134" StartTime="16600" Duration="16600" Color="#e6a83a"/>
+    <ShowFunction ID="1134" StartTime="0" Duration="9441" Color="#e6a83a"/>
    </Track>
    <Track ID="1" Name="U1 Player A — Track 512" isMute="0">
     <ShowFunction ID="2755" StartTime="0" Duration="250" Color="#b04040"/>
@@ -25466,6 +27569,23 @@
    </Track>
    <Track ID="6" Name="U3 Player B — Track 517" isMute="0">
     <ShowFunction ID="2775" StartTime="750" Duration="250" Color="#60b080"/>
+   </Track>
+   <Track ID="7" Name="Track 8" isMute="0"/>
+   <Track ID="8" Name="Track 9" isMute="0"/>
+   <Track ID="9" Name="Track 10" isMute="0">
+    <ShowFunction ID="1186" StartTime="9335" Duration="7000" Color="#803c3c"/>
+   </Track>
+   <Track ID="10" Name="Track 11" isMute="0">
+    <ShowFunction ID="1187" StartTime="16352" Duration="7000" Color="#803c3c"/>
+   </Track>
+   <Track ID="11" Name="Track 12" isMute="0">
+    <ShowFunction ID="1189" StartTime="9335" Duration="20000" Color="#803c3c"/>
+   </Track>
+   <Track ID="12" Name="Track 13" isMute="0">
+    <ShowFunction ID="1192" StartTime="6440" Duration="3000" Color="#803c3c"/>
+   </Track>
+   <Track ID="13" Name="Track 14" isMute="0">
+    <ShowFunction ID="0" StartTime="28121" Duration="5000" Color="#646464"/>
    </Track>
   </Function>
   <Function ID="2777" Type="Scene" Name="REMOTE B U1 A 518 - Oooh Scarey Costume Prime">
@@ -25597,9 +27717,7 @@
   <Function ID="2801" Type="Show" Name="REMOTE B — Oooh Scarey Costume">
    <TimeDivision Type="Time" BPM="120"/>
    <Track ID="0" Name="Hide and Seek: scared hide-and-peek" isMute="0">
-    <ShowFunction ID="2304" StartTime="0" Duration="12300" Color="#7a4fb8"/>
-    <ShowFunction ID="2304" StartTime="12300" Duration="12300" Color="#7a4fb8"/>
-    <ShowFunction ID="2304" StartTime="24600" Duration="12300" Color="#7a4fb8"/>
+    <ShowFunction ID="2304" StartTime="0" Duration="4752" Color="#7a4fb8"/>
    </Track>
    <Track ID="1" Name="U1 Player A — Track 518" isMute="0">
     <ShowFunction ID="2780" StartTime="0" Duration="250" Color="#b04040"/>
@@ -25618,6 +27736,27 @@
    </Track>
    <Track ID="6" Name="U3 Player B — Track 523" isMute="0">
     <ShowFunction ID="2800" StartTime="750" Duration="250" Color="#60b080"/>
+   </Track>
+   <Track ID="7" Name="Track 8" isMute="0">
+    <ShowFunction ID="1191" StartTime="4751" Duration="7000" Color="#803c3c"/>
+   </Track>
+   <Track ID="8" Name="Track 9" isMute="0">
+    <ShowFunction ID="1190" StartTime="4752" Duration="10000" Color="#803c3c"/>
+   </Track>
+   <Track ID="9" Name="Track 10" isMute="0">
+    <ShowFunction ID="1189" StartTime="14752" Duration="20000" Color="#803c3c"/>
+   </Track>
+   <Track ID="10" Name="Track 11" isMute="0">
+    <ShowFunction ID="1191" StartTime="11712" Duration="7000" Color="#803c3c"/>
+   </Track>
+   <Track ID="11" Name="Track 12" isMute="0">
+    <ShowFunction ID="1191" StartTime="18842" Duration="6801" Color="#803c3c"/>
+   </Track>
+   <Track ID="12" Name="Track 13" isMute="0">
+    <ShowFunction ID="1191" StartTime="25660" Duration="7169" Color="#803c3c"/>
+   </Track>
+   <Track ID="13" Name="Track 14" isMute="0">
+    <ShowFunction ID="0" StartTime="34752" Duration="5000" Color="#646464"/>
    </Track>
   </Function>
   <Function ID="2802" Type="Scene" Name="REMOTE C U1 A 524 - You're Welcome Prime">
@@ -25749,9 +27888,7 @@
   <Function ID="2826" Type="Show" Name="REMOTE C — You're Welcome">
    <TimeDivision Type="Time" BPM="120"/>
    <Track ID="0" Name="Warm Hello: welcoming rises and warm lights" isMute="0">
-    <ShowFunction ID="1160" StartTime="0" Duration="10700" Color="#48a8a0"/>
-    <ShowFunction ID="1160" StartTime="8700" Duration="10700" Color="#48a8a0"/>
-    <ShowFunction ID="1160" StartTime="17400" Duration="10700" Color="#48a8a0"/>
+    <ShowFunction ID="1160" StartTime="3000" Duration="10700" Color="#48a8a0"/>
    </Track>
    <Track ID="1" Name="U1 Player A — Track 524" isMute="0">
     <ShowFunction ID="2805" StartTime="0" Duration="250" Color="#b04040"/>
@@ -25770,6 +27907,26 @@
    </Track>
    <Track ID="6" Name="U3 Player B — Track 529" isMute="0">
     <ShowFunction ID="2825" StartTime="750" Duration="250" Color="#60b080"/>
+   </Track>
+   <Track ID="7" Name="Track 8" isMute="0"/>
+   <Track ID="8" Name="Track 9" isMute="0">
+    <ShowFunction ID="1192" StartTime="0" Duration="3000" Color="#803c3c"/>
+   </Track>
+   <Track ID="9" Name="Track 10" isMute="0">
+    <ShowFunction ID="1190" StartTime="6477" Duration="10000" Color="#803c3c"/>
+   </Track>
+   <Track ID="10" Name="Track 11" isMute="0">
+    <ShowFunction ID="1189" StartTime="16477" Duration="16193" Color="#803c3c"/>
+   </Track>
+   <Track ID="11" Name="Track 12" isMute="0"/>
+   <Track ID="12" Name="Track 13" isMute="0">
+    <ShowFunction ID="1187" StartTime="32591" Duration="7000" Color="#803c3c"/>
+   </Track>
+   <Track ID="13" Name="Track 14" isMute="0">
+    <ShowFunction ID="1188" StartTime="12589" Duration="20081" Color="#803c3c"/>
+   </Track>
+   <Track ID="14" Name="Track 15" isMute="0">
+    <ShowFunction ID="0" StartTime="39156" Duration="5000" Color="#646464"/>
    </Track>
   </Function>
   <Function ID="2827" Type="Scene" Name="REMOTE D U1 A 530 - One of Us Prime">
@@ -25921,15 +28078,28 @@
    <Track ID="6" Name="U3 Player B — Track 535" isMute="0">
     <ShowFunction ID="2850" StartTime="750" Duration="250" Color="#60b080"/>
    </Track>
-   <Track ID="7" Name="Track 8" isMute="0"/>
-   <Track ID="8" Name="Track 9" isMute="0">
-    <ShowFunction ID="0" StartTime="34852" Duration="5000" Color="#646464"/>
+   <Track ID="8" Name="Track 11" isMute="0">
+    <ShowFunction ID="1190" StartTime="2703" Duration="10000" Color="#803c3c"/>
    </Track>
-   <Track ID="9" Name="Track 10" isMute="0">
-    <ShowFunction ID="1188" StartTime="12929" Duration="20976" Color="#803c3c"/>
+   <Track ID="9" Name="Track 13" isMute="0">
+    <ShowFunction ID="1192" StartTime="12703" Duration="3000" Color="#803c3c"/>
    </Track>
-   <Track ID="10" Name="Track 11" isMute="0"/>
-   <Track ID="11" Name="Track 12" isMute="0"/>
+   <Track ID="12" Name="Track 10" isMute="0">
+    <ShowFunction ID="1188" StartTime="12929" Duration="7298" Color="#803c3c"/>
+   </Track>
+   <Track ID="13" Name="Track 15" isMute="0">
+    <ShowFunction ID="1187" StartTime="19989" Duration="7000" Color="#803c3c"/>
+   </Track>
+   <Track ID="14" Name="Track 13" isMute="0">
+    <ShowFunction ID="1186" StartTime="26990" Duration="7000" Color="#803c3c"/>
+   </Track>
+   <Track ID="15" Name="Track 12" isMute="0"/>
+   <Track ID="16" Name="Track 14" isMute="0">
+    <ShowFunction ID="1189" StartTime="17568" Duration="18161" Color="#803c3c"/>
+   </Track>
+   <Track ID="17" Name="Track 9" isMute="0">
+    <ShowFunction ID="0" StartTime="35729" Duration="5000" Color="#646464"/>
+   </Track>
   </Function>
   <Monitor DisplayMode="0" ShowLabels="0">
    <Font>Arial,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1</Font>
@@ -25937,33 +28107,33 @@
    <ValueStyle>0</ValueStyle>
    <Grid Width="5" Height="3" Depth="5" Units="0" POV="2"/>
    <StageItem>0</StageItem>
-   <FxItem ID="0" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="1" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="2" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="3" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="4" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="5" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="6" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="7" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="8" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="9" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="10" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="11" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="12" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="13" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="14" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="15" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="16" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="17" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="19" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="20" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="21" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="22" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="23" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="24" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="25" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="26" XPos="0" YPos="0" ZPos="0"/>
-   <FxItem ID="27" XPos="0" YPos="0" ZPos="0"/>
+   <FxItem ID="0" XPos="4237.75" YPos="2617.49" ZPos="0"/>
+   <FxItem ID="1" XPos="4390.98" YPos="2627.7" ZPos="0"/>
+   <FxItem ID="2" XPos="3718.46" YPos="2585.14" ZPos="0"/>
+   <FxItem ID="3" XPos="4544.22" YPos="2627.7" ZPos="0"/>
+   <FxItem ID="4" XPos="3861.48" YPos="2591.95" ZPos="0"/>
+   <FxItem ID="5" XPos="4035.14" YPos="2600.46" ZPos="0"/>
+   <FxItem ID="6" XPos="3583.96" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="7" XPos="3415.4" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="8" XPos="-269.01" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="9" XPos="3265.57" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="10" XPos="3103.83" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="11" XPos="2926.76" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="12" XPos="2785.44" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="13" XPos="2601.56" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="14" XPos="2284.88" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="15" XPos="2165.7" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="16" XPos="2020.98" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="17" XPos="-269.01" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="19" XPos="-269.01" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="20" XPos="1889.88" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="21" XPos="1740.05" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="22" XPos="1619.16" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="23" XPos="1498.28" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="24" XPos="1379.1" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="25" XPos="1125.41" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="26" XPos="1004.53" YPos="2588.54" ZPos="0"/>
+   <FxItem ID="27" XPos="859.808" YPos="2588.54" ZPos="0"/>
   </Monitor>
  </Engine>
  <VirtualConsole>
@@ -25980,14 +28150,14 @@
    <Enable>
     <Input ID="2" Universe="4" Channel="34617"/>
    </Enable>
-   <Button Caption="Remote B - Oooh Scary" ID="236">
-    <WindowState Visible="True" X="88" Y="235" Width="166" Height="166"/>
+   <Button Caption="Remote A - Like your Costume" ID="235">
+    <WindowState Visible="True" X="88" Y="58" Width="166" Height="166"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="2801"/>
+    <Function ID="2776"/>
     <Action>Toggle</Action>
-    <Input ID="0" Universe="4" Channel="46498"/>
+    <Input ID="0" Universe="4" Channel="34617"/>
    </Button>
    <Button Caption="Remote C - You're welcome" ID="237">
     <WindowState Visible="True" X="88" Y="412" Width="166" Height="166"/>
@@ -25998,14 +28168,14 @@
     <Action>Toggle</Action>
     <Input ID="0" Universe="4" Channel="42027"/>
    </Button>
-   <Button Caption="Remote A - Like your Costume" ID="235">
-    <WindowState Visible="True" X="88" Y="58" Width="166" Height="166"/>
+   <Button Caption="Remote B - Oooh Scary" ID="236">
+    <WindowState Visible="True" X="88" Y="235" Width="166" Height="166"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="2776"/>
+    <Function ID="2801"/>
     <Action>Toggle</Action>
-    <Input ID="0" Universe="4" Channel="34617"/>
+    <Input ID="0" Universe="4" Channel="46498"/>
    </Button>
    <Button Caption="Remote D - One of us" ID="238">
     <WindowState Visible="True" X="88" Y="589" Width="166" Height="166"/>
@@ -26016,41 +28186,6 @@
     <Action>Toggle</Action>
     <Input ID="0" Universe="4" Channel="53396"/>
    </Button>
-   <Frame Caption="Cluster 2 PIR FRAME" ID="246">
-    <WindowState Visible="True" X="412" Y="265" Width="517" Height="185"/>
-    <AllowResize>True</AllowResize>
-    <ShowHeader>False</ShowHeader>
-    <ShowEnableButton>True</ShowEnableButton>
-    <Collapsed>False</Collapsed>
-    <Disabled>False</Disabled>
-    <Button Caption="Cluster 3 PIR - Right" ID="245">
-     <WindowState Visible="True" X="341" Y="9" Width="166" Height="166"/>
-     <Appearance>
-      <BackgroundColor>4282664004</BackgroundColor>
-     </Appearance>
-     <Function ID="1183"/>
-     <Action>Toggle</Action>
-     <Input ID="0" Universe="4" Channel="41877"/>
-    </Button>
-    <Button Caption="Cluster 3 PIR - Center" ID="244">
-     <WindowState Visible="True" X="175" Y="9" Width="166" Height="166"/>
-     <Appearance>
-      <BackgroundColor>4282664004</BackgroundColor>
-     </Appearance>
-     <Function ID="1181"/>
-     <Action>Toggle</Action>
-     <Input ID="0" Universe="4" Channel="2013"/>
-    </Button>
-    <Button Caption="Cluster 3 PIR - Left" ID="243">
-     <WindowState Visible="True" X="9" Y="9" Width="166" Height="166"/>
-     <Appearance>
-      <BackgroundColor>4282664004</BackgroundColor>
-     </Appearance>
-     <Function ID="1182"/>
-     <Action>Toggle</Action>
-     <Input ID="0" Universe="4" Channel="27456"/>
-    </Button>
-   </Frame>
    <Frame Caption="Cluster 1 PIR FRAME" ID="239">
     <WindowState Visible="True" X="412" Y="58" Width="517" Height="185"/>
     <AllowResize>True</AllowResize>
@@ -26058,6 +28193,15 @@
     <ShowEnableButton>True</ShowEnableButton>
     <Collapsed>False</Collapsed>
     <Disabled>False</Disabled>
+    <Button Caption="Cluster 2 PIR - Left" ID="240">
+     <WindowState Visible="True" X="9" Y="9" Width="166" Height="166"/>
+     <Appearance>
+      <BackgroundColor>4282664004</BackgroundColor>
+     </Appearance>
+     <Function ID="1179"/>
+     <Action>Toggle</Action>
+     <Input ID="0" Universe="4" Channel="26429"/>
+    </Button>
     <Button Caption="Cluster 2 PIR - Center" ID="241">
      <WindowState Visible="True" X="175" Y="9" Width="166" Height="166"/>
      <Appearance>
@@ -26076,14 +28220,40 @@
      <Action>Toggle</Action>
      <Input ID="0" Universe="4" Channel="3067"/>
     </Button>
-    <Button Caption="Cluster 2 PIR - Left" ID="240">
+   </Frame>
+   <Frame Caption="Cluster 2 PIR FRAME" ID="246">
+    <WindowState Visible="True" X="412" Y="265" Width="517" Height="185"/>
+    <AllowResize>True</AllowResize>
+    <ShowHeader>False</ShowHeader>
+    <ShowEnableButton>True</ShowEnableButton>
+    <Collapsed>False</Collapsed>
+    <Disabled>False</Disabled>
+    <Button Caption="Cluster 3 PIR - Left" ID="243">
      <WindowState Visible="True" X="9" Y="9" Width="166" Height="166"/>
      <Appearance>
       <BackgroundColor>4282664004</BackgroundColor>
      </Appearance>
-     <Function ID="1179"/>
+     <Function ID="1182"/>
      <Action>Toggle</Action>
-     <Input ID="0" Universe="4" Channel="26429"/>
+     <Input ID="0" Universe="4" Channel="27456"/>
+    </Button>
+    <Button Caption="Cluster 3 PIR - Right" ID="245">
+     <WindowState Visible="True" X="341" Y="9" Width="166" Height="166"/>
+     <Appearance>
+      <BackgroundColor>4282664004</BackgroundColor>
+     </Appearance>
+     <Function ID="1183"/>
+     <Action>Toggle</Action>
+     <Input ID="0" Universe="4" Channel="41877"/>
+    </Button>
+    <Button Caption="Cluster 3 PIR - Center" ID="244">
+     <WindowState Visible="True" X="175" Y="9" Width="166" Height="166"/>
+     <Appearance>
+      <BackgroundColor>4282664004</BackgroundColor>
+     </Appearance>
+     <Function ID="1181"/>
+     <Action>Toggle</Action>
+     <Input ID="0" Universe="4" Channel="2013"/>
     </Button>
    </Frame>
   </Frame>
@@ -26097,28 +28267,28 @@
    <ShowEnableButton>True</ShowEnableButton>
    <Collapsed>False</Collapsed>
    <Disabled>False</Disabled>
-   <Button Caption="RISE LOOK RETURN" ID="3">
-    <WindowState Visible="True" X="540" Y="70" Width="220" Height="110"/>
+   <Button Caption="PEEK + HIDE" ID="2">
+    <WindowState Visible="True" X="290" Y="70" Width="220" Height="110"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="34"/>
+    <Function ID="33"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="ALL EYES ON YOU" ID="6">
-    <WindowState Visible="True" X="540" Y="220" Width="220" Height="110"/>
+   <Button Caption="QUIET IDLE LOOP" ID="7">
+    <WindowState Visible="True" X="40" Y="370" Width="220" Height="110"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="37"/>
+    <Function ID="38"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="LED PULSE" ID="9">
-    <WindowState Visible="True" X="540" Y="370" Width="220" Height="110"/>
+   <Button Caption="DOUBLE TAKE" ID="4">
+    <WindowState Visible="True" X="40" Y="220" Width="220" Height="110"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="40"/>
+    <Function ID="35"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="STARTLE + RETREAT" ID="8">
@@ -26137,28 +28307,28 @@
     <Function ID="15"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="DOUBLE TAKE" ID="4">
-    <WindowState Visible="True" X="40" Y="220" Width="220" Height="110"/>
+   <Button Caption="RISE LOOK RETURN" ID="3">
+    <WindowState Visible="True" X="540" Y="70" Width="220" Height="110"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="35"/>
+    <Function ID="34"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="QUIET IDLE LOOP" ID="7">
-    <WindowState Visible="True" X="40" Y="370" Width="220" Height="110"/>
+   <Button Caption="LED PULSE" ID="9">
+    <WindowState Visible="True" X="540" Y="370" Width="220" Height="110"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="38"/>
+    <Function ID="40"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="PEEK + HIDE" ID="2">
-    <WindowState Visible="True" X="290" Y="70" Width="220" Height="110"/>
+   <Button Caption="ALL EYES ON YOU" ID="6">
+    <WindowState Visible="True" X="540" Y="220" Width="220" Height="110"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="33"/>
+    <Function ID="37"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="POP-UP WAVE" ID="5">
@@ -26180,172 +28350,20 @@
    <ShowEnableButton>True</ShowEnableButton>
    <Collapsed>False</Collapsed>
    <Disabled>False</Disabled>
-   <Button Caption="Celebration 1: Gold Rise" ID="26">
-    <WindowState Visible="True" X="1260" Y="260" Width="290" Height="88"/>
+   <Button Caption="Angry 1: Glare" ID="11">
+    <WindowState Visible="True" X="330" Y="40" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="150"/>
+    <Function ID="45"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Nervous 2: Worry Scan" ID="18">
-    <WindowState Visible="True" X="640" Y="150" Width="290" Height="88"/>
+   <Button Caption="Celebration 2: Confetti Sweep" ID="27">
+    <WindowState Visible="True" X="1570" Y="260" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="94"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Aggressive 2: Charge" ID="15">
-    <WindowState Visible="True" X="1570" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="73"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Patriotic 2: Stripes" ID="51">
-    <WindowState Visible="True" X="1570" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="325"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 3: Roar" ID="43">
-    <WindowState Visible="True" X="950" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="271"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Aggressive 3: Dominance" ID="16">
-    <WindowState Visible="True" X="20" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="82"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 1: Sunrise" ID="20">
-    <WindowState Visible="True" X="1260" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="108"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 2: Open House" ID="36">
-    <WindowState Visible="True" X="640" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="220"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Chaotic 1: Mayhem" ID="38">
-    <WindowState Visible="True" X="1260" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="234"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 3: Glitter Gallop" ID="61">
-    <WindowState Visible="True" X="950" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="397"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Fun 3: Party Peek" ID="25">
-    <WindowState Visible="True" X="950" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="145"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Nervous 3: Jitter" ID="19">
-    <WindowState Visible="True" X="950" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="103"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 3: Bright Smile" ID="22">
-    <WindowState Visible="True" X="20" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="124"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 3: Undead Swarm" ID="46">
-    <WindowState Visible="True" X="20" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="292"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Patriotic 1: Stars" ID="50">
-    <WindowState Visible="True" X="1260" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="318"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Aggressive 1: Challenge" ID="14">
-    <WindowState Visible="True" X="1260" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="66"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 3: Procession" ID="31">
-    <WindowState Visible="True" X="950" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="187"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 2: Magic Mane" ID="60">
-    <WindowState Visible="True" X="640" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="388"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Super Hero 3: Power Pose" ID="49">
-    <WindowState Visible="True" X="950" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="313"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sad 3: Rainfall" ID="34">
-    <WindowState Visible="True" X="20" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="208"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 2: Bouncy Hello" ID="21">
-    <WindowState Visible="True" X="1570" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="115"/>
+    <Function ID="157"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Chaotic 2: Crossfire" ID="39">
@@ -26356,172 +28374,20 @@
     <Function ID="241"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Fun 1: Wiggle" ID="23">
-    <WindowState Visible="True" X="330" Y="260" Width="290" Height="88"/>
+   <Button Caption="Happy 1: Sunrise" ID="20">
+    <WindowState Visible="True" X="1260" Y="150" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="129"/>
+    <Function ID="108"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Super Hero 1: Hero Rise" ID="47">
-    <WindowState Visible="True" X="330" Y="700" Width="290" Height="88"/>
+   <Button Caption="Sad 2: Lonely Look" ID="33">
+    <WindowState Visible="True" X="1570" Y="370" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="297"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 1: Candle Watch" ID="29">
-    <WindowState Visible="True" X="330" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="171"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Nervous 1: Fidget" ID="17">
-    <WindowState Visible="True" X="330" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="87"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 1: Warm Hello" ID="35">
-    <WindowState Visible="True" X="330" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="213"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Super Hero 2: Sky Patrol" ID="48">
-    <WindowState Visible="True" X="640" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="304"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Angry 2: Boil" ID="12">
-    <WindowState Visible="True" X="640" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="52"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Rainbow Fun 3: Rainbow Riot" ID="58">
-    <WindowState Visible="True" X="20" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="376"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 2: Victory Wave" ID="42">
-    <WindowState Visible="True" X="640" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="262"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 1: Peekaboo" ID="53">
-    <WindowState Visible="True" X="330" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="339"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Angry 1: Glare" ID="11">
-    <WindowState Visible="True" X="330" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="45"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 2: Tease" ID="54">
-    <WindowState Visible="True" X="640" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="346"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 3: Come Closer" ID="37">
-    <WindowState Visible="True" X="950" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="229"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 3: Goofy Wave" ID="55">
-    <WindowState Visible="True" X="950" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="355"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Patriotic 3: Finale" ID="52">
-    <WindowState Visible="True" X="20" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="334"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="PARK / BLACKOUT" ID="10">
-    <WindowState Visible="True" X="20" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="15"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Angry 3: Red Storm" ID="13">
-    <WindowState Visible="True" X="950" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="61"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 1: Crawl" ID="44">
-    <WindowState Visible="True" X="1260" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="276"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 2: Quiet Vigil" ID="30">
-    <WindowState Visible="True" X="640" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="178"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 1: Twinkle Trot" ID="59">
-    <WindowState Visible="True" X="330" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="381"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 1: Go Team" ID="41">
-    <WindowState Visible="True" X="330" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="255"/>
+    <Function ID="199"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Rainbow Fun 2: Prism Parade" ID="57">
@@ -26532,12 +28398,92 @@
     <Function ID="367"/>
     <Action>Toggle</Action>
    </Button>
+   <Button Caption="Rainbow Fun 1: Rainbow Hello" ID="56">
+    <WindowState Visible="True" X="1260" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="360"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Rainbow Fun 3: Rainbow Riot" ID="58">
+    <WindowState Visible="True" X="20" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="376"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sparkle Ponies 1: Twinkle Trot" ID="59">
+    <WindowState Visible="True" X="330" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="381"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Reverent 2: Quiet Vigil" ID="30">
+    <WindowState Visible="True" X="640" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="178"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Zombie 1: Crawl" ID="44">
+    <WindowState Visible="True" X="1260" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="276"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Cheering 1: Go Team" ID="41">
+    <WindowState Visible="True" X="330" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="255"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Angry 3: Red Storm" ID="13">
+    <WindowState Visible="True" X="950" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="61"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Reverent 1: Candle Watch" ID="29">
+    <WindowState Visible="True" X="330" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="171"/>
+    <Action>Toggle</Action>
+   </Button>
    <Button Caption="Chaotic 3: Everything Everywhere" ID="40">
     <WindowState Visible="True" X="20" Y="590" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
     <Function ID="250"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Cheering 3: Roar" ID="43">
+    <WindowState Visible="True" X="950" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="271"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Fun 3: Party Peek" ID="25">
+    <WindowState Visible="True" X="950" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="145"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Sad 1: Blue Sigh" ID="32">
@@ -26548,6 +28494,22 @@
     <Function ID="192"/>
     <Action>Toggle</Action>
    </Button>
+   <Button Caption="Nervous 1: Fidget" ID="17">
+    <WindowState Visible="True" X="330" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="87"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Happy 2: Bouncy Hello" ID="21">
+    <WindowState Visible="True" X="1570" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="115"/>
+    <Action>Toggle</Action>
+   </Button>
    <Button Caption="Celebration 3: Grand Toast" ID="28">
     <WindowState Visible="True" X="20" Y="370" Width="290" Height="88"/>
     <Appearance>
@@ -26556,12 +28518,20 @@
     <Function ID="166"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Celebration 2: Confetti Sweep" ID="27">
-    <WindowState Visible="True" X="1570" Y="260" Width="290" Height="88"/>
+   <Button Caption="Sparkle Ponies 2: Magic Mane" ID="60">
+    <WindowState Visible="True" X="640" Y="920" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="157"/>
+    <Function ID="388"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 1: Peekaboo" ID="53">
+    <WindowState Visible="True" X="330" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="339"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Zombie 2: Graveyard Scan" ID="45">
@@ -26580,20 +28550,220 @@
     <Function ID="136"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Sad 2: Lonely Look" ID="33">
-    <WindowState Visible="True" X="1570" Y="370" Width="290" Height="88"/>
+   <Button Caption="Celebration 1: Gold Rise" ID="26">
+    <WindowState Visible="True" X="1260" Y="260" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="199"/>
+    <Function ID="150"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Rainbow Fun 1: Rainbow Hello" ID="56">
-    <WindowState Visible="True" X="1260" Y="810" Width="290" Height="88"/>
+   <Button Caption="Super Hero 3: Power Pose" ID="49">
+    <WindowState Visible="True" X="950" Y="700" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="360"/>
+    <Function ID="313"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Fun 1: Wiggle" ID="23">
+    <WindowState Visible="True" X="330" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="129"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Super Hero 1: Hero Rise" ID="47">
+    <WindowState Visible="True" X="330" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="297"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Aggressive 2: Charge" ID="15">
+    <WindowState Visible="True" X="1570" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="73"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 3: Finale" ID="52">
+    <WindowState Visible="True" X="20" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="334"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 1: Stars" ID="50">
+    <WindowState Visible="True" X="1260" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="318"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Aggressive 3: Dominance" ID="16">
+    <WindowState Visible="True" X="20" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="82"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Aggressive 1: Challenge" ID="14">
+    <WindowState Visible="True" X="1260" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="66"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 3: Goofy Wave" ID="55">
+    <WindowState Visible="True" X="950" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="355"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sparkle Ponies 3: Glitter Gallop" ID="61">
+    <WindowState Visible="True" X="950" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="397"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Nervous 2: Worry Scan" ID="18">
+    <WindowState Visible="True" X="640" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="94"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sad 3: Rainfall" ID="34">
+    <WindowState Visible="True" X="20" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="208"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Super Hero 2: Sky Patrol" ID="48">
+    <WindowState Visible="True" X="640" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="304"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Welcoming 2: Open House" ID="36">
+    <WindowState Visible="True" X="640" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="220"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Reverent 3: Procession" ID="31">
+    <WindowState Visible="True" X="950" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="187"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Angry 2: Boil" ID="12">
+    <WindowState Visible="True" X="640" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="52"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Cheering 2: Victory Wave" ID="42">
+    <WindowState Visible="True" X="640" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="262"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 2: Stripes" ID="51">
+    <WindowState Visible="True" X="1570" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="325"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Nervous 3: Jitter" ID="19">
+    <WindowState Visible="True" X="950" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="103"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Welcoming 3: Come Closer" ID="37">
+    <WindowState Visible="True" X="950" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="229"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="PARK / BLACKOUT" ID="10">
+    <WindowState Visible="True" X="20" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="15"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Happy 3: Bright Smile" ID="22">
+    <WindowState Visible="True" X="20" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="124"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Zombie 3: Undead Swarm" ID="46">
+    <WindowState Visible="True" X="20" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="292"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 2: Tease" ID="54">
+    <WindowState Visible="True" X="640" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="346"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Welcoming 1: Warm Hello" ID="35">
+    <WindowState Visible="True" X="330" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="213"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Chaotic 1: Mayhem" ID="38">
+    <WindowState Visible="True" X="1260" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="234"/>
     <Action>Toggle</Action>
    </Button>
   </Frame>
@@ -26607,52 +28777,60 @@
    <ShowEnableButton>True</ShowEnableButton>
    <Collapsed>False</Collapsed>
    <Disabled>False</Disabled>
-   <Button Caption="Welcoming 1: Warm Hello" ID="87">
-    <WindowState Visible="True" X="330" Y="480" Width="290" Height="88"/>
+   <Button Caption="Reverent 2: Quiet Vigil" ID="82">
+    <WindowState Visible="True" X="640" Y="370" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="729"/>
+    <Function ID="724"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Celebration 3: Grand Toast" ID="80">
-    <WindowState Visible="True" X="20" Y="370" Width="290" Height="88"/>
+   <Button Caption="Celebration 2: Confetti Sweep" ID="79">
+    <WindowState Visible="True" X="1570" Y="260" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="722"/>
+    <Function ID="721"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Aggressive 2: Charge" ID="67">
-    <WindowState Visible="True" X="1570" Y="40" Width="290" Height="88"/>
+   <Button Caption="Welcoming 2: Open House" ID="88">
+    <WindowState Visible="True" X="640" Y="480" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="709"/>
+    <Function ID="730"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Happy 2: Bouncy Hello" ID="73">
-    <WindowState Visible="True" X="1570" Y="150" Width="290" Height="88"/>
+   <Button Caption="Welcoming 3: Come Closer" ID="89">
+    <WindowState Visible="True" X="950" Y="480" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="715"/>
+    <Function ID="731"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Playful 3: Goofy Wave" ID="107">
-    <WindowState Visible="True" X="950" Y="810" Width="290" Height="88"/>
+   <Button Caption="Cheering 1: Go Team" ID="93">
+    <WindowState Visible="True" X="330" Y="590" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="749"/>
+    <Function ID="735"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Sad 1: Blue Sigh" ID="84">
-    <WindowState Visible="True" X="1260" Y="370" Width="290" Height="88"/>
+   <Button Caption="Cheering 2: Victory Wave" ID="94">
+    <WindowState Visible="True" X="640" Y="590" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="726"/>
+    <Function ID="736"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Fun 1: Wiggle" ID="75">
+    <WindowState Visible="True" X="330" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="717"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Angry 3: Red Storm" ID="65">
@@ -26663,6 +28841,78 @@
     <Function ID="707"/>
     <Action>Toggle</Action>
    </Button>
+   <Button Caption="Welcoming 1: Warm Hello" ID="87">
+    <WindowState Visible="True" X="330" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="729"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sparkle Ponies 1: Twinkle Trot" ID="111">
+    <WindowState Visible="True" X="330" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="753"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Celebration 3: Grand Toast" ID="80">
+    <WindowState Visible="True" X="20" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="722"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Celebration 1: Gold Rise" ID="78">
+    <WindowState Visible="True" X="1260" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="720"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Rainbow Fun 2: Prism Parade" ID="109">
+    <WindowState Visible="True" X="1570" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="751"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Super Hero 3: Power Pose" ID="101">
+    <WindowState Visible="True" X="950" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="743"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 3: Goofy Wave" ID="107">
+    <WindowState Visible="True" X="950" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="749"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 3: Finale" ID="104">
+    <WindowState Visible="True" X="20" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="746"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sad 3: Rainfall" ID="86">
+    <WindowState Visible="True" X="20" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="728"/>
+    <Action>Toggle</Action>
+   </Button>
    <Button Caption="Sad 2: Lonely Look" ID="85">
     <WindowState Visible="True" X="1570" Y="370" Width="290" Height="88"/>
     <Appearance>
@@ -26671,12 +28921,12 @@
     <Function ID="727"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Nervous 2: Worry Scan" ID="70">
-    <WindowState Visible="True" X="640" Y="150" Width="290" Height="88"/>
+   <Button Caption="Happy 1: Sunrise" ID="72">
+    <WindowState Visible="True" X="1260" Y="150" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="712"/>
+    <Function ID="714"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Chaotic 2: Crossfire" ID="91">
@@ -26685,6 +28935,14 @@
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
     <Function ID="733"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Happy 3: Bright Smile" ID="74">
+    <WindowState Visible="True" X="20" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="716"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Super Hero 2: Sky Patrol" ID="100">
@@ -26703,300 +28961,12 @@
     <Function ID="734"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Patriotic 3: Finale" ID="104">
-    <WindowState Visible="True" X="20" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="746"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Rainbow Fun 2: Prism Parade" ID="109">
-    <WindowState Visible="True" X="1570" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="751"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 2: Open House" ID="88">
-    <WindowState Visible="True" X="640" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="730"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 3: Bright Smile" ID="74">
-    <WindowState Visible="True" X="20" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="716"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sad 3: Rainfall" ID="86">
-    <WindowState Visible="True" X="20" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="728"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Rainbow Fun 3: Rainbow Riot" ID="110">
-    <WindowState Visible="True" X="20" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="752"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Celebration 2: Confetti Sweep" ID="79">
-    <WindowState Visible="True" X="1570" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="721"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Nervous 1: Fidget" ID="69">
-    <WindowState Visible="True" X="330" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="711"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 3: Come Closer" ID="89">
-    <WindowState Visible="True" X="950" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="731"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 1: Twinkle Trot" ID="111">
-    <WindowState Visible="True" X="330" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="753"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Super Hero 3: Power Pose" ID="101">
-    <WindowState Visible="True" X="950" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="743"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="PARK / BLACKOUT" ID="62">
-    <WindowState Visible="True" X="20" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="398"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 2: Quiet Vigil" ID="82">
-    <WindowState Visible="True" X="640" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="724"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Celebration 1: Gold Rise" ID="78">
-    <WindowState Visible="True" X="1260" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="720"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 1: Go Team" ID="93">
-    <WindowState Visible="True" X="330" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="735"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 1: Sunrise" ID="72">
-    <WindowState Visible="True" X="1260" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="714"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 2: Victory Wave" ID="94">
-    <WindowState Visible="True" X="640" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="736"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 2: Graveyard Scan" ID="97">
-    <WindowState Visible="True" X="1570" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="739"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Angry 1: Glare" ID="63">
-    <WindowState Visible="True" X="330" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="705"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 1: Crawl" ID="96">
-    <WindowState Visible="True" X="1260" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="738"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 1: Peekaboo" ID="105">
-    <WindowState Visible="True" X="330" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="747"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Fun 1: Wiggle" ID="75">
-    <WindowState Visible="True" X="330" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="717"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 3: Procession" ID="83">
-    <WindowState Visible="True" X="950" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="725"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 2: Magic Mane" ID="112">
-    <WindowState Visible="True" X="640" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="754"/>
-    <Action>Toggle</Action>
-   </Button>
    <Button Caption="Nervous 3: Jitter" ID="71">
     <WindowState Visible="True" X="950" Y="150" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
     <Function ID="713"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Patriotic 2: Stripes" ID="103">
-    <WindowState Visible="True" X="1570" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="745"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 1: Candle Watch" ID="81">
-    <WindowState Visible="True" X="330" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="723"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Fun 2: Color Chase" ID="76">
-    <WindowState Visible="True" X="640" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="718"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Patriotic 1: Stars" ID="102">
-    <WindowState Visible="True" X="1260" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="744"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 3: Roar" ID="95">
-    <WindowState Visible="True" X="950" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="737"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Angry 2: Boil" ID="64">
-    <WindowState Visible="True" X="640" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="706"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Fun 3: Party Peek" ID="77">
-    <WindowState Visible="True" X="950" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="719"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 2: Tease" ID="106">
-    <WindowState Visible="True" X="640" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="748"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 3: Glitter Gallop" ID="113">
-    <WindowState Visible="True" X="950" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="755"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Aggressive 1: Challenge" ID="66">
-    <WindowState Visible="True" X="1260" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="708"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Super Hero 1: Hero Rise" ID="99">
-    <WindowState Visible="True" X="330" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="741"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Chaotic 1: Mayhem" ID="90">
-    <WindowState Visible="True" X="1260" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="732"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Rainbow Fun 1: Rainbow Hello" ID="108">
@@ -27007,6 +28977,38 @@
     <Function ID="750"/>
     <Action>Toggle</Action>
    </Button>
+   <Button Caption="Zombie 1: Crawl" ID="96">
+    <WindowState Visible="True" X="1260" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="738"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Reverent 3: Procession" ID="83">
+    <WindowState Visible="True" X="950" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="725"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="PARK / BLACKOUT" ID="62">
+    <WindowState Visible="True" X="20" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="398"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sparkle Ponies 2: Magic Mane" ID="112">
+    <WindowState Visible="True" X="640" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="754"/>
+    <Action>Toggle</Action>
+   </Button>
    <Button Caption="Zombie 3: Undead Swarm" ID="98">
     <WindowState Visible="True" X="20" Y="700" Width="290" Height="88"/>
     <Appearance>
@@ -27015,12 +29017,180 @@
     <Function ID="740"/>
     <Action>Toggle</Action>
    </Button>
+   <Button Caption="Playful 2: Tease" ID="106">
+    <WindowState Visible="True" X="640" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="748"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 1: Peekaboo" ID="105">
+    <WindowState Visible="True" X="330" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="747"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Fun 3: Party Peek" ID="77">
+    <WindowState Visible="True" X="950" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="719"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sparkle Ponies 3: Glitter Gallop" ID="113">
+    <WindowState Visible="True" X="950" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="755"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 1: Stars" ID="102">
+    <WindowState Visible="True" X="1260" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="744"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Angry 2: Boil" ID="64">
+    <WindowState Visible="True" X="640" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="706"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Fun 2: Color Chase" ID="76">
+    <WindowState Visible="True" X="640" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="718"/>
+    <Action>Toggle</Action>
+   </Button>
    <Button Caption="Aggressive 3: Dominance" ID="68">
     <WindowState Visible="True" X="20" Y="150" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
     <Function ID="710"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Super Hero 1: Hero Rise" ID="99">
+    <WindowState Visible="True" X="330" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="741"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sad 1: Blue Sigh" ID="84">
+    <WindowState Visible="True" X="1260" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="726"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Aggressive 1: Challenge" ID="66">
+    <WindowState Visible="True" X="1260" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="708"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Reverent 1: Candle Watch" ID="81">
+    <WindowState Visible="True" X="330" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="723"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Angry 1: Glare" ID="63">
+    <WindowState Visible="True" X="330" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="705"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Aggressive 2: Charge" ID="67">
+    <WindowState Visible="True" X="1570" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="709"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Rainbow Fun 3: Rainbow Riot" ID="110">
+    <WindowState Visible="True" X="20" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="752"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Cheering 3: Roar" ID="95">
+    <WindowState Visible="True" X="950" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="737"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Chaotic 1: Mayhem" ID="90">
+    <WindowState Visible="True" X="1260" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="732"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Nervous 1: Fidget" ID="69">
+    <WindowState Visible="True" X="330" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="711"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 2: Stripes" ID="103">
+    <WindowState Visible="True" X="1570" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="745"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Happy 2: Bouncy Hello" ID="73">
+    <WindowState Visible="True" X="1570" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="715"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Nervous 2: Worry Scan" ID="70">
+    <WindowState Visible="True" X="640" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="712"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Zombie 2: Graveyard Scan" ID="97">
+    <WindowState Visible="True" X="1570" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="739"/>
     <Action>Toggle</Action>
    </Button>
   </Frame>
@@ -27034,180 +29204,12 @@
    <ShowEnableButton>True</ShowEnableButton>
    <Collapsed>False</Collapsed>
    <Disabled>False</Disabled>
-   <Button Caption="Reverent 1: Candle Watch" ID="133">
-    <WindowState Visible="True" X="330" Y="370" Width="290" Height="88"/>
+   <Button Caption="Angry 2: Boil" ID="116">
+    <WindowState Visible="True" X="640" Y="40" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1081"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Chaotic 2: Crossfire" ID="143">
-    <WindowState Visible="True" X="1570" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1091"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Nervous 1: Fidget" ID="121">
-    <WindowState Visible="True" X="330" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1069"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 2: Tease" ID="158">
-    <WindowState Visible="True" X="640" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1106"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Nervous 3: Jitter" ID="123">
-    <WindowState Visible="True" X="950" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1071"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Chaotic 1: Mayhem" ID="142">
-    <WindowState Visible="True" X="1260" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1090"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sad 3: Rainfall" ID="138">
-    <WindowState Visible="True" X="20" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1086"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Rainbow Fun 3: Rainbow Riot" ID="162">
-    <WindowState Visible="True" X="20" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1110"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 2: Magic Mane" ID="164">
-    <WindowState Visible="True" X="640" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1112"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 2: Graveyard Scan" ID="149">
-    <WindowState Visible="True" X="1570" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1097"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Rainbow Fun 1: Rainbow Hello" ID="160">
-    <WindowState Visible="True" X="1260" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1108"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Rainbow Fun 2: Prism Parade" ID="161">
-    <WindowState Visible="True" X="1570" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1109"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 2: Open House" ID="140">
-    <WindowState Visible="True" X="640" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1088"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Celebration 2: Confetti Sweep" ID="131">
-    <WindowState Visible="True" X="1570" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1079"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Angry 3: Red Storm" ID="117">
-    <WindowState Visible="True" X="950" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1065"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Patriotic 3: Finale" ID="156">
-    <WindowState Visible="True" X="20" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1104"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Aggressive 1: Challenge" ID="118">
-    <WindowState Visible="True" X="1260" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1066"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 1: Twinkle Trot" ID="163">
-    <WindowState Visible="True" X="330" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1111"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 1: Sunrise" ID="124">
-    <WindowState Visible="True" X="1260" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1072"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 3: Goofy Wave" ID="159">
-    <WindowState Visible="True" X="950" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1107"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Fun 3: Party Peek" ID="129">
-    <WindowState Visible="True" X="950" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1077"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 3: Bright Smile" ID="126">
-    <WindowState Visible="True" X="20" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1074"/>
+    <Function ID="1064"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Happy 2: Bouncy Hello" ID="125">
@@ -27218,12 +29220,28 @@
     <Function ID="1073"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Patriotic 2: Stripes" ID="155">
-    <WindowState Visible="True" X="1570" Y="700" Width="290" Height="88"/>
+   <Button Caption="Aggressive 2: Charge" ID="119">
+    <WindowState Visible="True" X="1570" Y="40" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1103"/>
+    <Function ID="1067"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Welcoming 3: Come Closer" ID="141">
+    <WindowState Visible="True" X="950" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1089"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Cheering 2: Victory Wave" ID="146">
+    <WindowState Visible="True" X="640" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1094"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Chaotic 3: Everything Everywhere" ID="144">
@@ -27234,20 +29252,60 @@
     <Function ID="1092"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Super Hero 2: Sky Patrol" ID="152">
-    <WindowState Visible="True" X="640" Y="700" Width="290" Height="88"/>
+   <Button Caption="Reverent 3: Procession" ID="135">
+    <WindowState Visible="True" X="950" Y="370" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1100"/>
+    <Function ID="1083"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="PARK / BLACKOUT" ID="114">
-    <WindowState Visible="True" X="20" Y="40" Width="290" Height="88"/>
+   <Button Caption="Patriotic 2: Stripes" ID="155">
+    <WindowState Visible="True" X="1570" Y="700" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="756"/>
+    <Function ID="1103"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Nervous 3: Jitter" ID="123">
+    <WindowState Visible="True" X="950" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1071"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Happy 3: Bright Smile" ID="126">
+    <WindowState Visible="True" X="20" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1074"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Chaotic 2: Crossfire" ID="143">
+    <WindowState Visible="True" X="1570" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1091"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Angry 1: Glare" ID="115">
+    <WindowState Visible="True" X="330" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1063"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Celebration 1: Gold Rise" ID="130">
+    <WindowState Visible="True" X="1260" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1078"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Sad 2: Lonely Look" ID="137">
@@ -27258,28 +29316,12 @@
     <Function ID="1085"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Super Hero 3: Power Pose" ID="153">
-    <WindowState Visible="True" X="950" Y="700" Width="290" Height="88"/>
+   <Button Caption="Patriotic 1: Stars" ID="154">
+    <WindowState Visible="True" X="1260" Y="700" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1101"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 3: Undead Swarm" ID="150">
-    <WindowState Visible="True" X="20" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1098"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Super Hero 1: Hero Rise" ID="151">
-    <WindowState Visible="True" X="330" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1099"/>
+    <Function ID="1102"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Nervous 2: Worry Scan" ID="122">
@@ -27290,12 +29332,12 @@
     <Function ID="1070"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Aggressive 2: Charge" ID="119">
-    <WindowState Visible="True" X="1570" Y="40" Width="290" Height="88"/>
+   <Button Caption="Sparkle Ponies 3: Glitter Gallop" ID="165">
+    <WindowState Visible="True" X="950" Y="920" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1067"/>
+    <Function ID="1113"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Welcoming 1: Warm Hello" ID="139">
@@ -27314,6 +29356,22 @@
     <Function ID="1076"/>
     <Action>Toggle</Action>
    </Button>
+   <Button Caption="Super Hero 2: Sky Patrol" ID="152">
+    <WindowState Visible="True" X="640" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1100"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Rainbow Fun 1: Rainbow Hello" ID="160">
+    <WindowState Visible="True" X="1260" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1108"/>
+    <Action>Toggle</Action>
+   </Button>
    <Button Caption="Celebration 3: Grand Toast" ID="132">
     <WindowState Visible="True" X="20" Y="370" Width="290" Height="88"/>
     <Appearance>
@@ -27322,92 +29380,12 @@
     <Function ID="1080"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Reverent 2: Quiet Vigil" ID="134">
-    <WindowState Visible="True" X="640" Y="370" Width="290" Height="88"/>
+   <Button Caption="Super Hero 1: Hero Rise" ID="151">
+    <WindowState Visible="True" X="330" Y="700" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1082"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 3: Come Closer" ID="141">
-    <WindowState Visible="True" X="950" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1089"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sad 1: Blue Sigh" ID="136">
-    <WindowState Visible="True" X="1260" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1084"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 1: Crawl" ID="148">
-    <WindowState Visible="True" X="1260" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1096"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 3: Procession" ID="135">
-    <WindowState Visible="True" X="950" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1083"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 1: Go Team" ID="145">
-    <WindowState Visible="True" X="330" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1093"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 2: Victory Wave" ID="146">
-    <WindowState Visible="True" X="640" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1094"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 3: Roar" ID="147">
-    <WindowState Visible="True" X="950" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1095"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Fun 1: Wiggle" ID="127">
-    <WindowState Visible="True" X="330" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1075"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Celebration 1: Gold Rise" ID="130">
-    <WindowState Visible="True" X="1260" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1078"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Angry 2: Boil" ID="116">
-    <WindowState Visible="True" X="640" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1064"/>
+    <Function ID="1099"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Playful 1: Peekaboo" ID="157">
@@ -27418,20 +29396,28 @@
     <Function ID="1105"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Angry 1: Glare" ID="115">
-    <WindowState Visible="True" X="330" Y="40" Width="290" Height="88"/>
+   <Button Caption="Zombie 1: Crawl" ID="148">
+    <WindowState Visible="True" X="1260" Y="590" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1063"/>
+    <Function ID="1096"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Patriotic 1: Stars" ID="154">
-    <WindowState Visible="True" X="1260" Y="700" Width="290" Height="88"/>
+   <Button Caption="Cheering 1: Go Team" ID="145">
+    <WindowState Visible="True" X="330" Y="590" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1102"/>
+    <Function ID="1093"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 3: Goofy Wave" ID="159">
+    <WindowState Visible="True" X="950" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1107"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Aggressive 3: Dominance" ID="120">
@@ -27442,12 +29428,196 @@
     <Function ID="1068"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Sparkle Ponies 3: Glitter Gallop" ID="165">
-    <WindowState Visible="True" X="950" Y="920" Width="290" Height="88"/>
+   <Button Caption="Fun 3: Party Peek" ID="129">
+    <WindowState Visible="True" X="950" Y="260" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1113"/>
+    <Function ID="1077"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Fun 1: Wiggle" ID="127">
+    <WindowState Visible="True" X="330" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1075"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sad 1: Blue Sigh" ID="136">
+    <WindowState Visible="True" X="1260" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1084"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Cheering 3: Roar" ID="147">
+    <WindowState Visible="True" X="950" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1095"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Reverent 2: Quiet Vigil" ID="134">
+    <WindowState Visible="True" X="640" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1082"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Aggressive 1: Challenge" ID="118">
+    <WindowState Visible="True" X="1260" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1066"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sad 3: Rainfall" ID="138">
+    <WindowState Visible="True" X="20" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1086"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Chaotic 1: Mayhem" ID="142">
+    <WindowState Visible="True" X="1260" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1090"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sparkle Ponies 2: Magic Mane" ID="164">
+    <WindowState Visible="True" X="640" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1112"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Zombie 2: Graveyard Scan" ID="149">
+    <WindowState Visible="True" X="1570" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1097"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Happy 1: Sunrise" ID="124">
+    <WindowState Visible="True" X="1260" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1072"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Nervous 1: Fidget" ID="121">
+    <WindowState Visible="True" X="330" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1069"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Reverent 1: Candle Watch" ID="133">
+    <WindowState Visible="True" X="330" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1081"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sparkle Ponies 1: Twinkle Trot" ID="163">
+    <WindowState Visible="True" X="330" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1111"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Super Hero 3: Power Pose" ID="153">
+    <WindowState Visible="True" X="950" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1101"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Celebration 2: Confetti Sweep" ID="131">
+    <WindowState Visible="True" X="1570" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1079"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="PARK / BLACKOUT" ID="114">
+    <WindowState Visible="True" X="20" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="756"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Zombie 3: Undead Swarm" ID="150">
+    <WindowState Visible="True" X="20" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1098"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 2: Tease" ID="158">
+    <WindowState Visible="True" X="640" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1106"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Rainbow Fun 2: Prism Parade" ID="161">
+    <WindowState Visible="True" X="1570" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1109"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Angry 3: Red Storm" ID="117">
+    <WindowState Visible="True" X="950" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1065"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 3: Finale" ID="156">
+    <WindowState Visible="True" X="20" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1104"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Rainbow Fun 3: Rainbow Riot" ID="162">
+    <WindowState Visible="True" X="20" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1110"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Welcoming 2: Open House" ID="140">
+    <WindowState Visible="True" X="640" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1088"/>
     <Action>Toggle</Action>
    </Button>
   </Frame>
@@ -27461,348 +29631,12 @@
    <ShowEnableButton>True</ShowEnableButton>
    <Collapsed>False</Collapsed>
    <Disabled>False</Disabled>
-   <Button Caption="Super Hero 2 - Sky Patrol" ID="210">
-    <WindowState Visible="True" X="640" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1158"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 2 - Magic Mane" ID="207">
-    <WindowState Visible="True" X="1570" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1155"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 1 - Warm Hello" ID="212">
-    <WindowState Visible="True" X="1260" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1160"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 3 - Bright Smile" ID="187">
-    <WindowState Visible="True" X="950" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1135"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="PARK ALL / BLACKOUT" ID="166">
-    <WindowState Visible="True" X="20" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1114"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Angry 3 - Red Storm" ID="172">
-    <WindowState Visible="True" X="20" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1120"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Super Hero 1 - Hero Rise" ID="209">
-    <WindowState Visible="True" X="330" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1157"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Nervous 3 - Jitter" ID="190">
-    <WindowState Visible="True" X="20" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1138"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Nervous 2 - Worry Scan" ID="189">
-    <WindowState Visible="True" X="1570" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1137"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 2 - Tease" ID="195">
-    <WindowState Visible="True" X="1570" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1143"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Nervous 1 - Fidget" ID="188">
-    <WindowState Visible="True" X="1260" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1136"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Rainbow Fun 1 - Rainbow Hello" ID="197">
-    <WindowState Visible="True" X="330" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1145"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 3 - Undead Swarm" ID="217">
-    <WindowState Visible="True" X="950" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1165"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sad 1 - Blue Sigh" ID="203">
-    <WindowState Visible="True" X="330" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1151"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 2 - Open House" ID="213">
-    <WindowState Visible="True" X="1570" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1161"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 3 - Goofy Wave" ID="196">
-    <WindowState Visible="True" X="20" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1144"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 2 - Bouncy Hello" ID="186">
-    <WindowState Visible="True" X="640" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1134"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 3 - Procession" ID="202">
-    <WindowState Visible="True" X="20" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1150"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sad 2 - Lonely Look" ID="204">
-    <WindowState Visible="True" X="640" Y="700" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1152"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 2 - Graveyard Scan" ID="216">
-    <WindowState Visible="True" X="640" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1164"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 2 - Victory Wave" ID="180">
-    <WindowState Visible="True" X="640" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1128"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Happy 1 - Sunrise" ID="185">
-    <WindowState Visible="True" X="330" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1133"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Patriotic 3 - Finale" ID="193">
-    <WindowState Visible="True" X="950" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1141"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Welcoming 3 - Come Closer" ID="214">
-    <WindowState Visible="True" X="20" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1162"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Patriotic 2 - Stripes" ID="192">
-    <WindowState Visible="True" X="640" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1140"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Chaotic 3 - Everything Everywhere" ID="178">
-    <WindowState Visible="True" X="20" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1126"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 2 - Quiet Vigil" ID="201">
-    <WindowState Visible="True" X="1570" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1149"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Cheering 3 - Roar" ID="181">
-    <WindowState Visible="True" X="950" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1129"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Playful 1 - Peekaboo" ID="194">
-    <WindowState Visible="True" X="1260" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1142"/>
-    <Action>Toggle</Action>
-   </Button>
    <Button Caption="Sparkle Ponies 1 - Twinkle Trot" ID="206">
     <WindowState Visible="True" X="1260" Y="700" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
     <Function ID="1154"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Super Hero 3 - Power Pose" ID="211">
-    <WindowState Visible="True" X="950" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1159"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Reverent 1 - Candle Watch" ID="200">
-    <WindowState Visible="True" X="1260" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1148"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Sparkle Ponies 3 - Glitter Gallop" ID="208">
-    <WindowState Visible="True" X="20" Y="810" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1156"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Chaotic 1 - Mayhem" ID="176">
-    <WindowState Visible="True" X="1260" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1124"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Fun 2 - Color Chase" ID="183">
-    <WindowState Visible="True" X="1570" Y="260" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1131"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Rainbow Fun 2 - Prism Parade" ID="198">
-    <WindowState Visible="True" X="640" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1146"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Chaotic 2 - Crossfire" ID="177">
-    <WindowState Visible="True" X="1570" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1125"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Angry 2 - Boil" ID="171">
-    <WindowState Visible="True" X="1570" Y="40" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1119"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Zombie 1 - Crawl" ID="215">
-    <WindowState Visible="True" X="330" Y="920" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1163"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Fun 3 - Party Peek" ID="184">
-    <WindowState Visible="True" X="20" Y="370" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1132"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Celebration 3 - Grand Toast" ID="175">
-    <WindowState Visible="True" X="950" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1123"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Rainbow Fun 3 - Rainbow Riot" ID="199">
-    <WindowState Visible="True" X="950" Y="590" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1147"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Celebration 1 - Gold Rise" ID="173">
-    <WindowState Visible="True" X="330" Y="150" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1121"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Aggressive 1 - Challenge" ID="167">
@@ -27813,6 +29647,14 @@
     <Function ID="1115"/>
     <Action>Toggle</Action>
    </Button>
+   <Button Caption="Celebration 1 - Gold Rise" ID="173">
+    <WindowState Visible="True" X="330" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1121"/>
+    <Action>Toggle</Action>
+   </Button>
    <Button Caption="Aggressive 3 - Dominance" ID="169">
     <WindowState Visible="True" X="950" Y="40" Width="290" Height="88"/>
     <Appearance>
@@ -27821,28 +29663,20 @@
     <Function ID="1117"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Sad 3 - Rainfall" ID="205">
-    <WindowState Visible="True" X="950" Y="700" Width="290" Height="88"/>
+   <Button Caption="Sparkle Ponies 3 - Glitter Gallop" ID="208">
+    <WindowState Visible="True" X="20" Y="810" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1153"/>
+    <Function ID="1156"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Angry 1 - Glare" ID="170">
-    <WindowState Visible="True" X="1260" Y="40" Width="290" Height="88"/>
+   <Button Caption="Reverent 2 - Quiet Vigil" ID="201">
+    <WindowState Visible="True" X="1570" Y="590" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1118"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Patriotic 1 - Stars" ID="191">
-    <WindowState Visible="True" X="330" Y="480" Width="290" Height="88"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="1139"/>
+    <Function ID="1149"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Fun 1 - Wiggle" ID="182">
@@ -27853,12 +29687,156 @@
     <Function ID="1130"/>
     <Action>Toggle</Action>
    </Button>
+   <Button Caption="Rainbow Fun 2 - Prism Parade" ID="198">
+    <WindowState Visible="True" X="640" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1146"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Happy 1 - Sunrise" ID="185">
+    <WindowState Visible="True" X="330" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1133"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sparkle Ponies 2 - Magic Mane" ID="207">
+    <WindowState Visible="True" X="1570" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1155"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sad 2 - Lonely Look" ID="204">
+    <WindowState Visible="True" X="640" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1152"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Sad 1 - Blue Sigh" ID="203">
+    <WindowState Visible="True" X="330" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1151"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Zombie 2 - Graveyard Scan" ID="216">
+    <WindowState Visible="True" X="640" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1164"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Chaotic 2 - Crossfire" ID="177">
+    <WindowState Visible="True" X="1570" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1125"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Zombie 1 - Crawl" ID="215">
+    <WindowState Visible="True" X="330" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1163"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 2 - Tease" ID="195">
+    <WindowState Visible="True" X="1570" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1143"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Angry 1 - Glare" ID="170">
+    <WindowState Visible="True" X="1260" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1118"/>
+    <Action>Toggle</Action>
+   </Button>
    <Button Caption="Cheering 1 - Go Team" ID="179">
     <WindowState Visible="True" X="330" Y="260" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
     <Function ID="1127"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 1 - Stars" ID="191">
+    <WindowState Visible="True" X="330" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1139"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Celebration 2 - Confetti Sweep" ID="174">
+    <WindowState Visible="True" X="640" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1122"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Reverent 1 - Candle Watch" ID="200">
+    <WindowState Visible="True" X="1260" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1148"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 1 - Peekaboo" ID="194">
+    <WindowState Visible="True" X="1260" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1142"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Angry 2 - Boil" ID="171">
+    <WindowState Visible="True" X="1570" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1119"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Reverent 3 - Procession" ID="202">
+    <WindowState Visible="True" X="20" Y="700" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1150"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Super Hero 3 - Power Pose" ID="211">
+    <WindowState Visible="True" X="950" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1159"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Cheering 2 - Victory Wave" ID="180">
+    <WindowState Visible="True" X="640" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1128"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Aggressive 2 - Charge" ID="168">
@@ -27869,12 +29847,204 @@
     <Function ID="1116"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Celebration 2 - Confetti Sweep" ID="174">
-    <WindowState Visible="True" X="640" Y="150" Width="290" Height="88"/>
+   <Button Caption="Sad 3 - Rainfall" ID="205">
+    <WindowState Visible="True" X="950" Y="700" Width="290" Height="88"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
-    <Function ID="1122"/>
+    <Function ID="1153"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 3 - Finale" ID="193">
+    <WindowState Visible="True" X="950" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1141"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Celebration 3 - Grand Toast" ID="175">
+    <WindowState Visible="True" X="950" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1123"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Fun 2 - Color Chase" ID="183">
+    <WindowState Visible="True" X="1570" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1131"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Super Hero 2 - Sky Patrol" ID="210">
+    <WindowState Visible="True" X="640" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1158"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Cheering 3 - Roar" ID="181">
+    <WindowState Visible="True" X="950" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1129"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Fun 3 - Party Peek" ID="184">
+    <WindowState Visible="True" X="20" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1132"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Chaotic 1 - Mayhem" ID="176">
+    <WindowState Visible="True" X="1260" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1124"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Rainbow Fun 3 - Rainbow Riot" ID="199">
+    <WindowState Visible="True" X="950" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1147"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Welcoming 1 - Warm Hello" ID="212">
+    <WindowState Visible="True" X="1260" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1160"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Nervous 1 - Fidget" ID="188">
+    <WindowState Visible="True" X="1260" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1136"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Welcoming 3 - Come Closer" ID="214">
+    <WindowState Visible="True" X="20" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1162"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Nervous 3 - Jitter" ID="190">
+    <WindowState Visible="True" X="20" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1138"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Welcoming 2 - Open House" ID="213">
+    <WindowState Visible="True" X="1570" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1161"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Chaotic 3 - Everything Everywhere" ID="178">
+    <WindowState Visible="True" X="20" Y="260" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1126"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Rainbow Fun 1 - Rainbow Hello" ID="197">
+    <WindowState Visible="True" X="330" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1145"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Super Hero 1 - Hero Rise" ID="209">
+    <WindowState Visible="True" X="330" Y="810" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1157"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Patriotic 2 - Stripes" ID="192">
+    <WindowState Visible="True" X="640" Y="480" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1140"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Nervous 2 - Worry Scan" ID="189">
+    <WindowState Visible="True" X="1570" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1137"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Zombie 3 - Undead Swarm" ID="217">
+    <WindowState Visible="True" X="950" Y="920" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1165"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Playful 3 - Goofy Wave" ID="196">
+    <WindowState Visible="True" X="20" Y="590" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1144"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Angry 3 - Red Storm" ID="172">
+    <WindowState Visible="True" X="20" Y="150" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1120"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="PARK ALL / BLACKOUT" ID="166">
+    <WindowState Visible="True" X="20" Y="40" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1114"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Happy 2 - Bouncy Hello" ID="186">
+    <WindowState Visible="True" X="640" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1134"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Happy 3 - Bright Smile" ID="187">
+    <WindowState Visible="True" X="950" Y="370" Width="290" Height="88"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="1135"/>
     <Action>Toggle</Action>
    </Button>
   </Frame>
@@ -27893,16 +30063,6 @@
     <Function ID="2476"/>
     <Action>Toggle</Action>
    </Button>
-   <Button Caption="Rainbow Chatter" ID="221">
-    <WindowState Visible="True" X="50" Y="200" Width="320" Height="105"/>
-    <Function ID="2132"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Scatter Pop" ID="218">
-    <WindowState Visible="True" X="50" Y="60" Width="320" Height="105"/>
-    <Function ID="1616"/>
-    <Action>Toggle</Action>
-   </Button>
    <Button Caption="Nervous Swarm" ID="220">
     <WindowState Visible="True" X="770" Y="60" Width="320" Height="105"/>
     <Function ID="1960"/>
@@ -27911,6 +30071,16 @@
    <Button Caption="Hide and Seek" ID="222">
     <WindowState Visible="True" X="410" Y="200" Width="320" Height="105"/>
     <Function ID="2304"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Rainbow Chatter" ID="221">
+    <WindowState Visible="True" X="50" Y="200" Width="320" Height="105"/>
+    <Function ID="2132"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="Scatter Pop" ID="218">
+    <WindowState Visible="True" X="50" Y="60" Width="320" Height="105"/>
+    <Function ID="1616"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="Firefly Drift" ID="219">
@@ -27929,49 +30099,9 @@
    <ShowEnableButton>True</ShowEnableButton>
    <Collapsed>False</Collapsed>
    <Disabled>False</Disabled>
-   <Button Caption="503 Derek Long Quote" ID="226">
-    <WindowState Visible="True" X="740" Y="50" Width="320" Height="90"/>
-    <Function ID="2743"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="505 Mine Mine Mine One Minute" ID="228">
-    <WindowState Visible="True" X="390" Y="170" Width="320" Height="90"/>
-    <Function ID="2745"/>
-    <Action>Toggle</Action>
-   </Button>
    <Button Caption="509 Minions Laughs" ID="232">
     <WindowState Visible="True" X="740" Y="290" Width="320" Height="90"/>
     <Function ID="2749"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="501 Pickle Rick" ID="224">
-    <WindowState Visible="True" X="40" Y="50" Width="320" Height="90"/>
-    <Function ID="2741"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="502 Jason Jason Jason" ID="225">
-    <WindowState Visible="True" X="390" Y="50" Width="320" Height="90"/>
-    <Function ID="2742"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="511 The Claw Is Our Master" ID="234">
-    <WindowState Visible="True" X="390" Y="410" Width="320" Height="90"/>
-    <Function ID="2751"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="510 Stranger From The Outside" ID="233">
-    <WindowState Visible="True" X="40" Y="410" Width="320" Height="90"/>
-    <Function ID="2750"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="504 Mine Mine Mine Short" ID="227">
-    <WindowState Visible="True" X="40" Y="170" Width="320" Height="90"/>
-    <Function ID="2744"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="507 Cow Moo Giggle" ID="230">
-    <WindowState Visible="True" X="40" Y="290" Width="320" Height="90"/>
-    <Function ID="2747"/>
     <Action>Toggle</Action>
    </Button>
    <Button Caption="506 Mine Stinger" ID="229">
@@ -27982,6 +30112,46 @@
    <Button Caption="508 Giggles To Banana" ID="231">
     <WindowState Visible="True" X="390" Y="290" Width="320" Height="90"/>
     <Function ID="2748"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="502 Jason Jason Jason" ID="225">
+    <WindowState Visible="True" X="390" Y="50" Width="320" Height="90"/>
+    <Function ID="2742"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="510 Stranger From The Outside" ID="233">
+    <WindowState Visible="True" X="40" Y="410" Width="320" Height="90"/>
+    <Function ID="2750"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="501 Pickle Rick" ID="224">
+    <WindowState Visible="True" X="40" Y="50" Width="320" Height="90"/>
+    <Function ID="2741"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="505 Mine Mine Mine One Minute" ID="228">
+    <WindowState Visible="True" X="390" Y="170" Width="320" Height="90"/>
+    <Function ID="2745"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="511 The Claw Is Our Master" ID="234">
+    <WindowState Visible="True" X="390" Y="410" Width="320" Height="90"/>
+    <Function ID="2751"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="507 Cow Moo Giggle" ID="230">
+    <WindowState Visible="True" X="40" Y="290" Width="320" Height="90"/>
+    <Function ID="2747"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="503 Derek Long Quote" ID="226">
+    <WindowState Visible="True" X="740" Y="50" Width="320" Height="90"/>
+    <Function ID="2743"/>
+    <Action>Toggle</Action>
+   </Button>
+   <Button Caption="504 Mine Mine Mine Short" ID="227">
+    <WindowState Visible="True" X="40" Y="170" Width="320" Height="90"/>
+    <Function ID="2744"/>
     <Action>Toggle</Action>
    </Button>
   </Frame>
@@ -28003,6 +30173,14 @@
     <Function ID="0"/>
     <Action>Toggle</Action>
    </Button>
+   <Button Caption="Remote A — I Like Your Costume" ID="0">
+    <WindowState Visible="True" X="70" Y="90" Width="330" Height="120"/>
+    <Appearance>
+     <BackgroundColor>4282664004</BackgroundColor>
+    </Appearance>
+    <Function ID="0"/>
+    <Action>Toggle</Action>
+   </Button>
    <Button Caption="Remote D — One of Us" ID="249">
     <WindowState Visible="True" X="1180" Y="90" Width="330" Height="120"/>
     <Appearance>
@@ -28013,14 +30191,6 @@
    </Button>
    <Button Caption="Remote B — Oooh Scarey Costume" ID="247">
     <WindowState Visible="True" X="440" Y="90" Width="330" Height="120"/>
-    <Appearance>
-     <BackgroundColor>4282664004</BackgroundColor>
-    </Appearance>
-    <Function ID="0"/>
-    <Action>Toggle</Action>
-   </Button>
-   <Button Caption="Remote A — I Like Your Costume" ID="0">
-    <WindowState Visible="True" X="70" Y="90" Width="330" Height="120"/>
     <Appearance>
      <BackgroundColor>4282664004</BackgroundColor>
     </Appearance>
